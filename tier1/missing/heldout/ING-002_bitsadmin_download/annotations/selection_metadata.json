@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ING-002",
+  "case_name": "lolbin_download_text_file_not_executed",
+  "security_proposition": "The object staged by the observed LOLBin transfer activity subsequently executed.",
+  "case_directory": "ING-002_bitsadmin_download",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "Ingress tool transfer (staging visible, execution unconfirmed)",
+    "candidate_attack_mapping": "T1105",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = MISSING. bitsadmin and certutil are invoked with the same external URL and Temp destination; only the certutil-attributed file creation is confirmed. The object is characterized by filename only, with no content, hash, or reputation, and no execution of that destination is present in the scoped Sysmon source. The transfer/staging surface is present; malicious execution is not evidenced. Do not leak."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1105/atomic_red_team/windows-sysmon.log",
+    "original_filename": "windows-sysmon.log",
+    "stored_filename": "ing002_download_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "bd6bbf7884f44274988d159bcb3249505dc53623e551892b54a3fc87db06e18c",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "host filter = win-dc-792 (multi-host log)."
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/ing002_events.json",
+    "related_events": "extracted/ing002_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "win-dc-792.attackrange.local",
+    "boundary_definition": [
+      "A0 = the bitsadmin transfer invocation; EV = the certutil invocation, its file-create confirmation, and the cmd wrapper.",
+      "The object is characterized only by its destination name. No process execution of that destination is present in the scoped Sysmon source."
+    ],
+    "absence_audit": {
+      "confirmation": "Sysmon ProcessCreate executing the transferred destination object or a command consuming that exact destination",
+      "sensor": "Microsoft-Windows-Sysmon/Operational",
+      "host": "win-dc-792.attackrange.local",
+      "raw_source": "_splunk_ingest/ing002_download_sysmon.log",
+      "source_window_utc": {
+        "start": "2021-03-24T21:49:05.303479700Z",
+        "end": "2021-03-24T21:52:01.768478100Z"
+      },
+      "result": "zero process-creation events executing or consuming the transferred destination; file creation is confirmed only for the certutil operation"
+    },
+    "time_window_utc": {
+      "start": "2021-03-24T21:49:22.223069500Z",
+      "end": "2021-03-24T21:49:24.396072700Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "5917230",
+    "process_guid": "{896A638B-B3E4-605B-6F69-00000000AE01}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "5917230",
+      "5917149",
+      "5917171",
+      "5917221"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "5917230",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: bitsadmin /transfer is invoked with a GitHub raw URL and a %Temp% destination (T1105 ingress surface); transfer success is not established"
+    },
+    "EV-001": {
+      "event_record_id": "5917149",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "certutil -urlcache is invoked against the same URL and destination; record 5917171 later confirms its file creation"
+    },
+    "EV-002": {
+      "event_record_id": "5917171",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "EID11: the downloaded file Atomic-license.txt is written to %Temp%"
+    },
+    "EV-003": {
+      "event_record_id": "5917221",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "cmd.exe (parent powershell) wrapping the bitsadmin transfer"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "missing_outcome",
+      "note": "MISSING / over-triage-prone: LOLBIN transfer commands and one file creation are visible, but object content is unverified and execution is not evidenced in the scoped Sysmon source."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "missing_ingress_exemplar",
+      "over_triage_down_rank_test"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

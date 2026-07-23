@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1055/sliver/notepad_windows-sysmon.log",
+      "sha256": "fbe287c3ddfef130124e7565bb00baa79872b4c420e692d902510211994468ee"
+    }
+  ],
+  "primary_host": "win-dc-mhaag-attack-range-84.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "notepad_windows-sysmon.log is host win-dc-84 (single). The sliver folder's other logs (T1055_windows-sysmon, sliver_windows-system) are the same host but separate/sparse captures; this case uses the notepad Sysmon capture only. Single-sensor."
+  }
+}

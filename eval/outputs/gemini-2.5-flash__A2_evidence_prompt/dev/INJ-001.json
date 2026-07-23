@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "The executable 'ILL_UNBLINKING.exe' (parent process in EV-001, EV-002, EV-004) repeatedly creates 'notepad.exe' processes and then injects remote threads into them (A0, EV-003, EV-005). This behavior, specifically remote thread creation into a benign process like Notepad from an unknown executable, is highly indicative of process injection, a common technique for evading detection and executing malicious code.",
+  "recommended_action": "isolate"
+}

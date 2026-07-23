@@ -1,0 +1,38 @@
+{
+  "case_id": "AMQ-001",
+  "evidence_condition": "strong",
+  "calibration_role": "preserve",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004",
+      "EV-005",
+      "EV-006",
+      "EV-007",
+      "EV-008",
+      "EV-009",
+      "EV-010",
+      "EV-011",
+      "EV-012"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": []
+  },
+  "the_trap": "An ActiveMQ broker process (java) spawns cmd->certutil->payload as Administrator; the payload executes, connects to 10.0.2.13:4444, and spawns a child shell before AnyDesk is downloaded. Sysmon supplies commands, network, and process ids while Security 4688 independently corroborates the tree and identity — a confirmed critical foothold.",
+  "rationale": "java (ActiveMQ) spawns cmd (A0), certutil downloads a payload (EV-003/004), and the payload executes (EV-006) and connects to 10.0.2.13:4444 (EV-007). Security 4688 then records that payload spawning cmd as Administrator (EV-008), while Sysmon records the matching high-integrity cmd process and parent pid (EV-009). Security and Sysmon subsequently record the AnyDesk download (EV-010..012). The cross-sensor chain confirms an RCE foothold without relying on the port number alone to assert a reverse shell.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

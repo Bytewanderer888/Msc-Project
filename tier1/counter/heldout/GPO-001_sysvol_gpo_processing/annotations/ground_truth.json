@@ -1,0 +1,31 @@
+{
+  "case_id": "GPO-001",
+  "evidence_condition": "counter",
+  "calibration_role": "down_rank",
+  "correct_verdict": "benign",
+  "acceptable_severity": [
+    "informational",
+    "low"
+  ],
+  "acceptable_actions": [
+    "close_benign",
+    "monitor"
+  ],
+  "grounding": {
+    "supporting_evidence": [],
+    "counter_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "must_not_assert": [
+      "adversary-driven broad SMB scanning, write activity, credential access, or subsequent lateral movement (the package contains only four read-type 5145 access checks by machine accounts against default Group Policy artifacts under \\\\*\\SYSVOL; these events do not establish broader reconnaissance or follow-on activity)"
+    ]
+  },
+  "the_trap": "Machine accounts reaching the domain controller's \\\\\\\\*\\\\SYSVOL share (share_local_path \\\\??\\\\F:\\\\SYSVOL\\\\sysvol) can resemble SMB enumeration or AD reconnaissance. However, both subjects are machine accounts (user-02$ in A0/EV-003, host-01$ in EV-001/EV-002), all four are read-type 5145 access checks (access_mask 0x120089 on EV-001/EV-002, 0x100081 on A0/EV-003), and the targets are default Group Policy artifacts: EV-001 accesses gpt.ini under {31B2F340-016D-11D2-945F-00C04FB984F9}, EV-002 accesses gpt.ini under {6AC1786C-016F-11D2-945F-00C04fB984F9}, A0 accesses the corp.local\\\\Policies container, and EV-003 accesses the corp.local domain root. This narrow read-only pattern is consistent with routine Group Policy processing; the package contains no broad share scanning, write activity, credential access, or subsequent lateral activity. Correct verdict benign. Cross-corpus twin of SMB-002.",
+  "rationale": "All four events are 5145 network-share object access checks to \\\\\\\\*\\\\SYSVOL by machine accounts: host-01$ on EV-001/EV-002 and user-02$ on A0/EV-003. Their read-type access masks and targets — gpt.ini under the two default GPO GUIDs, the corp.local\\\\Policies container, and the corp.local domain root — form a narrow pattern consistent with routine Group Policy processing. Although 5145 itself records access checks to share objects, the package contains no broad scanning pattern, write activity, credential access, or subsequent lateral activity to support an adversary-driven interpretation. The read-only accesses to default Group Policy artifacts therefore support a benign verdict.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

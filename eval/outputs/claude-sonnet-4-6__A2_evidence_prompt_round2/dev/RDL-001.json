@@ -1,0 +1,11 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.62,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "Both A0 and EV-001 show rundll32.exe invoking davclnt.dll's DavSetCookie export targeting d.docs.live.net (Microsoft OneDrive/Live), a pattern associated with WebDAV-based credential coercion or UNC path injection (e.g. CVE-2023-23397-style or similar forced-authentication techniques). The parent is svchost.exe hosting the WebClient service, which is consistent with a legitimate WebDAV authentication flow but is also the expected execution chain when an attacker triggers a forced WebDAV authentication to capture NTLM hashes. Running at High integrity level for a standard user (corp\\user-01) is notable. However, no confirmed malicious outcome is evidenced \u2014 no network connection event, no credential capture, no lateral movement \u2014 and the binary hashes match the legitimate Windows system file. The identical command spawned twice within 234 ms from the same parent warrants investigation to determine what triggered the WebClient service to initiate these calls.",
+  "recommended_action": "investigate"
+}

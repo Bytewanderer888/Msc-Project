@@ -1,0 +1,39 @@
+{
+  "case_id": "ER-C01",
+  "security_proposition": "The temporary-directory DLL loads by DismHost represent malicious DLL side-loading.",
+  "evidence_condition": "counter",
+  "calibration_role": "down_rank",
+  "correct_verdict": "benign",
+  "acceptable_severity": [
+    "informational",
+    "low"
+  ],
+  "acceptable_actions": [
+    "close_benign",
+    "monitor"
+  ],
+  "operational_response": {
+    "family": "none",
+    "note": "Close or monitor the alert; the affirmative context does not justify containment."
+  },
+  "grounding": {
+    "supporting_evidence": [],
+    "counter_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004"
+    ],
+    "must_not_assert": [
+      "that the DismHost executable itself was signature-verified by these events",
+      "that every DLL load by DismHost is benign",
+      "that activity outside the selected sub-second module-loading burst was reviewed"
+    ]
+  },
+  "the_trap": "A temporary path can look suspicious, but the selected burst is a coherent DISM module set with valid Microsoft signatures and matching product metadata.",
+  "rationale": "A0 and EV-001 through EV-004 show one DismHost process loading five named Windows servicing modules within the same temporary working directory and sub-second window. Every loaded DLL is identified as a Microsoft Windows component with a valid Microsoft signature. This affirmative, internally coherent servicing context defeats the isolated side-loading interpretation for this alert package.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

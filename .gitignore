@@ -1,0 +1,26 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.~*
+~$*
+*.swp
+*.swo
+.env
+.env.*
+!.env.example
+
+# Invalidated historical runs are local working records, not release artifacts.
+archive/invalidated_outputs/
+
+# Optional 652 MiB cache of public Splunk attack_data logs. Recreate it from
+# data_sources/attack_data_staged_manifest.json; never commit the raw copies.
+_splunk_ingest/
+
+# Reproducible public-corpus staging caches used to construct the external
+# replication set.  Keep the small manifests, labels, and documentation; fetch
+# these large upstream files by DOI when rebuilding cases.
+data_sources/windows_apt_2025/combined.csv
+data_sources/ainception_sl100/SL100.zip
+data_sources/ait_ads/ait_ads.zip
+data_sources/cam_lds/manifestations_raw.zip

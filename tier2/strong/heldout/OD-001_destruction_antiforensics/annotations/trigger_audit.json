@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "OD-001",
+  "rule_id": "SAFESOC-TRG-OD-001",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "source_description": "raw logs [sysmon,security]",
+  "raw_source_event_count": 16400,
+  "complete_scope_event_count": 16400,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "sysmon:290147",
+  "expected_record_key": "sysmon:290147",
+  "selected_raw_sha256": "cd8df3dbdf7f6561e50ff5e2be1a63a42d3f9639e2f803022672deb81ef681f0",
+  "pass": true
+}

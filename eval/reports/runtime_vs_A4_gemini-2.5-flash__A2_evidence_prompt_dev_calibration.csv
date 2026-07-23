@@ -1,0 +1,4 @@
+profile,target,n,oracle_positive_n,tp,fp,fn,tn,recall,precision,specificity,f1,deferral_n,deferral_rate,false_negative_cases,false_positive_cases
+integrity_only,calibration,21,12,0,0,12,9,0.0,,1.0,,0,0.0,ACCT-001|CERT-001|FW-001|ING-001|LGN-002|LS-002|PS-001|PS-002|RK-001|SMB-002|ST-002|ST-003,
+consequence_gate,calibration,21,12,7,7,5,2,0.5833,0.5,0.2222,0.5384,14,0.6667,ACCT-001|CERT-001|LGN-002|LS-002|SMB-002,AMQ-001|DISC-002|INJ-001|LS-001|RDL-001|RTLO-001|UAC-001
+safety_first,calibration,21,12,11,8,1,1,0.9167,0.5789,0.1111,0.7097,19,0.9048,SMB-002,AMQ-001|DISC-002|INJ-001|LS-001|RDL-001|RTLO-001|UAC-001|WMI-002

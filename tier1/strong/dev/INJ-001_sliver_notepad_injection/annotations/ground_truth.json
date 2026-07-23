@@ -1,0 +1,33 @@
+{
+  "case_id": "INJ-001",
+  "evidence_condition": "strong",
+  "calibration_role": "preserve",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004",
+      "EV-005"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "a specific shellcode, implant, or payload family was identified; the events establish unbacked remote-thread injection but do not expose the injected bytes"
+    ]
+  },
+  "the_trap": "Repeated CreateRemoteThread events from the same non-system source into freshly spawned notepad.exe processes, each with StartModule='-', establish unbacked remote-code injection; do not dismiss the targets as ordinary notepad activity.",
+  "rationale": "A0, EV-003, and EV-005 create remote threads at addresses Sysmon cannot map to a loaded module (StartModule='-') inside the notepad.exe targets in EV-001, EV-002, and EV-004. The repeated source-to-target pattern confirms process injection, while the telemetry does not identify the injected bytes or a specific payload family.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

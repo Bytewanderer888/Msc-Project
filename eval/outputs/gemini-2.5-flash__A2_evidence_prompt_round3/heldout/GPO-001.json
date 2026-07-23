@@ -1,0 +1,11 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.7,
+  "key_evidence": [
+    "A0",
+    "EV-003"
+  ],
+  "rationale": "The user 'user-02$' accessed the SYSVOL share from IP 10.0.1.4, specifically targeting the 'corp.local\\Policies' directory (A0) and the 'corp.local' root (EV-003). While SYSVOL access can be legitimate for domain-joined machines, direct access to the Policies directory by a user account (rather than a computer account) from an external IP is suspicious and warrants further investigation. The access mask '0x100081' indicates read access, which is not inherently malicious but could be reconnaissance.",
+  "recommended_action": "investigate"
+}

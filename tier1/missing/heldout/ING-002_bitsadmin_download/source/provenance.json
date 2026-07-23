@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1105/atomic_red_team/windows-sysmon.log",
+      "sha256": "bd6bbf7884f44274988d159bcb3249505dc53623e551892b54a3fc87db06e18c"
+    }
+  ],
+  "primary_host": "win-dc-792.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "host filter = win-dc-792 (multi-host log)."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "EVL-001",
+  "rule_id": "SAFESOC-TRG-EVL-001",
+  "analytic_family_id": "AF-REG",
+  "analytic_pattern_id": "REG-02",
+  "source_description": "mordor (cmd_disable_eventlog_service_startuptype_modification_via_registry.zip)",
+  "raw_source_event_count": 7491,
+  "complete_scope_event_count": 7491,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "6256",
+  "expected_record_key": "6256",
+  "selected_raw_sha256": "cd1ab09ca31ee05ebe19e6242463a39987545ce92d14837977f6b352b006849c",
+  "pass": true
+}

@@ -1,0 +1,17 @@
+{
+  "case_id": "ER-W03",
+  "builder": "experiments/external_replication_v1/build_windows_cases.py",
+  "source_file": "data_sources/windows_apt_2025/combined.csv",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "source_record_id": "ei2Lg5MBenunWll4wRw3",
+      "csv_record_number": 7330,
+      "record_sha256": "c3d318e66d08a6cb1aa571e51dc88056597ce390934312946df38a33131832bd"
+    }
+  ],
+  "literal_redactions": [
+    "agent/computer -> host-01",
+    "product-specific name -> endpoint monitoring agent"
+  ]
+}

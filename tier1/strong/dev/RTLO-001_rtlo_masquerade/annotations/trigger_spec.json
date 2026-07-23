@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "case_id": "RTLO-001",
+  "rule_id": "SAFESOC-TRG-RTLO-001",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-04",
+  "title": "Executable filename contains a right-to-left override",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source after any pre-existing host and sensor scope is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 1
+      },
+      {
+        "field": "attributes.image",
+        "op": "contains",
+        "value": "\u202e"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "346422"
+  },
+  "rationale": "A process image containing the Unicode right-to-left override character is a reproducible masquerading analytic."
+}

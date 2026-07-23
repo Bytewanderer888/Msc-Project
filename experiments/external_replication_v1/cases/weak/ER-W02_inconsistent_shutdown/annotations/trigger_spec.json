@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-W02",
+  "rule_id": "SAFESOC-TRG-ER-W02",
+  "analytic_family_id": "AF-STATE",
+  "analytic_pattern_id": "STATE-01",
+  "title": "WMI reports an inconsistent system shutdown",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events for asset DESKTOP-B37GATP in the corpus-native SIEM partition wazuh-alerts-4.x-2024.12.22; no timestamp or record identifier is used.",
+    "filter_predicate": {
+      "all": [
+        {
+          "field": "computer",
+          "op": "ieq",
+          "value": "DESKTOP-B37GATP"
+        },
+        {
+          "field": "attributes.source_partition",
+          "op": "eq",
+          "value": "wazuh-alerts-4.x-2024.12.22"
+        }
+      ]
+    }
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 5611
+      },
+      {
+        "field": "attributes.message",
+        "op": "icontains",
+        "value": "inconsistent system shutdown"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "mEqY7ZMBNimV4ECv0YBb"
+  },
+  "rationale": "A WMI event reporting inconsistent shutdown is a reproducible availability alert, while its cause remains unestablished."
+}

@@ -1,0 +1,971 @@
+{
+  "cases": [
+    {
+      "case_id": "BF-002",
+      "condition": "weak",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 1,
+          "round_passes": [
+            true,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "COL-001",
+      "condition": "weak",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 1,
+          "round_passes": [
+            false,
+            true,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "CRED-001",
+      "condition": "weak",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "DISC-001",
+      "condition": "weak",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "DISC-003",
+      "condition": "weak",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "DISC-004",
+      "condition": "weak",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "EVL-001",
+      "condition": "missing",
+      "flagged_by_majority": [
+        "C2"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 2,
+          "round_passes": [
+            true,
+            true,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "GPO-001",
+      "condition": "counter",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "ING-002",
+      "condition": "missing",
+      "flagged_by_majority": [
+        "C2"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "LOGON-001",
+      "condition": "missing",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 1,
+          "round_passes": [
+            false,
+            true,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "LS-003",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "OD-001",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "PS-003",
+      "condition": "counter",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "PS-004",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "RUN-001",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "SMB-001",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "ST-001",
+      "condition": "missing",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "SVC-001",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "UQP-001",
+      "condition": "strong",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "WMI-001",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    }
+  ],
+  "generated_utc": "2026-07-20T14:08:55Z",
+  "record_schema": "safesoc.validator-majority.v1",
+  "rounds": [
+    {
+      "all_checks_pass_n": 11,
+      "check_failure_counts": {
+        "C1": 0,
+        "C2": 9,
+        "C3": 0,
+        "C4": 6
+      },
+      "model": "claude-sonnet-4-6__A2_evidence_prompt",
+      "round": 1,
+      "source": "eval/reports/claude-sonnet-4-6__A2_evidence_prompt_heldout_A4.json"
+    },
+    {
+      "all_checks_pass_n": 11,
+      "check_failure_counts": {
+        "C1": 0,
+        "C2": 9,
+        "C3": 0,
+        "C4": 5
+      },
+      "model": "claude-sonnet-4-6__A2_evidence_prompt_round2",
+      "round": 2,
+      "source": "eval/reports/claude-sonnet-4-6__A2_evidence_prompt_round2_heldout_A4.json"
+    },
+    {
+      "all_checks_pass_n": 11,
+      "check_failure_counts": {
+        "C1": 0,
+        "C2": 9,
+        "C3": 0,
+        "C4": 8
+      },
+      "model": "claude-sonnet-4-6__A2_evidence_prompt_round3",
+      "round": 3,
+      "source": "eval/reports/claude-sonnet-4-6__A2_evidence_prompt_round3_heldout_A4.json"
+    }
+  ],
+  "split": "heldout",
+  "summary": {
+    "majority_check_failure_counts": {
+      "C1": 0,
+      "C2": 9,
+      "C3": 0,
+      "C4": 7
+    },
+    "majority_flagged_n": 9,
+    "majority_joint_pass_n": 11,
+    "n": 20,
+    "per_round_all_checks_pass_n": [
+      11,
+      11,
+      11
+    ],
+    "per_round_mean": 11.0,
+    "per_round_range": [
+      11,
+      11
+    ]
+  }
+}

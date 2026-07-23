@@ -1,0 +1,10 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.6,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "The `certutil.exe` utility (A0), a known Living Off The Land Binary (LOLBIN), was observed creating a file named `kxwn.lock` in a user's `AppData\\Roaming\\Microsoft` directory. This activity is suspicious as `certutil.exe` is often abused by attackers for file download or decoding, and the `.lock` extension can be associated with malicious activity. However, without the command line arguments or further context, a definitive malicious verdict cannot be reached.",
+  "recommended_action": "investigate"
+}

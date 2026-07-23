@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.97,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "Within a ~850ms window, corp\\Administrator executed a textbook ransomware/destructive-attack preparation sequence from C:\\Temp\\: (1) A0 \u2014 vssadmin.exe deletes all Volume Shadow Copies (/all /quiet), eliminating recovery points; (2) EV-002/EV-003 \u2014 bcdedit disables boot status policy and Windows Recovery Environment, preventing OS self-repair; (3) EV-001/EV-004/EV-005 \u2014 the Security event log is cleared via both the native 1102 audit event and wevtutil, and the System log is also cleared via wevtutil, constituting active anti-forensic/defense-evasion. All processes run at High integrity from C:\\Temp\\ via cmd.exe wrappers, consistent with a dropped payload or script orchestrating these steps. The combination of shadow-copy deletion, recovery disablement, and multi-log wiping in rapid succession has no credible benign explanation and is a well-documented pre-encryption or post-compromise cleanup pattern.",
+  "recommended_action": "isolate"
+}

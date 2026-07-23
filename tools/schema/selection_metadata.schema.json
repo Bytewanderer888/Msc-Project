@@ -1,0 +1,470 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SafeSOC selection_metadata",
+  "description": "Researcher-side archive for a canonical SafeSOC case (id map, curation, provenance, intent). This file is not model-visible and follows one contract across all 41 cases.",
+  "type": "object",
+  "properties": {
+    "attack_category": {
+      "type": "object",
+      "properties": {
+        "candidate_attack_mapping": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "model_visible": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "candidate_attack_mapping",
+        "category",
+        "model_visible"
+      ],
+      "additionalProperties": true
+    },
+    "case_directory": {
+      "type": "string",
+      "minLength": 1
+    },
+    "case_files": {
+      "type": "object",
+      "properties": {
+        "alert_package": {
+          "type": "string"
+        },
+        "ground_truth": {
+          "type": "string"
+        },
+        "main_alert": {
+          "type": "string"
+        },
+        "main_alert_query": {
+          "type": "string"
+        },
+        "related_events": {
+          "type": "string"
+        },
+        "related_events_query": {
+          "type": "string"
+        },
+        "selection_metadata": {
+          "type": "string"
+        },
+        "source_log": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "alert_package",
+        "ground_truth",
+        "main_alert",
+        "main_alert_query",
+        "related_events",
+        "related_events_query",
+        "selection_metadata",
+        "source_log"
+      ],
+      "additionalProperties": true
+    },
+    "case_id": {
+      "type": "string"
+    },
+    "case_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "security_proposition": {
+      "type": "string",
+      "description": "Researcher-only security proposition fixed before evidence-condition assignment.",
+      "minLength": 1
+    },
+    "case_scope": {
+      "type": "object",
+      "properties": {
+        "boundary_definition": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "primary_host": {
+          "type": "string"
+        },
+        "primary_user": {
+          "type": "string"
+        },
+        "scope_type": {
+          "type": "string"
+        },
+        "time_window_utc": {
+          "type": "object",
+          "properties": {
+            "end": {
+              "type": "string"
+            },
+            "start": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "end",
+            "start"
+          ],
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "primary_host",
+        "time_window_utc"
+      ],
+      "additionalProperties": true
+    },
+    "curation_notes": {
+      "type": "array",
+      "items": {}
+    },
+    "evidence_id_map": {
+      "type": "object",
+      "minProperties": 1,
+      "required": [
+        "A0"
+      ],
+      "patternProperties": {
+        "^(A0|EV-[0-9]{3})$": {
+          "type": "object",
+          "properties": {
+            "event_record_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "event_type": {
+              "type": "string",
+              "minLength": 1
+            },
+            "role_note": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "event_record_id",
+            "event_type",
+            "role_note",
+            "source"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "experimental_role": {
+      "type": "object",
+      "properties": {
+        "eligible_for_final_heldout_metrics": {
+          "type": "boolean"
+        },
+        "used_for": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "eligible_for_final_heldout_metrics",
+        "used_for"
+      ],
+      "additionalProperties": true
+    },
+    "main_alert_selection": {
+      "type": "object",
+      "properties": {
+        "event_record_id": {
+          "type": "string"
+        },
+        "process_guid": {
+          "type": "string"
+        },
+        "query_file": {
+          "type": "string"
+        },
+        "selection_method": {
+          "type": "string"
+        },
+        "selection_reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_record_id",
+        "process_guid",
+        "query_file"
+      ],
+      "additionalProperties": true
+    },
+    "model_input_controls": {
+      "type": "object",
+      "properties": {
+        "neutral_case_id_allowed": {
+          "type": "boolean"
+        },
+        "preprocessing_required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "researcher_fields_to_exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "neutral_case_id_allowed",
+        "preprocessing_required",
+        "researcher_fields_to_exclude"
+      ],
+      "additionalProperties": true
+    },
+    "related_event_selection": {
+      "type": "object",
+      "properties": {
+        "correlation_keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "event_groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string"
+              },
+              "event_record_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "group": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "description",
+              "event_record_ids",
+              "group"
+            ],
+            "additionalProperties": true
+          }
+        },
+        "included_event_record_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "main_alert_excluded_from_related_events": {
+          "type": "boolean"
+        },
+        "query_file": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "correlation_keys",
+        "event_groups",
+        "included_event_record_ids",
+        "main_alert_excluded_from_related_events",
+        "query_file"
+      ],
+      "additionalProperties": true
+    },
+    "review_required": {
+      "type": "object",
+      "properties": {
+        "ground_truth": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ground_truth"
+      ],
+      "additionalProperties": true
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "source_provenance": {
+      "type": "object",
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "original_filename": {
+          "type": "string"
+        },
+        "original_repository_path": {
+          "type": "string"
+        },
+        "renamed_for_splunk_disambiguation": {
+          "type": "boolean"
+        },
+        "source_file_sha256": {
+          "type": "string"
+        },
+        "sources": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sensor": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sensor",
+              "sha256"
+            ],
+            "additionalProperties": true
+          }
+        },
+        "splunk": {
+          "type": "object",
+          "properties": {
+            "index": {
+              "type": "string"
+            },
+            "source": {
+              "type": "string"
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sourcetype": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "additionalProperties": true
+        },
+        "stored_filename": {
+          "type": "string"
+        },
+        "tier": {
+          "type": "object",
+          "properties": {
+            "sensors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "tier": {
+              "type": "integer"
+            },
+            "why_single_source": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "sensors",
+            "tier"
+          ],
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "dataset",
+        "original_filename",
+        "original_repository_path",
+        "renamed_for_splunk_disambiguation",
+        "source_file_sha256",
+        "sources",
+        "splunk",
+        "stored_filename",
+        "tier"
+      ],
+      "additionalProperties": true
+    },
+    "split": {
+      "enum": [
+        "dev",
+        "heldout"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "pattern": "^audited_(dev|heldout)_\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "versioning": {
+      "type": "object",
+      "properties": {
+        "created_date": {
+          "type": "string"
+        },
+        "metadata_version": {
+          "type": "string"
+        },
+        "review_status": {
+          "const": "reviewed_for_benchmark_v1.1"
+        }
+      },
+      "required": [
+        "created_date",
+        "metadata_version",
+        "review_status"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "attack_category",
+    "case_directory",
+    "case_files",
+    "case_id",
+    "case_name",
+    "security_proposition",
+    "case_scope",
+    "curation_notes",
+    "evidence_id_map",
+    "experimental_role",
+    "main_alert_selection",
+    "model_input_controls",
+    "related_event_selection",
+    "review_required",
+    "schema_version",
+    "source_provenance",
+    "split",
+    "status",
+    "versioning"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,32 @@
+{
+  "case_id": "UAC-001",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004"
+    ],
+    "counter_evidence": [
+      "EV-005"
+    ],
+    "must_not_assert": []
+  },
+  "the_trap": "The surface is two Microsoft system binaries (sdclt.exe -> control.exe /name Microsoft.BackupAndRestoreCenter), which reads as benign backup / control-panel activity and invites under-triage; the model must not stop at the system-binary surface. A HKCU Folder\\shell\\open\\command hijack to PowerShell plus sdclt auto-elevation is a confirmed UAC bypass. The package does not claim signature verification.",
+  "rationale": "EV-001 and EV-002 configure the per-user Folder shell handler to PowerShell with an empty DelegateExecute value. A0 and EV-003 show sdclt.exe and control.exe at high integrity, and EV-004 directly records high-integrity control.exe starting the configured PowerShell payload. EV-005 deletes the hijacked key afterward; that cleanup is mitigating context, not evidence that execution did not occur. Confirmed UAC bypass: malicious/high.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

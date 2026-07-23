@@ -1,0 +1,28 @@
+{
+  "case_id": "DISC-004",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that malicious reconnaissance or a compromise is confirmed (the package is a single Internet Explorer svcVersion registry query via reg.exe/A0 with no corroborating evidence present)"
+    ]
+  },
+  "the_trap": "The whole package is a single Sysmon process_create (A0, EventCode 1): reg.exe running `reg query \"HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Internet Explorer\" /v svcVersion`, spawned by cmd.exe at High integrity as host-01\\user-01. That one Internet Explorer version-key read is a lone discovery indicator; evidence_items and deterministic_derivations are both empty, so no corroborating activity is present in the package. The model must not over-read a single version query into confirmed reconnaissance or compromise.",
+  "rationale": "The package contains exactly one event (event_count 1): A0, a reg.exe query of the Internet Explorer `svcVersion` value under HKLM\\Software\\Microsoft\\Internet Explorer, parented by cmd.exe at High integrity. No further evidence is present — evidence_items and deterministic_derivations are empty and no other event is included in the package. A lone version-discovery read like this is consistent with hands-on-keyboard enumeration but, on its own and with no corroborating process, network, or persistence evidence in the package, is insufficient to establish malicious intent. Score suspicious and investigate; do not escalate on this single indicator.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

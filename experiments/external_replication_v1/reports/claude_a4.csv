@@ -1,0 +1,17 @@
+case_id,condition,calibration_role,verdict,expected_verdict,verdict_pass,severity,acceptable_severity,severity_direction,confidence,recommended_action,acceptable_actions,action_direction,C1_pass,C2_pass,C3_applicable,C3_pass,C4_pass,flagged_by_active_checks
+ER-C01,counter,down_rank,benign,benign,True,informational,informational|low,in_band,0.92,close_benign,close_benign|monitor,in_band,True,True,True,True,True,
+ER-C02,counter,down_rank,benign,benign,True,informational,informational|low,in_band,0.9,close_benign,close_benign|monitor,in_band,True,True,True,True,True,
+ER-C03,counter,down_rank,benign,benign,True,informational,informational|low,in_band,0.95,close_benign,close_benign|monitor,in_band,True,True,True,True,True,
+ER-C04,counter,down_rank,benign,benign,True,informational,informational|low,in_band,0.97,close_benign,close_benign|monitor,in_band,True,True,True,True,True,
+ER-M01,missing,down_rank,benign,suspicious,False,informational,low|medium,under,0.92,close_benign,monitor|investigate,under,True,False,False,True,False,C2|C4
+ER-M02,missing,down_rank,suspicious,suspicious,True,medium,low|medium,in_band,0.62,investigate,monitor|investigate,in_band,True,True,False,True,True,
+ER-M03,missing,down_rank,benign,suspicious,False,informational,low|medium,under,0.92,close_benign,monitor|investigate,under,True,False,False,True,False,C2|C4
+ER-M04,missing,down_rank,suspicious,suspicious,True,medium,low|medium,in_band,0.45,investigate,monitor|investigate,in_band,True,True,False,True,True,
+ER-S01,strong,up_rank,malicious,malicious,True,critical,high|critical,in_band,0.95,isolate,escalate|isolate,in_band,True,True,False,True,True,
+ER-S02,strong,up_rank,malicious,malicious,True,high,high|critical,in_band,0.92,isolate,escalate|isolate,in_band,True,True,False,True,True,
+ER-S03,strong,up_rank,malicious,malicious,True,critical,high|critical,in_band,0.93,isolate,escalate|isolate,in_band,True,True,False,True,True,
+ER-S04,strong,up_rank,suspicious,malicious,False,medium,high|critical,under,0.62,investigate,escalate|isolate,under,True,False,False,True,False,C2|C4
+ER-W01,weak,down_rank,suspicious,suspicious,True,medium,low|medium,in_band,0.45,investigate,monitor|investigate,in_band,True,True,False,True,True,
+ER-W02,weak,down_rank,suspicious,suspicious,True,low,low|medium,in_band,0.3,monitor,monitor|investigate,in_band,True,True,False,True,True,
+ER-W03,weak,down_rank,suspicious,suspicious,True,medium,low|medium,in_band,0.5,investigate,monitor|investigate,in_band,True,True,False,True,True,
+ER-W04,weak,down_rank,suspicious,suspicious,True,medium,low|medium,in_band,0.82,investigate,monitor|investigate,in_band,True,True,False,True,True,

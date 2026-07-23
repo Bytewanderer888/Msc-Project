@@ -1,0 +1,17 @@
+{
+  "dataset": "OTRF Security-Datasets (mordor)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "datasets/compound/apt29/day1/apt29_evals_day1_manual.zip",
+      "sha256": "98a073140860560d70080ace9142961be4f64b4862bae892d62d0f254d0fdbe5"
+    }
+  ],
+  "primary_host": "SCRANTON.dmevals.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "sysmon"
+    ]
+  }
+}

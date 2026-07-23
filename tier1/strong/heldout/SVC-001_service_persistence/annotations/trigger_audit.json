@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "SVC-001",
+  "rule_id": "SAFESOC-TRG-SVC-001",
+  "analytic_family_id": "AF-PERS",
+  "analytic_pattern_id": "PERS-02",
+  "source_description": "raw log (windows-sysmon.log)",
+  "raw_source_event_count": 6218,
+  "complete_scope_event_count": 6218,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "4482",
+  "expected_record_key": "4482",
+  "selected_raw_sha256": "6868968af1279143d8fe8e24fd87a9094b52225c362d44e11c4c25d3d4f874d8",
+  "pass": true
+}

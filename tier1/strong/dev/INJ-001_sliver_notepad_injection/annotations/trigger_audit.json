@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "INJ-001",
+  "rule_id": "SAFESOC-TRG-INJ-001",
+  "analytic_family_id": "AF-ACCESS",
+  "analytic_pattern_id": "ACCESS-02",
+  "source_description": "raw log (notepad_windows-sysmon.log)",
+  "raw_source_event_count": 33,
+  "complete_scope_event_count": 33,
+  "predicate_match_count": 3,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "15275583",
+  "expected_record_key": "15275583",
+  "selected_raw_sha256": "33acd724b3c7f6cf18b22f99f363cc4eeded63ae686a48acc253bc6b9553510c",
+  "pass": true
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ST-001",
+  "rule_id": "SAFESOC-TRG-ST-001",
+  "analytic_family_id": "AF-PERS",
+  "analytic_pattern_id": "PERS-01",
+  "title": "Scheduled task created for startup or logon execution",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "full_source",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source; no event-level answer selector is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 1
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\schtasks.exe"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\s/create\\s"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\s/sc\\s+onstart\\b"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\s/ru\\s+system\\b"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "4456"
+  },
+  "rationale": "Creation of an on-start or on-logon task is a reproducible scheduled-persistence alert surface."
+}

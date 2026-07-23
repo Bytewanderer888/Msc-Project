@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "CRED-001",
+  "rule_id": "SAFESOC-TRG-CRED-001",
+  "analytic_family_id": "AF-REG",
+  "analytic_pattern_id": "REG-01",
+  "source_description": "raw log (windows-sysmon.log)",
+  "raw_source_event_count": 5847,
+  "complete_scope_event_count": 5847,
+  "predicate_match_count": 2,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "48598",
+  "expected_record_key": "48598",
+  "selected_raw_sha256": "bcb46358aa2e0a40d36cf8661976e08e5370cff6d552071d4bfc355e69062c43",
+  "pass": true
+}

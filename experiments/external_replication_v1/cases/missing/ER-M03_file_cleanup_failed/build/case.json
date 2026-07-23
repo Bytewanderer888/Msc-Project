@@ -1,0 +1,23 @@
+{
+  "case_id": "ER-M03",
+  "builder": "experiments/external_replication_v1/build_cam_missing_cases.py",
+  "source_archive": "data_sources/cam_lds/manifestations_raw.zip",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "archive_member": "manifestations_raw/steps/1_cron_sshkey-34/videoserver/logs/log/audit/audit.log",
+      "line_number": 9,
+      "record_sha256": "1359f0f1a6c222b816295d4a7d20517e5d574bf1d4a6e62249d9d16846e315a0"
+    },
+    {
+      "evidence_id": "EV-001",
+      "archive_member": "manifestations_raw/steps/1_cron_sshkey-34/videoserver/logs/log/audit/audit.log",
+      "line_number": 14,
+      "record_sha256": "476ae29b336beac8e250de2aaf9889a9ac485398ce7d9294e503ffd3cd106e41"
+    }
+  ],
+  "literal_redactions": [
+    "tool-specific filename linpeas.sh -> [x].sh",
+    "host videoserver -> server-01"
+  ]
+}

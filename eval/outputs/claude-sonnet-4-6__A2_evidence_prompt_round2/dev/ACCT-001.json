@@ -1,0 +1,15 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.72,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "A PowerShell process running a base64-encoded command (parent PID 4408) spawned multiple child processes that created local user accounts \u2014 including one added to the local Administrators group (EV-002: 'net user /add [id]_Admin ... & net localgroup administrators [id]_Admin /add') and two others via cmd.exe and New-LocalUser (A0, EV-001). A second encoded-command PowerShell instance (PID 2588) then cleaned up all three accounts (EV-003, EV-004, EV-005), suppressing errors with '>nul 2>&1' and '-ErrorAction Ignore'. The create-then-delete pattern with error suppression, execution from the Temp directory, and use of obfuscated encoded commands are consistent with automated attack-simulation or red-team tooling (e.g., an ATC/invoke-atomicredteam framework \u2014 suggested by the 'atc_execution.csv' path visible in the decoded parent command and the '[x]' placeholder paths). While the accounts appear to have been deleted, the privileged account creation (local admin) did occur and the encoded parent command imports a module from a non-standard path, warranting investigation to confirm this is authorized testing and that no residual access was established.",
+  "recommended_action": "investigate"
+}

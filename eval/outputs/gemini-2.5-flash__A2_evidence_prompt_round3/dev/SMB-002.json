@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.7,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "The user 'user-01$' (a machine account) is accessing both IPC$ and SYSVOL shares from the same IP address (fe80::655e:8688:355e:91f1) on host-01.corp.local. While machine accounts accessing these shares can be normal for domain operations, the rapid succession of access to multiple gpt.ini files within SYSVOL (EV-002, EV-003) after initial IPC$ access (A0) is unusual and warrants further investigation.",
+  "recommended_action": "investigate"
+}

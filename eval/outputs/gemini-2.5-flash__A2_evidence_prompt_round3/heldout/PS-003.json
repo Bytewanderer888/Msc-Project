@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-003",
+    "EV-004",
+    "DER-001"
+  ],
+  "rationale": "The PowerShell command line (A0, DER-001) uses obfuscation, which is suspicious. More critically, the lsass.exe process (EV-003, EV-004) accessed the PowerShell process (A0) with `0x1000` (PROCESS_VM_READ) and `0x1478` (PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION) access rights. This indicates an attempt to read and potentially modify the memory of the PowerShell process, which is highly indicative of credential dumping or process injection.",
+  "recommended_action": "isolate"
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "ER-S04",
+  "rule_id": "SAFESOC-TRG-ER-S04",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-03",
+  "source_description": "external archive (SL100.zip: SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/WSUS.txt)",
+  "raw_source_event_count": 1035,
+  "complete_scope_event_count": 1035,
+  "predicate_match_count": 2,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/WSUS.txt:block:77",
+  "expected_record_key": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/WSUS.txt:block:77",
+  "selected_raw_sha256": "ebb7e264d669a53edcca36a5cf49811e71bbc64ee20097fe6eb37405e304ad9c",
+  "pass": true
+}

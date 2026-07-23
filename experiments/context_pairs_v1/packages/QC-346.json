@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "case_id": "QC-346",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2021-01-19T12:29:13.981320100Z",
+      "end": "2021-01-19T12:29:13.981320100Z"
+    },
+    "event_count": 1,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2021-01-19T12:29:13.981320100Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "28476"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{E983936C-D099-6006-FD07-00000000A301}",
+      "process_id": "3196",
+      "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "original_file_name": "PowerShell.EXE",
+      "command_line": "powershell.exe  \"('Wri'+'te-Host '+'aAgHello, '+'World!'+'aAg').RePlAcE('aAg',[stRINg][cHaR]39) | ieX\"",
+      "current_directory": "C:\\Users\\Administrator\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+      "parent_process_guid": "{E983936C-D08F-6006-FB07-00000000A301}",
+      "parent_process_id": "4936",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" "
+    }
+  },
+  "evidence_items": [],
+  "deterministic_derivations": [
+    {
+      "derivation_id": "DER-001",
+      "derived_field": "deobfuscated_command_text",
+      "value": "Write-Host 'Hello, World!'",
+      "derivation_method": "Concatenated the single-quoted string fragments in order, then applied .Replace('aAg',[char]39). A text reconstruction; the PowerShell expression was not executed by the derivation.",
+      "source_evidence_id": "A0",
+      "source_field": "command_line"
+    }
+  ]
+}

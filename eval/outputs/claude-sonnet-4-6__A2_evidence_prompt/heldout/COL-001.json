@@ -1,0 +1,12 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.78,
+  "key_evidence": [
+    "A0",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "7z.exe is placed in a user's Documents folder (not a standard install path) and is spawned twice by rundll32.exe with no arguments (A0, EV-002), which is an atypical and suspicious parent-child relationship strongly associated with malware using rundll32 as a loader. The commands compress files with maximum compression (-mx9) into split archives (-v500m), consistent with data staging/exfiltration preparation; EV-003 confirms a split archive (file2.txt.001) was actually written to disk. The absence of network telemetry, the actual exfiltration destination, or evidence of what data was compressed limits confidence in confirming full exfiltration, but the combination of an unusual binary location, suspicious parent process, and data archiving behavior warrants escalation.",
+  "recommended_action": "escalate"
+}

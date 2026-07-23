@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LS-001",
+  "rule_id": "SAFESOC-TRG-LS-001",
+  "analytic_family_id": "AF-ACCESS",
+  "analytic_pattern_id": "ACCESS-01",
+  "title": "High-access process handle opened to LSASS",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "full_source",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source; no event-level answer selector is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 10
+      },
+      {
+        "field": "attributes.target_image",
+        "op": "iendswith",
+        "value": "\\lsass.exe"
+      },
+      {
+        "field": "attributes.source_image",
+        "op": "iendswith",
+        "value": "\\mimikatz.exe"
+      },
+      {
+        "field": "attributes.granted_access",
+        "op": "ieq",
+        "value": "0x1010"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "latest_match",
+    "justification": "Two equivalent Mimikatz accesses form one sub-second burst; the latest matching row is the declared deterministic representative."
+  },
+  "expected_a0": {
+    "record_key": "40595850"
+  },
+  "rationale": "A known dump-capable process opening a high-access handle to LSASS is a direct credential-access analytic."
+}

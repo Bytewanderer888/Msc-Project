@@ -1,0 +1,357 @@
+{
+  "schema_version": "1.0",
+  "case_id": "PS-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2020-12-09T08:46:06.881605900Z",
+      "end": "2020-12-09T08:46:08.646946000Z"
+    },
+    "event_count": 14,
+    "event_types_present": [
+      "file_create",
+      "process_access",
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-12-09T08:46:07.024510300Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "93"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{2935EF20-8ECF-5FD0-0000-001039791000}",
+      "process_id": "3724",
+      "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "original_file_name": "PowerShell.EXE",
+      "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -EncodedCommand JgBjAGgAYwBwAC4AYwBvAG0AIAA2ADUAMAAwADEAIAA+ACAAJABuAHUAbABsAAoAJABlAHgAZQBjAF8AdwByAGEAcABwAGUAcgBfAHMAdAByACAAPQAgACQAaQBuAHAAdQB0ACAAfAAgAE8AdQB0AC0AUwB0AHIAaQBuAGcACgAkAHMAcABsAGkAdABfAHAAYQByAHQAcwAgAD0AIAAkAGUAeABlAGMAXwB3AHIAYQBwAHAAZQByAF8AcwB0AHIALgBTAHAAbABpAHQAKABAACgAIgBgADAAYAAwAGAAMABgADAAIgApACwAIAAyACwAIABbAFMAdAByAGkAbgBnAFMAcABsAGkAdABPAHAAdABpAG8AbgBzAF0AOgA6AFIAZQBtAG8AdgBlAEUAbQBwAHQAeQBFAG4AdAByAGkAZQBzACkACgBJAGYAIAAoAC0AbgBvAHQAIAAkAHMAcABsAGkAdABfAHAAYQByAHQAcwAuAEwAZQBuAGcAdABoACAALQBlAHEAIAAyACkAIAB7ACAAdABoAHIAbwB3ACAAIgBpAG4AdgBhAGwAaQBkACAAcABhAHkAbABvAGEAZAAiACAAfQAKAFMAZQB0AC0AVgBhAHIAaQBhAGIAbABlACAALQBOAGEAbQBlACAAagBzAG8AbgBfAHIAYQB3ACAALQBWAGEAbAB1AGUAIAAkAHMAcABsAGkAdABfAHAAYQByAHQAcwBbADEAXQAKACQAZQB4AGUAYwBfAHcAcgBhAHAAcABlAHIAIAA9ACAAWwBTAGMAcgBpAHAAdABCAGwAbwBjAGsAXQA6ADoAQwByAGUAYQB0AGUAKAAkAHMAcABsAGkAdABfAHAAYQByAHQAcwBbADAAXQApAAoAJgAkAGUAeABlAGMAXwB3AHIAYQBwAHAAZQByAA==",
+      "current_directory": "C:\\Users\\Administrator\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+      "parent_process_guid": "{2935EF20-8ECE-5FD0-0000-00106A6D1000}",
+      "parent_process_id": "5044",
+      "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "parent_command_line": "PowerShell  -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -EncodedCommand UABvAHcAZQByAFMAaABlAGwAbAAgAC0ATgBvAFAAcgBvAGYAaQBsAGUAIAAtAE4AbwBuAEkAbgB0AGUAcgBhAGMAdABpAHYAZQAgAC0ARQB4AGUAYwB1AHQAaQBvAG4AUABvAGwAaQBjAHkAIABVAG4AcgBlAHMAdAByAGkAYwB0AGUAZAAgAC0ARQBuAGMAbwBkAGUAZABDAG8AbQBtAGEAbgBkACAASgBnAEIAagBBAEcAZwBBAFkAdwBCAHcAQQBDADQAQQBZAHcAQgB2AEEARwAwAEEASQBBAEEAMgBBAEQAVQBBAE0AQQBBAHcAQQBEAEUAQQBJAEEAQQArAEEAQwBBAEEASgBBAEIAdQBBAEgAVQBBAGIAQQBCAHMAQQBBAG8AQQBKAEEAQgBsAEEASABnAEEAWgBRAEIAagBBAEYAOABBAGQAdwBCAHkAQQBHAEUAQQBjAEEAQgB3AEEARwBVAEEAYwBnAEIAZgBBAEgATQBBAGQAQQBCAHkAQQBDAEEAQQBQAFEAQQBnAEEAQwBRAEEAYQBRAEIAdQBBAEgAQQBBAGQAUQBCADAAQQBDAEEAQQBmAEEAQQBnAEEARQA4AEEAZABRAEIAMABBAEMAMABBAFUAdwBCADAAQQBIAEkAQQBhAFEAQgB1AEEARwBjAEEAQwBnAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBBAGcAQQBEADAAQQBJAEEAQQBrAEEARwBVAEEAZQBBAEIAbABBAEcATQBBAFgAdwBCADMAQQBIAEkAQQBZAFEAQgB3AEEASABBAEEAWgBRAEIAeQBBAEYAOABBAGMAdwBCADAAQQBIAEkAQQBMAGcAQgBUAEEASABBAEEAYgBBAEIAcABBAEgAUQBBAEsAQQBCAEEAQQBDAGcAQQBJAGcAQgBnAEEARABBAEEAWQBBAEEAdwBBAEcAQQBBAE0AQQBCAGcAQQBEAEEAQQBJAGcAQQBwAEEAQwB3AEEASQBBAEEAeQBBAEMAdwBBAEkAQQBCAGIAQQBGAE0AQQBkAEEAQgB5AEEARwBrAEEAYgBnAEIAbgBBAEYATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBQAEEASABBAEEAZABBAEIAcABBAEcAOABBAGIAZwBCAHoAQQBGADAAQQBPAGcAQQA2AEEARgBJAEEAWgBRAEIAdABBAEcAOABBAGQAZwBCAGwAQQBFAFUAQQBiAFEAQgB3AEEASABRAEEAZQBRAEIARgBBAEcANABBAGQAQQBCAHkAQQBHAGsAQQBaAFEAQgB6AEEAQwBrAEEAQwBnAEIASgBBAEcAWQBBAEkAQQBBAG8AQQBDADAAQQBiAGcAQgB2AEEASABRAEEASQBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBBAHUAQQBFAHcAQQBaAFEAQgB1AEEARwBjAEEAZABBAEIAbwBBAEMAQQBBAEwAUQBCAGwAQQBIAEUAQQBJAEEAQQB5AEEAQwBrAEEASQBBAEIANwBBAEMAQQBBAGQAQQBCAG8AQQBIAEkAQQBiAHcAQgAzAEEAQwBBAEEASQBnAEIAcABBAEcANABBAGQAZwBCAGgAQQBHAHcAQQBhAFEAQgBrAEEAQwBBAEEAYwBBAEIAaABBAEgAawBBAGIAQQBCAHYAQQBHAEUAQQBaAEEAQQBpAEEAQwBBAEEAZgBRAEEASwBBAEYATQBBAFoAUQBCADAAQQBDADAAQQBWAGcAQgBoAEEASABJAEEAYQBRAEIAaABBAEcASQBBAGIAQQBCAGwAQQBDAEEAQQBMAFEAQgBPAEEARwBFAEEAYgBRAEIAbABBAEMAQQBBAGEAZwBCAHoAQQBHADgAQQBiAGcAQgBmAEEASABJAEEAWQBRAEIAMwBBAEMAQQBBAEwAUQBCAFcAQQBHAEUAQQBiAEEAQgAxAEEARwBVAEEASQBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBCAGIAQQBEAEUAQQBYAFEAQQBLAEEAQwBRAEEAWgBRAEIANABBAEcAVQBBAFkAdwBCAGYAQQBIAGMAQQBjAGcAQgBoAEEASABBAEEAYwBBAEIAbABBAEgASQBBAEkAQQBBADkAQQBDAEEAQQBXAHcAQgBUAEEARwBNAEEAYwBnAEIAcABBAEgAQQBBAGQAQQBCAEMAQQBHAHcAQQBiAHcAQgBqAEEARwBzAEEAWABRAEEANgBBAEQAbwBBAFEAdwBCAHkAQQBHAFUAQQBZAFEAQgAwAEEARwBVAEEASwBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBCAGIAQQBEAEEAQQBYAFEAQQBwAEEAQQBvAEEASgBnAEEAawBBAEcAVQBBAGUAQQBCAGwAQQBHAE0AQQBYAHcAQgAzAEEASABJAEEAWQBRAEIAdwBBAEgAQQBBAFoAUQBCAHkAQQBBAD0APQA="
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-12-09T08:46:06.881605900Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "60"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{2935EF20-8ECE-5FD0-0000-00109F6C1000}",
+        "process_id": "5048",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "C:\\Windows\\system32\\cmd.exe /C PowerShell -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -EncodedCommand UABvAHcAZQByAFMAaABlAGwAbAAgAC0ATgBvAFAAcgBvAGYAaQBsAGUAIAAtAE4AbwBuAEkAbgB0AGUAcgBhAGMAdABpAHYAZQAgAC0ARQB4AGUAYwB1AHQAaQBvAG4AUABvAGwAaQBjAHkAIABVAG4AcgBlAHMAdAByAGkAYwB0AGUAZAAgAC0ARQBuAGMAbwBkAGUAZABDAG8AbQBtAGEAbgBkACAASgBnAEIAagBBAEcAZwBBAFkAdwBCAHcAQQBDADQAQQBZAHcAQgB2AEEARwAwAEEASQBBAEEAMgBBAEQAVQBBAE0AQQBBAHcAQQBEAEUAQQBJAEEAQQArAEEAQwBBAEEASgBBAEIAdQBBAEgAVQBBAGIAQQBCAHMAQQBBAG8AQQBKAEEAQgBsAEEASABnAEEAWgBRAEIAagBBAEYAOABBAGQAdwBCAHkAQQBHAEUAQQBjAEEAQgB3AEEARwBVAEEAYwBnAEIAZgBBAEgATQBBAGQAQQBCAHkAQQBDAEEAQQBQAFEAQQBnAEEAQwBRAEEAYQBRAEIAdQBBAEgAQQBBAGQAUQBCADAAQQBDAEEAQQBmAEEAQQBnAEEARQA4AEEAZABRAEIAMABBAEMAMABBAFUAdwBCADAAQQBIAEkAQQBhAFEAQgB1AEEARwBjAEEAQwBnAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBBAGcAQQBEADAAQQBJAEEAQQBrAEEARwBVAEEAZQBBAEIAbABBAEcATQBBAFgAdwBCADMAQQBIAEkAQQBZAFEAQgB3AEEASABBAEEAWgBRAEIAeQBBAEYAOABBAGMAdwBCADAAQQBIAEkAQQBMAGcAQgBUAEEASABBAEEAYgBBAEIAcABBAEgAUQBBAEsAQQBCAEEAQQBDAGcAQQBJAGcAQgBnAEEARABBAEEAWQBBAEEAdwBBAEcAQQBBAE0AQQBCAGcAQQBEAEEAQQBJAGcAQQBwAEEAQwB3AEEASQBBAEEAeQBBAEMAdwBBAEkAQQBCAGIAQQBGAE0AQQBkAEEAQgB5AEEARwBrAEEAYgBnAEIAbgBBAEYATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBQAEEASABBAEEAZABBAEIAcABBAEcAOABBAGIAZwBCAHoAQQBGADAAQQBPAGcAQQA2AEEARgBJAEEAWgBRAEIAdABBAEcAOABBAGQAZwBCAGwAQQBFAFUAQQBiAFEAQgB3AEEASABRAEEAZQBRAEIARgBBAEcANABBAGQAQQBCAHkAQQBHAGsAQQBaAFEAQgB6AEEAQwBrAEEAQwBnAEIASgBBAEcAWQBBAEkAQQBBAG8AQQBDADAAQQBiAGcAQgB2AEEASABRAEEASQBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBBAHUAQQBFAHcAQQBaAFEAQgB1AEEARwBjAEEAZABBAEIAbwBBAEMAQQBBAEwAUQBCAGwAQQBIAEUAQQBJAEEAQQB5AEEAQwBrAEEASQBBAEIANwBBAEMAQQBBAGQAQQBCAG8AQQBIAEkAQQBiAHcAQgAzAEEAQwBBAEEASQBnAEIAcABBAEcANABBAGQAZwBCAGgAQQBHAHcAQQBhAFEAQgBrAEEAQwBBAEEAYwBBAEIAaABBAEgAawBBAGIAQQBCAHYAQQBHAEUAQQBaAEEAQQBpAEEAQwBBAEEAZgBRAEEASwBBAEYATQBBAFoAUQBCADAAQQBDADAAQQBWAGcAQgBoAEEASABJAEEAYQBRAEIAaABBAEcASQBBAGIAQQBCAGwAQQBDAEEAQQBMAFEAQgBPAEEARwBFAEEAYgBRAEIAbABBAEMAQQBBAGEAZwBCAHoAQQBHADgAQQBiAGcAQgBmAEEASABJAEEAWQBRAEIAMwBBAEMAQQBBAEwAUQBCAFcAQQBHAEUAQQBiAEEAQgAxAEEARwBVAEEASQBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBCAGIAQQBEAEUAQQBYAFEAQQBLAEEAQwBRAEEAWgBRAEIANABBAEcAVQBBAFkAdwBCAGYAQQBIAGMAQQBjAGcAQgBoAEEASABBAEEAYwBBAEIAbABBAEgASQBBAEkAQQBBADkAQQBDAEEAQQBXAHcAQgBUAEEARwBNAEEAYwBnAEIAcABBAEgAQQBBAGQAQQBCAEMAQQBHAHcAQQBiAHcAQgBqAEEARwBzAEEAWABRAEEANgBBAEQAbwBBAFEAdwBCAHkAQQBHAFUAQQBZAFEAQgAwAEEARwBVAEEASwBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBCAGIAQQBEAEEAQQBYAFEAQQBwAEEAQQBvAEEASgBnAEEAawBBAEcAVQBBAGUAQQBCAGwAQQBHAE0AQQBYAHcAQgAzAEEASABJAEEAWQBRAEIAdwBBAEgAQQBBAFoAUQBCAHkAQQBBAD0APQA=",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{2935EF20-8ECE-5FD0-0000-0010D1691000}",
+        "parent_process_id": "3384",
+        "parent_image": "C:\\Windows\\System32\\winrshost.exe",
+        "parent_command_line": "C:\\Windows\\system32\\WinrsHost.exe -Embedding"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2020-12-09T08:46:06.894936400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "73"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{2935EF20-8ECE-5FD0-0000-00106A6D1000}",
+        "process_id": "5044",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "original_file_name": "PowerShell.EXE",
+        "command_line": "PowerShell  -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -EncodedCommand UABvAHcAZQByAFMAaABlAGwAbAAgAC0ATgBvAFAAcgBvAGYAaQBsAGUAIAAtAE4AbwBuAEkAbgB0AGUAcgBhAGMAdABpAHYAZQAgAC0ARQB4AGUAYwB1AHQAaQBvAG4AUABvAGwAaQBjAHkAIABVAG4AcgBlAHMAdAByAGkAYwB0AGUAZAAgAC0ARQBuAGMAbwBkAGUAZABDAG8AbQBtAGEAbgBkACAASgBnAEIAagBBAEcAZwBBAFkAdwBCAHcAQQBDADQAQQBZAHcAQgB2AEEARwAwAEEASQBBAEEAMgBBAEQAVQBBAE0AQQBBAHcAQQBEAEUAQQBJAEEAQQArAEEAQwBBAEEASgBBAEIAdQBBAEgAVQBBAGIAQQBCAHMAQQBBAG8AQQBKAEEAQgBsAEEASABnAEEAWgBRAEIAagBBAEYAOABBAGQAdwBCAHkAQQBHAEUAQQBjAEEAQgB3AEEARwBVAEEAYwBnAEIAZgBBAEgATQBBAGQAQQBCAHkAQQBDAEEAQQBQAFEAQQBnAEEAQwBRAEEAYQBRAEIAdQBBAEgAQQBBAGQAUQBCADAAQQBDAEEAQQBmAEEAQQBnAEEARQA4AEEAZABRAEIAMABBAEMAMABBAFUAdwBCADAAQQBIAEkAQQBhAFEAQgB1AEEARwBjAEEAQwBnAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBBAGcAQQBEADAAQQBJAEEAQQBrAEEARwBVAEEAZQBBAEIAbABBAEcATQBBAFgAdwBCADMAQQBIAEkAQQBZAFEAQgB3AEEASABBAEEAWgBRAEIAeQBBAEYAOABBAGMAdwBCADAAQQBIAEkAQQBMAGcAQgBUAEEASABBAEEAYgBBAEIAcABBAEgAUQBBAEsAQQBCAEEAQQBDAGcAQQBJAGcAQgBnAEEARABBAEEAWQBBAEEAdwBBAEcAQQBBAE0AQQBCAGcAQQBEAEEAQQBJAGcAQQBwAEEAQwB3AEEASQBBAEEAeQBBAEMAdwBBAEkAQQBCAGIAQQBGAE0AQQBkAEEAQgB5AEEARwBrAEEAYgBnAEIAbgBBAEYATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBQAEEASABBAEEAZABBAEIAcABBAEcAOABBAGIAZwBCAHoAQQBGADAAQQBPAGcAQQA2AEEARgBJAEEAWgBRAEIAdABBAEcAOABBAGQAZwBCAGwAQQBFAFUAQQBiAFEAQgB3AEEASABRAEEAZQBRAEIARgBBAEcANABBAGQAQQBCAHkAQQBHAGsAQQBaAFEAQgB6AEEAQwBrAEEAQwBnAEIASgBBAEcAWQBBAEkAQQBBAG8AQQBDADAAQQBiAGcAQgB2AEEASABRAEEASQBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBBAHUAQQBFAHcAQQBaAFEAQgB1AEEARwBjAEEAZABBAEIAbwBBAEMAQQBBAEwAUQBCAGwAQQBIAEUAQQBJAEEAQQB5AEEAQwBrAEEASQBBAEIANwBBAEMAQQBBAGQAQQBCAG8AQQBIAEkAQQBiAHcAQgAzAEEAQwBBAEEASQBnAEIAcABBAEcANABBAGQAZwBCAGgAQQBHAHcAQQBhAFEAQgBrAEEAQwBBAEEAYwBBAEIAaABBAEgAawBBAGIAQQBCAHYAQQBHAEUAQQBaAEEAQQBpAEEAQwBBAEEAZgBRAEEASwBBAEYATQBBAFoAUQBCADAAQQBDADAAQQBWAGcAQgBoAEEASABJAEEAYQBRAEIAaABBAEcASQBBAGIAQQBCAGwAQQBDAEEAQQBMAFEAQgBPAEEARwBFAEEAYgBRAEIAbABBAEMAQQBBAGEAZwBCAHoAQQBHADgAQQBiAGcAQgBmAEEASABJAEEAWQBRAEIAMwBBAEMAQQBBAEwAUQBCAFcAQQBHAEUAQQBiAEEAQgAxAEEARwBVAEEASQBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBCAGIAQQBEAEUAQQBYAFEAQQBLAEEAQwBRAEEAWgBRAEIANABBAEcAVQBBAFkAdwBCAGYAQQBIAGMAQQBjAGcAQgBoAEEASABBAEEAYwBBAEIAbABBAEgASQBBAEkAQQBBADkAQQBDAEEAQQBXAHcAQgBUAEEARwBNAEEAYwBnAEIAcABBAEgAQQBBAGQAQQBCAEMAQQBHAHcAQQBiAHcAQgBqAEEARwBzAEEAWABRAEEANgBBAEQAbwBBAFEAdwBCAHkAQQBHAFUAQQBZAFEAQgAwAEEARwBVAEEASwBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBCAGIAQQBEAEEAQQBYAFEAQQBwAEEAQQBvAEEASgBnAEEAawBBAEcAVQBBAGUAQQBCAGwAQQBHAE0AQQBYAHcAQgAzAEEASABJAEEAWQBRAEIAdwBBAEgAQQBBAFoAUQBCAHkAQQBBAD0APQA=",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+        "parent_process_guid": "{2935EF20-8ECE-5FD0-0000-00109F6C1000}",
+        "parent_process_id": "5048",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "C:\\Windows\\system32\\cmd.exe /C PowerShell -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -EncodedCommand UABvAHcAZQByAFMAaABlAGwAbAAgAC0ATgBvAFAAcgBvAGYAaQBsAGUAIAAtAE4AbwBuAEkAbgB0AGUAcgBhAGMAdABpAHYAZQAgAC0ARQB4AGUAYwB1AHQAaQBvAG4AUABvAGwAaQBjAHkAIABVAG4AcgBlAHMAdAByAGkAYwB0AGUAZAAgAC0ARQBuAGMAbwBkAGUAZABDAG8AbQBtAGEAbgBkACAASgBnAEIAagBBAEcAZwBBAFkAdwBCAHcAQQBDADQAQQBZAHcAQgB2AEEARwAwAEEASQBBAEEAMgBBAEQAVQBBAE0AQQBBAHcAQQBEAEUAQQBJAEEAQQArAEEAQwBBAEEASgBBAEIAdQBBAEgAVQBBAGIAQQBCAHMAQQBBAG8AQQBKAEEAQgBsAEEASABnAEEAWgBRAEIAagBBAEYAOABBAGQAdwBCAHkAQQBHAEUAQQBjAEEAQgB3AEEARwBVAEEAYwBnAEIAZgBBAEgATQBBAGQAQQBCAHkAQQBDAEEAQQBQAFEAQQBnAEEAQwBRAEEAYQBRAEIAdQBBAEgAQQBBAGQAUQBCADAAQQBDAEEAQQBmAEEAQQBnAEEARQA4AEEAZABRAEIAMABBAEMAMABBAFUAdwBCADAAQQBIAEkAQQBhAFEAQgB1AEEARwBjAEEAQwBnAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBBAGcAQQBEADAAQQBJAEEAQQBrAEEARwBVAEEAZQBBAEIAbABBAEcATQBBAFgAdwBCADMAQQBIAEkAQQBZAFEAQgB3AEEASABBAEEAWgBRAEIAeQBBAEYAOABBAGMAdwBCADAAQQBIAEkAQQBMAGcAQgBUAEEASABBAEEAYgBBAEIAcABBAEgAUQBBAEsAQQBCAEEAQQBDAGcAQQBJAGcAQgBnAEEARABBAEEAWQBBAEEAdwBBAEcAQQBBAE0AQQBCAGcAQQBEAEEAQQBJAGcAQQBwAEEAQwB3AEEASQBBAEEAeQBBAEMAdwBBAEkAQQBCAGIAQQBGAE0AQQBkAEEAQgB5AEEARwBrAEEAYgBnAEIAbgBBAEYATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBQAEEASABBAEEAZABBAEIAcABBAEcAOABBAGIAZwBCAHoAQQBGADAAQQBPAGcAQQA2AEEARgBJAEEAWgBRAEIAdABBAEcAOABBAGQAZwBCAGwAQQBFAFUAQQBiAFEAQgB3AEEASABRAEEAZQBRAEIARgBBAEcANABBAGQAQQBCAHkAQQBHAGsAQQBaAFEAQgB6AEEAQwBrAEEAQwBnAEIASgBBAEcAWQBBAEkAQQBBAG8AQQBDADAAQQBiAGcAQgB2AEEASABRAEEASQBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBBAHUAQQBFAHcAQQBaAFEAQgB1AEEARwBjAEEAZABBAEIAbwBBAEMAQQBBAEwAUQBCAGwAQQBIAEUAQQBJAEEAQQB5AEEAQwBrAEEASQBBAEIANwBBAEMAQQBBAGQAQQBCAG8AQQBIAEkAQQBiAHcAQgAzAEEAQwBBAEEASQBnAEIAcABBAEcANABBAGQAZwBCAGgAQQBHAHcAQQBhAFEAQgBrAEEAQwBBAEEAYwBBAEIAaABBAEgAawBBAGIAQQBCAHYAQQBHAEUAQQBaAEEAQQBpAEEAQwBBAEEAZgBRAEEASwBBAEYATQBBAFoAUQBCADAAQQBDADAAQQBWAGcAQgBoAEEASABJAEEAYQBRAEIAaABBAEcASQBBAGIAQQBCAGwAQQBDAEEAQQBMAFEAQgBPAEEARwBFAEEAYgBRAEIAbABBAEMAQQBBAGEAZwBCAHoAQQBHADgAQQBiAGcAQgBmAEEASABJAEEAWQBRAEIAMwBBAEMAQQBBAEwAUQBCAFcAQQBHAEUAQQBiAEEAQgAxAEEARwBVAEEASQBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBCAGIAQQBEAEUAQQBYAFEAQQBLAEEAQwBRAEEAWgBRAEIANABBAEcAVQBBAFkAdwBCAGYAQQBIAGMAQQBjAGcAQgBoAEEASABBAEEAYwBBAEIAbABBAEgASQBBAEkAQQBBADkAQQBDAEEAQQBXAHcAQgBUAEEARwBNAEEAYwBnAEIAcABBAEgAQQBBAGQAQQBCAEMAQQBHAHcAQQBiAHcAQgBqAEEARwBzAEEAWABRAEEANgBBAEQAbwBBAFEAdwBCAHkAQQBHAFUAQQBZAFEAQgAwAEEARwBVAEEASwBBAEEAawBBAEgATQBBAGMAQQBCAHMAQQBHAGsAQQBkAEEAQgBmAEEASABBAEEAWQBRAEIAeQBBAEgAUQBBAGMAdwBCAGIAQQBEAEEAQQBYAFEAQQBwAEEAQQBvAEEASgBnAEEAawBBAEcAVQBBAGUAQQBCAGwAQQBHAE0AQQBYAHcAQgAzAEEASABJAEEAWQBRAEIAdwBBAEgAQQBBAFoAUQBCAHkAQQBBAD0APQA="
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2020-12-09T08:46:06.932786100Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "87"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{2935EF20-8ECE-5FD0-0000-00106A6D1000}",
+        "process_id": "5044",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "target_filename": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\__PSScriptPolicyTest_tcx1ebrq.k5e.ps1",
+        "creation_utc_time": "2020-12-09 08:46:06.930"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2020-12-09T08:46:06.970593600Z",
+      "event_type": "process_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 10,
+        "event_record_id": "88"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "source_process_guid": "{2935EF20-8D4E-5FD0-0000-0010D54A0000}",
+        "source_process_id": "860",
+        "source_image": "C:\\Windows\\system32\\lsass.exe",
+        "target_process_guid": "{2935EF20-8ECE-5FD0-0000-00106A6D1000}",
+        "target_process_id": "5044",
+        "target_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "granted_access": "0x1000",
+        "call_trace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a6624|C:\\Windows\\System32\\RPCRT4.dll+4a8bf|C:\\Windows\\system32\\lsasrv.dll+25add|C:\\Windows\\SYSTEM32\\SspiSrv.dll+11a2|C:\\Windows\\System32\\RPCRT4.dll+78693|C:\\Windows\\System32\\RPCRT4.dll+d96bd|C:\\Windows\\System32\\RPCRT4.dll+6145c|C:\\Windows\\System32\\RPCRT4.dll+52964|C:\\Windows\\System32\\RPCRT4.dll+5187d|C:\\Windows\\System32\\RPCRT4.dll+5212b|C:\\Windows\\System32\\RPCRT4.dll+2469c|C:\\Windows\\System32\\RPCRT4.dll+24b1c|C:\\Windows\\System32\\RPCRT4.dll+111bc|C:\\Windows\\System32\\RPCRT4.dll+12a1b|C:\\Windows\\System32\\RPCRT4.dll+1e12a|C:\\Windows\\SYSTEM32\\ntdll.dll+1d34e|C:\\Windows\\SYSTEM32\\ntdll.dll+1ecb9|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+51791"
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2020-12-09T08:46:06.970733200Z",
+      "event_type": "process_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 10,
+        "event_record_id": "89"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "source_process_guid": "{2935EF20-8D4E-5FD0-0000-0010D54A0000}",
+        "source_process_id": "860",
+        "source_image": "C:\\Windows\\system32\\lsass.exe",
+        "target_process_guid": "{2935EF20-8ECE-5FD0-0000-00106A6D1000}",
+        "target_process_id": "5044",
+        "target_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "granted_access": "0x1478",
+        "call_trace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a5a94|C:\\Windows\\system32\\lsasrv.dll+25d17|C:\\Windows\\system32\\lsasrv.dll+26ded|C:\\Windows\\system32\\lsasrv.dll+25b95|C:\\Windows\\SYSTEM32\\SspiSrv.dll+11a2|C:\\Windows\\System32\\RPCRT4.dll+78693|C:\\Windows\\System32\\RPCRT4.dll+d96bd|C:\\Windows\\System32\\RPCRT4.dll+6145c|C:\\Windows\\System32\\RPCRT4.dll+52964|C:\\Windows\\System32\\RPCRT4.dll+5187d|C:\\Windows\\System32\\RPCRT4.dll+5212b|C:\\Windows\\System32\\RPCRT4.dll+2469c|C:\\Windows\\System32\\RPCRT4.dll+24b1c|C:\\Windows\\System32\\RPCRT4.dll+111bc|C:\\Windows\\System32\\RPCRT4.dll+12a1b|C:\\Windows\\System32\\RPCRT4.dll+1e12a|C:\\Windows\\SYSTEM32\\ntdll.dll+1d34e|C:\\Windows\\SYSTEM32\\ntdll.dll+1ecb9|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+51791"
+      }
+    },
+    {
+      "evidence_id": "EV-006",
+      "event_time_utc": "2020-12-09T08:46:07.062720700Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "107"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{2935EF20-8ECF-5FD0-0000-001039791000}",
+        "process_id": "3724",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "target_filename": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\__PSScriptPolicyTest_vlxg1qje.eod.ps1",
+        "creation_utc_time": "2020-12-09 08:46:07.055"
+      }
+    },
+    {
+      "evidence_id": "EV-007",
+      "event_time_utc": "2020-12-09T08:46:07.098935000Z",
+      "event_type": "process_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 10,
+        "event_record_id": "108"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "source_process_guid": "{2935EF20-8D4E-5FD0-0000-0010D54A0000}",
+        "source_process_id": "860",
+        "source_image": "C:\\Windows\\system32\\lsass.exe",
+        "target_process_guid": "{2935EF20-8ECF-5FD0-0000-001039791000}",
+        "target_process_id": "3724",
+        "target_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "granted_access": "0x1000",
+        "call_trace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a6624|C:\\Windows\\System32\\RPCRT4.dll+4a8bf|C:\\Windows\\system32\\lsasrv.dll+25add|C:\\Windows\\SYSTEM32\\SspiSrv.dll+11a2|C:\\Windows\\System32\\RPCRT4.dll+78693|C:\\Windows\\System32\\RPCRT4.dll+d96bd|C:\\Windows\\System32\\RPCRT4.dll+6145c|C:\\Windows\\System32\\RPCRT4.dll+52964|C:\\Windows\\System32\\RPCRT4.dll+5187d|C:\\Windows\\System32\\RPCRT4.dll+5212b|C:\\Windows\\System32\\RPCRT4.dll+2469c|C:\\Windows\\System32\\RPCRT4.dll+24b1c|C:\\Windows\\System32\\RPCRT4.dll+111bc|C:\\Windows\\System32\\RPCRT4.dll+12a1b|C:\\Windows\\System32\\RPCRT4.dll+1e12a|C:\\Windows\\SYSTEM32\\ntdll.dll+1d34e|C:\\Windows\\SYSTEM32\\ntdll.dll+1ecb9|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+51791"
+      }
+    },
+    {
+      "evidence_id": "EV-008",
+      "event_time_utc": "2020-12-09T08:46:07.099063100Z",
+      "event_type": "process_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 10,
+        "event_record_id": "109"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "source_process_guid": "{2935EF20-8D4E-5FD0-0000-0010D54A0000}",
+        "source_process_id": "860",
+        "source_image": "C:\\Windows\\system32\\lsass.exe",
+        "target_process_guid": "{2935EF20-8ECF-5FD0-0000-001039791000}",
+        "target_process_id": "3724",
+        "target_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "granted_access": "0x1478",
+        "call_trace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a5a94|C:\\Windows\\system32\\lsasrv.dll+25d17|C:\\Windows\\system32\\lsasrv.dll+26ded|C:\\Windows\\system32\\lsasrv.dll+25b95|C:\\Windows\\SYSTEM32\\SspiSrv.dll+11a2|C:\\Windows\\System32\\RPCRT4.dll+78693|C:\\Windows\\System32\\RPCRT4.dll+d96bd|C:\\Windows\\System32\\RPCRT4.dll+6145c|C:\\Windows\\System32\\RPCRT4.dll+52964|C:\\Windows\\System32\\RPCRT4.dll+5187d|C:\\Windows\\System32\\RPCRT4.dll+5212b|C:\\Windows\\System32\\RPCRT4.dll+2469c|C:\\Windows\\System32\\RPCRT4.dll+24b1c|C:\\Windows\\System32\\RPCRT4.dll+111bc|C:\\Windows\\System32\\RPCRT4.dll+12a1b|C:\\Windows\\System32\\RPCRT4.dll+1e12a|C:\\Windows\\SYSTEM32\\ntdll.dll+1d34e|C:\\Windows\\SYSTEM32\\ntdll.dll+1ecb9|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+51791"
+      }
+    },
+    {
+      "evidence_id": "EV-009",
+      "event_time_utc": "2020-12-09T08:46:07.157914900Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "110"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{2935EF20-8ECF-5FD0-0000-0010DA841000}",
+        "process_id": "4584",
+        "image": "C:\\Windows\\System32\\chcp.com",
+        "original_file_name": "CHCP.COM",
+        "command_line": "\"C:\\Windows\\system32\\chcp.com\" 65001",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=BA6FD5B883C0899785D17CEBE66A25F6,SHA256=9FDBDF88CF2BB2794C416E3083553F2898AC9DC92DFAC2478B4C1DF667DF7C74,IMPHASH=4FB30D6E330F3FB3DB61550BD7FA7CCD",
+        "parent_process_guid": "{2935EF20-8ECF-5FD0-0000-001039791000}",
+        "parent_process_id": "3724",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -EncodedCommand JgBjAGgAYwBwAC4AYwBvAG0AIAA2ADUAMAAwADEAIAA+ACAAJABuAHUAbABsAAoAJABlAHgAZQBjAF8AdwByAGEAcABwAGUAcgBfAHMAdAByACAAPQAgACQAaQBuAHAAdQB0ACAAfAAgAE8AdQB0AC0AUwB0AHIAaQBuAGcACgAkAHMAcABsAGkAdABfAHAAYQByAHQAcwAgAD0AIAAkAGUAeABlAGMAXwB3AHIAYQBwAHAAZQByAF8AcwB0AHIALgBTAHAAbABpAHQAKABAACgAIgBgADAAYAAwAGAAMABgADAAIgApACwAIAAyACwAIABbAFMAdAByAGkAbgBnAFMAcABsAGkAdABPAHAAdABpAG8AbgBzAF0AOgA6AFIAZQBtAG8AdgBlAEUAbQBwAHQAeQBFAG4AdAByAGkAZQBzACkACgBJAGYAIAAoAC0AbgBvAHQAIAAkAHMAcABsAGkAdABfAHAAYQByAHQAcwAuAEwAZQBuAGcAdABoACAALQBlAHEAIAAyACkAIAB7ACAAdABoAHIAbwB3ACAAIgBpAG4AdgBhAGwAaQBkACAAcABhAHkAbABvAGEAZAAiACAAfQAKAFMAZQB0AC0AVgBhAHIAaQBhAGIAbABlACAALQBOAGEAbQBlACAAagBzAG8AbgBfAHIAYQB3ACAALQBWAGEAbAB1AGUAIAAkAHMAcABsAGkAdABfAHAAYQByAHQAcwBbADEAXQAKACQAZQB4AGUAYwBfAHcAcgBhAHAAcABlAHIAIAA9ACAAWwBTAGMAcgBpAHAAdABCAGwAbwBjAGsAXQA6ADoAQwByAGUAYQB0AGUAKAAkAHMAcABsAGkAdABfAHAAYQByAHQAcwBbADAAXQApAAoAJgAkAGUAeABlAGMAXwB3AHIAYQBwAHAAZQByAA=="
+      }
+    },
+    {
+      "evidence_id": "EV-010",
+      "event_time_utc": "2020-12-09T08:46:08.510216300Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "126"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{2935EF20-8ECF-5FD0-0000-001039791000}",
+        "process_id": "3724",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "target_filename": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\40sjawwp.dll",
+        "creation_utc_time": "2020-12-09 08:46:08.508"
+      }
+    },
+    {
+      "evidence_id": "EV-011",
+      "event_time_utc": "2020-12-09T08:46:08.510811300Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "127"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{2935EF20-8ECF-5FD0-0000-001039791000}",
+        "process_id": "3724",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "target_filename": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\40sjawwp.cmdline",
+        "creation_utc_time": "2020-12-09 08:46:08.508"
+      }
+    },
+    {
+      "evidence_id": "EV-012",
+      "event_time_utc": "2020-12-09T08:46:08.547665100Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "128"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{2935EF20-8ED0-5FD0-0000-0010AB921000}",
+        "process_id": "3904",
+        "image": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+        "original_file_name": "csc.exe",
+        "command_line": "\"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe\" /noconfig /fullpaths @\"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\40sjawwp.cmdline\"",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=4360A98D8785625667D2574D2DD5C988,SHA256=F7DB25AA420C14C514690C1E943EC1E729596973E911B3445DFAD42FE958711D,IMPHASH=ED2AE001A3FDD84BDC04C99A98883A52",
+        "parent_process_guid": "{2935EF20-8ECF-5FD0-0000-001039791000}",
+        "parent_process_id": "3724",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -EncodedCommand JgBjAGgAYwBwAC4AYwBvAG0AIAA2ADUAMAAwADEAIAA+ACAAJABuAHUAbABsAAoAJABlAHgAZQBjAF8AdwByAGEAcABwAGUAcgBfAHMAdAByACAAPQAgACQAaQBuAHAAdQB0ACAAfAAgAE8AdQB0AC0AUwB0AHIAaQBuAGcACgAkAHMAcABsAGkAdABfAHAAYQByAHQAcwAgAD0AIAAkAGUAeABlAGMAXwB3AHIAYQBwAHAAZQByAF8AcwB0AHIALgBTAHAAbABpAHQAKABAACgAIgBgADAAYAAwAGAAMABgADAAIgApACwAIAAyACwAIABbAFMAdAByAGkAbgBnAFMAcABsAGkAdABPAHAAdABpAG8AbgBzAF0AOgA6AFIAZQBtAG8AdgBlAEUAbQBwAHQAeQBFAG4AdAByAGkAZQBzACkACgBJAGYAIAAoAC0AbgBvAHQAIAAkAHMAcABsAGkAdABfAHAAYQByAHQAcwAuAEwAZQBuAGcAdABoACAALQBlAHEAIAAyACkAIAB7ACAAdABoAHIAbwB3ACAAIgBpAG4AdgBhAGwAaQBkACAAcABhAHkAbABvAGEAZAAiACAAfQAKAFMAZQB0AC0AVgBhAHIAaQBhAGIAbABlACAALQBOAGEAbQBlACAAagBzAG8AbgBfAHIAYQB3ACAALQBWAGEAbAB1AGUAIAAkAHMAcABsAGkAdABfAHAAYQByAHQAcwBbADEAXQAKACQAZQB4AGUAYwBfAHcAcgBhAHAAcABlAHIAIAA9ACAAWwBTAGMAcgBpAHAAdABCAGwAbwBjAGsAXQA6ADoAQwByAGUAYQB0AGUAKAAkAHMAcABsAGkAdABfAHAAYQByAHQAcwBbADAAXQApAAoAJgAkAGUAeABlAGMAXwB3AHIAYQBwAHAAZQByAA=="
+      }
+    },
+    {
+      "evidence_id": "EV-013",
+      "event_time_utc": "2020-12-09T08:46:08.646946000Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "154"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{2935EF20-8ED0-5FD0-0000-0010AB921000}",
+        "process_id": "3904",
+        "image": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+        "target_filename": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\40sjawwp.dll",
+        "creation_utc_time": "2020-12-09 08:46:08.508"
+      }
+    }
+  ],
+  "deterministic_derivations": [
+    {
+      "derivation_id": "DER-001",
+      "derived_field": "decoded_command",
+      "value": "&chcp.com 65001 > $null\n$exec_wrapper_str = $input | Out-String\n$split_parts = $exec_wrapper_str.Split(@(\"`0`0`0`0\"), 2, [StringSplitOptions]::RemoveEmptyEntries)\nIf (-not $split_parts.Length -eq 2) { throw \"invalid payload\" }\nSet-Variable -Name json_raw -Value $split_parts[1]\n$exec_wrapper = [ScriptBlock]::Create($split_parts[0])\n&$exec_wrapper",
+      "derivation_method": "Base64 (UTF-16LE) decode of the -EncodedCommand argument",
+      "source_evidence_id": "A0",
+      "source_field": "command_line"
+    }
+  ]
+}

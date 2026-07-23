@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "ER-S03",
+  "rule_id": "SAFESOC-TRG-ER-S03",
+  "analytic_family_id": "AF-ACCESS",
+  "analytic_pattern_id": "ACCESS-03",
+  "source_description": "external archive (SL100.zip: SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/audit.log)",
+  "raw_source_event_count": 10566,
+  "complete_scope_event_count": 10566,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/audit.log:audit:626718",
+  "expected_record_key": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/audit.log:audit:626718",
+  "selected_raw_sha256": "dfcbc11e93970b4775f5f54c310dc9333bda6c722df8b1fcdf8d32c677086752",
+  "pass": true
+}

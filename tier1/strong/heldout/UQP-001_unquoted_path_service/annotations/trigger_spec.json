@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "case_id": "UQP-001",
+  "rule_id": "SAFESOC-TRG-UQP-001",
+  "analytic_family_id": "AF-PERS",
+  "analytic_pattern_id": "PERS-02",
+  "title": "Service created with an unquoted Program Files binary path",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "full_source",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source; no event-level answer selector is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 1
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\sc.exe"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\bcreate\\b"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)binpath\\s*=\\s*\\\"?[A-Z]:\\\\Program Files\\\\[^\\\"]+\\.exe"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "8401"
+  },
+  "rationale": "Creating a service with an unquoted executable path containing spaces is a reproducible service-path hijack alert surface."
+}

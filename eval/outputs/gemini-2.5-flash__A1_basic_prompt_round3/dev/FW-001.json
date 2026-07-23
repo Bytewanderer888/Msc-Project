@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.8,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "The user 'host-01\\user-01' executed 'netsh.exe' to add a new inbound firewall rule allowing TCP traffic on port 450 (A0, EV-001). Shortly after, the same user deleted this rule (EV-003, EV-004). This rapid creation and deletion of a firewall rule is suspicious behavior, potentially indicating an attempt to temporarily open a port for malicious activity and then cover tracks.",
+  "recommended_action": "investigate"
+}

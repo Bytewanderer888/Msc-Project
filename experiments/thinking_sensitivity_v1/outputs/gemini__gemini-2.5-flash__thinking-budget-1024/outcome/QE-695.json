@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "The `certutil.exe` utility was used by an Administrator (A0) to download an executable file (`qSwUwejx.exe`) from a suspicious internal IP address and port (`10.0.2.13:8080`) into a temporary directory. Evidence EV-001 confirms the successful creation of this executable file. The parent command line (A0) also indicates an intent to execute this downloaded file, which is a common pattern for initial access or payload delivery.",
+  "recommended_action": "escalate"
+}

@@ -1,0 +1,107 @@
+{
+  "case_id": "UQP-001",
+  "split": "heldout",
+  "source_log": "attack_data-master/datasets/suspicious_behaviour/first_time_windows_service/windows-sysmon.log",
+  "staged_export": "extracted/uqp001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "8401",
+    "EV": [
+      "8385",
+      "8433",
+      "8420",
+      "8701"
+    ]
+  },
+  "roles": {
+    "8401": "triggering alert: sc create 'Example Service' with an UNQUOTED binpath 'C:\\Program Files\\windows_service.exe' — a first-time service whose path is hijackable (T1574.009)",
+    "8385": "setup: cmd /c copies WindowsServiceExample.exe to both C:\\Program Files\\windows_service.exe AND C:\\program.exe (the unquoted-path hijack location)",
+    "8433": "the unquoted path resolves to C:\\program.exe, which runs as the service (the hijack fires) — but the binary is the benign WindowsServiceExample.exe",
+    "8420": "sc start 'Example Service'",
+    "8701": "sc delete 'Example Service' — a service-deletion command is issued (success not confirmed)"
+  },
+  "derivations": [],
+  "model_visible_attribute_exclusions": {
+    "EV-001": [
+      "parent_command_line"
+    ]
+  },
+  "metadata": {
+    "case_name": "unquoted_path_service_execution",
+    "security_proposition": "An unquoted service path was intercepted so that C:\\program.exe executed under services.exe as SYSTEM.",
+    "case_directory": "UQP-001_unquoted_path_service",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (suspicious_behaviour)",
+    "stored_filename": "uqp001_service_sysmon.log",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Unquoted-path service privileged execution",
+      "candidate_attack_mapping": "T1574.009",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = STRONG, calibration_role = up_rank. The capture proves deliberate path interception: C:\\program.exe is planted before an unquoted service path, the service starts, and services.exe executes C:\\program.exe as NT AUTHORITY\\SYSTEM. Example naming and cleanup are mitigating context but do not negate the privileged execution. The malicious label denotes successful execution of an offensive mechanism, not a claim that the lab operator was unauthorized. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "the whole service create/hijack/delete chain is in this host's windows-sysmon.log (EID1); single-sensor Tier-1."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "uqp001_service_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_service_create_hijack_delete",
+      "primary_host": "win-dc-533.attackrange.local",
+      "primary_user": "Administrator",
+      "boundary_definition": [
+        "A0 = the sc create with the unquoted binpath.",
+        "EV = the copy that plants C:\\program.exe (unquoted-path artifact), the C:\\program.exe execution as the service (hijack fires), sc start, and sc delete.",
+        "EV-003 is the decisive result: Windows resolves the unquoted path to C:\\program.exe and services.exe launches it as SYSTEM. EV-004 is counter-evidence about duration because it issues stop/delete/cleanup commands, whose success is not confirmed."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "a first-time service with an unquoted, hijackable binpath is the T1574.009 detection.",
+      "selection_reason": "the create is the setup alert; EV-003 confirms the path-interception outcome by showing C:\\program.exe execute from services.exe as SYSTEM."
+    },
+    "correlation_keys": [
+      "host",
+      "user",
+      "time_window",
+      "service_name==Example Service"
+    ],
+    "curation_notes": [
+      {
+        "topic": "annotation_correction",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: corrected from weak to strong on 2026-07-15. The path interception is not merely possible: EV-003 proves C:\\program.exe executes under services.exe as SYSTEM. Requiring a second payload effect would ignore the completed privilege-relevant mechanism."
+      },
+      {
+        "topic": "scope_of_malicious_label",
+        "event_record_id": "8433",
+        "note": "WindowsServiceExample naming and the later cleanup command limit claims about operator intent and lasting persistence, but they do not make the completed SYSTEM-level path interception benign."
+      },
+      {
+        "topic": "cleanup_counter_evidence",
+        "event_record_id": "8701",
+        "note": "Keep the stop/delete/cleanup command as counter-evidence. It does not prove successful cleanup and cannot reverse the already observed EV-003 execution."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "subtle_strong_unquoted_path_exemplar",
+        "under_triage_up_rank_test",
+        "heldout_generalization"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

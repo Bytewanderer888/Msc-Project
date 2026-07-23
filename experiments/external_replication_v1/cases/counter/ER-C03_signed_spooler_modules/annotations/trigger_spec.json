@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-C03",
+  "rule_id": "SAFESOC-TRG-ER-C03",
+  "analytic_family_id": "AF-MOD",
+  "analytic_pattern_id": "MOD-01",
+  "title": "Print spooler loads a library from the standard driver directory",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events for asset DESKTOP-DS4FBF4 in the corpus-native SIEM partition wazuh-alerts-4.x-2024.11.06; no timestamp or record identifier is used.",
+    "filter_predicate": {
+      "all": [
+        {
+          "field": "computer",
+          "op": "ieq",
+          "value": "DESKTOP-DS4FBF4"
+        },
+        {
+          "field": "attributes.source_partition",
+          "op": "eq",
+          "value": "wazuh-alerts-4.x-2024.11.06"
+        }
+      ]
+    }
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 7
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\spoolsv.exe"
+      },
+      {
+        "field": "attributes.image_loaded",
+        "op": "regex",
+        "value": "(?i)\\\\spool\\\\drivers\\\\[^\\\\]+\\\\[^\\\\]+\\\\[^\\\\]+\\.dll$"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_in_highest_count_group",
+    "justification": "The analytic alerts on a short multi-module spooler burst, not on an isolated standard-module load."
+  },
+  "expected_a0": {
+    "record_key": "8mQoAJMBUiBtdjxWSF42"
+  },
+  "rationale": "A DLL loaded by the print spooler is the exploitation alert surface; signing and standard-path provenance are evaluated as context.",
+  "aggregation": {
+    "group_by": [
+      "attributes.process_id"
+    ],
+    "count_gte": 2,
+    "session_gap_seconds_lte": 1,
+    "distinct": {
+      "field": "attributes.image_loaded",
+      "count_gte": 2
+    }
+  }
+}

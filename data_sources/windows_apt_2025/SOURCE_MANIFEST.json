@@ -1,0 +1,40 @@
+{
+  "corpus": "Windows-APT Dataset 2025",
+  "upstream_version": "3",
+  "doi": "10.17632/b8fmtzvpy8.3",
+  "source_url": "https://data.mendeley.com/datasets/b8fmtzvpy8/3",
+  "license": "CC BY 4.0",
+  "retrieved_utc_date": "2026-07-22",
+  "files": [
+    {
+      "path": "combined.csv",
+      "bytes": 247934817,
+      "sha256": "0f7eaa4027482c81cae56a5b759e7058e9e9df225ae060933c7015f6f16e8465",
+      "retention": "local_staging_cache"
+    },
+    {
+      "path": "scenario_manifest.csv",
+      "bytes": 28317,
+      "sha256": "77b881e662b2b912fa466a2510fb65597342b3869d0113118f49558dbb1fa81f",
+      "retention": "portable_metadata"
+    },
+    {
+      "path": "validation_summary.csv",
+      "bytes": 7318,
+      "sha256": "61afe9da2c7ea32f6ab58a700163c0bbb23c0b8b70e5142580d4a3113d731781",
+      "retention": "portable_metadata"
+    },
+    {
+      "path": "checksums.sha256",
+      "bytes": 2187,
+      "sha256": "0ee0b4f68882f63ac9392b6fe6744c310e931ad27736acd3f58b9a18de0cd647",
+      "retention": "portable_metadata"
+    },
+    {
+      "path": "upstream_README.md",
+      "bytes": 5780,
+      "sha256": "0ed29fc5948d79e8007bd5911c0cf271e5c065f3c8762a9fe4a81940dac150b2",
+      "retention": "portable_metadata"
+    }
+  ]
+}

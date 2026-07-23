@@ -1,0 +1,31 @@
+{
+  "case_id": "LS-001",
+  "evidence_condition": "strong",
+  "calibration_role": "preserve",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-002",
+      "EV-003"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "a dump file was created; this EID10-only package contains no file-create telemetry",
+      "credentials were successfully extracted or used"
+    ]
+  },
+  "the_trap": "Named dumping tools access LSASS with dump-capable rights and a comsvcs dumping call trace. One ordinary svchost access (EV-001) must not cause a downgrade, but the package also must not be stretched into a claim that a dump file or recovered credentials were observed.",
+  "rationale": "A0, EV-002, and EV-003 show named dumping processes opening LSASS with dump-capable access masks (0x1010, 0x1410, and 0x1fffff), including a comsvcs call trace and the correct tool-to-LSASS direction. This decisively establishes offensive credential-access behavior. The EID10-only package does not show a dump file or credential extraction. EV-001 is an ordinary 0x1400 svchost access and does not negate the offensive accesses.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

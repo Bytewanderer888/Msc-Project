@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LGN-002",
+  "case_name": "logon_script_set_never_triggered",
+  "security_proposition": "The configured UserInitMprLogonScript fired within the retained post-write Sysmon window.",
+  "case_directory": "LGN-002_logon_script_unfired",
+  "split": "dev",
+  "status": "audited_dev_2026-07-16",
+  "attack_category": {
+    "category": "Logon-script persistence (firing not evidenced)",
+    "candidate_attack_mapping": "T1037.001",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: MISSING. A UserInitMprLogonScript value is configured, creating an alarming autostart setup. No Sysmon-observable userinit.exe/art.bat process execution appears after the write in the retained window. The package does not claim whether a logon occurred because the scoped sensor is Sysmon-only. Over-triage-prone (down-rank). Cross-corpus OTRF missing (pairs LOGON-001). Do not leak."
+  },
+  "source_provenance": {
+    "dataset": "OTRF Security-Datasets (mordor / atomic)",
+    "original_repository_path": "datasets/atomic/windows/persistence/host/cmd_userinitmprlogonscript_batch.zip",
+    "original_filename": "cmd_userinitmprlogonscript_batch.zip",
+    "stored_filename": "",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "53a01d6976b7567a2464628d850c51cc48b1a91a932cd2b0e110a510bcedf858",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "",
+    "related_events": "",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "build/case.json",
+    "related_events_query": "build/case.json",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "WORKSTATION5",
+    "boundary_definition": [
+      "A0 = the EID13 UserInitMprLogonScript set; EV = the reg.exe REG ADD that wrote it.",
+      "No Sysmon ProcessCreate for userinit.exe launching art.bat, or for art.bat itself, is present after the write in the retained source. A logon event itself is not claimed because this is Sysmon-only."
+    ],
+    "absence_audit": {
+      "confirmation": "post-write Sysmon ProcessCreate for userinit.exe launching art.bat, or execution of art.bat",
+      "sensor": "Microsoft-Windows-Sysmon/Operational",
+      "host": "WORKSTATION5",
+      "raw_source": "data_sources/otrf_selected_raw/datasets/atomic/windows/persistence/host/cmd_userinitmprlogonscript_batch.zip",
+      "source_window_utc": {
+        "start": "2020-10-20T02:46:43.052Z",
+        "anchor": "2020-10-20T02:47:08.761Z",
+        "end": "2020-10-20T02:47:13.948Z"
+      },
+      "adequacy_note": "Approximately 5.2 seconds of Sysmon telemetry follows the value set; the claim is limited to no firing being evidenced in that retained window.",
+      "result": "zero post-write userinit.exe/art.bat process-creation events"
+    },
+    "time_window_utc": {
+      "start": "2020-10-20T02:47:08.745Z",
+      "end": "2020-10-20T02:47:08.761Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "98",
+    "process_guid": "{39e4a257-4fac-5f8e-0208-000000000700}",
+    "query_file": "build/case.json"
+  },
+  "related_event_selection": {
+    "query_file": "build/case.json",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "98",
+      "79"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "98",
+      "event_type": "registry_value_set",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: EID13 registry SET of Environment\\UserInitMprLogonScript = C:\\Users\\...\\Temp\\art.bat — logon-script persistence (T1037.001)"
+    },
+    "EV-001": {
+      "event_record_id": "79",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "REG.exe ADD that configures the UserInitMprLogonScript value"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "missing_outcome",
+      "note": "MISSING / over-triage-prone: logon-script setup is visible, while Sysmon-observable script firing is not evidenced in the retained post-write window."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "missing_persistence_exemplar",
+      "cross_corpus_missing"
+    ],
+    "eligible_for_final_heldout_metrics": false
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

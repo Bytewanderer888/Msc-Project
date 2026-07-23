@@ -1,0 +1,1377 @@
+{
+  "evaluator": "SafeSOC offline evaluator",
+  "rubric_version": "1.1",
+  "generated_utc": "2026-07-17T09:21:02Z",
+  "model": "gemini-2.5-flash__A2_evidence_prompt_round3",
+  "split": "heldout",
+  "completeness": {
+    "expected_cases": 20,
+    "scored_cases": 20,
+    "missing_outputs": [],
+    "missing_ground_truth": [],
+    "orphan_outputs": [],
+    "invalid_cases": {},
+    "complete": true
+  },
+  "summary": {
+    "n": 20,
+    "verdict_correct_n": 13,
+    "severity_in_band_n": 13,
+    "joint_decision_correct_n": 12,
+    "check_failure_counts": {
+      "C1": 0,
+      "C2": 8,
+      "C3": 0,
+      "C4": 7
+    },
+    "C3_applicable_n": 6,
+    "severity_by_condition": {
+      "strong": {
+        "over": 0,
+        "in_band": 7,
+        "under": 1
+      },
+      "weak": {
+        "over": 2,
+        "in_band": 3,
+        "under": 1
+      },
+      "missing": {
+        "over": 1,
+        "in_band": 3,
+        "under": 0
+      },
+      "counter": {
+        "over": 2,
+        "in_band": 0,
+        "under": 0
+      }
+    },
+    "active_checks": [
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "active_flagged_n": 8,
+    "active_flagged_cases": [
+      "BF-002",
+      "CRED-001",
+      "DISC-004",
+      "GPO-001",
+      "LOGON-001",
+      "LS-003",
+      "PS-003",
+      "UQP-001"
+    ],
+    "confidence": {
+      "n": 20,
+      "decision_correct_n": 12,
+      "decision_incorrect_n": 8,
+      "mean_confidence": 0.845,
+      "mean_confidence_correct": 0.8333,
+      "mean_confidence_incorrect": 0.8625,
+      "brier_score_exploratory": 0.3195,
+      "high_confidence_threshold": 0.8,
+      "high_confidence_error_n": 7,
+      "interpretation": "exploratory self-reported confidence; not a primary validator check"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "BF-002",
+      "condition": "weak",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "high",
+        "confidence": 0.9,
+        "recommended_action": "escalate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003",
+            "EV-004",
+            "EV-005",
+            "EV-006",
+            "EV-007",
+            "EV-008",
+            "EV-009",
+            "EV-010",
+            "EV-011",
+            "EV-012",
+            "EV-013",
+            "EV-014",
+            "EV-015",
+            "EV-016",
+            "EV-017",
+            "EV-018",
+            "EV-019",
+            "EV-020",
+            "EV-021",
+            "EV-022",
+            "EV-023",
+            "EV-024",
+            "EV-025",
+            "EV-026",
+            "EV-027",
+            "EV-028",
+            "EV-029",
+            "EV-030",
+            "EV-031",
+            "EV-032",
+            "EV-033",
+            "EV-034",
+            "EV-035",
+            "EV-036",
+            "EV-037",
+            "EV-038",
+            "EV-039",
+            "EV-040",
+            "EV-041",
+            "EV-042",
+            "EV-043",
+            "EV-044",
+            "EV-045",
+            "EV-046",
+            "EV-047",
+            "EV-048",
+            "EV-049"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "over",
+          "verdict_pass": false,
+          "llm_severity": "high",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "over",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "escalate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "over",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "that an account was compromised or a breach occurred (all 50 events A0..EV-049 return sub_status 0xc0000064 = target user name does not exist, and no 4624 success event is present in the package)",
+        "that a valid credential was obtained or that lateral movement followed (no success event and no post-authentication activity are present in the package)",
+        "that the activity is confirmed malicious or attacker-driven, or that the sprayed user list was 'entirely' invalid beyond the 50 target_user_name values actually shown"
+      ]
+    },
+    {
+      "case_id": "COL-001",
+      "condition": "weak",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.7,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-002",
+            "EV-003"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "medium",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that data was exfiltrated (archive/split activity via 7z.exe is present and one output volume file2.txt.001 was written, but no upload, transfer, DNS, or outbound transmission of the archive is present in the package)",
+        "that a breach or data loss is confirmed (no source contents collected and no exfil event are evidenced)",
+        "that the 7z.exe activity is confirmed-malicious collection (the archiving is consistent with T1560.001 but the package does not evidence what data was gathered or that intent is malicious rather than a legitimate admin archive task)"
+      ]
+    },
+    {
+      "case_id": "CRED-001",
+      "condition": "weak",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "high",
+        "confidence": 0.9,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003",
+            "EV-004"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "high",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "over",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": true,
+          "counter_evidence_ids": [
+            "EV-004"
+          ],
+          "cited_counter_evidence_ids": [
+            "EV-004"
+          ],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2"
+      ],
+      "semantic_audit_prompts": [
+        "that credentials were stolen, harvested, or used (DefaultUserName / DefaultPassword are written to the Winlogon key and EV-004 deletes only DefaultPassword via regedit.exe; no read, export, or authentication using these values is present in the package)",
+        "that a compromise resulted",
+        "that DefaultUserName remained configured after the observed window (the package contains no deletion of DefaultUserName, but it does not establish the registry state beyond the available evidence)"
+      ]
+    },
+    {
+      "case_id": "DISC-001",
+      "condition": "weak",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.8,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003",
+            "EV-004",
+            "EV-005"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "medium",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that a breach or compromise is confirmed (multi-method account discovery is present in A0/EV-001..EV-005, but no credential-access, lateral-movement, or exploitation event is present in the package)",
+        "that the actor is confirmed malicious (rapid enumeration under an interactive High-integrity admin session is equally consistent with pentests, inventory/monitoring tools, and admin scripts)",
+        "that no follow-on activity occurred (the package is limited to Sysmon process_create events over a ~3.5s window; absence of later events is not evidence that none followed)"
+      ]
+    },
+    {
+      "case_id": "DISC-003",
+      "condition": "weak",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.7,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "medium",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that active adversarial reconnaissance or malicious intent is confirmed (the package evidences confirmed local-account enumeration but no intent-bearing follow-on such as credential access or lateral movement)",
+        "that a compromise or breach resulted (no post-discovery impact is present in this package)"
+      ]
+    },
+    {
+      "case_id": "DISC-004",
+      "condition": "weak",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "benign",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "under",
+          "verdict_pass": false,
+          "llm_severity": "informational",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "under",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "close_benign",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "under",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "that malicious reconnaissance or a compromise is confirmed (the package is a single Internet Explorer svcVersion registry query via reg.exe/A0 with no corroborating evidence present)"
+      ]
+    },
+    {
+      "case_id": "EVL-001",
+      "condition": "missing",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.8,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "medium",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that Windows event logging was disabled or that defense evasion succeeded (A0 shows EventLog\\Start set to DWORD 0x00000004 = Disabled start type, but no reboot, service-stop, or log-clearing event is present, so the actual disabling outcome is not evidenced)",
+        "that the EventLog service remained active or that no logs were lost (no service-state or log-clearing event is present; the outcome is not evidenced in either direction)",
+        "that evidence was destroyed or the host went dark"
+      ]
+    },
+    {
+      "case_id": "GPO-001",
+      "condition": "counter",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.7,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-003"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "benign",
+          "verdict_direction": "over",
+          "verdict_pass": false,
+          "llm_severity": "medium",
+          "acceptable_severity": [
+            "informational",
+            "low"
+          ],
+          "severity_direction": "over",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": true,
+          "counter_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003"
+          ],
+          "cited_counter_evidence_ids": [
+            "A0",
+            "EV-003"
+          ],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "close_benign",
+            "monitor"
+          ],
+          "direction": "over",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "adversary-driven broad SMB scanning, write activity, credential access, or subsequent lateral movement (the package contains only four read-type 5145 access checks by machine accounts against default Group Policy artifacts under \\\\*\\SYSVOL; these events do not establish broader reconnaissance or follow-on activity)"
+      ]
+    },
+    {
+      "case_id": "ING-002",
+      "condition": "missing",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.8,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "medium",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that malware was executed or the host was compromised",
+        "that the downloaded file was run (the package shows no process executing the transferred object; only bitsadmin/certutil/cmd/powershell processes appear, and the object is characterized only by its 'license.txt' name, not its content)",
+        "that the transferred object was executed or caused code execution",
+        "that the transferred object is a benign license file (the evidence shows an object NAMED '[x]-license.txt' with no recorded content, hash, or reputation)",
+        "that both the bitsadmin and certutil download operations succeeded (A0 and EV-001 show invocation; only EV-002 confirms file creation by certutil)"
+      ]
+    },
+    {
+      "case_id": "LOGON-001",
+      "condition": "missing",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "high",
+        "confidence": 0.9,
+        "recommended_action": "escalate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "over",
+          "verdict_pass": false,
+          "llm_severity": "high",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "over",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "escalate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "over",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "that active malicious persistence exists (the package evidences only that the UserInitMprLogonScript value was set, not that it is malicious or effective)",
+        "that a malicious payload runs after the selected A0 (the target path is C:\\Windows\\System32\\calc.exe, whose file is not verified by any hash or signature in the package, and no post-A0 logon/script-execution event is present)",
+        "that the mechanism never fired anywhere in the source capture (an earlier, separately configured lifecycle fired before deletion; the bounded claim is only that the selected final post-delete configuration has no subsequent firing in the remaining source window)",
+        "that the host is compromised"
+      ]
+    },
+    {
+      "case_id": "LS-003",
+      "condition": "strong",
+      "calibration_role": "up_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "high",
+        "confidence": 0.9,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-004"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "under",
+          "verdict_pass": false,
+          "llm_severity": "high",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "under",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": []
+    },
+    {
+      "case_id": "OD-001",
+      "condition": "strong",
+      "calibration_role": "preserve",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "critical",
+        "confidence": 0.9,
+        "recommended_action": "isolate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003",
+            "EV-004",
+            "EV-005"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "critical",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "isolate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that shadow copies were successfully deleted (A0 shows the vssadmin command invocation, not its success status)",
+        "that the BCD recovery settings were successfully changed (EV-002 and EV-003 show bcdedit invocations without result or state-confirmation events)",
+        "that the System event log was successfully cleared (EV-004 shows the wevtutil invocation; only Security event 1102 in EV-001 confirms a Security-log clear)",
+        "that EV-001 was caused by the specific wevtutil process in EV-005 (the events are temporally consistent, but the package does not directly link them)"
+      ]
+    },
+    {
+      "case_id": "PS-003",
+      "condition": "counter",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "critical",
+        "confidence": 0.9,
+        "recommended_action": "isolate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "DER-001",
+            "EV-003",
+            "EV-004"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "benign",
+          "verdict_direction": "over",
+          "verdict_pass": false,
+          "llm_severity": "critical",
+          "acceptable_severity": [
+            "informational",
+            "low"
+          ],
+          "severity_direction": "over",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": true,
+          "counter_evidence_ids": [
+            "A0",
+            "DER-001",
+            "EV-002",
+            "EV-003",
+            "EV-004"
+          ],
+          "cited_counter_evidence_ids": [
+            "A0",
+            "DER-001",
+            "EV-003",
+            "EV-004"
+          ],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "isolate",
+          "acceptable_actions": [
+            "close_benign",
+            "monitor"
+          ],
+          "direction": "over",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "that the obfuscated PowerShell executed a malicious payload (A0.command_line reconstructs via DER-001 to the harmless \"Write-Host 'Hello, World!'\"; although A0's trailing \"| ieX\" did execute that expression on the host, all it does is print a string to the console \u2014 no malicious action is evidenced)",
+        "that DER-001 itself executed code (DER-001 is a deterministic text reconstruction of A0.command_line whose derivation_method states the PowerShell expression was not executed by the derivation; the execution occurred in the live A0 process via ieX, not in the derivation)",
+        "that LSASS was accessed for credential theft (EV-003/EV-004 have source_image=lsass.exe and target_image=powershell.exe with granted_access 0x1000 and 0x1478 \u2014 lsass.exe -> powershell.exe, the reversed direction, not PowerShell reading LSASS memory)"
+      ]
+    },
+    {
+      "case_id": "PS-004",
+      "condition": "strong",
+      "calibration_role": "up_rank",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "high",
+        "confidence": 0.9,
+        "recommended_action": "escalate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-008"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "high",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "escalate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that the collected files were ingested into BloodHound (the package shows SharpHound collection outputs, not import into the BloodHound application)",
+        "that SharpHound ran to completion without errors (the expected JSON and ZIP output set is observed, but no exit status is present)"
+      ]
+    },
+    {
+      "case_id": "RUN-001",
+      "condition": "strong",
+      "calibration_role": "up_rank",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "high",
+        "confidence": 0.9,
+        "recommended_action": "isolate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "high",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "isolate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that certutil downloaded kxwn.lock from the network (EV-001 confirms that certutil created the file, but no network acquisition source is shown)",
+        "that the connection to 192.168.0.4:443 is confirmed command-and-control rather than a callback consistent with C2"
+      ]
+    },
+    {
+      "case_id": "SMB-001",
+      "condition": "strong",
+      "calibration_role": "preserve",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "high",
+        "confidence": 0.9,
+        "recommended_action": "isolate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-004",
+            "EV-005",
+            "EV-006"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "high",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "isolate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that cross-host lateral movement was confirmed (the observed SMB paths use 127.0.0.1 and the package identifies no separate source host)",
+        "that the execution originated from a remote host or identifies the initiating operator"
+      ]
+    },
+    {
+      "case_id": "ST-001",
+      "condition": "missing",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.8,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003",
+            "EV-004"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "medium",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": true,
+          "counter_evidence_ids": [
+            "EV-005",
+            "EV-006",
+            "EV-007",
+            "EV-008",
+            "EV-009"
+          ],
+          "cited_counter_evidence_ids": [
+            "EV-005",
+            "EV-006",
+            "EV-007",
+            "EV-008",
+            "EV-009"
+          ],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that every requested task registration or deletion succeeded (Sysmon process creation proves only that the commands were launched)",
+        "that a configured task action executed (no task-scheduler-attributed action process is present in the retained Sysmon source)",
+        "that confirmed malware persistence or host compromise exists",
+        "that calc.exe or the bare cmd.exe actions are proven malicious or benign payloads"
+      ]
+    },
+    {
+      "case_id": "SVC-001",
+      "condition": "strong",
+      "calibration_role": "up_rank",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "high",
+        "confidence": 0.9,
+        "recommended_action": "isolate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-003",
+            "EV-004"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "high",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": true,
+          "counter_evidence_ids": [
+            "EV-005"
+          ],
+          "cited_counter_evidence_ids": [
+            "EV-005"
+          ],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "isolate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that the operator was unauthorized or that a real-world compromise outside this capture is established",
+        "that EV-004 proves payload effects beyond the observed service binary execution as SYSTEM",
+        "that all created services were removed or that persistence remained active after the capture window"
+      ]
+    },
+    {
+      "case_id": "UQP-001",
+      "condition": "strong",
+      "calibration_role": "up_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.8,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003",
+            "EV-004"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "under",
+          "verdict_pass": false,
+          "llm_severity": "medium",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "under",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": true,
+          "counter_evidence_ids": [
+            "EV-004"
+          ],
+          "cited_counter_evidence_ids": [
+            "EV-004"
+          ],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "under",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "that the operator was unauthorized or that a real-world compromise outside this capture is established",
+        "that EV-003 proves payload effects beyond the observed path-intercepted execution as SYSTEM",
+        "that the service and files were successfully removed or that persistence remained active after the capture window"
+      ]
+    },
+    {
+      "case_id": "WMI-001",
+      "condition": "strong",
+      "calibration_role": "up_rank",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "critical",
+        "confidence": 0.9,
+        "recommended_action": "isolate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "DER-001",
+            "EV-001",
+            "EV-002"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "critical",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "isolate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": []
+    }
+  ]
+}

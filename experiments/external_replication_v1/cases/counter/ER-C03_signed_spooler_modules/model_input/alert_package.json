@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-C03",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01"
+    ],
+    "users": [
+      "SYSTEM"
+    ],
+    "time_window_utc": {
+      "start": "2024-11-06T06:27:37.0437190Z",
+      "end": "2024-11-06T06:27:37.1186425Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "image_load"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2024-11-06T06:27:37.0437190Z",
+    "event_type": "image_load",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 7,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "host-01",
+    "attributes": {
+      "image": "C:\\Windows\\System32\\spoolsv.exe",
+      "image_loaded": "C:\\Windows\\System32\\spool\\drivers\\x64\\3\\PrintConfig.dll",
+      "original_file_name": "PRINTCONFIG.DLL",
+      "file_version": "10.0.19041.5007 (WinBuild.160101.0800)",
+      "description": "PrintConfig User Interface",
+      "product": "Microsoft\u00ae Windows\u00ae Operating System",
+      "company": "Microsoft Corporation",
+      "signed": "true",
+      "signature": "Microsoft Windows",
+      "signature_status": "Valid",
+      "user": "SYSTEM"
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2024-11-06T06:27:37.1186425Z",
+      "event_type": "image_load",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 7,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "image": "C:\\Windows\\System32\\spoolsv.exe",
+        "image_loaded": "C:\\Windows\\System32\\spool\\drivers\\x64\\3\\mxdwdrv.dll",
+        "original_file_name": "MXDWDRV.DLL",
+        "file_version": "10.0.19041.4597 (WinBuild.160101.0800)",
+        "description": "Microsoft XPS Document Writer",
+        "product": "Microsoft\u00ae Windows\u00ae Operating System",
+        "company": "Microsoft Corporation",
+        "signed": "true",
+        "signature": "Microsoft Windows",
+        "signature_status": "Valid",
+        "user": "SYSTEM"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

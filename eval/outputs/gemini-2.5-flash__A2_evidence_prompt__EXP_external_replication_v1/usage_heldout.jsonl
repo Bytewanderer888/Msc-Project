@@ -1,0 +1,16 @@
+{"case": "ER-C01", "input_tokens": 2430, "output_tokens": 212, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:54:44Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-C02", "input_tokens": 1286, "output_tokens": 158, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:54:52Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-C03", "input_tokens": 1450, "output_tokens": 138, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:55:01Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-C04", "input_tokens": 1545, "output_tokens": 162, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:55:08Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-M01", "input_tokens": 1184, "output_tokens": 156, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:55:16Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-M02", "input_tokens": 1201, "output_tokens": 138, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:55:25Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-M03", "input_tokens": 1190, "output_tokens": 137, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:55:32Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-M04", "input_tokens": 1215, "output_tokens": 146, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:55:40Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-S01", "input_tokens": 1172, "output_tokens": 165, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:55:48Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-S02", "input_tokens": 1832, "output_tokens": 191, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:55:56Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-S03", "input_tokens": 1557, "output_tokens": 181, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:56:04Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-S04", "input_tokens": 1798, "output_tokens": 177, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:56:12Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-W01", "input_tokens": 1054, "output_tokens": 146, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:56:20Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-W02", "input_tokens": 921, "output_tokens": 122, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:56:28Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-W03", "input_tokens": 899, "output_tokens": 125, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:56:42Z", "invocation_id": "20260722T205441Z-dbd1aa93"}
+{"case": "ER-W04", "input_tokens": 1874, "output_tokens": 190, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-22T20:56:51Z", "invocation_id": "20260722T205441Z-dbd1aa93"}

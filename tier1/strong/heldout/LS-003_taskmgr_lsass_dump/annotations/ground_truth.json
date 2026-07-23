@@ -1,0 +1,30 @@
+{
+  "case_id": "LS-003",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": []
+  },
+  "the_trap": "The source process is the legitimate signed C:\\\\Windows\\\\system32\\\\taskmgr.exe (EV-001: launched from explorer.exe with command line \\\"taskmgr.exe /4\\\", High integrity, corp\\\\Administrator), inviting under-triage as routine Task Manager activity. But the process_access requests against lsass.exe (PID 856) escalate from 0x1400 (query rights, no VM_READ; EV-002) to 0x1410 (query rights plus VM_READ 0x0010; EV-003) and then 0x1fffff (PROCESS_ALL_ACCESS; A0, whose call_trace runs through dbgcore.DLL), and the same taskmgr process (PID 4400) then writes a file named 'lsass (2).DMP' to C:\\\\Users\\\\ADMINI~1\\\\AppData\\\\Local\\\\Temp\\\\2\\\\ (EV-004). A VM_READ-capable open of lsass followed by a lsass-named .DMP file is the signature of an LSASS memory dump. The model must not under-rate on the benign-looking signed tool; up-rank to the evidenced lsass memory dump.",
+  "rationale": "taskmgr.exe (PID 4400) opens lsass.exe (PID 856) with escalating access masks — 0x1400 (query rights, no VM_READ; EV-002), 0x1410 (adds VM_READ 0x0010; EV-003), and 0x1fffff (PROCESS_ALL_ACCESS; A0) — and the same process writes 'lsass (2).DMP' into the Temp\\\\2 directory (EV-004, event_code 11). The A0 call_trace passing through dbgcore.DLL is consistent with a MiniDumpWriteDump-style memory dump. The escalation to VM_READ-capable access plus a same-process file_create of a lsass-named .DMP together evidence a memory dump of lsass rather than ordinary Task Manager process listing. lsass memory is where credential material resides, so this dump is consistent with credential theft. Evidenced LSASS memory dump: malicious, high; up-rank despite the signed, High-integrity tool.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

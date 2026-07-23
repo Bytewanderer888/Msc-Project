@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.82,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "A batch script (C:\\Temp\\1.bat) executed via cmd.exe spawned reg.exe twice to write plaintext credentials \u2014 the Administrator username (A0, EV-001) and a password (EV-002, EV-003) \u2014 into the Winlogon AutoLogon registry keys (HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\DefaultUserName and DefaultPassword). Storing credentials in plaintext in Winlogon is a well-known credential-exposure technique (AutoLogon abuse) that enables persistent or lateral-movement access. The DefaultPassword value was subsequently deleted via regedit.exe (EV-004), which may indicate an attempt to cover tracks after the credentials were harvested or used, though the DefaultUserName value deletion is not evidenced. The activity originates from C:\\Temp\\ \u2014 an atypical working directory for legitimate administrative scripts \u2014 under a high-integrity Administrator session, and the batch file origin is unverified; no evidence of a legitimate administrative purpose is present.",
+  "recommended_action": "escalate"
+}

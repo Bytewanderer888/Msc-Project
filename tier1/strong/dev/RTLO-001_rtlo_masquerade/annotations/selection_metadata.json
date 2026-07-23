@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0",
+  "case_id": "RTLO-001",
+  "case_name": "RTLO-masqueraded screensaver initial access",
+  "security_proposition": "The document-looking screensaver execution belongs to an active malicious payload chain on the host.",
+  "case_directory": "RTLO-001_rtlo_masquerade",
+  "split": "dev",
+  "status": "audited_dev_2026-07-16",
+  "attack_category": {
+    "category": "Right-to-left override masquerading and execution",
+    "candidate_attack_mapping": "T1036.002",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = STRONG. The masqueraded screen-saver executable runs, opens an outbound connection, and spawns command shells. The benign-looking filename must not cause under-triage. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "OTRF Security-Datasets (mordor)",
+    "original_repository_path": "datasets/compound/apt29/day1/apt29_evals_day1_manual.zip",
+    "original_filename": "apt29_evals_day1_manual.zip",
+    "stored_filename": "",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "98a073140860560d70080ace9142961be4f64b4862bae892d62d0f254d0fdbe5",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "",
+    "related_events": "",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "build/case.json",
+    "related_events_query": "build/case.json",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "SCRANTON.dmevals.local",
+    "time_window_utc": {
+      "start": "2020-05-02T02:55:56.157Z",
+      "end": "2020-05-02T02:56:14.894Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "346422",
+    "process_guid": "{47ab858c-e13c-5eac-a903-000000000400}",
+    "query_file": "build/case.json"
+  },
+  "related_event_selection": {
+    "query_file": "build/case.json",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "346422",
+      "346533",
+      "346562",
+      "346599"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "346422",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: a right-to-left-override screen-saver executable runs from ProgramData"
+    },
+    "EV-001": {
+      "event_record_id": "346533",
+      "event_type": "network_connection",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the masqueraded process initiates an outbound TCP connection"
+    },
+    "EV-002": {
+      "event_record_id": "346562",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the masqueraded process spawns cmd.exe"
+    },
+    "EV-003": {
+      "event_record_id": "346599",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the masqueraded process also spawns PowerShell"
+    }
+  },
+  "curation_notes": [
+    "Subtle-strong (up-rank): surface looks like a user opening a document (explorer -> rcs.3aka3.doc), but the filename carries a U+202E RTLO override and is really cod.3aka3.scr, a screensaver executable launched with /S.",
+    "Confirming evidence (quiet, needs inspection): an internal C2 beacon to 192.168.0.5:1234 and a cmd->powershell payload chain. Correct verdict malicious/high despite the document-like surface. (The sdclt UAC-bypass from the same chain is carved into UAC-001.)"
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "subtle_strong_exemplar",
+      "cross_corpus_generalisation",
+      "severity_preservation_test"
+    ],
+    "eligible_for_final_heldout_metrics": false
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

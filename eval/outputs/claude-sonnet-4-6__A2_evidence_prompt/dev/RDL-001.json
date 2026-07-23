@@ -1,0 +1,11 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.62,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "Both A0 and EV-001 show rundll32.exe invoking davclnt.dll's DavSetCookie export to authenticate against a OneDrive/Live endpoint (d.docs.live.net), a known technique used to coerce WebDAV NTLM authentication and capture Net-NTLMv2 hashes (e.g., via tools like Responder or internal relay attacks). The parent process is the legitimate WebClient service (svchost -s WebClient), which is consistent with normal WebDAV activity but also with an attacker who has pre-enabled the WebClient service to facilitate credential coercion. Running at High integrity level for a standard user (corp\\user-01) is notable. However, no network connection events, NTLM authentication logs, or downstream lateral movement are present in this package, so a confirmed malicious outcome cannot be established \u2014 the trigger could also reflect a legitimate OneDrive sync or mapped drive operation. The identical command firing twice within 234 ms from the same parent PID warrants investigation.",
+  "recommended_action": "investigate"
+}

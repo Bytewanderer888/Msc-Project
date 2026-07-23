@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.82,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "All four events (A0, EV-001, EV-002, EV-003) confirm that client-01 is running Nmap Scripting Engine (NSE) against web-01.corp.local on port 80, evidenced by the explicit 'Nmap Scripting Engine' User-Agent string. The URL paths probed \u2014 '/nmaplowercheck1642418506' (a known Nmap http-methods/http-enum canary path) and '/HNAP1' (a router management endpoint probed by NSE scripts) \u2014 are characteristic of automated web service enumeration. All responses returned HTTP 404, confirming no successful exploitation or resource access occurred within this window. The activity is confirmed reconnaissance; whether it originates from an authorized internal security scan or a threat actor is not determinable from the evidence alone, warranting investigation to identify the owner of client-01 and whether scanning was authorized.",
+  "recommended_action": "investigate"
+}

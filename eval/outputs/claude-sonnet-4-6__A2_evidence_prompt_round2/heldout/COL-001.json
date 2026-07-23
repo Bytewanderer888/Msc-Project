@@ -1,0 +1,12 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.78,
+  "key_evidence": [
+    "A0",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "7z.exe placed in a user's Documents folder (not a standard install path) is spawned twice by rundll32.exe with no arguments (A0, EV-002), which is an atypical and suspicious parent-child relationship strongly associated with malware using rundll32 as a loader. The archiving commands use maximum compression (-mx9) with 500 MB volume splitting (-v500m) targeting files named 'file1.zip' and 'file2.txt', and EV-003 confirms a split archive (file2.txt.001) was actually written \u2014 a pattern consistent with data staging for exfiltration. The 7z.exe binary hashes are consistent across both invocations, but the non-standard location and rundll32 parentage without a DLL argument are strong red flags. No network connection or exfiltration event is evidenced in this package, capping confidence below critical, but the staging behavior warrants urgent investigation.",
+  "recommended_action": "investigate"
+}

@@ -1,0 +1,280 @@
+[
+  {
+    "archive_member": "harrison_wazuh.json",
+    "line_number": 570693,
+    "record_sha256": "718e6a87f521f21c8a95e8b78cb5808903e9e90abf79acdf3fcc093096240bb0",
+    "record": {
+      "predecoder": {
+        "hostname": "intranet-server",
+        "program_name": "sudo",
+        "timestamp": "Feb  8 08:36:57"
+      },
+      "agent": {
+        "ip": "192.168.131.215",
+        "name": "wazuh-client",
+        "id": "21"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "data": {
+        "srcuser": "jward",
+        "dstuser": "root",
+        "tty": "pts/0",
+        "pwd": "/var/www/intranet.mannsmith.harrison.com/wp-content/uploads/2022/02",
+        "command": "/bin/cat /etc/shadow"
+      },
+      "rule": {
+        "mail": false,
+        "level": 3,
+        "pci_dss": [
+          "10.2.5",
+          "10.2.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ],
+        "description": "Successful sudo to ROOT executed.",
+        "groups": [
+          "syslog",
+          "sudo"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7",
+          "AC.6"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "firedtimes": 1,
+        "mitre": {
+          "technique": [
+            "Sudo and Sudo Caching"
+          ],
+          "id": [
+            "T1548.003"
+          ],
+          "tactic": [
+            "Privilege Escalation",
+            "Defense Evasion"
+          ]
+        },
+        "id": "5402",
+        "gpg13": [
+          "7.6",
+          "7.8",
+          "7.13"
+        ]
+      },
+      "decoder": {
+        "parent": "sudo",
+        "name": "sudo",
+        "ftscomment": "First time user executed the sudo command"
+      },
+      "full_log": "Feb  8 08:36:57 intranet-server sudo:    jward : TTY=pts/0 ; PWD=/var/www/intranet.mannsmith.harrison.com/wp-content/uploads/2022/02 ; USER=root ; COMMAND=/bin/cat /etc/shadow",
+      "input": {
+        "type": "log"
+      },
+      "@timestamp": "2022-02-08T08:36:57.000000Z",
+      "location": "/var/log/auth.log",
+      "id": "1687029676.312101106"
+    },
+    "evidence_id": "A0"
+  },
+  {
+    "archive_member": "harrison_wazuh.json",
+    "line_number": 570673,
+    "record_sha256": "41995a5e1613b5060088aee9ebfa52a20c30a0ae2e4d2b81b1c721504add19b4",
+    "record": {
+      "predecoder": {
+        "hostname": "intranet-server",
+        "program_name": "su",
+        "timestamp": "Feb  8 08:36:38"
+      },
+      "agent": {
+        "ip": "192.168.131.215",
+        "name": "wazuh-client",
+        "id": "21"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "data": {
+        "uid": "33",
+        "dstuser": "jward"
+      },
+      "rule": {
+        "mail": false,
+        "level": 3,
+        "pci_dss": [
+          "10.2.5"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ],
+        "description": "PAM: Login session opened.",
+        "groups": [
+          "pam",
+          "syslog",
+          "authentication_success"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "firedtimes": 1,
+        "mitre": {
+          "technique": [
+            "Valid Accounts"
+          ],
+          "id": [
+            "T1078"
+          ],
+          "tactic": [
+            "Defense Evasion",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+          ]
+        },
+        "id": "5501",
+        "gpg13": [
+          "7.8",
+          "7.9"
+        ]
+      },
+      "decoder": {
+        "parent": "pam",
+        "name": "pam"
+      },
+      "full_log": "Feb  8 08:36:38 intranet-server su[28321]: pam_unix(su:session): session opened for user jward by (uid=33)",
+      "input": {
+        "type": "log"
+      },
+      "@timestamp": "2022-02-08T08:36:38.000000Z",
+      "location": "/var/log/auth.log",
+      "id": "1687029656.312088220"
+    },
+    "evidence_id": "EV-001"
+  },
+  {
+    "archive_member": "harrison_aminer.json",
+    "line_number": 10109,
+    "record_sha256": "4896e109620d79aa8e1ce67584cfb063937ae2f3305cbc24aa1147826939d499",
+    "record": {
+      "AnalysisComponent": {
+        "AnalysisComponentIdentifier": 3,
+        "AnalysisComponentType": "NewMatchPathDetector",
+        "AnalysisComponentName": "AMiner: New event type.",
+        "Message": "New path(es) detected",
+        "PersistenceFileName": "nmpd",
+        "TrainingMode": false,
+        "AffectedLogAtomPaths": [
+          "/model/type/user_cmd",
+          "/model/type/user_cmd/msg1_str",
+          "/model/type/user_cmd/audit_str",
+          "/model/type/user_cmd/time",
+          "/model/type/user_cmd/colon_str",
+          "/model/type/user_cmd/id",
+          "/model/type/user_cmd/pid_str",
+          "/model/type/user_cmd/pid",
+          "/model/type/user_cmd/uid_str",
+          "/model/type/user_cmd/uid",
+          "/model/type/user_cmd/auid_str",
+          "/model/type/user_cmd/auid",
+          "/model/type/user_cmd/ses_str",
+          "/model/type/user_cmd/ses",
+          "/model/type/user_cmd/msg2_str",
+          "/model/type/user_cmd/msg2",
+          "/model/type/user_cmd/fm/cmd",
+          "/model/type/user_cmd/opt",
+          "/model/type/user_cmd/terminal_str",
+          "/model/type/user_cmd/terminal",
+          "/model/type/user_cmd/res_str",
+          "/model/type/user_cmd/res",
+          "/model/type/user_cmd/fm/cmd/cmd_str",
+          "/model/type/user_cmd/fm/cmd/cmd"
+        ]
+      },
+      "LogData": {
+        "RawLogData": [
+          "type=USER_CMD msg=audit(1644309417.304:2919): pid=28346 uid=1001 auid=4294967295 ses=4294967295 msg='cwd=\"/var/www/intranet.mannsmith.harrison.com/wp-content/uploads/2022/02\" cmd=636174202F6574632F736861646F77 terminal=pts/0 res=success'"
+        ],
+        "Timestamps": [
+          1644309417.3
+        ],
+        "DetectionTimestamp": [
+          1644309417.3
+        ],
+        "LogLinesCount": 1,
+        "LogResources": [
+          "/var/log/audit/audit.log"
+        ]
+      },
+      "AMiner": {
+        "ID": "192.168.131.215"
+      }
+    },
+    "evidence_id": "EV-002"
+  },
+  {
+    "archive_member": "harrison_aminer.json",
+    "line_number": 10113,
+    "record_sha256": "6a535f6fdacf83512f9f7f5983c33ed5c832e29804ce80d65a5d8412a0dfd9ae",
+    "record": {
+      "AnalysisComponent": {
+        "AnalysisComponentIdentifier": 18,
+        "AnalysisComponentType": "NewMatchPathValueComboDetector",
+        "AnalysisComponentName": "AMiner: New user_start parameter combination in Audit logs.",
+        "Message": "New value combination(s) detected",
+        "PersistenceFileName": "nmpvcd_user_start",
+        "TrainingMode": false,
+        "AffectedLogAtomPaths": [
+          "/model/type/user_start/uid",
+          "/model/type/user_start/msg2",
+          "/model/type/user_start/fm/acct/acct",
+          "/model/type/user_start/opt/opt_seq/exe"
+        ],
+        "AffectedLogAtomValues": [
+          "0",
+          "'op=PAM:session_open",
+          "\"root\"",
+          "\"/usr/bin/sudo\""
+        ]
+      },
+      "LogData": {
+        "RawLogData": [
+          "type=USER_START msg=audit(1644309417.308:2921): pid=28346 uid=0 auid=4294967295 ses=4294967295 msg='op=PAM:session_open acct=\"root\" exe=\"/usr/bin/sudo\" hostname=? addr=? terminal=/dev/pts/0 res=success'"
+        ],
+        "Timestamps": [
+          1644309417.31
+        ],
+        "DetectionTimestamp": [
+          1644309417.31
+        ],
+        "LogLinesCount": 1,
+        "LogResources": [
+          "/var/log/audit/audit.log"
+        ]
+      },
+      "AMiner": {
+        "ID": "192.168.131.215"
+      }
+    },
+    "evidence_id": "EV-003"
+  }
+]

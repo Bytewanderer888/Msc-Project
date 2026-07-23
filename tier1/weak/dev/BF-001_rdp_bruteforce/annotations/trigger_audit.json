@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "BF-001",
+  "rule_id": "SAFESOC-TRG-BF-001",
+  "analytic_family_id": "AF-AUTH",
+  "analytic_pattern_id": "AUTH-01",
+  "source_description": "raw log (sysmon.log)",
+  "raw_source_event_count": 23,
+  "complete_scope_event_count": 23,
+  "predicate_match_count": 23,
+  "qualifying_group_count": 1,
+  "selection_strategy": "earliest_in_highest_count_group",
+  "selected_record_key": "4816",
+  "expected_record_key": "4816",
+  "selected_raw_sha256": "079ad69a8495c8d9d8773151f24ee8e4994d8454c1d5c962e26449f0db4bbefd",
+  "pass": true
+}

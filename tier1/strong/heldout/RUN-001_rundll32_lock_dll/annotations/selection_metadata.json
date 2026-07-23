@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "case_id": "RUN-001",
+  "case_name": "rundll32 loads a DLL masqueraded as a .lock file, beaconing to C2",
+  "security_proposition": "Rundll32 executed a masqueraded DLL-like object through a non-standard export and made an associated outbound connection.",
+  "case_directory": "RUN-001_rundll32_lock_dll",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "Rundll32 execution of a masqueraded DLL-like object",
+    "candidate_attack_mapping": "T1218.011",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = STRONG. Rundll32 loads a .lock-named object through a non-standard export and the same process makes an outbound connection. The file-create event does not prove a network download, and the connection alone is not labelled confirmed C2. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "OTRF Security-Datasets (mordor)",
+    "original_repository_path": "datasets/compound/apt29/day2/apt29_evals_day2_manual.zip",
+    "original_filename": "apt29_evals_day2_manual.zip",
+    "stored_filename": "",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "377f8cba5db95a453a3ee8bd19f493efafc23724541482a4da99da28ee4665f9",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "",
+    "related_events": "",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "build/case.json",
+    "related_events_query": "build/case.json",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "UTICA.dmevals.local",
+    "time_window_utc": {
+      "start": "2020-05-02T07:55:27.353Z",
+      "end": "2020-05-02T08:14:19.805Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "1000064",
+    "process_guid": "{8320f18b-2bcf-5ead-d200-000000000500}",
+    "query_file": "build/case.json"
+  },
+  "related_event_selection": {
+    "query_file": "build/case.json",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "1000064",
+      "773293",
+      "1001598"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "1000064",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: rundll32 loads a .lock-named object through the non-standard VoidFunc export"
+    },
+    "EV-001": {
+      "event_record_id": "773293",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "certutil creates the .lock-named object; this does not establish a network download"
+    },
+    "EV-002": {
+      "event_record_id": "1001598",
+      "event_type": "network_connection",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the same rundll32 process initiates an outbound connection consistent with a callback, not by itself proof of C2"
+    }
+  },
+  "curation_notes": [
+    "Subtle-strong (up-rank): signed rundll32 launched from explorer invites under-triage as routine system activity.",
+    "Rundll32 loads a .lock-named object through VoidFunc and the same process opens an outbound connection. The file-create event does not prove network download, and the connection is consistent with a callback rather than labelled confirmed C2."
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "subtle_strong_heldout",
+      "cross_corpus_generalisation",
+      "severity_preservation_test"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

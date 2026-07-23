@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-S02",
+  "case_name": "ait_sudo_privilege_escalation",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "A session originating from the web-service account successfully executed root commands through su and sudo.",
+  "attack_category": {
+    "category": "Abuse Elevation Control Mechanism: Sudo",
+    "candidate_attack_mapping": "T1548.003",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "AIT Alert Data Set",
+    "scenario": "harrison",
+    "capture_cluster": "ait-harrison",
+    "telemetry_depth": "multi_source",
+    "sensors": [
+      "Linux auth.log",
+      "Linux audit.log"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "AIT scenario and attack-phase labels",
+      "Wazuh and AMiner detector prose",
+      "unrelated mail and DNS alerts in the same phase window",
+      "condition, verdict, severity, action, ATT&CK mapping"
+    ],
+    "deterministic_derivations": [
+      "DER-001"
+    ]
+  },
+  "operational_response_family": "credential_control",
+  "nearest_frozen_case": null,
+  "differentiation": "No frozen case contains Linux su/sudo/audit evidence or a web-service-to-root chain."
+}

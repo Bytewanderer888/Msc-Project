@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "The 'reg.exe' utility was used to add 'C:\\Windows\\System32\\calc.exe' to the 'UserInitMprLogonScript' registry key (EV-001, A0). This establishes persistence for 'calc.exe' to execute upon user logon, which is a common technique for adversaries to maintain access. While 'calc.exe' itself is benign, its execution via this persistence mechanism is suspicious and indicative of malicious intent.",
+  "recommended_action": "escalate"
+}

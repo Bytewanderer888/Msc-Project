@@ -1,0 +1,546 @@
+{
+  "schema_version": "1.0",
+  "case_id": "BF-002",
+  "case_name": "ntlm_spray_invalid_users",
+  "security_proposition": "The rapid multi-username NTLM failure burst is adversary-driven credential spraying.",
+  "case_directory": "BF-002_ntlm_spray_invalid_users",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "Brute Force (password spray / username enumeration — failed, no compromise)",
+    "candidate_attack_mapping": "T1110.003",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = WEAK. A burst of 50 failed NTLM logons (EventID 4625) in ~1 second, across 50 DISTINCT non-existent usernames, every one returning SubStatus 0xc0000064 (user does not exist), on win-host-447. This is a genuine automated brute-force / spray INDICATOR — but the evidence is INSUFFICIENT to confirm any compromise or impact: there is NO 4624 success anywhere, and not one valid account was even found (all attempts hit non-existent users). Calibration role = over-triage-prone (down-rank): a model must NOT escalate to 'confirmed credential-access breach / High' on the raw failure count; the correct read is a low-impact failed spray attempt. NOTE: PurpleSharp-simulated (hence LogonType 2 / local source) — the evidence PATTERN (failed auth burst, no success) is what the case tests, not the simulation artifacts. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1110.003/purplesharp_invalid_users_ntlm_xml/windows-security.log",
+    "original_filename": "windows-security.log",
+    "stored_filename": "bf002_ntlm_spray_security.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "5c7354784cef32c1ffcd6f5a56919741e35f03d361404ea275ab79b2db5576d1",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Security (Microsoft-Windows-Security-Auditing 4625)"
+      ],
+      "why_single_source": "All 50 failed-logon (4625) records are on the single host win-host-447; single sensor (Security auth). The case is scoped to that host's 4625 records; any other host/event in the file is excluded."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "bf002_ntlm_spray_security",
+      "sourcetype": "XmlWinEventLog"
+    }
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/bf002_events.json",
+    "related_events": "extracted/bf002_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "scope_type": "failed_password_spray_no_compromise",
+    "primary_host": "win-host-mvelazco-02713-447.attackrange.local",
+    "primary_user": "50 distinct non-existent target accounts (SubStatus 0xc0000064)",
+    "boundary_definition": [
+      "A0 = the first failed NTLM logon (4625) of the burst (335396, 19:03:49).",
+      "EV = the remaining 49 failed NTLM logons (each a different non-existent username), 335397-335445, all within ~1 second.",
+      "Scoped to win-host-447's 4625 records (all 50). The paired 4776 (NTLM credential-validation) records and any other-host events are excluded to keep the case to the failed-logon evidence.",
+      "ABSENT by design: any 4624 success (checked, none) — the outcome that would confirm compromise is not present; and no valid account was hit (all 0xc0000064)."
+    ],
+    "time_window_utc": {
+      "start": "2022-09-08T19:03:49.876638000Z",
+      "end": "2022-09-08T19:03:50.057872900Z"
+    }
+  },
+  "main_alert_selection": {
+    "selection_method": "A burst of failed logons (EventID 4625) is the canonical brute-force / password-spray detection trigger.",
+    "selection_reason": "A0 is the first failed NTLM logon; the following 49 (distinct non-existent users, ~1 second) establish the automated-spray pattern.",
+    "event_record_id": "335396",
+    "process_guid": "",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "host",
+      "EventID==4625",
+      "SubStatus==0xc0000064",
+      "time_window",
+      "AuthenticationPackageName==NTLM"
+    ],
+    "included_event_record_ids": [
+      "335396",
+      "335397",
+      "335398",
+      "335399",
+      "335400",
+      "335401",
+      "335402",
+      "335403",
+      "335404",
+      "335405",
+      "335406",
+      "335407",
+      "335408",
+      "335409",
+      "335410",
+      "335411",
+      "335412",
+      "335413",
+      "335414",
+      "335415",
+      "335416",
+      "335417",
+      "335418",
+      "335419",
+      "335420",
+      "335421",
+      "335422",
+      "335423",
+      "335424",
+      "335425",
+      "335426",
+      "335427",
+      "335428",
+      "335429",
+      "335430",
+      "335431",
+      "335432",
+      "335433",
+      "335434",
+      "335435",
+      "335436",
+      "335437",
+      "335438",
+      "335439",
+      "335440",
+      "335441",
+      "335442",
+      "335443",
+      "335444",
+      "335445"
+    ],
+    "event_groups": [
+      {
+        "group": "failed_spray_burst",
+        "event_record_ids": [
+          "335396",
+          "335397",
+          "335398",
+          "335399",
+          "335400",
+          "335401",
+          "335402",
+          "335403",
+          "335404",
+          "335405",
+          "335406",
+          "335407",
+          "335408",
+          "335409",
+          "335410",
+          "335411",
+          "335412",
+          "335413",
+          "335414",
+          "335415",
+          "335416",
+          "335417",
+          "335418",
+          "335419",
+          "335420",
+          "335421",
+          "335422",
+          "335423",
+          "335424",
+          "335425",
+          "335426",
+          "335427",
+          "335428",
+          "335429",
+          "335430",
+          "335431",
+          "335432",
+          "335433",
+          "335434",
+          "335435",
+          "335436",
+          "335437",
+          "335438",
+          "335439",
+          "335440",
+          "335441",
+          "335442",
+          "335443",
+          "335444",
+          "335445"
+        ],
+        "description": "50 failed NTLM logons in ~1 second, 50 distinct non-existent usernames, all SubStatus 0xc0000064, no success."
+      }
+    ]
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "335396",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "triggering alert: a failed NTLM logon (EventID 4625) for a non-existent user (SubStatus 0xc0000064 = user does not exist), LogonType 2, AuthenticationPackage NTLM, on win-host-447 — the first of a ~1-second burst of 50"
+    },
+    "EV-001": {
+      "event_record_id": "335397",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "second failed NTLM logon of the burst — a different non-existent username (0xc0000064)"
+    },
+    "EV-002": {
+      "event_record_id": "335398",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-003": {
+      "event_record_id": "335399",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-004": {
+      "event_record_id": "335400",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-005": {
+      "event_record_id": "335401",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-006": {
+      "event_record_id": "335402",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-007": {
+      "event_record_id": "335403",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-008": {
+      "event_record_id": "335404",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-009": {
+      "event_record_id": "335405",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-010": {
+      "event_record_id": "335406",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-011": {
+      "event_record_id": "335407",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-012": {
+      "event_record_id": "335408",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-013": {
+      "event_record_id": "335409",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-014": {
+      "event_record_id": "335410",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-015": {
+      "event_record_id": "335411",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-016": {
+      "event_record_id": "335412",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-017": {
+      "event_record_id": "335413",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-018": {
+      "event_record_id": "335414",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-019": {
+      "event_record_id": "335415",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-020": {
+      "event_record_id": "335416",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-021": {
+      "event_record_id": "335417",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-022": {
+      "event_record_id": "335418",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-023": {
+      "event_record_id": "335419",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-024": {
+      "event_record_id": "335420",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-025": {
+      "event_record_id": "335421",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-026": {
+      "event_record_id": "335422",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-027": {
+      "event_record_id": "335423",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-028": {
+      "event_record_id": "335424",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-029": {
+      "event_record_id": "335425",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-030": {
+      "event_record_id": "335426",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-031": {
+      "event_record_id": "335427",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-032": {
+      "event_record_id": "335428",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-033": {
+      "event_record_id": "335429",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-034": {
+      "event_record_id": "335430",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-035": {
+      "event_record_id": "335431",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-036": {
+      "event_record_id": "335432",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-037": {
+      "event_record_id": "335433",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-038": {
+      "event_record_id": "335434",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-039": {
+      "event_record_id": "335435",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-040": {
+      "event_record_id": "335436",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-041": {
+      "event_record_id": "335437",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-042": {
+      "event_record_id": "335438",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-043": {
+      "event_record_id": "335439",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-044": {
+      "event_record_id": "335440",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-045": {
+      "event_record_id": "335441",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-046": {
+      "event_record_id": "335442",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-047": {
+      "event_record_id": "335443",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-048": {
+      "event_record_id": "335444",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "additional correlated event retained by the fixed selection"
+    },
+    "EV-049": {
+      "event_record_id": "335445",
+      "event_type": "failed_logon",
+      "source": "Security",
+      "role_note": "final failed NTLM logon of the burst (19:03:50) — 50 total in ~1 second, 50 distinct non-existent usernames, zero successes"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "weak_intent",
+      "event_record_id": "",
+      "note": "RESEARCHER-PRIVATE: WEAK / over-triage-prone. A failed-logon burst is a real spray indicator, but with no success and no valid account hit, the evidence cannot confirm compromise or meaningful impact. The model must not over-escalate."
+    },
+    {
+      "topic": "no_success_all_invalid",
+      "event_record_id": "",
+      "note": "The decisive facts: (1) zero 4624 successes; (2) all 50 attempts return 0xc0000064 (user does not exist) — the attacker's userlist was entirely wrong. Low impact; insufficient to confirm compromise."
+    },
+    {
+      "topic": "simulation_caveat",
+      "event_record_id": "335396",
+      "note": "PurpleSharp-simulated, so LogonType=2 and a local/self source (IpAddress='-') rather than a remote type-3 spray. This is a data-provenance caveat; the evidence-sufficiency judgment (failed burst, no compromise) is unaffected."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "bruteforce_weak_exemplar",
+      "over_triage_down_rank_test",
+      "failed_spray_no_compromise_rule_heldout"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-05",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

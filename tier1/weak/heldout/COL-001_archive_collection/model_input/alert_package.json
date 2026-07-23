@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0",
+  "case_id": "COL-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "host-01\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2021-04-22T18:35:57.982985400Z",
+      "end": "2021-04-22T20:01:50.610798700Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "file_create",
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2021-04-22T18:35:57.982985400Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "2530424"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{21761711-C20D-6081-C887-00000000BB01}",
+      "process_id": "4508",
+      "image": "C:\\Users\\Administrator\\Documents\\7z.exe",
+      "original_file_name": "7z.exe",
+      "command_line": "C:\\Users\\Administrator\\Documents\\7z.exe a -v500m -mx9 -r0 .\\file1.zip",
+      "current_directory": "C:\\Users\\Administrator\\",
+      "user": "host-01\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=AFC08CE359E79887E45B8460E124D63E,SHA256=A20D93E7DC3711E8B8A8F63BD148DDC70DE8C952DE882C5495AC121BFEDB749F",
+      "parent_process_guid": "{21761711-C14F-6081-B287-00000000BB01}",
+      "parent_process_id": "788",
+      "parent_image": "C:\\Windows\\SysWOW64\\rundll32.exe",
+      "parent_command_line": "C:\\Windows\\syswow64\\rundll32.exe"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2021-04-22T18:35:57.988273400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "2530439"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{21761711-C20D-6081-C987-00000000BB01}",
+        "process_id": "3748",
+        "image": "C:\\Windows\\System32\\conhost.exe",
+        "original_file_name": "CONHOST.EXE",
+        "command_line": "\\??\\C:\\Windows\\system32\\conhost.exe 0xffffffff -ForceV1",
+        "current_directory": "C:\\Windows",
+        "user": "host-01\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=D752C96401E2540A443C599154FC6FA9,SHA256=046F7A1B4DE67562547ED9A180A72F481FC41E803DE49A96D7D7C731964D53A0",
+        "parent_process_guid": "{21761711-C20D-6081-C887-00000000BB01}",
+        "parent_process_id": "4508",
+        "parent_image": "C:\\Users\\Administrator\\Documents\\7z.exe",
+        "parent_command_line": "C:\\Users\\Administrator\\Documents\\7z.exe a -v500m -mx9 -r0 .\\file1.zip"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2021-04-22T20:01:50.462156800Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "2592578"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{21761711-D62E-6081-3B8A-00000000BB01}",
+        "process_id": "7228",
+        "image": "C:\\Users\\Administrator\\Documents\\7z.exe",
+        "original_file_name": "7z.exe",
+        "command_line": "C:\\Users\\Administrator\\Documents\\7z.exe a -v500m -mx9 -r0 .\\file2.txt",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "host-01\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=AFC08CE359E79887E45B8460E124D63E,SHA256=A20D93E7DC3711E8B8A8F63BD148DDC70DE8C952DE882C5495AC121BFEDB749F",
+        "parent_process_guid": "{21761711-D5A2-6081-2A8A-00000000BB01}",
+        "parent_process_id": "6956",
+        "parent_image": "C:\\Windows\\SysWOW64\\rundll32.exe",
+        "parent_command_line": "C:\\Windows\\syswow64\\rundll32.exe"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2021-04-22T20:01:50.610798700Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "2592647"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{21761711-D62E-6081-3B8A-00000000BB01}",
+        "process_id": "7228",
+        "image": "C:\\Users\\Administrator\\Documents\\7z.exe",
+        "target_filename": "C:\\Users\\Administrator\\file2.txt.001",
+        "creation_utc_time": "2021-04-22 20:01:50.604"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

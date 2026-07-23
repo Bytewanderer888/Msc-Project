@@ -1,0 +1,71 @@
+{
+  "case_id": "COL-001",
+  "split": "heldout",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1560.001/archive_utility/windows-sysmon.log",
+  "computer": "win-host-5.attackrange.local",
+  "staged_export": "extracted/col001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "2530424",
+    "EV": [
+      "2530439",
+      "2592578",
+      "2592647"
+    ]
+  },
+  "roles": {
+    "2530424": "triggering alert: 7z.exe a -v500m -mx9 -r0 file1.zip — split, max-compression archive creation (T1560.001 collection staging)",
+    "2530439": "conhost spawned by 7z.exe",
+    "2592578": "repeat: 7z.exe a ... file2.txt — a second archive operation",
+    "2592647": "EID11: the split archive segment file2.txt.001 written to disk"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "archive_staging_no_exfil",
+    "security_proposition": "The observed archive creation is adversary-driven collection activity.",
+    "case_directory": "COL-001_archive_collection",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "col001_archive_sysmon.log",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Archive collected data (no exfil)",
+      "candidate_attack_mapping": "T1560.001",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = WEAK. 7z.exe stages data into split, max-compression multi-volume archives (-v500m -mx9) in the Administrator profile — an alarming collection/staging indicator. BUT there is NO exfiltration: no network egress of the archive (only internal telemetry), no upload. Intent ambiguous (backup vs theft staging). Role = over-triage-prone (down-rank): the model must not conclude 'data exfiltrated / breach'. Do not leak."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "host filter = win-host-5 (multi-host log; this host's 7z activity)."
+    },
+    "case_scope": {
+      "primary_host": "win-host-5.attackrange.local",
+      "boundary_definition": [
+        "A0 = the 7z split-archive creation; EV = a repeat archive op + the split segment file.",
+        "No network egress of the archive — the exfil outcome is absent."
+      ]
+    },
+    "curation_notes": [
+      {
+        "topic": "weak_collection",
+        "note": "WEAK / over-triage-prone: archive staging present, exfil absent. The model must not conclude 'data exfiltrated -> High'."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "weak_collection_exemplar",
+        "over_triage_down_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

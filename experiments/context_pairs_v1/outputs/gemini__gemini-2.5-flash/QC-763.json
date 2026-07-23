@@ -1,0 +1,13 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "Multiple WMIC commands are executed by 'ssm-agent-worker.exe' (Amazon SSM Agent) to gather system information (DNSHostName, Domain, OS Caption, OS Version). This is a common and expected behavior for a legitimate system management agent, indicating routine inventory or health checks. All processes are signed and originate from expected system paths.",
+  "recommended_action": "close_benign"
+}

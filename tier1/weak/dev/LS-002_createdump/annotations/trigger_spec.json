@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LS-002",
+  "rule_id": "SAFESOC-TRG-LS-002",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "title": "Process dump utility invoked with an LSASS-suggesting target",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "full_source",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source; no event-level answer selector is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 1
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\createdump.exe"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\.dmp\\b"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "icontains",
+        "value": "lsass"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "65364864"
+  },
+  "rationale": "A dump utility invoked with an LSASS-named output is a stable credential-access alert surface without asserting dump success."
+}

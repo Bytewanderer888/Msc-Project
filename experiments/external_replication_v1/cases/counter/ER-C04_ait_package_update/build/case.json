@@ -1,0 +1,29 @@
+{
+  "case_id": "ER-C04",
+  "builder": "experiments/external_replication_v1/build_ait_cases.py",
+  "source_archive": "data_sources/ait_ads/ait_ads.zip",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "member": "russellmitchell_wazuh.json",
+      "line_number": 16,
+      "record_sha256": "fe8e59b3655d55812998dd9d371b85bb6f569e32415b1d74896ba56f8d10bea5"
+    },
+    {
+      "evidence_id": "EV-001",
+      "member": "russellmitchell_wazuh.json",
+      "line_number": 15,
+      "record_sha256": "e8e7d28c8f41e6de84805c6c0b56d8acbad02406411ea7032cacf7bcf760a2de"
+    },
+    {
+      "evidence_id": "EV-002",
+      "member": "russellmitchell_wazuh.json",
+      "line_number": 20,
+      "record_sha256": "2466b2b91c6ed72da6942636cf392c555d549f37d2f2f8056d486888cf0a8b42"
+    }
+  ],
+  "literal_redactions": [
+    "source address -> internal-01",
+    "source host -> linux-01.corp.local"
+  ]
+}

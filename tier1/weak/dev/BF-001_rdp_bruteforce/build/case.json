@@ -1,0 +1,170 @@
+{
+  "case_id": "BF-001",
+  "split": "dev",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1110.001/rdp_brute_sysmon/sysmon.log",
+  "staged_export": "extracted/bf001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "4816",
+    "EV": [
+      "4827",
+      "4828",
+      "4829",
+      "4830",
+      "4831",
+      "4840",
+      "4851",
+      "4853",
+      "4858",
+      "4859",
+      "4860",
+      "4861",
+      "4862",
+      "4863",
+      "4864",
+      "4865",
+      "4866",
+      "4867",
+      "4868",
+      "4869",
+      "4871",
+      "4885"
+    ]
+  },
+  "roles": {
+    "4816": "triggering alert: an inbound (Initiated=false) RDP/TCP-3389 connection to ar-win-dc (10.0.1.14) from external IP 23.93.242.200, accepted by svchost.exe (TermService) at 19:33:06",
+    "4827": "second inbound RDP connection from 23.93.242.200 (new source port) — the pattern begins",
+    "4885": "final inbound RDP connection of the burst (19:38:40) — 23 total from the one IP over ~5.5 min, each on a new source port",
+    "4828": "additional correlated event retained by the fixed selection",
+    "4829": "additional correlated event retained by the fixed selection",
+    "4830": "additional correlated event retained by the fixed selection",
+    "4831": "additional correlated event retained by the fixed selection",
+    "4840": "additional correlated event retained by the fixed selection",
+    "4851": "additional correlated event retained by the fixed selection",
+    "4853": "additional correlated event retained by the fixed selection",
+    "4858": "additional correlated event retained by the fixed selection",
+    "4859": "additional correlated event retained by the fixed selection",
+    "4860": "additional correlated event retained by the fixed selection",
+    "4861": "additional correlated event retained by the fixed selection",
+    "4862": "additional correlated event retained by the fixed selection",
+    "4863": "additional correlated event retained by the fixed selection",
+    "4864": "additional correlated event retained by the fixed selection",
+    "4865": "additional correlated event retained by the fixed selection",
+    "4866": "additional correlated event retained by the fixed selection",
+    "4867": "additional correlated event retained by the fixed selection",
+    "4868": "additional correlated event retained by the fixed selection",
+    "4869": "additional correlated event retained by the fixed selection",
+    "4871": "additional correlated event retained by the fixed selection"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "rdp_bruteforce",
+    "security_proposition": "The inbound RDP burst is malicious brute-force activity rather than an ambiguous connection pattern.",
+    "case_directory": "BF-001_rdp_bruteforce",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "bf001_rdp_bruteforce_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "Brute Force (RDP connection brute — network only)",
+      "candidate_attack_mapping": "T1110.001",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = WEAK. A single external IP (23.93.242.200) makes 23 inbound RDP (TCP 3389) connections to the DC over ~5.5 minutes, each on a new source port — a network-level brute-force / connection-flood INDICATOR. But this is Sysmon NETWORK telemetry only: there is NO authentication outcome in view (no 4625 failures, no 4624 success) and no follow-on process/file activity. Whether any logon was even attempted at the auth layer, let alone succeeded, is UNKNOWN. The evidence supports 'suspicious repeated RDP connections, investigate' but is INSUFFICIENT to confirm a brute-force compromise. Calibration role = over-triage-prone (down-rank): a model must NOT escalate this to 'confirmed RDP brute-force breach / High' on connection metadata alone. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "rdp_brute_sysmon/sysmon.log is host ar-win-dc, Sysmon only (all 23 events are EID 3 network connections). Single host, single sensor, verified."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "bf001_rdp_bruteforce_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "rdp_connection_bruteforce_network_only",
+      "primary_host": "ar-win-dc.attackrange.local",
+      "primary_user": "NT AUTHORITY\\NETWORK SERVICE (svchost / TermService, inbound)",
+      "boundary_definition": [
+        "A0 = the first inbound RDP/3389 connection from external IP 23.93.242.200 (19:33:06).",
+        "EV = the remaining 22 inbound RDP connections from the same IP (each a new source port) that establish the 23-connection burst over ~5.5 min.",
+        "The whole capture is Sysmon network (EID 3) only — 23 events, one host.",
+        "ABSENT by nature of the source: any 4624/4625 auth event and any process/file activity — so the auth OUTCOME (success/failure) and any foothold are not observable."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "An inbound RDP connection from an external IP is a common detection trigger; the burst of 23 from one source IP is the brute-force indicator.",
+      "selection_reason": "A0 is the first inbound RDP connection from 23.93.242.200; the following 22 (new source ports) establish the sustained brute pattern."
+    },
+    "correlation_keys": [
+      "host",
+      "SourceIp==23.93.242.200",
+      "DestinationPort==3389",
+      "time_window"
+    ],
+    "event_groups": [
+      {
+        "group": "rdp_connection_burst",
+        "event_record_ids": [
+          "4816",
+          "4827",
+          "4828",
+          "4829",
+          "4830",
+          "4831",
+          "4840",
+          "4851",
+          "4853",
+          "4858",
+          "4859",
+          "4860",
+          "4861",
+          "4862",
+          "4863",
+          "4864",
+          "4865",
+          "4866",
+          "4867",
+          "4868",
+          "4869",
+          "4871",
+          "4885"
+        ],
+        "description": "23 inbound RDP/3389 connections from the single external IP 23.93.242.200 over ~5.5 min."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "weak_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: WEAK / over-triage-prone. Repeated inbound RDP connections from one external IP are a genuine brute-force indicator, but network-connection metadata alone cannot confirm a compromise. The model must not over-escalate."
+      },
+      {
+        "topic": "no_auth_outcome",
+        "event_record_id": "",
+        "note": "The decisive gap: the source is Sysmon network telemetry only. No 4625 (failed logon) and no 4624 (successful logon) are present, so the authentication outcome is unobservable — the evidence needed to confirm or refute compromise is missing from this single source."
+      },
+      {
+        "topic": "volume_is_the_signal",
+        "event_record_id": "4816",
+        "note": "The evidence is the REPETITION: 23 connections, one external IP, 23 distinct source ports, ~5.5 min. All 23 are included in the package so the volume is represented faithfully rather than curated down."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "bruteforce_weak_exemplar",
+        "over_triage_down_rank_test",
+        "network_only_insufficiency_rule_dev"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

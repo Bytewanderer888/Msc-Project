@@ -1,0 +1,10 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "The alert (A0) shows 'reg.exe' being executed to query a legitimate registry key related to Internet Explorer. This is a common system utility and the command line itself does not indicate malicious intent. The parent process is 'cmd.exe', which is also a standard system component.",
+  "recommended_action": "close_benign"
+}

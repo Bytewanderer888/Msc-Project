@@ -1,0 +1,32 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.82,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006",
+    "EV-007",
+    "EV-008",
+    "EV-009",
+    "EV-010",
+    "EV-011",
+    "EV-012",
+    "EV-013",
+    "EV-014",
+    "EV-015",
+    "EV-016",
+    "EV-017",
+    "EV-018",
+    "EV-019",
+    "EV-020",
+    "EV-021",
+    "EV-022"
+  ],
+  "rationale": "A single external IP (23.93.242.200, not a known corporate range) initiated 23 inbound TCP connections to host-01.corp.local on RDP port 3389 over approximately 5.5 minutes (A0 through EV-022), each from a sequentially incrementing ephemeral source port \u2014 a pattern strongly consistent with an RDP brute-force or credential-stuffing attack. All connections are inbound (initiated=false), meaning the external host is the aggressor. The volume, rapid cadence (multiple connections within seconds in later bursts), and sequential port increments are not consistent with legitimate RDP usage. No authentication success events, process creation, or lateral movement artifacts are present in this package, so a confirmed breach cannot be stated, but the attack activity itself is confirmed. The absence of any successful logon evidence caps confidence below certainty but does not diminish the malicious nature of the inbound scanning/brute-force activity.",
+  "recommended_action": "investigate"
+}

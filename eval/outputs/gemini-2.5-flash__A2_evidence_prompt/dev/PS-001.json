@@ -1,0 +1,19 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-006",
+    "EV-010",
+    "EV-011",
+    "EV-012",
+    "EV-013",
+    "DER-001"
+  ],
+  "rationale": "The execution chain starts with winrshost.exe, leading to cmd.exe, then two layers of PowerShell with encoded commands (A0, EV-001, EV-002). The decoded command (DER-001) shows an attempt to execute a script block and set a variable 'json_raw' from input, which is suspicious. Furthermore, the PowerShell process creates temporary .ps1, .dll, and .cmdline files (EV-003, EV-006, EV-010, EV-011, EV-013) and then executes csc.exe to compile a .NET assembly (EV-012), indicating dynamic code compilation and execution, a common technique for malware.",
+  "recommended_action": "isolate"
+}

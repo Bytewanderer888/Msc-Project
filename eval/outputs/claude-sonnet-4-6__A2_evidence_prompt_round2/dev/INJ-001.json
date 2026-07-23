@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.93,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "A highly suspicious executable named 'ILL_UNBLINKING.exe' residing in the Downloads folder (A0, EV-001) repeatedly spawns notepad.exe instances and immediately injects remote threads into each one (A0/EV-001, EV-002/EV-003, EV-004/EV-005), a classic process-injection pattern used to execute shellcode inside a trusted host process. The injected thread start addresses resolve to no known module ('-'), indicating shellcode mapped directly into the target process's memory rather than a legitimate DLL, which rules out benign inter-process communication. The pattern repeats three times within ~3 minutes, suggesting a retry or multi-stage injection loop. No benign explanation exists for an unsigned, oddly-named binary from Downloads performing CreateRemoteThread into freshly-spawned notepad instances with unresolved start modules.",
+  "recommended_action": "isolate"
+}

@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.99,
+  "key_evidence": [
+    "A0",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "A0 confirms mimikatz.exe (from Administrator's Downloads folder) directly accessed lsass.exe (PID 636) with access rights 0x1010 (PROCESS_QUERY_LIMITED_INFORMATION | PROCESS_VM_READ), the canonical credential-dumping access mask, with a call trace originating entirely within mimikatz.exe modules. EV-002 shows rundll32.exe accessing lsass.exe via comsvcs.dll (access 0x1410), the well-known 'MiniDump' living-off-the-land technique. EV-003 shows xordump.exe from C:\\Windows\\Temp accessing lsass.exe with 0x1fffff (PROCESS_ALL_ACCESS) via dbgcore.dll, consistent with a memory-dumping utility. Three distinct credential-dumping tools targeting the same lsass process within a four-minute window on the same host constitutes confirmed, active credential harvesting; EV-001 (svchost/lsm.dll accessing lsass) is a benign baseline access and does not alter the verdict.",
+  "recommended_action": "isolate"
+}

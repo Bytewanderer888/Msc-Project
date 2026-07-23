@@ -1,0 +1,192 @@
+{
+  "record_schema": "safesoc.split_ground_truth_audit.v1",
+  "generated_utc": "2026-07-21T12:11:10Z",
+  "split": "heldout",
+  "summary": {
+    "cases": 20,
+    "passed": 20,
+    "failed": 0
+  },
+  "cases": [
+    {
+      "case_id": "GPO-001",
+      "condition": "counter",
+      "case_directory": "tier1/counter/heldout/GPO-001_sysvol_gpo_processing",
+      "package_sha256": "3a11d652ab7d011c22228aa2cf84c4714d084c8fee9ae888d9ed786599ef9366",
+      "event_count": 4,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "PS-003",
+      "condition": "counter",
+      "case_directory": "tier1/counter/heldout/PS-003_obfuscated_powershell",
+      "package_sha256": "e0c0882ab944a90c3ede31aaa3b3c289e33c0f6e8e80e584090bc0551dc9d035",
+      "event_count": 5,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "EVL-001",
+      "condition": "missing",
+      "case_directory": "tier1/missing/heldout/EVL-001_disable_eventlog",
+      "package_sha256": "4cd884f501bc8a1f4248237b4adf6c436d998aa7f694f6389ce881eda30d6f03",
+      "event_count": 2,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "ING-002",
+      "condition": "missing",
+      "case_directory": "tier1/missing/heldout/ING-002_bitsadmin_download",
+      "package_sha256": "9e9d98ec2a4d5a8097ae1758dd60c1d9c2a063f16eb569889ee9f559a765df8a",
+      "event_count": 4,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "LOGON-001",
+      "condition": "missing",
+      "case_directory": "tier1/missing/heldout/LOGON-001_logon_script",
+      "package_sha256": "dbaa913305319a35358f0aa18b395b4ebfd24feb62ffc5048a31863e8a48fd09",
+      "event_count": 2,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "ST-001",
+      "condition": "missing",
+      "case_directory": "tier1/missing/heldout/ST-001_atomic_schtasks_persistence",
+      "package_sha256": "1b5bae0f2a393f1c21c1545af5eeeb46a09c4b85c99b695fc897cf6461ee89b7",
+      "event_count": 10,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "LS-003",
+      "condition": "strong",
+      "case_directory": "tier1/strong/heldout/LS-003_taskmgr_lsass_dump",
+      "package_sha256": "a768ff8049d379f293bd0309a397d80295ecb46450ef5cf7916db922a9ceac74",
+      "event_count": 5,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "PS-004",
+      "condition": "strong",
+      "case_directory": "tier1/strong/heldout/PS-004_sharphound_ad_recon",
+      "package_sha256": "75de02d5a0b87c6f1dc99560f1f205ff2ad6b4dab5ae6b4b70c8e4384e3b63b6",
+      "event_count": 9,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "RUN-001",
+      "condition": "strong",
+      "case_directory": "tier1/strong/heldout/RUN-001_rundll32_lock_dll",
+      "package_sha256": "8048699e77984c3b343ca9312f5fd2360839fcebdb401c0399d1f3e6f3cfd0de",
+      "event_count": 3,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "SMB-001",
+      "condition": "strong",
+      "case_directory": "tier1/strong/heldout/SMB-001_impacket_lateral_exec",
+      "package_sha256": "2d20e5f3b22a0869756e6991d8e0183832815865006f80040d0ca07fa16ccc18",
+      "event_count": 7,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "SVC-001",
+      "condition": "strong",
+      "case_directory": "tier1/strong/heldout/SVC-001_service_persistence",
+      "package_sha256": "3bf1596b92428b1bcdcf94312bdbf84522187e4dceea1f5be4b262358106eaf4",
+      "event_count": 6,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "UQP-001",
+      "condition": "strong",
+      "case_directory": "tier1/strong/heldout/UQP-001_unquoted_path_service",
+      "package_sha256": "cfb3646bf66436b1a9e1ae227c67f0974380f4633334d10dad9c1dc1c389b2bc",
+      "event_count": 5,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "WMI-001",
+      "condition": "strong",
+      "case_directory": "tier1/strong/heldout/WMI-001_wmi_persistence",
+      "package_sha256": "5de49f1e6f10772cdc55f0757061929df7ba32695ef1071ce553b3bba5225263",
+      "event_count": 3,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "BF-002",
+      "condition": "weak",
+      "case_directory": "tier1/weak/heldout/BF-002_ntlm_spray_invalid_users",
+      "package_sha256": "777b0ee6bacf08296a0fb276e18817d0f8a0d52b93246fb0a964243b8107c0ef",
+      "event_count": 50,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "COL-001",
+      "condition": "weak",
+      "case_directory": "tier1/weak/heldout/COL-001_archive_collection",
+      "package_sha256": "bddf22b129bbe195851c52e5461d3bbbb48cd9c7d3e34042228bd16362a7e497",
+      "event_count": 4,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "CRED-001",
+      "condition": "weak",
+      "case_directory": "tier1/weak/heldout/CRED-001_autologon_registry",
+      "package_sha256": "c1e9479110c8dfb063bd96c7d1324a7a2782c5581845018e46961ddab7cf4b58",
+      "event_count": 5,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "DISC-001",
+      "condition": "weak",
+      "case_directory": "tier1/weak/heldout/DISC-001_ad_account_discovery",
+      "package_sha256": "50160244955140a5b2927d23421933de725de165f8a5402e57f3e430adfbb649",
+      "event_count": 6,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "DISC-003",
+      "condition": "weak",
+      "case_directory": "tier1/weak/heldout/DISC-003_local_account_discovery",
+      "package_sha256": "45c0bd911c8429946cd7ac1df6a5d081043a60fc14a87773b6990924633b9b62",
+      "event_count": 4,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "DISC-004",
+      "condition": "weak",
+      "case_directory": "tier1/weak/heldout/DISC-004_ie_version_discovery",
+      "package_sha256": "0502b3770d842e6be66bed07228efb887065abdee187a8a43c001cbc1249064e",
+      "event_count": 1,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "case_id": "OD-001",
+      "condition": "strong",
+      "case_directory": "tier2/strong/heldout/OD-001_destruction_antiforensics",
+      "package_sha256": "47cc462f1d763ebf53e154d20a758bf071a975d483a0b2f4382082879bf0a428",
+      "event_count": 6,
+      "passed": true,
+      "errors": []
+    }
+  ]
+}

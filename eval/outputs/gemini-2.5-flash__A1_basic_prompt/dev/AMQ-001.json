@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-003",
+    "EV-006",
+    "EV-007",
+    "EV-011"
+  ],
+  "rationale": "The initial alert (A0) shows `cmd.exe` being spawned by `java.exe` to download an executable (`qSwUwejx.exe`) using `certutil.exe` from a suspicious IP (10.0.2.13:8080) and execute it (EV-003, EV-006). This downloaded executable then establishes a network connection to a different suspicious IP and port (10.0.2.13:4444) (EV-007). Subsequently, another `certutil.exe` command is executed to download AnyDesk.exe from a legitimate source, indicating potential post-exploitation activity (EV-011).",
+  "recommended_action": "isolate"
+}

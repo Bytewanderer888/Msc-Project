@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "Multiple `certutil.exe` commands were executed by the Administrator user, including attempts to export private keys (A0, EV-001) and enumerate certificates (EV-003). The final command (EV-004) successfully exports a certificate to a PFX file, which is highly suspicious and indicative of credential access or exfiltration.",
+  "recommended_action": "isolate"
+}

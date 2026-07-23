@@ -1,0 +1,19 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.97,
+  "key_evidence": [
+    "A0",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006",
+    "EV-007",
+    "EV-008",
+    "EV-009",
+    "EV-011",
+    "EV-012"
+  ],
+  "rationale": "A confirmed exploit chain is evidenced: Apache ActiveMQ (CVE-2023-46604 or similar RCE) spawned cmd.exe (A0, EV-001) which used certutil to download a randomly-named executable from an internal attacker-controlled host (10.0.2.13:8080) and immediately executed it (EV-003, EV-004, EV-005, EV-006). The dropped payload (qSwUwejx.exe, original_file_name '-', indicating stripped PE metadata) then established a TCP connection to 10.0.2.13:4444 \u2014 a classic reverse-shell port (EV-007). The payload subsequently spawned an interactive cmd.exe shell (EV-008, EV-009), confirming active post-exploitation, and then used certutil again to download AnyDesk from the internet (EV-011, EV-012), a well-known persistence/remote-access technique. The full kill chain \u2014 RCE via Java/ActiveMQ \u2192 download-and-execute \u2192 reverse shell \u2192 C2 callback \u2192 AnyDesk installation \u2014 is directly evidenced with no plausible benign explanation.",
+  "recommended_action": "isolate"
+}

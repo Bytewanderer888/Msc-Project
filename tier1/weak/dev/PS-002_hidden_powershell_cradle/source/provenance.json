@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1059.001/hidden_powershell/windows-sysmon.log",
+      "sha256": "bac9c10fe7ae07c2ede09014c44f92df074055d9764a92cde4161c0c8e19ef96"
+    }
+  ],
+  "primary_host": "win-dc-555.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "attack_techniques folder; other-sensor logs are different hosts. Tier-1 single-sensor."
+  }
+}

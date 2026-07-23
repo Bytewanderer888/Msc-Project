@@ -1,0 +1,17 @@
+{
+  "dataset": "OTRF Security-Datasets (mordor / atomic)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "datasets/atomic/windows/defense_evasion/host/cmd_disable_eventlog_service_startuptype_modification_via_registry.zip",
+      "sha256": "4312946d5bb0883e691da3b1130d4179b951a413278b450a75c05d56a2858a1a"
+    }
+  ],
+  "primary_host": "Pedro01",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "sysmon"
+    ]
+  }
+}

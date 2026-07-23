@@ -1,0 +1,39 @@
+{
+  "case_id": "ER-S04",
+  "security_proposition": "A custom remote-session client established a WinRM session from server-01, executed PowerShell activity on workstation-01, and produced a VNC-profile artifact on the source host.",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "operational_response": {
+    "family": "endpoint_isolation",
+    "note": "Isolate both endpoints under human approval and preserve the remote-session and VNC artifacts."
+  },
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "the contents of the VNC profile or that its password was decrypted",
+      "that a particular credential source enabled the WinRM session",
+      "that the operator remained active after the selected window",
+      "that hosts other than server-01 and workstation-01 were accessed"
+    ]
+  },
+  "the_trap": "No single event states remote execution success. The decision depends on correlating the source tool, target-port session, target wsmprovhost activity, and returned artifact.",
+  "rationale": "A0 records a high-integrity custom remote-session client on server-01. EV-001 records a concurrent TCP session from that host to workstation-01 on port 5985. EV-002 records wsmprovhost.exe creating a PowerShell policy-test file on the target as the administrator, which establishes target-side remoting activity. EV-003 then records PowerShell creating a VNC-profile artifact on the source. Together these establish a completed remote execution and collection mechanism without proving the artifact's contents or decryption.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

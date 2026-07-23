@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "package_type": "neutral_security_event_package",
+  "case_id": "QE-154",
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2020-05-02T07:55:27.353Z",
+    "event_type": "file_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 11,
+      "event_record_id": "773293"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{8320f18b-276e-5ead-7605-000000000400}",
+      "process_id": "8780",
+      "image": "C:\\windows\\system32\\certutil.exe",
+      "target_filename": "C:\\Users\\user-01\\AppData\\Roaming\\Microsoft\\kxwn.lock",
+      "creation_utc_time": "2020-05-02 07:55:27.353"
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [],
+  "deterministic_derivations": [],
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [],
+    "time_window_utc": {
+      "start": "2020-05-02T07:55:27.353Z",
+      "end": "2020-05-02T07:55:27.353Z"
+    },
+    "event_count": 1,
+    "event_types_present": [
+      "file_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  }
+}

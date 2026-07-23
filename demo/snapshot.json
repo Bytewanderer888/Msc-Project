@@ -1,0 +1,1355 @@
+{
+ "record_schema": "safesoc.demo_runtime_snapshot.v2",
+ "generated_utc": "2026-07-22T21:34:12Z",
+ "runtime": {
+  "validator_version": "1.2",
+  "policy_version": "1.2",
+  "default_profile": "consequence_gate",
+  "profiles": {
+   "integrity_only": {
+    "description": "Block observable contract violations and review citation-quality warnings; otherwise pass.",
+    "review_on": []
+   },
+   "consequence_gate": {
+    "description": "Recommended deployment profile: require human approval for terminal or disruptive actions; escalation and investigation already enter a human workflow.",
+    "review_on": [
+     "S001_HIGH_CONSEQUENCE_ACTION"
+    ]
+   },
+   "safety_first": {
+    "description": "High-recall profile: review aggressive claims and benign closures.",
+    "review_on": [
+     "S002_AGGRESSIVE_CLAIM",
+     "S003_BENIGN_CLOSURE"
+    ]
+   }
+  },
+  "signals": {
+   "S001_HIGH_CONSEQUENCE_ACTION": "The proposed action is terminal or disruptive and requires human approval before execution.",
+   "S002_AGGRESSIVE_CLAIM": "The output makes an aggressive claim or proposes aggressive handling.",
+   "S003_BENIGN_CLOSURE": "A benign closure needs affirmative trusted context that the neutral package may not carry."
+  },
+  "finding_levels": {
+   "R000_PACKAGE_SCHEMA_INVALID": "block",
+   "R001_OUTPUT_SCHEMA_INVALID": "block",
+   "R002_CASE_ID_MISMATCH": "block",
+   "R003_MAIN_ALERT_ID_INVALID": "block",
+   "R004_DUPLICATE_PACKAGE_EVIDENCE_ID": "block",
+   "R005_PACKAGE_EVENT_COUNT_MISMATCH": "block",
+   "R006_INVALID_DERIVATION_SOURCE": "block",
+   "R007_DUPLICATE_KEY_EVIDENCE_ID": "block",
+   "R008_INVALID_KEY_EVIDENCE_ID": "block",
+   "R009_INVALID_RATIONALE_EVIDENCE_ID": "block",
+   "R010_RATIONALE_MISSING_EVIDENCE_REFERENCE": "review",
+   "R011_RATIONALE_KEY_EVIDENCE_DISCONNECT": "review",
+   "R012_DERIVATION_CLAIM_WITHOUT_DERIVATION": "block",
+   "R013_DECISION_PROFILE_MISMATCH": "block"
+  },
+  "non_claims": [
+   "The policy does not infer the benchmark evidence condition.",
+   "The policy does not prove that a verdict is factually correct.",
+   "The output field is a recommended action; the experiment does not claim that actions were automatically executed.",
+   "A pass means no policy-verifiable issue was found, not that ground truth agrees."
+  ],
+  "input_contract": "alert_package + LLM output + generic policy only; no annotations or ground truth"
+ },
+ "cases": [
+  {
+   "case_id": "ACCT-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 6,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "AMQ-001",
+   "tier": "tier2",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (apt_simulations)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational",
+    "Microsoft-Windows-Security-Auditing"
+   ],
+   "event_count": 13,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "BF-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 23,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "BF-002",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Security-Auditing"
+   ],
+   "event_count": 50,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "CERT-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (suspicious_behaviour)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 5,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "COL-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 4,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "CRED-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 5,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "DISC-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 6,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "DISC-002",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 4,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "DISC-003",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 4,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "DISC-004",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "OTRF Security-Datasets (mordor / atomic)",
+   "sourcetypes": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 1,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "EVL-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "OTRF Security-Datasets (mordor / atomic)",
+   "sourcetypes": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 2,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "FW-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "OTRF Security-Datasets (mordor / atomic)",
+   "sourcetypes": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 5,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "GPO-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "OTRF Security-Datasets (mordor)",
+   "sourcetypes": [
+    "XmlWinEventLog:Security"
+   ],
+   "event_count": 4,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "ING-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 8,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "ING-002",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 4,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "INJ-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 6,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "LGN-002",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "OTRF Security-Datasets (mordor / atomic)",
+   "sourcetypes": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 2,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "LOGON-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 2,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "LS-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 4,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "LS-002",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 5,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "LS-003",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 5,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "OD-001",
+   "tier": "tier2",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (malware/olympic_destroyer)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational",
+    "Microsoft-Windows-Security-Auditing"
+   ],
+   "event_count": 6,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "PS-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 14,
+   "derivation_count": 1
+  },
+  {
+   "case_id": "PS-002",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 4,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "PS-003",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 5,
+   "derivation_count": 1
+  },
+  {
+   "case_id": "PS-004",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 9,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "RDL-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "OTRF Security-Datasets (mordor)",
+   "sourcetypes": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 2,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "RK-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 6,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "RTLO-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "OTRF Security-Datasets (mordor)",
+   "sourcetypes": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 4,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "RUN-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "OTRF Security-Datasets (mordor)",
+   "sourcetypes": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 3,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "SMB-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 7,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "SMB-002",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Security-Auditing"
+   ],
+   "event_count": 8,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "ST-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 10,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "ST-002",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 2,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "ST-003",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Security (Microsoft-Windows-Security-Auditing)"
+   ],
+   "event_count": 4,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "SVC-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 6,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "UAC-001",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "OTRF Security-Datasets (mordor)",
+   "sourcetypes": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 6,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "UQP-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "Splunk Attack Data (suspicious_behaviour)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 5,
+   "derivation_count": 0
+  },
+  {
+   "case_id": "WMI-001",
+   "tier": "tier1",
+   "split": "heldout",
+   "dataset": "OTRF Security-Datasets (mordor)",
+   "sourcetypes": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 3,
+   "derivation_count": 1
+  },
+  {
+   "case_id": "WMI-002",
+   "tier": "tier1",
+   "split": "dev",
+   "dataset": "Splunk Attack Data (attack_techniques)",
+   "sourcetypes": [
+    "Microsoft-Windows-Sysmon/Operational"
+   ],
+   "event_count": 5,
+   "derivation_count": 1
+  }
+ ],
+ "outputs": {
+  "ACCT-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/ACCT-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/ACCT-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/ACCT-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/ACCT-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/ACCT-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/ACCT-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/ACCT-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/ACCT-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/ACCT-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/ACCT-001.json"
+    }
+   }
+  },
+  "AMQ-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/AMQ-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/AMQ-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/AMQ-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/AMQ-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/AMQ-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/AMQ-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/AMQ-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/AMQ-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/AMQ-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/AMQ-001.json"
+    }
+   }
+  },
+  "BF-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/BF-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/BF-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/BF-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/BF-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/BF-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/BF-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/BF-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/BF-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/BF-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/BF-001.json"
+    }
+   }
+  },
+  "CERT-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/CERT-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/CERT-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/CERT-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/CERT-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/CERT-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/CERT-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/CERT-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/CERT-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/CERT-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/CERT-001.json"
+    }
+   }
+  },
+  "DISC-002": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/DISC-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/DISC-002.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/DISC-002.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/DISC-002.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/DISC-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/DISC-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/DISC-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/DISC-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/DISC-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/DISC-002.json"
+    }
+   }
+  },
+  "FW-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/FW-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/FW-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/FW-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/FW-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/FW-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/FW-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/FW-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/FW-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/FW-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/FW-001.json"
+    }
+   }
+  },
+  "ING-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/ING-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/ING-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/ING-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/ING-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/ING-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/ING-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/ING-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/ING-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/ING-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/ING-001.json"
+    }
+   }
+  },
+  "INJ-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/INJ-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/INJ-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/INJ-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/INJ-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/INJ-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/INJ-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/INJ-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/INJ-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/INJ-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/INJ-001.json"
+    }
+   }
+  },
+  "LGN-002": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/LGN-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/LGN-002.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/LGN-002.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/LGN-002.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/LGN-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/LGN-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/LGN-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/LGN-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/LGN-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/LGN-002.json"
+    }
+   }
+  },
+  "LS-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/LS-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/LS-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/LS-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/LS-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/LS-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/LS-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/LS-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/LS-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/LS-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/LS-001.json"
+    }
+   }
+  },
+  "LS-002": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/LS-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/LS-002.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/LS-002.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/LS-002.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/LS-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/LS-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/LS-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/LS-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/LS-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/LS-002.json"
+    }
+   }
+  },
+  "PS-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/PS-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/PS-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/PS-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/PS-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/PS-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/PS-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/PS-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/PS-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/PS-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/PS-001.json"
+    }
+   }
+  },
+  "PS-002": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/PS-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/PS-002.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/PS-002.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/PS-002.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/PS-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/PS-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/PS-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/PS-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/PS-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/PS-002.json"
+    }
+   }
+  },
+  "RDL-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/RDL-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/RDL-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/RDL-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/RDL-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/RDL-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/RDL-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/RDL-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/RDL-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/RDL-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/RDL-001.json"
+    }
+   }
+  },
+  "RK-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/RK-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/RK-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/RK-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/RK-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/RK-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/RK-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/RK-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/RK-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/RK-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/RK-001.json"
+    }
+   }
+  },
+  "RTLO-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/RTLO-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/RTLO-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/RTLO-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/RTLO-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/RTLO-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/RTLO-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/RTLO-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/RTLO-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/RTLO-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/RTLO-001.json"
+    }
+   }
+  },
+  "SMB-002": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/SMB-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/SMB-002.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/SMB-002.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/SMB-002.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/SMB-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/SMB-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/SMB-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/SMB-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/SMB-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/SMB-002.json"
+    }
+   }
+  },
+  "ST-002": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/ST-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/ST-002.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/ST-002.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/ST-002.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/ST-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/ST-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/ST-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/ST-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/ST-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/ST-002.json"
+    }
+   }
+  },
+  "ST-003": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/ST-003.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/ST-003.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/ST-003.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/ST-003.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/ST-003.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/ST-003.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/ST-003.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/ST-003.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/ST-003.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/ST-003.json"
+    }
+   }
+  },
+  "UAC-001": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/UAC-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/UAC-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/UAC-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/UAC-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/UAC-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/UAC-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/UAC-001.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/UAC-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/UAC-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/UAC-001.json"
+    }
+   }
+  },
+  "WMI-002": {
+   "claude-sonnet-4-6": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A1_basic_prompt/dev/WMI-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/dev/WMI-002.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/dev/WMI-002.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/dev/WMI-002.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A1_basic_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A1_basic_prompt/dev/WMI-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round2/dev/WMI-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A1_basic_prompt_round3/dev/WMI-002.json"
+    },
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/dev/WMI-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev/WMI-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev/WMI-002.json"
+    }
+   }
+  },
+  "BF-002": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/BF-002.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/BF-002.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/BF-002.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/BF-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/BF-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/BF-002.json"
+    }
+   }
+  },
+  "COL-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/COL-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/COL-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/COL-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/COL-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/COL-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/COL-001.json"
+    }
+   }
+  },
+  "CRED-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/CRED-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/CRED-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/CRED-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/CRED-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/CRED-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/CRED-001.json"
+    }
+   }
+  },
+  "DISC-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/DISC-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/DISC-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/DISC-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/DISC-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/DISC-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/DISC-001.json"
+    }
+   }
+  },
+  "DISC-003": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/DISC-003.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/DISC-003.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/DISC-003.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/DISC-003.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/DISC-003.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/DISC-003.json"
+    }
+   }
+  },
+  "DISC-004": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/DISC-004.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/DISC-004.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/DISC-004.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/DISC-004.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/DISC-004.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/DISC-004.json"
+    }
+   }
+  },
+  "EVL-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/EVL-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/EVL-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/EVL-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/EVL-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/EVL-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/EVL-001.json"
+    }
+   }
+  },
+  "GPO-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/GPO-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/GPO-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/GPO-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/GPO-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/GPO-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/GPO-001.json"
+    }
+   }
+  },
+  "ING-002": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/ING-002.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/ING-002.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/ING-002.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/ING-002.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/ING-002.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/ING-002.json"
+    }
+   }
+  },
+  "LOGON-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/LOGON-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/LOGON-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/LOGON-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/LOGON-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/LOGON-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/LOGON-001.json"
+    }
+   }
+  },
+  "LS-003": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/LS-003.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/LS-003.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/LS-003.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/LS-003.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/LS-003.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/LS-003.json"
+    }
+   }
+  },
+  "OD-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/OD-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/OD-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/OD-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/OD-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/OD-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/OD-001.json"
+    }
+   }
+  },
+  "PS-003": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/PS-003.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/PS-003.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/PS-003.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/PS-003.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/PS-003.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/PS-003.json"
+    }
+   }
+  },
+  "PS-004": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/PS-004.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/PS-004.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/PS-004.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/PS-004.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/PS-004.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/PS-004.json"
+    }
+   }
+  },
+  "RUN-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/RUN-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/RUN-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/RUN-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/RUN-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/RUN-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/RUN-001.json"
+    }
+   }
+  },
+  "SMB-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/SMB-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/SMB-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/SMB-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/SMB-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/SMB-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/SMB-001.json"
+    }
+   }
+  },
+  "ST-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/ST-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/ST-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/ST-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/ST-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/ST-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/ST-001.json"
+    }
+   }
+  },
+  "SVC-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/SVC-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/SVC-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/SVC-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/SVC-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/SVC-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/SVC-001.json"
+    }
+   }
+  },
+  "UQP-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/UQP-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/UQP-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/UQP-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/UQP-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/UQP-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/UQP-001.json"
+    }
+   }
+  },
+  "WMI-001": {
+   "claude-sonnet-4-6": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt/heldout/WMI-001.json",
+     "2": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round2/heldout/WMI-001.json",
+     "3": "eval/outputs/claude-sonnet-4-6__A2_evidence_prompt_round3/heldout/WMI-001.json"
+    }
+   },
+   "gemini-2.5-flash": {
+    "A2_evidence_prompt": {
+     "1": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt/heldout/WMI-001.json",
+     "2": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round2/heldout/WMI-001.json",
+     "3": "eval/outputs/gemini-2.5-flash__A2_evidence_prompt_round3/heldout/WMI-001.json"
+    }
+   }
+  }
+ },
+ "filters": {
+  "tier": [
+   "tier1",
+   "tier2"
+  ],
+  "split": [
+   "dev",
+   "heldout"
+  ],
+  "dataset": [
+   "OTRF Security-Datasets (mordor / atomic)",
+   "OTRF Security-Datasets (mordor)",
+   "Splunk Attack Data (apt_simulations)",
+   "Splunk Attack Data (attack_techniques)",
+   "Splunk Attack Data (malware/olympic_destroyer)",
+   "Splunk Attack Data (suspicious_behaviour)"
+  ]
+ }
+}

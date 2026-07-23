@@ -1,0 +1,31 @@
+{
+  "case_id": "DISC-002",
+  "evidence_condition": "counter",
+  "calibration_role": "down_rank",
+  "correct_verdict": "benign",
+  "acceptable_severity": [
+    "informational",
+    "low"
+  ],
+  "acceptable_actions": [
+    "close_benign",
+    "monitor"
+  ],
+  "grounding": {
+    "supporting_evidence": [],
+    "counter_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "must_not_assert": [
+      "active reconnaissance or adversary discovery (all four wmic queries are the AWS SSM agent's own routine inventory set — OS Version/Caption, DNSHostName, Domain — spawned by ssm-agent-worker.exe as SYSTEM in a sub-second burst with no follow-on)"
+    ]
+  },
+  "the_trap": "Four wmic OS/computersystem queries as SYSTEM look like host reconnaissance, but every one is spawned by C:\\Program Files\\Amazon\\SSM\\ssm-agent-worker.exe running its standard inventory set (OS Version, OS Caption, DNSHostName, Domain) in a ~0.35s burst with no follow-on — routine AWS SSM inventory, not an actor. A legit-system-actor benign twin of SMB-002.",
+  "rationale": "A0 and EV-001..003 are four wmic OS/computersystem info queries, all spawned by the AWS SSM agent (parent_image = ssm-agent-worker.exe) as SYSTEM within ~0.35s, with nothing else in the window. The parent plus the exact query set (Version, Caption, DNSHostName, Domain) are the signature of the SSM agent's routine inventory collection — decisive benign context: benign.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

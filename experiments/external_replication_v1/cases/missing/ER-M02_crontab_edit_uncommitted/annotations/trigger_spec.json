@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-M02",
+  "rule_id": "SAFESOC-TRG-ER-M02",
+  "analytic_family_id": "AF-PERS",
+  "analytic_pattern_id": "PERS-01",
+  "title": "Interactive crontab edit session begins",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "source_defined_step",
+    "complete_legal_scope": true,
+    "description": "Every record in the corpus-provided log member or scenario step containing the alert stream.",
+    "source_units": [
+      "manifestations_raw/steps/6_macro_cron-20/client/logs/log/syslog"
+    ]
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "attributes.raw_text",
+        "op": "regex",
+        "value": "\\bcrontab\\[\\d+\\]:"
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "icontains",
+        "value": "BEGIN EDIT"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "manifestations_raw/steps/6_macro_cron-20/client/logs/log/syslog:line:1"
+  },
+  "rationale": "Beginning a crontab edit is a scheduled-persistence precursor, while installation and execution require separate evidence."
+}

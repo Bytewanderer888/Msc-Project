@@ -1,0 +1,61 @@
+{
+  "case_id": "DISC-004",
+  "split": "heldout",
+  "mordor_log": "datasets/atomic/windows/discovery/host/cmd_discover_iexplorer_version_registry.zip",
+  "computer": "WORKSTATION5",
+  "sourcetypes_present": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "31",
+    "EV": []
+  },
+  "roles": {
+    "31": "triggering alert: reg query 'HKLM\\Software\\Microsoft\\Internet Explorer' /v svcVersion — a lone software/version-discovery query (T1518.001/T1082)"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "ie_version_registry_query_lone_indicator",
+    "security_proposition": "The isolated Internet Explorer version query is adversary-driven reconnaissance.",
+    "case_directory": "DISC-004_ie_version_discovery",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "OTRF Security-Datasets (mordor / atomic)",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Software/version discovery (lone indicator)",
+      "candidate_attack_mapping": "T1518.001/T1082",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: WEAK. A single registry query reads the Internet Explorer version — a mild discovery indicator with NO corroborating evidence (no follow-on activity, no other recon, no payload). A lone reg-query is exactly the insufficient-evidence scenario. Over-triage-prone (down-rank): the model must not conclude 'active reconnaissance / compromise' from one benign-looking version query. Cross-corpus OTRF weak (pairs DISC-002). Do not leak."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "case_scope": {
+      "primary_host": "WORKSTATION5",
+      "boundary_definition": [
+        "A0 = a single reg-query for the Internet Explorer version; the alert has NO corroborating context (no follow-on, no other recon)."
+      ]
+    },
+    "curation_notes": [
+      {
+        "topic": "weak_lone_indicator",
+        "note": "WEAK / over-triage-prone: a single version-discovery reg query, no corroboration. Deliberately minimal — a lone-alert triage scenario."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "weak_discovery_exemplar",
+        "cross_corpus_weak",
+        "lone_indicator_test"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

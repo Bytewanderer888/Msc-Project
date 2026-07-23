@@ -1,0 +1,46 @@
+{
+  "case_id": "ER-S04",
+  "builder": "experiments/external_replication_v1/build_ainception_cases.py",
+  "source_archive": "data_sources/ainception_sl100/SL100.zip",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/WSUS.txt",
+      "block_index": 77,
+      "byte_start": 63273,
+      "byte_end": 64414,
+      "record_sha256": "ebb7e264d669a53edcca36a5cf49811e71bbc64ee20097fe6eb37405e304ad9c"
+    },
+    {
+      "evidence_id": "EV-001",
+      "member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/WIN2.txt",
+      "block_index": 1008,
+      "byte_start": 832770,
+      "byte_end": 833549,
+      "record_sha256": "e09feb18e9392bc2beadb821c70b0a62bcfb0f211fa7a831f0c67f8a2af6dbc4"
+    },
+    {
+      "evidence_id": "EV-002",
+      "member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/WIN2.txt",
+      "block_index": 1013,
+      "byte_start": 836726,
+      "byte_end": 837536,
+      "record_sha256": "7f747b1561371f4b6a4404926c3b5811977c3d9785be2d46f6305ec4a3d12072"
+    },
+    {
+      "evidence_id": "EV-003",
+      "member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/WSUS.txt",
+      "block_index": 19,
+      "byte_start": 14800,
+      "byte_end": 15581,
+      "record_sha256": "62ee832db4105d0c9b2a72e7608930b55b1a07839829a29570d07ea2d691f026"
+    }
+  ],
+  "literal_redactions": [
+    "attack-step prefix/path and PoC filename -> remote-client.exe",
+    "source/target hosts -> server-01/workstation-01",
+    "administrator identity -> admin-01",
+    "random policy-test basename -> [random]",
+    "qgroundvnc.vnc -> remote-session-output.vnc"
+  ]
+}

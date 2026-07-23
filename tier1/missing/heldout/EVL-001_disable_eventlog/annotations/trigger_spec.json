@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "case_id": "EVL-001",
+  "rule_id": "SAFESOC-TRG-EVL-001",
+  "analytic_family_id": "AF-REG",
+  "analytic_pattern_id": "REG-02",
+  "title": "Windows Event Log service disabled in the registry",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source after any pre-existing host and sensor scope is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 13
+      },
+      {
+        "field": "attributes.target_object",
+        "op": "iendswith",
+        "value": "\\Services\\EventLog\\Start"
+      },
+      {
+        "field": "attributes.details",
+        "op": "regex",
+        "value": "(?i)(0x0*4|DWORD.*4)"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "6256"
+  },
+  "rationale": "Setting the EventLog service Start value to disabled is a direct defence-evasion alert surface."
+}

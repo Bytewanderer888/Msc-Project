@@ -1,0 +1,32 @@
+{
+  "case_id": "DISC-003",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that active adversarial reconnaissance or malicious intent is confirmed (the package evidences confirmed local-account enumeration but no intent-bearing follow-on such as credential access or lateral movement)",
+      "that a compromise or breach resulted (no post-discovery impact is present in this package)"
+    ]
+  },
+  "the_trap": "Local-account enumeration is confirmed: two distinct discovery techniques — Get-LocalUser (A0) and Get-WmiObject Win32_UserAccount (EV-003) — each launched via a cmd.exe -> powershell.exe chain (EV-001, EV-002), all as corp\\user-01 at Medium integrity within a ~9-second window. This is a genuine T1087.001 discovery indicator, but the package evidences the enumeration only; it shows no elevation (integrity_level Medium), no credential access, no lateral movement, and no follow-on. The model must not escalate confirmed discovery into confirmed adversarial recon or compromise. Distinct from DISC-001 (AD/domain) and DISC-002 (system/OS discovery).",
+  "rationale": "The package confirms local-account discovery — Get-LocalUser (A0) and Get-WmiObject Win32_UserAccount (EV-003), with their cmd.exe launchers EV-001 and EV-002 — all executed by corp\\user-01 at Medium integrity across a ~9-second window. What is not evidenced is intent or compromise: the integrity_level is Medium (no privilege elevation), and the package contains no credential access, lateral movement, or persistence, with deterministic_derivations empty and no counter-evidence. Account discovery is confirmed; adversarial intent or compromise is not. This is a real but low-signal discovery indicator with ambiguous intent: suspicious and worth investigating, not confirmed recon.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

@@ -1,0 +1,10 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.8,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "The main alert (A0) shows PowerShell being executed with a highly obfuscated command line, including string concatenation and an 'iex' (Invoke-Expression) call. This pattern is commonly used by malware to evade detection. The parent process is cmd.exe, which is a common legitimate parent, but the obfuscated PowerShell command is highly suspicious.",
+  "recommended_action": "investigate"
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "evidence_id": "A0",
+    "archive_member": "manifestations_raw/steps/1_cron_sshkey-34/videoserver/logs/log/audit/audit.log",
+    "line_number": 9,
+    "record_sha256": "1359f0f1a6c222b816295d4a7d20517e5d574bf1d4a6e62249d9d16846e315a0",
+    "raw_record": "type=EXECVE msg=audit(1758696532.324:13583): argc=2 a0=\"rm\" a1=\"linpeas.sh\""
+  },
+  {
+    "evidence_id": "EV-001",
+    "archive_member": "manifestations_raw/steps/1_cron_sshkey-34/videoserver/logs/log/audit/audit.log",
+    "line_number": 14,
+    "record_sha256": "476ae29b336beac8e250de2aaf9889a9ac485398ce7d9294e503ffd3cd106e41",
+    "raw_record": "type=SYSCALL msg=audit(1758696532.324:13584): arch=c000003e syscall=263 success=no exit=-2 a0=ffffff9c a1=5556b66fbc20 a2=0 a3=fffffffffffff2cb items=1 ppid=17157 pid=17190 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts1 ses=9 comm=\"rm\" exe=\"/usr/bin/rm\" subj==unconfined key=\"T1070_Indicator_Removal_on_Host\"\u001dARCH=x86_64 SYSCALL=unlinkat AUID=\"root\" UID=\"root\" GID=\"root\" EUID=\"root\" SUID=\"root\" FSUID=\"root\" EGID=\"root\" SGID=\"root\" FSGID=\"root\""
+  }
+]

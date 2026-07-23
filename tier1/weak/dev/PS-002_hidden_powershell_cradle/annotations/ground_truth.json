@@ -1,0 +1,29 @@
+{
+  "case_id": "PS-002",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-003"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "A0 launched its downloaded file or the host was compromised; no child process or execution of C:\\Users\\Administrator\\Default_File_Path.ps1 is present in A0's scoped process/file lifecycle"
+    ]
+  },
+  "the_trap": "A hidden-window PowerShell download cradle (New-Object Net.WebClient).DownloadFile is a real staging indicator, but no execution of the file written by this process is present in its scoped process/file lifecycle; do not over-claim a confirmed compromise.",
+  "rationale": "A0 runs powershell -WindowStyle hidden to DownloadFile a remote file to C:\\Users\\Administrator\\Default_File_Path.ps1, whose creation is recorded in EV-003. No child process or execution of that path is present in A0's scoped lifecycle. A later raw event that invokes a same-named script belongs to a different ProcessGuid, parent, and output path and is therefore a separate variant. The A0 outcome remains unconfirmed: suspicious, not confirmed.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

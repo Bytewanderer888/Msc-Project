@@ -1,0 +1,42 @@
+{
+  "case_id": "ER-C01",
+  "builder": "experiments/external_replication_v1/build_windows_cases.py",
+  "source_file": "data_sources/windows_apt_2025/combined.csv",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "source_record_id": "y6E3gZMBrrvr6pEbZnYV",
+      "csv_record_number": 383,
+      "record_sha256": "6eb30f098875fd99ecf17a634637df58568c5a723d29bb51531236a768c5b72a"
+    },
+    {
+      "evidence_id": "EV-001",
+      "source_record_id": "zKE3gZMBrrvr6pEbZnYV",
+      "csv_record_number": 3027,
+      "record_sha256": "c50e75c2f9d3fcff490aac4d80452340e17c1ed18f5e29ceb7dd061cdb5f6ce7"
+    },
+    {
+      "evidence_id": "EV-002",
+      "source_record_id": "zaE3gZMBrrvr6pEbZnYV",
+      "csv_record_number": 6258,
+      "record_sha256": "432948b9d33bb8b879faec64cdfd64c582330892590789e12252164825a9586d"
+    },
+    {
+      "evidence_id": "EV-003",
+      "source_record_id": "zqE3gZMBrrvr6pEbZnYV",
+      "csv_record_number": 6259,
+      "record_sha256": "86158c0da4b248ab91334b99284ea166e7119b91ae35e97e71964aaa94ab328f"
+    },
+    {
+      "evidence_id": "EV-004",
+      "source_record_id": "z6E3gZMBrrvr6pEbZnYV",
+      "csv_record_number": 3028,
+      "record_sha256": "d66d11153cab1af3ed0fb9d5c3ed2bdd3766b2111ddc02df84ec934870f067b5"
+    }
+  ],
+  "literal_redactions": [
+    "computer -> host-01",
+    "temporary directory GUID -> [guid]",
+    "SYSTEM identity retained"
+  ]
+}

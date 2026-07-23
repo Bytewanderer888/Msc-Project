@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.95,
+  "key_evidence": [
+    "A0",
+    "DER-001"
+  ],
+  "rationale": "A0 shows an HTTP GET request returning HTTP 200 with 507,686 bytes to a randomly-named PHP file in /wp-content/uploads/ \u2014 a classic web shell path pattern \u2014 accessed by a Python requests client from an external IP. DER-001 confirms the decoded query parameter is a MySQL CLI invocation dumping all WordPress user records (including password hashes) from the database, indicating the web shell is actively being used for credential harvesting. The large response size (507 KB) is consistent with a full wp_users table dump being returned. No benign explanation exists for an externally-accessible, obfuscated PHP file in the uploads directory executing database queries and returning their output over HTTP.",
+  "recommended_action": "isolate"
+}

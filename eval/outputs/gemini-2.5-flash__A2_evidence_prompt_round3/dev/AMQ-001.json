@@ -1,0 +1,16 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-003",
+    "EV-004",
+    "EV-006",
+    "EV-007",
+    "EV-011",
+    "EV-012"
+  ],
+  "rationale": "The initial alert (A0) shows `cmd.exe` being spawned by `java.exe` to download and execute `qSwUwejx.exe` from a suspicious IP (10.0.2.13) using `certutil.exe` (EV-003, EV-004). This downloaded executable then initiates a network connection to the same suspicious IP on port 4444 (EV-007), indicating potential command and control. Subsequently, `qSwUwejx.exe` spawns `cmd.exe` (EV-009), which then uses `certutil.exe` to download `AnyDesk.exe` from a legitimate domain to a temporary directory (EV-011, EV-012), suggesting an attempt to establish remote access. The combination of suspicious download, C2 communication, and subsequent download of a remote access tool strongly indicates malicious activity.",
+  "recommended_action": "isolate"
+}

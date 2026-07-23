@@ -1,0 +1,216 @@
+{
+  "schema_version": "1.0",
+  "case_id": "PS-004",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2021-06-03T13:51:58.211902500Z",
+      "end": "2021-06-03T13:53:54.703920600Z"
+    },
+    "event_count": 9,
+    "event_types_present": [
+      "file_create",
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2021-06-03T13:51:58.211902500Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "648984"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{D419E45B-DE7E-60B8-674E-00000000C401}",
+      "process_id": "4812",
+      "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "original_file_name": "PowerShell.EXE",
+      "command_line": "powershell.exe  import-module c:\\temp\\SharpHound.ps1",
+      "current_directory": "C:\\Temp\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+      "parent_process_guid": "{D419E45B-DE7E-60B8-664E-00000000C401}",
+      "parent_process_id": "6100",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c powershell.exe import-module c:\\temp\\SharpHound.ps1"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2021-06-03T13:53:52.859058100Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "649806"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D419E45B-DEF0-60B8-814E-00000000C401}",
+        "process_id": "1084",
+        "image": "C:\\Temp\\SharpHound.exe",
+        "original_file_name": "SharpHound.exe",
+        "command_line": "c:\\temp\\sharphound.exe  --CollectionMethod all",
+        "current_directory": "C:\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=63D22AE0568B760B5E3AABB915313E44,SHA256=61F897ED69646E0509F6802FB2D7C5E88C3E3B93C4CA86942E24D203AA878863,IMPHASH=F34D5F2D4577ED6D9CEEC516C1F5A744",
+        "parent_process_guid": "{D419E45B-DEF0-60B8-804E-00000000C401}",
+        "parent_process_id": "4760",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c c:\\temp\\sharphound.exe --CollectionMethod all"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2021-06-03T13:53:54.609144300Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "649831"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D419E45B-DEF0-60B8-814E-00000000C401}",
+        "process_id": "1084",
+        "image": "c:\\temp\\SharpHound.exe",
+        "target_filename": "C:\\Temp\\20210603135353_groups.json",
+        "creation_utc_time": "2021-06-03 13:53:54.595"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2021-06-03T13:53:54.659151600Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "649842"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D419E45B-DEF0-60B8-814E-00000000C401}",
+        "process_id": "1084",
+        "image": "c:\\temp\\SharpHound.exe",
+        "target_filename": "C:\\Temp\\20210603135353_gpos.json",
+        "creation_utc_time": "2021-06-03 13:53:54.658"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2021-06-03T13:53:54.661020600Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "649843"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D419E45B-DEF0-60B8-814E-00000000C401}",
+        "process_id": "1084",
+        "image": "c:\\temp\\SharpHound.exe",
+        "target_filename": "C:\\Temp\\20210603135353_users.json",
+        "creation_utc_time": "2021-06-03 13:53:54.658"
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2021-06-03T13:53:54.666225000Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "649844"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D419E45B-DEF0-60B8-814E-00000000C401}",
+        "process_id": "1084",
+        "image": "c:\\temp\\SharpHound.exe",
+        "target_filename": "C:\\Temp\\20210603135353_ous.json",
+        "creation_utc_time": "2021-06-03 13:53:54.658"
+      }
+    },
+    {
+      "evidence_id": "EV-006",
+      "event_time_utc": "2021-06-03T13:53:54.670457800Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "649845"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D419E45B-DEF0-60B8-814E-00000000C401}",
+        "process_id": "1084",
+        "image": "c:\\temp\\SharpHound.exe",
+        "target_filename": "C:\\Temp\\20210603135353_domains.json",
+        "creation_utc_time": "2021-06-03 13:53:54.658"
+      }
+    },
+    {
+      "evidence_id": "EV-007",
+      "event_time_utc": "2021-06-03T13:53:54.674361400Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "649846"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D419E45B-DEF0-60B8-814E-00000000C401}",
+        "process_id": "1084",
+        "image": "c:\\temp\\SharpHound.exe",
+        "target_filename": "C:\\Temp\\20210603135353_computers.json",
+        "creation_utc_time": "2021-06-03 13:53:54.658"
+      }
+    },
+    {
+      "evidence_id": "EV-008",
+      "event_time_utc": "2021-06-03T13:53:54.703920600Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "649857"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D419E45B-DEF0-60B8-814E-00000000C401}",
+        "process_id": "1084",
+        "image": "c:\\temp\\SharpHound.exe",
+        "target_filename": "C:\\Temp\\20210603135353_BloodHound.zip",
+        "creation_utc_time": "2021-06-03 13:53:54.689"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

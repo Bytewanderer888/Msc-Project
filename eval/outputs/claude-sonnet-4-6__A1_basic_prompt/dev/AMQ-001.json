@@ -1,0 +1,17 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.98,
+  "key_evidence": [
+    "A0",
+    "EV-003",
+    "EV-004",
+    "EV-006",
+    "EV-007",
+    "EV-009",
+    "EV-011",
+    "EV-012"
+  ],
+  "rationale": "A0 and EV-003 show Apache ActiveMQ (java.exe) spawning cmd.exe which uses certutil to download a randomly-named executable (qSwUwejx.exe) from an internal attacker-controlled host (10.0.2.13:8080), consistent with exploitation of CVE-2023-46604 or similar ActiveMQ RCE. EV-006 shows the dropped payload executing at High integrity from the Temp directory, and EV-007 confirms it immediately established a TCP connection to 10.0.2.13:4444 \u2014 a classic Metasploit/reverse-shell port \u2014 indicating successful C2 establishment. EV-008/EV-009 show the payload subsequently spawning an interactive cmd.exe shell (with a null parent GUID, indicating process injection or hollowing), and EV-011/EV-012 reveal the attacker then used that shell to download AnyDesk via certutil, a well-known persistence and lateral-movement technique for establishing a legitimate-looking remote access channel.",
+  "recommended_action": "isolate"
+}

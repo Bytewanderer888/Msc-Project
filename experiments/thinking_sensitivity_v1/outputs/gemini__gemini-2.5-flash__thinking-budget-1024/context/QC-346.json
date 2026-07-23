@@ -1,0 +1,11 @@
+{
+  "verdict": "benign",
+  "severity": "low",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "DER-001"
+  ],
+  "rationale": "A PowerShell process was created with a heavily obfuscated command line using string concatenation, .Replace, and Invoke-Expression (A0). However, the deterministic derivation (DER-001) reveals the deobfuscated command to be 'Write-Host 'Hello, World!'', which is a completely benign action. While the obfuscation is suspicious, the ultimate payload is harmless.",
+  "recommended_action": "close_benign"
+}

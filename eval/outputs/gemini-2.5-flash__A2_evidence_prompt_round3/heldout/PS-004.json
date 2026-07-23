@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-008"
+  ],
+  "rationale": "The execution of PowerShell to import 'SharpHound.ps1' (A0) followed by the execution of 'SharpHound.exe' (EV-001) with the '--CollectionMethod all' argument indicates active directory reconnaissance. The subsequent creation of a 'BloodHound.zip' file (EV-008) containing various JSON files (EV-002 to EV-007) confirms the collection of sensitive domain information, which is a common precursor to privilege escalation or lateral movement.",
+  "recommended_action": "escalate"
+}

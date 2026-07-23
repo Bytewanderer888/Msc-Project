@@ -1,0 +1,137 @@
+{
+  "case_id": "PS-003",
+  "split": "heldout",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1059.001/obfuscated_powershell/windows-sysmon.log",
+  "staged_export": "extracted/ps003_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "28476",
+    "EV": [
+      "28429",
+      "28485",
+      "28486",
+      "28487"
+    ]
+  },
+  "roles": {
+    "28476": "triggering alert: powershell.exe ran a string-obfuscated command (concat + char-code Replace) piped to iex",
+    "28429": "parent cmd.exe, launched interactively by explorer.exe",
+    "28485": "benign PSScriptPolicyTest runtime artifact",
+    "28486": "COUNTER: lsass.exe accessed the powershell process (lsass is SOURCE, not target)",
+    "28487": "COUNTER: lsass.exe accessed the powershell process (lsass is SOURCE, not target)"
+  },
+  "derivations": [
+    {
+      "id": "DER-001",
+      "from": "A0",
+      "field": "command_line",
+      "method": "ps_deobfuscate_concat",
+      "as": "deobfuscated_command_text",
+      "note": "Concatenated the single-quoted string fragments in order, then applied .Replace('aAg',[char]39). A text reconstruction; the PowerShell expression was not executed by the derivation."
+    }
+  ],
+  "metadata": {
+    "case_name": "obfuscated_powershell",
+    "security_proposition": "The obfuscated PowerShell and LSASS-access events are credential-dumping activity rather than a benign test command with ordinary Windows process access.",
+    "case_directory": "PS-003_obfuscated_powershell",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "ps003_obfuscated_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "PowerShell execution (obfuscated)",
+      "candidate_attack_mapping": "T1059.001",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = COUNTER (obfuscation looks malicious, but deterministic deobfuscation reveals benign Write-Host 'Hello, World!'; plus the lsass-direction trap). Calibration role = over-triage-prone (down-rank). Distinct from PS-001 (Base64/missing): here the payload is present and decodable -> counter."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "The obfuscated_powershell folder contains ONLY windows-sysmon.log (single host win-dc-397) + a .yml manifest. Tier-1 single-sensor, verified this build."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "ps003_obfuscated_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_alert_process_tree",
+      "primary_host": "win-dc-397.attackrange.local",
+      "primary_user": "ATTACKRANGE\\Administrator",
+      "boundary_definition": [
+        "A0 = the obfuscated powershell (record 28476), launched interactively via explorer -> cmd.",
+        "EV = the parent cmd, the benign PSScriptPolicyTest, and the two lsass->powershell EID10 access events (counter).",
+        "EXCLUDED: heavy benign desktop noise (Explorer.EXE -> SearchUI/ShellExperienceHost/firefox handle-opens) and csrss/conhost/svchost handle-opens."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "powershell.exe running a string-obfuscated command piped to iex is the T1059.001 obfuscation detection.",
+      "selection_reason": "The obfuscated command is the alert; deterministic deobfuscation (DER-001) reveals the benign payload -> counter-evidence."
+    },
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window",
+      "EID10 TargetProcessGuid==A0"
+    ],
+    "event_groups": [
+      {
+        "group": "execution",
+        "event_record_ids": [
+          "28429",
+          "28476"
+        ],
+        "description": "explorer -> cmd -> obfuscated powershell."
+      },
+      {
+        "group": "counter_evidence_lsass_direction",
+        "event_record_ids": [
+          "28486",
+          "28487"
+        ],
+        "description": "lsass.exe is the SOURCE accessing powershell (NOT powershell dumping lsass)."
+      },
+      {
+        "group": "benign_runtime",
+        "event_record_ids": [
+          "28485"
+        ],
+        "description": "PSScriptPolicyTest runtime artifact."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "counter_intent",
+        "event_record_id": "",
+        "note": "over-triage-prone COUNTER case; obfuscation looks malicious but DER-001 reconstructs a benign Write-Host, and the lsass access is lsass->ps (reversed direction)."
+      },
+      {
+        "topic": "deobfuscation",
+        "event_record_id": "28476",
+        "note": "DER-001 = concat single-quoted fragments + .Replace('aAg',[char]39) -> Write-Host 'Hello, World!'. A text reconstruction, not execution."
+      },
+      {
+        "topic": "distinct_from_ps001",
+        "event_record_id": "",
+        "note": "Distinct from PS-001: PS-001 is Base64 with the payload ABSENT (missing); PS-003 is string-concat with the payload PRESENT-and-decodable (counter)."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "powershell_counter_exemplar",
+        "obfuscation_deobfuscation_test",
+        "over_triage_down_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

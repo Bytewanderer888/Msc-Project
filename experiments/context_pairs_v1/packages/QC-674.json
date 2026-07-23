@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "case_id": "QC-674",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [],
+    "time_window_utc": {
+      "start": "2022-04-13T19:46:54.963916000Z",
+      "end": "2022-04-13T19:47:51.610114800Z"
+    },
+    "event_count": 5,
+    "event_types_present": [
+      "network_share_object_access"
+    ],
+    "sourcetypes_present": [
+      "Security"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2022-04-13T19:46:54.963916000Z",
+    "event_type": "network_share_object_access",
+    "source_event": {
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "channel": "Security",
+      "event_code": 5145,
+      "event_record_id": "security:309958"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "share_name": "\\\\*\\IPC$",
+      "relative_target": "lsarpc",
+      "access_mask": "0x12019f",
+      "object_type": "File"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2022-04-13T19:47:51.581699200Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "security:310079"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\IPC$",
+        "relative_target": "lsarpc",
+        "access_mask": "0x12019f",
+        "object_type": "File"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2022-04-13T19:47:51.592295500Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "security:310080"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\IPC$",
+        "relative_target": "lsarpc",
+        "access_mask": "0x12019f",
+        "object_type": "File"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2022-04-13T19:47:51.602092300Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "security:310081"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\IPC$",
+        "relative_target": "lsarpc",
+        "access_mask": "0x12019f",
+        "object_type": "File"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2022-04-13T19:47:51.610114800Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "security:310082"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\IPC$",
+        "relative_target": "lsarpc",
+        "access_mask": "0x12019f",
+        "object_type": "File"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

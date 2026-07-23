@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-M04",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "file-server-01.corp.local"
+    ],
+    "users": [
+      "root"
+    ],
+    "time_window_utc": {
+      "start": "2025-12-11T14:44:26.708Z",
+      "end": "2025-12-11T14:44:26.712Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "backup_removal_command",
+      "backup_removal_result"
+    ],
+    "sourcetypes_present": [
+      "linux_audit"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2025-12-11T14:44:26.708Z",
+    "event_type": "backup_removal_command",
+    "source_event": {
+      "provider": "Linux Audit subsystem",
+      "channel": "/var/log/audit/audit.log",
+      "event_code": 59,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "file-server-01.corp.local",
+    "attributes": {
+      "user": "root",
+      "image": "/usr/bin/rm",
+      "command_line": "rm -rf /var/backups/*",
+      "target_filename": "/var/backups/*",
+      "terminal": "pts0"
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2025-12-11T14:44:26.712Z",
+      "event_type": "backup_removal_result",
+      "source_event": {
+        "provider": "Linux Audit subsystem",
+        "channel": "/var/log/audit/audit.log",
+        "event_code": 263,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "file-server-01.corp.local",
+      "attributes": {
+        "process_name": "rm",
+        "operation": "unlinkat",
+        "status": "success=no",
+        "exit_code": "-2",
+        "error": "ENOENT",
+        "target_parent": "/var/backups/"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

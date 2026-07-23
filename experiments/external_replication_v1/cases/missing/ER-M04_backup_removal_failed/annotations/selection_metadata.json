@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-M04",
+  "case_name": "backup_removal_failed",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "The observed recursive removal command deleted backup material and impaired recovery.",
+  "attack_category": {
+    "category": "Inhibit System Recovery",
+    "candidate_attack_mapping": "T1490",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "CAM-LDS",
+    "scenario": "cam-s3-ssh-healthcheck",
+    "capture_cluster": "cam-s3-ssh-healthcheck",
+    "telemetry_depth": "single_source",
+    "sensors": [
+      "Linux audit"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "attacker-side AttackMate commands, output, and ATT&CK metadata",
+      "source scenario and variant names",
+      "condition, verdict, severity, action, and ground truth",
+      "host linuxshare -> file-server-01"
+    ],
+    "deterministic_derivations": []
+  },
+  "operational_response_family": "endpoint_isolation",
+  "nearest_frozen_case": null,
+  "differentiation": "This case adds Linux recovery-impairment intent with an explicit failed target syscall; the frozen benchmark has no equivalent backup-removal boundary."
+}

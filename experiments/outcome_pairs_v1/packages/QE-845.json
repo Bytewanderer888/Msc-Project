@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "package_type": "neutral_security_event_package",
+  "case_id": "QE-845",
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-12-09T11:21:53.849215000Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "8401"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{58D8C100-B351-5FD0-0000-0010E7731100}",
+      "process_id": "4812",
+      "image": "C:\\Windows\\System32\\sc.exe",
+      "original_file_name": "sc.exe",
+      "command_line": "sc  create \"Example Service\" binpath= \"C:\\Program Files\\windows_service.exe\" Displayname= \"Example Service\" start= auto ",
+      "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=BD31EB150F6547D18329E5F00801D1CD,SHA256=8A775B86CE1A057E290CCD26C59C96070684468A3119790743A346CD54F4DFDF,IMPHASH=A68324ADB4F5664AF8A79E04062F4A92",
+      "parent_process_guid": "{58D8C100-B351-5FD0-0000-001008731100}",
+      "parent_process_id": "4420",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"copy C:\\[x]\\[x]\\[id]\\bin\\WindowsServiceExample.exe \"C:\\Program Files\\windows_service.exe\" & copy C:\\[x]\\[x]\\[id]\\bin\\WindowsServiceExample.exe \"C:\\program.exe\" & sc create \"Example Service\" binpath= \"C:\\Program Files\\windows_service.exe\" Displayname= \"Example Service\" start= auto & sc start \"Example Service\"\" "
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-12-09T11:21:53.857822700Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "8420"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{58D8C100-B351-5FD0-0000-0010BC741100}",
+        "process_id": "4980",
+        "image": "C:\\Windows\\System32\\sc.exe",
+        "original_file_name": "sc.exe",
+        "command_line": "sc  start \"Example Service\" ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=BD31EB150F6547D18329E5F00801D1CD,SHA256=8A775B86CE1A057E290CCD26C59C96070684468A3119790743A346CD54F4DFDF,IMPHASH=A68324ADB4F5664AF8A79E04062F4A92",
+        "parent_process_guid": "{58D8C100-B351-5FD0-0000-001008731100}",
+        "parent_process_id": "4420",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"copy C:\\[x]\\[x]\\[id]\\bin\\WindowsServiceExample.exe \"C:\\Program Files\\windows_service.exe\" & copy C:\\[x]\\[x]\\[id]\\bin\\WindowsServiceExample.exe \"C:\\program.exe\" & sc create \"Example Service\" binpath= \"C:\\Program Files\\windows_service.exe\" Displayname= \"Example Service\" start= auto & sc start \"Example Service\"\" "
+      }
+    }
+  ],
+  "deterministic_derivations": [],
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2020-12-09T11:21:53.849215000Z",
+      "end": "2020-12-09T11:21:53.857822700Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  }
+}

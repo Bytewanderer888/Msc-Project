@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-C02",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01"
+    ],
+    "users": [
+      "SYSTEM"
+    ],
+    "time_window_utc": {
+      "start": "2024-12-01T11:07:03.417875400Z",
+      "end": "2024-12-01T11:07:03.417897800Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "network_connection"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2024-12-01T11:07:03.417875400Z",
+    "event_type": "network_connection",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 3,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "host-01",
+    "attributes": {
+      "image": "C:\\Windows\\System32\\svchost.exe",
+      "process_id": "520",
+      "user": "SYSTEM",
+      "protocol": "tcp",
+      "initiated": "true",
+      "source_ip": "::1",
+      "source_port": "53063",
+      "destination_ip": "::1",
+      "destination_port": "5985"
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2024-12-01T11:07:03.417897800Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "image": "System",
+        "process_id": "4",
+        "user": "SYSTEM",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "::1",
+        "source_port": "53063",
+        "destination_ip": "::1",
+        "destination_port": "5985"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

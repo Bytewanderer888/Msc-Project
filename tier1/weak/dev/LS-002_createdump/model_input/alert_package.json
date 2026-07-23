@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LS-002",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01"
+    ],
+    "users": [
+      "host-01-\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2023-01-21T12:43:15.963616400Z",
+      "end": "2023-01-21T13:02:33.687750100Z"
+    },
+    "event_count": 5,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2023-01-21T12:43:15.963616400Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "65364864"
+    },
+    "computer": "host-01",
+    "attributes": {
+      "process_guid": "{CCA468B6-DDE3-63CB-0D72-000000009C02}",
+      "process_id": "6292",
+      "image": "C:\\Program Files\\PowerShell\\7\\createdump.exe",
+      "original_file_name": "FX_VER_INTERNALNAME_STR",
+      "command_line": "\"C:\\Program Files\\PowerShell\\7\\createdump.exe\" -u -f C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\dotnet-lsass.dmp 632",
+      "current_directory": "C:\\Users\\Administrator\\Desktop\\Doge-AMSI-patch-main\\",
+      "user": "host-01-\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=A48662183F845ECA823960033B5B6712,SHA256=930F833726F7E77F11D1C4E8B7A6390ED46776D9797F8B8D7C253F1EC7CDC733",
+      "parent_process_guid": "{CCA468B6-EDF3-63CA-4B55-000000009C02}",
+      "parent_process_id": "5532",
+      "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "parent_command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" "
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2023-01-21T12:43:22.651734100Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "65365536"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "process_guid": "{CCA468B6-DDEA-63CB-0E72-000000009C02}",
+        "process_id": "5920",
+        "image": "C:\\Program Files\\PowerShell\\7\\createdump.exe",
+        "original_file_name": "FX_VER_INTERNALNAME_STR",
+        "command_line": "\"C:\\Program Files\\PowerShell\\7\\createdump.exe\" -u -f C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\dotnet-lsass.dmp ",
+        "current_directory": "C:\\Users\\Administrator\\Desktop\\Doge-AMSI-patch-main\\",
+        "user": "host-01-\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=A48662183F845ECA823960033B5B6712,SHA256=930F833726F7E77F11D1C4E8B7A6390ED46776D9797F8B8D7C253F1EC7CDC733",
+        "parent_process_guid": "{CCA468B6-EDF3-63CA-4B55-000000009C02}",
+        "parent_process_id": "5532",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2023-01-21T12:48:40.030560100Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "65397981"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "process_guid": "{CCA468B6-DF28-63CB-3B72-000000009C02}",
+        "process_id": "6852",
+        "image": "C:\\Program Files\\PowerShell\\7\\createdump.exe",
+        "original_file_name": "FX_VER_INTERNALNAME_STR",
+        "command_line": "\"C:\\Program Files\\PowerShell\\7\\createdump.exe\" -u -f C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\dotnet-lsass.dmp",
+        "current_directory": "C:\\Program Files\\PowerShell\\7\\",
+        "user": "host-01-\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=A48662183F845ECA823960033B5B6712,SHA256=930F833726F7E77F11D1C4E8B7A6390ED46776D9797F8B8D7C253F1EC7CDC733",
+        "parent_process_guid": "{CCA468B6-09CB-63CB-D258-000000009C02}",
+        "parent_process_id": "7100",
+        "parent_image": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "parent_command_line": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2023-01-21T12:48:57.576443800Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "65399564"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "process_guid": "{CCA468B6-DF39-63CB-3C72-000000009C02}",
+        "process_id": "6952",
+        "image": "C:\\Program Files\\PowerShell\\7\\createdump.exe",
+        "original_file_name": "FX_VER_INTERNALNAME_STR",
+        "command_line": "\"C:\\Program Files\\PowerShell\\7\\createdump.exe\" -u -f C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\dotnet-lsass.dmp",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "host-01-\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=A48662183F845ECA823960033B5B6712,SHA256=930F833726F7E77F11D1C4E8B7A6390ED46776D9797F8B8D7C253F1EC7CDC733",
+        "parent_process_guid": "{CCA468B6-09CB-63CB-D258-000000009C02}",
+        "parent_process_id": "7100",
+        "parent_image": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "parent_command_line": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2023-01-21T13:02:33.687750100Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "65436350"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "process_guid": "{CCA468B6-E269-63CB-E572-000000009C02}",
+        "process_id": "6916",
+        "image": "C:\\Program Files\\PowerShell\\7\\createdump.exe",
+        "original_file_name": "FX_VER_INTERNALNAME_STR",
+        "command_line": "\"C:\\Program Files\\PowerShell\\7\\createdump.exe\" -u -f C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\dotnet-lsass.dmp",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "host-01-\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=A48662183F845ECA823960033B5B6712,SHA256=930F833726F7E77F11D1C4E8B7A6390ED46776D9797F8B8D7C253F1EC7CDC733",
+        "parent_process_guid": "{CCA468B6-09CB-63CB-D258-000000009C02}",
+        "parent_process_id": "7100",
+        "parent_image": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "parent_command_line": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" "
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

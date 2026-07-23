@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1053.005/schtasks/windows-sysmon.log",
+      "sha256": "2af70b9815a95c0be345a10e7c833cbcd5c4dd6919040d7652396b008475acba"
+    }
+  ],
+  "primary_host": "win-dc-974.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "schtasks/windows-sysmon.log is host win-dc-974 (single). The folder's windows-security.log is the same host but a different sensor (Security 4698); this case uses the Sysmon capture only. Tier-1 single-sensor."
+  }
+}

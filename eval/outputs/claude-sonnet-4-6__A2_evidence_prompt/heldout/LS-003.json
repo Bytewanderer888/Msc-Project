@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.85,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "Task Manager (taskmgr.exe) was launched interactively by corp\\Administrator via explorer.exe (EV-001), then made multiple process access requests to lsass.exe (EV-002, EV-003, A0). The culminating access (A0) used granted_access 0x1fffff (PROCESS_ALL_ACCESS), and the call trace through dbgcore.DLL is consistent with MiniDumpWriteDump execution. This is confirmed by EV-004, which shows taskmgr.exe writing a file named 'lsass (2).DMP' to the user's Temp directory \u2014 a classic LSASS memory dump for credential harvesting. While Task Manager can legitimately create process dumps, the combination of PROCESS_ALL_ACCESS rights, the dbgcore.DLL dump call chain, and the explicit lsass dump file creation in a temp path strongly indicates deliberate credential dumping activity. No evidence of a defensive or administrative justification is present.",
+  "recommended_action": "escalate"
+}

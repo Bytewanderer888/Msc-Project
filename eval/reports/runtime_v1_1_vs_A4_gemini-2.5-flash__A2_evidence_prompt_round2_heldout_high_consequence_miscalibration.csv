@@ -1,0 +1,4 @@
+profile,target,n,oracle_positive_n,tp,fp,fn,tn,recall,precision,specificity,f1,deferral_n,deferral_rate,false_negative_cases,false_positive_cases
+integrity_only,high_consequence_miscalibration,20,2,0,3,2,15,0.0,0.0,0.8333,,3,0.15,DISC-004|PS-003,CRED-001|DISC-001|LS-003
+consequence_gate,high_consequence_miscalibration,20,2,2,8,0,10,1.0,0.2,0.5556,0.3333,10,0.5,,CRED-001|DISC-001|LS-003|OD-001|RUN-001|SMB-001|SVC-001|WMI-001
+safety_first,high_consequence_miscalibration,20,2,2,11,0,7,1.0,0.1538,0.3889,0.2666,13,0.65,,BF-002|CRED-001|DISC-001|LOGON-001|LS-003|OD-001|PS-004|RUN-001|SMB-001|SVC-001|WMI-001

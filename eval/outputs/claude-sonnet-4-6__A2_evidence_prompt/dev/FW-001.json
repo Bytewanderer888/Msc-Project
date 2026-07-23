@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.62,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "A0 shows netsh.exe running at High integrity under a standard user account (host-01\\user-01) to add an inbound TCP firewall rule on port 450 with the name '[x] testing', spawned from a bare cmd.exe with no visible parent command context. EV-001 confirms the rule was written to the Windows Firewall registry key, and EV-003/EV-004 confirm the rule was deleted ~5 seconds later \u2014 the transient add-then-delete pattern is consistent with a connectivity test or a cleanup step in a script, but is also a known technique used to probe firewall state or briefly open a port. The '[x] testing' name and non-standard port 450 are mildly anomalous; however, no inbound connection, payload delivery, or lateral movement is evidenced, and the rule was fully reverted (EV-004). The absence of any network connection events or further suspicious child processes caps confidence in a malicious verdict.",
+  "recommended_action": "investigate"
+}

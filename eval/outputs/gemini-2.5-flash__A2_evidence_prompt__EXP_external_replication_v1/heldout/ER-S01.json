@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "DER-001"
+  ],
+  "rationale": "The alert (A0) shows an external IP accessing a PHP file in a WordPress upload directory, which is suspicious. The decoded query parameter (DER-001) reveals an attempt to execute a MySQL command to select all users from the 'wp_users' table, indicating a clear attempt at data exfiltration or reconnaissance on the database. The 200 HTTP status and large response size suggest the command was successful and data was returned.",
+  "recommended_action": "isolate"
+}

@@ -1,0 +1,47 @@
+{
+  "record_schema": "safesoc.selected_otrf_sources.v1",
+  "created_utc": "2026-07-15",
+  "upstream": {
+    "name": "OTRF Security-Datasets",
+    "repository": "https://github.com/OTRF/Security-Datasets",
+    "snapshot_directory": "Security-Datasets-master"
+  },
+  "files": [
+    {
+      "path": "datasets/atomic/windows/defense_evasion/host/cmd_disable_eventlog_service_startuptype_modification_via_registry.zip",
+      "bytes": 367047,
+      "sha256": "4312946d5bb0883e691da3b1130d4179b951a413278b450a75c05d56a2858a1a",
+      "cases": ["EVL-001"]
+    },
+    {
+      "path": "datasets/atomic/windows/defense_evasion/host/cmd_netsh_fw_mod_open_ports.zip",
+      "bytes": 97711,
+      "sha256": "3d887b38c6a92892f950029f40114fe4598a798ad20453671dbe3d111b9ce4a2",
+      "cases": ["FW-001"]
+    },
+    {
+      "path": "datasets/atomic/windows/discovery/host/cmd_discover_iexplorer_version_registry.zip",
+      "bytes": 9193,
+      "sha256": "3215b22ff18ea946923431a51edc83e3e0ba5d4b559ff1d6b7d27c16cc5803da",
+      "cases": ["DISC-004"]
+    },
+    {
+      "path": "datasets/atomic/windows/persistence/host/cmd_userinitmprlogonscript_batch.zip",
+      "bytes": 12864,
+      "sha256": "53a01d6976b7567a2464628d850c51cc48b1a91a932cd2b0e110a510bcedf858",
+      "cases": ["LGN-002"]
+    },
+    {
+      "path": "datasets/compound/apt29/day1/apt29_evals_day1_manual.zip",
+      "bytes": 13944973,
+      "sha256": "98a073140860560d70080ace9142961be4f64b4862bae892d62d0f254d0fdbe5",
+      "cases": ["GPO-001", "RTLO-001", "UAC-001"]
+    },
+    {
+      "path": "datasets/compound/apt29/day2/apt29_evals_day2_manual.zip",
+      "bytes": 43033041,
+      "sha256": "377f8cba5db95a453a3ee8bd19f493efafc23724541482a4da99da28ee4665f9",
+      "cases": ["RDL-001", "RUN-001", "WMI-001"]
+    }
+  ]
+}

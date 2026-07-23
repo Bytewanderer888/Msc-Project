@@ -1,0 +1,194 @@
+{
+  "schema_version": "1.0",
+  "case_id": "DISC-001",
+  "case_name": "ad_account_discovery",
+  "security_proposition": "The observed domain-account enumeration is adversary-driven reconnaissance.",
+  "case_directory": "DISC-001_ad_account_discovery",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "Account Discovery (domain user enumeration)",
+    "candidate_attack_mapping": "T1087.002",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = WEAK. A 4-second burst of FIVE different domain-user enumeration methods (net user/users /domain, dsquery user, wmic ds_user via LDAP, powershell get-wmiobject ds_user, Get-ADUser -Filter *) on the DC. This is a genuine reconnaissance INDICATOR, but discovery alone is INSUFFICIENT to confirm a breach: there is NO malicious outcome (no credential access, no lateral movement, no exploitation follows) and the actor is AMBIGUOUS (attacker recon, pentest, inventory tool, or admin script all look like this). Calibration role = over-triage-prone (down-rank): a model must NOT escalate discovery-only activity to a confirmed compromise (High/Critical); the correct read is 'suspicious enumeration, investigate for follow-on' (Medium). Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1087.002/AD_discovery/windows-sysmon.log",
+    "original_filename": "windows-sysmon.log",
+    "stored_filename": "disc001_ad_discovery_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "1b78f515120a7e5ac532444fd7fd322c8dc1abf8efebe0295abad3939972db0d",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "Scoped to host win-dc-391's account-discovery burst in AD_discovery/windows-sysmon.log; Sysmon only (EID 1 process-create). The log's other host (win-host-944) and the repeat burst are excluded. Single host, single sensor."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "disc001_ad_discovery_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    }
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/disc001_events.json",
+    "related_events": "extracted/disc001_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "scope_type": "domain_account_discovery_recon_burst",
+    "primary_host": "win-dc-391.attackrange.local",
+    "primary_user": "scripted (cmd.exe parent) on the domain controller",
+    "boundary_definition": [
+      "A0 = the first clear account-discovery command, 'net user /domain' (48627, 09:32:05).",
+      "EV = five more user-enumeration methods in the same 4-second burst: net users /domain, dsquery user, wmic ds_user, powershell get-wmiobject ds_user, Get-ADUser -Filter *.",
+      "Scoped to win-dc-391's first recon burst (09:32:05-09:32:09).",
+      "EXCLUDED: net1.exe delegated children and cmd.exe /c wrappers (redundant), duplicate/partial 'net user /do' invocations, the repeat burst at 09:33, and the other host win-host-944.",
+      "ABSENT by design: any follow-on credential-access, lateral-movement, or exploitation — the activity is discovery-only."
+    ],
+    "time_window_utc": {
+      "start": "2021-08-24T09:32:05.897869500Z",
+      "end": "2021-08-24T09:32:09.470305500Z"
+    }
+  },
+  "main_alert_selection": {
+    "selection_method": "A domain account-discovery command (e.g., net user /domain) is a common T1087.002 detection trigger.",
+    "selection_reason": "net user /domain is the most recognizable enumeration command; the following methods establish a broad multi-tool recon burst.",
+    "event_record_id": "48627",
+    "process_guid": "{80A11F3A-BC95-6124-7609-00000000F001}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "host",
+      "time_window",
+      "ParentImage==cmd.exe",
+      "discovery_target==domain_users"
+    ],
+    "included_event_record_ids": [
+      "48627",
+      "48659",
+      "48675",
+      "48691",
+      "48727",
+      "48785"
+    ],
+    "event_groups": [
+      {
+        "group": "user_enumeration_burst",
+        "event_record_ids": [
+          "48627",
+          "48659",
+          "48675",
+          "48691",
+          "48727",
+          "48785"
+        ],
+        "description": "Five domain-user enumeration methods (net, dsquery, wmic/LDAP, WMI ds_user, Get-ADUser) in a 4-second burst."
+      }
+    ]
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "48627",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: 'net user /domain' (enumerate domain user accounts) spawned by cmd.exe on the DC win-dc-391 — a T1087.002 account-discovery command"
+    },
+    "EV-001": {
+      "event_record_id": "48659",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "'net users /domain' — a second net.exe domain-user enumeration variant"
+    },
+    "EV-002": {
+      "event_record_id": "48675",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "'dsquery user' — AD directory user query"
+    },
+    "EV-003": {
+      "event_record_id": "48691",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "'wmic /NAMESPACE:\\\\root\\directory\\ldap PATH ds_user GET ds_samaccountname /VALUE' — WMI/LDAP domain-user enumeration"
+    },
+    "EV-004": {
+      "event_record_id": "48727",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "'powershell get-wmiobject -class ds_user -namespace root\\directory\\ldap' — WMI ds_user enumeration"
+    },
+    "EV-005": {
+      "event_record_id": "48785",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "'powershell Get-ADUser -Filter *' — AD-module enumeration of all domain users"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "weak_intent",
+      "event_record_id": "",
+      "note": "RESEARCHER-PRIVATE: WEAK / over-triage-prone. Multi-method user enumeration is a real recon indicator, but discovery alone cannot confirm a breach (no malicious outcome, ambiguous actor). The model must not over-escalate."
+    },
+    {
+      "topic": "no_follow_on",
+      "event_record_id": "",
+      "note": "The decisive fact: the activity begins and ends with discovery — no credential access, lateral movement, or exploitation follows. Insufficient to confirm compromise or impact."
+    },
+    {
+      "topic": "actor_ambiguity",
+      "event_record_id": "",
+      "note": "Rapid multi-tool enumeration is aggressive, but attacker recon, pentests, inventory/monitoring tools, and admin scripts all produce this pattern — the actor and intent are ambiguous from this evidence alone."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "discovery_weak_exemplar",
+      "over_triage_down_rank_test",
+      "recon_only_insufficiency_rule_dev"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-05",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

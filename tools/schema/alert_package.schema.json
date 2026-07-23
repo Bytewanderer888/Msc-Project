@@ -1,0 +1,612 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SafeSOC alert_package",
+  "description": "The neutral, model-visible security-event package (the only LLM input) \u2014 regenerated 2026-07-05 from all 41 current cases.",
+  "type": "object",
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "deterministic_derivations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "derivation_id": {
+            "type": "string"
+          },
+          "derivation_method": {
+            "type": "string"
+          },
+          "derived_field": {
+            "type": "string"
+          },
+          "source_evidence_id": {
+            "type": "string"
+          },
+          "source_field": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "derivation_id",
+          "derivation_method",
+          "derived_field",
+          "source_evidence_id",
+          "source_field",
+          "value"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "evidence_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "access_mask": {
+                "type": "string"
+              },
+              "action_arguments": {
+                "type": "string"
+              },
+              "action_command": {
+                "type": "string"
+              },
+              "auth_package": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string"
+              },
+              "call_trace": {
+                "type": "string"
+              },
+              "command_line": {
+                "type": "string"
+              },
+              "creation_utc_time": {
+                "type": "string"
+              },
+              "creator_process_id": {
+                "type": "string"
+              },
+              "current_directory": {
+                "type": "string"
+              },
+              "destination_hostname": {
+                "type": "string"
+              },
+              "destination_ip": {
+                "type": "string"
+              },
+              "destination_port": {
+                "type": "string"
+              },
+              "details": {
+                "type": "string"
+              },
+              "failure_reason": {
+                "type": "string"
+              },
+              "granted_access": {
+                "type": "string"
+              },
+              "hashes": {
+                "type": "string"
+              },
+              "image": {
+                "type": "string"
+              },
+              "initiated": {
+                "type": "string"
+              },
+              "integrity_level": {
+                "type": "string"
+              },
+              "ip_address": {
+                "type": "string"
+              },
+              "ip_port": {
+                "type": "string"
+              },
+              "logon_process": {
+                "type": "string"
+              },
+              "logon_type": {
+                "type": "string"
+              },
+              "mandatory_label": {
+                "type": "string"
+              },
+              "new_process_id": {
+                "type": "string"
+              },
+              "new_process_name": {
+                "type": "string"
+              },
+              "object_type": {
+                "type": "string"
+              },
+              "original_file_name": {
+                "type": "string"
+              },
+              "parent_command_line": {
+                "type": "string"
+              },
+              "parent_image": {
+                "type": "string"
+              },
+              "parent_process_guid": {
+                "type": "string"
+              },
+              "parent_process_id": {
+                "type": "string"
+              },
+              "parent_process_name": {
+                "type": "string"
+              },
+              "process_guid": {
+                "type": "string"
+              },
+              "process_id": {
+                "type": "string"
+              },
+              "process_name": {
+                "type": "string"
+              },
+              "protocol": {
+                "type": "string"
+              },
+              "registry_event": {
+                "type": "string"
+              },
+              "relative_target": {
+                "type": "string"
+              },
+              "run_as": {
+                "type": "string"
+              },
+              "run_level": {
+                "type": "string"
+              },
+              "share_local_path": {
+                "type": "string"
+              },
+              "share_name": {
+                "type": "string"
+              },
+              "source_image": {
+                "type": "string"
+              },
+              "source_ip": {
+                "type": "string"
+              },
+              "source_port": {
+                "type": "string"
+              },
+              "source_process_guid": {
+                "type": "string"
+              },
+              "source_process_id": {
+                "type": "string"
+              },
+              "start_address": {
+                "type": "string"
+              },
+              "start_function": {
+                "type": "string"
+              },
+              "start_module": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "sub_status": {
+                "type": "string"
+              },
+              "subject_domain_name": {
+                "type": "string"
+              },
+              "subject_logon_id": {
+                "type": "string"
+              },
+              "subject_user": {
+                "type": "string"
+              },
+              "subject_user_name": {
+                "type": "string"
+              },
+              "target_domain_name": {
+                "type": "string"
+              },
+              "target_filename": {
+                "type": "string"
+              },
+              "target_image": {
+                "type": "string"
+              },
+              "target_object": {
+                "type": "string"
+              },
+              "target_process_guid": {
+                "type": "string"
+              },
+              "target_process_id": {
+                "type": "string"
+              },
+              "target_user_name": {
+                "type": "string"
+              },
+              "task_name": {
+                "type": "string"
+              },
+              "triggers": {
+                "type": "string"
+              },
+              "user": {
+                "type": "string"
+              },
+              "workstation_name": {
+                "type": "string"
+              }
+            },
+            "required": [],
+            "additionalProperties": true
+          },
+          "computer": {
+            "type": "string"
+          },
+          "event_time_utc": {
+            "type": "string"
+          },
+          "event_type": {
+            "type": "string"
+          },
+          "evidence_id": {
+            "type": "string"
+          },
+          "source_event": {
+            "type": "object",
+            "properties": {
+              "channel": {
+                "type": "string"
+              },
+              "event_code": {
+                "type": "integer"
+              },
+              "event_record_id": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "channel",
+              "event_code",
+              "event_record_id",
+              "provider"
+            ],
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "attributes",
+          "computer",
+          "event_time_utc",
+          "event_type",
+          "evidence_id",
+          "source_event"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "main_alert": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "access_mask": {
+              "type": "string"
+            },
+            "action_command": {
+              "type": "string"
+            },
+            "auth_package": {
+              "type": "string"
+            },
+            "call_trace": {
+              "type": "string"
+            },
+            "command_line": {
+              "type": "string"
+            },
+            "current_directory": {
+              "type": "string"
+            },
+            "destination_hostname": {
+              "type": "string"
+            },
+            "destination_ip": {
+              "type": "string"
+            },
+            "destination_port": {
+              "type": "string"
+            },
+            "failure_reason": {
+              "type": "string"
+            },
+            "granted_access": {
+              "type": "string"
+            },
+            "hashes": {
+              "type": "string"
+            },
+            "image": {
+              "type": "string"
+            },
+            "initiated": {
+              "type": "string"
+            },
+            "integrity_level": {
+              "type": "string"
+            },
+            "ip_address": {
+              "type": "string"
+            },
+            "ip_port": {
+              "type": "string"
+            },
+            "logon_process": {
+              "type": "string"
+            },
+            "logon_type": {
+              "type": "string"
+            },
+            "object_type": {
+              "type": "string"
+            },
+            "original_file_name": {
+              "type": "string"
+            },
+            "parent_command_line": {
+              "type": "string"
+            },
+            "parent_image": {
+              "type": "string"
+            },
+            "parent_process_guid": {
+              "type": "string"
+            },
+            "parent_process_id": {
+              "type": "string"
+            },
+            "process_guid": {
+              "type": "string"
+            },
+            "process_id": {
+              "type": "string"
+            },
+            "process_name": {
+              "type": "string"
+            },
+            "protocol": {
+              "type": "string"
+            },
+            "relative_target": {
+              "type": "string"
+            },
+            "run_as": {
+              "type": "string"
+            },
+            "run_level": {
+              "type": "string"
+            },
+            "share_name": {
+              "type": "string"
+            },
+            "source_image": {
+              "type": "string"
+            },
+            "source_ip": {
+              "type": "string"
+            },
+            "source_port": {
+              "type": "string"
+            },
+            "source_process_guid": {
+              "type": "string"
+            },
+            "source_process_id": {
+              "type": "string"
+            },
+            "start_address": {
+              "type": "string"
+            },
+            "start_function": {
+              "type": "string"
+            },
+            "start_module": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "sub_status": {
+              "type": "string"
+            },
+            "subject_domain_name": {
+              "type": "string"
+            },
+            "subject_user": {
+              "type": "string"
+            },
+            "subject_user_name": {
+              "type": "string"
+            },
+            "target_domain_name": {
+              "type": "string"
+            },
+            "target_image": {
+              "type": "string"
+            },
+            "target_process_guid": {
+              "type": "string"
+            },
+            "target_process_id": {
+              "type": "string"
+            },
+            "target_user_name": {
+              "type": "string"
+            },
+            "task_name": {
+              "type": "string"
+            },
+            "triggers": {
+              "type": "string"
+            },
+            "user": {
+              "type": "string"
+            },
+            "workstation_name": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "additionalProperties": true
+        },
+        "computer": {
+          "type": "string"
+        },
+        "event_time_utc": {
+          "type": "string"
+        },
+        "event_type": {
+          "type": "string"
+        },
+        "evidence_id": {
+          "type": "string"
+        },
+        "is_triggering_alert": {
+          "type": "boolean"
+        },
+        "source_event": {
+          "type": "object",
+          "properties": {
+            "channel": {
+              "type": "string"
+            },
+            "event_code": {
+              "type": "integer"
+            },
+            "event_record_id": {
+              "type": "string"
+            },
+            "provider": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "channel",
+            "event_code",
+            "event_record_id",
+            "provider"
+          ],
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "attributes",
+        "computer",
+        "event_time_utc",
+        "event_type",
+        "evidence_id",
+        "is_triggering_alert",
+        "source_event"
+      ],
+      "additionalProperties": true
+    },
+    "observed_context": {
+      "type": "object",
+      "properties": {
+        "computers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "event_count": {
+          "type": "integer"
+        },
+        "event_types_present": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sourcetypes_present": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "time_window_utc": {
+          "type": "object",
+          "properties": {
+            "end": {
+              "type": "string"
+            },
+            "start": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "end",
+            "start"
+          ],
+          "additionalProperties": true
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "computers",
+        "event_count",
+        "event_types_present",
+        "sourcetypes_present",
+        "time_window_utc",
+        "users"
+      ],
+      "additionalProperties": true
+    },
+    "package_type": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "case_id",
+    "deterministic_derivations",
+    "evidence_items",
+    "main_alert",
+    "observed_context",
+    "package_type",
+    "schema_version"
+  ],
+  "additionalProperties": true
+}

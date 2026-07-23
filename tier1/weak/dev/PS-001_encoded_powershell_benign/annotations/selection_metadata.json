@@ -1,0 +1,265 @@
+{
+  "schema_version": "1.0",
+  "case_id": "PS-001",
+  "case_name": "encoded_powershell_benign",
+  "security_proposition": "The encoded PowerShell chain performed malicious credential dumping or another identifiable malicious payload action.",
+  "case_directory": "PS-001_encoded_powershell_benign",
+  "split": "dev",
+  "status": "audited_dev_2026-07-16",
+  "attack_category": {
+    "category": "PowerShell execution (encoded)",
+    "candidate_attack_mapping": "T1059.001",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = WEAK. The package contains a real encoded PowerShell execution chain and compiler artifacts, but the command supplied to the decoded STDIN wrapper is unavailable, so the meaning and outcome of the present activity remain ambiguous. The reversed LSASS access direction contradicts a credential-dumping interpretation. Calibration role = over-triage-prone (down-rank) + counter-evidence handling."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1059.001/powershell_execution_policy/windows-sysmon.log",
+    "original_filename": "windows-sysmon.log",
+    "stored_filename": "ps001_execpolicy_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "7854054b5fa788e7c430b7045ddbebb09be43300d2b0b2478cb893e70aaaca41",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "The powershell-operational and security logs in this folder are DIFFERENT hosts than the Sysmon capture (win-dc-235). Tier-1 single-sensor."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "ps001_execpolicy_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    }
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/ps001_events.json",
+    "related_events": "extracted/ps001_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "scope_type": "single_alert_process_tree",
+    "primary_host": "win-dc-235.attackrange.local",
+    "primary_user": "ATTACKRANGE\\Administrator",
+    "boundary_definition": [
+      "A0 = the executing encoded powershell (record 93).",
+      "EV = its process-tree lineage, the compiler artifacts, and the four lsass->powershell EID10 access events.",
+      "EXCLUDED: benign OS handle-opens (csrss/conhost/svchost EID10).",
+      "The activity is weak because suspicious execution and compilation are already visible, while their meaning remains ambiguous; STDIN is not treated as a named missing confirmation in an otherwise explicit precursor-to-outcome chain."
+    ],
+    "time_window_utc": {
+      "start": "2020-12-09T08:46:06.881605900Z",
+      "end": "2020-12-09T08:46:08.646946000Z"
+    }
+  },
+  "main_alert_selection": {
+    "selection_method": "powershell.exe with -EncodedCommand and ExecutionPolicy bypass is the T1059.001 detection.",
+    "selection_reason": "The executing (inner) encoded powershell is the focal event; its decoded command reveals a stdin wrapper.",
+    "event_record_id": "93",
+    "process_guid": "{2935EF20-8ECF-5FD0-0000-001039791000}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window",
+      "EID10 TargetProcessGuid==A0"
+    ],
+    "included_event_record_ids": [
+      "93",
+      "60",
+      "73",
+      "87",
+      "88",
+      "89",
+      "107",
+      "108",
+      "109",
+      "110",
+      "126",
+      "127",
+      "128",
+      "154"
+    ],
+    "event_groups": [
+      {
+        "group": "process_tree",
+        "event_record_ids": [
+          "60",
+          "73",
+          "93",
+          "110",
+          "128"
+        ],
+        "description": "cmd -> powershell -> powershell(A0) -> chcp/csc lineage."
+      },
+      {
+        "group": "counter_evidence_lsass_direction",
+        "event_record_ids": [
+          "88",
+          "89",
+          "108",
+          "109"
+        ],
+        "description": "lsass.exe is the SOURCE accessing powershell (NOT powershell dumping lsass)."
+      },
+      {
+        "group": "artifacts",
+        "event_record_ids": [
+          "87",
+          "107",
+          "126",
+          "127",
+          "154"
+        ],
+        "description": "PSScriptPolicyTest files + csc compiler inputs/outputs."
+      }
+    ]
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "93",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: powershell.exe executed with -EncodedCommand (execution-policy bypass)"
+    },
+    "EV-001": {
+      "event_record_id": "60",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "cmd.exe /C launched PowerShell (spawned by a remote WinRS session)"
+    },
+    "EV-002": {
+      "event_record_id": "73",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "parent powershell.exe (outer encoded layer)"
+    },
+    "EV-003": {
+      "event_record_id": "87",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "benign PSScriptPolicyTest artifact (runtime policy check)"
+    },
+    "EV-004": {
+      "event_record_id": "88",
+      "event_type": "process_access",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "COUNTER: lsass.exe accessed powershell.exe (lsass is SOURCE, not target)"
+    },
+    "EV-005": {
+      "event_record_id": "89",
+      "event_type": "process_access",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "COUNTER: lsass.exe accessed powershell.exe (lsass is SOURCE, not target)"
+    },
+    "EV-006": {
+      "event_record_id": "107",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "benign PSScriptPolicyTest artifact (runtime policy check)"
+    },
+    "EV-007": {
+      "event_record_id": "108",
+      "event_type": "process_access",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "COUNTER: lsass.exe accessed the alert powershell (lsass is SOURCE)"
+    },
+    "EV-008": {
+      "event_record_id": "109",
+      "event_type": "process_access",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "COUNTER: lsass.exe accessed the alert powershell (lsass is SOURCE)"
+    },
+    "EV-009": {
+      "event_record_id": "110",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "chcp.com child (code-page set by the wrapper)"
+    },
+    "EV-010": {
+      "event_record_id": "126",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "compiler input/output 40sjawwp.dll written by powershell"
+    },
+    "EV-011": {
+      "event_record_id": "127",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "compiler input 40sjawwp.cmdline written by powershell"
+    },
+    "EV-012": {
+      "event_record_id": "128",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "csc.exe compiler launched by the alert powershell"
+    },
+    "EV-013": {
+      "event_record_id": "154",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "csc.exe wrote 40sjawwp.dll (compiled output)"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "noise_exclusion",
+      "event_record_id": "",
+      "note": "~24 benign EID10 handle-opens by csrss/conhost/svchost excluded; OS plumbing, not security-relevant."
+    },
+    {
+      "topic": "direction_trap",
+      "event_record_id": "108,109",
+      "note": "lsass->powershell direction is the counter-evidence; a 'PowerShell accessed LSASS' claim is CONTRADICTED."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "powershell_weak_and_counter_exemplar",
+      "sufficiency_downgrade_test",
+      "counter_evidence_direction_test"
+    ],
+    "eligible_for_final_heldout_metrics": false
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-05",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

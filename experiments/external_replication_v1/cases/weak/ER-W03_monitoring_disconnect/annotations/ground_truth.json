@@ -1,0 +1,35 @@
+{
+  "case_id": "ER-W03",
+  "security_proposition": "The endpoint monitoring disconnect was deliberately caused to impair security defences.",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "operational_response": {
+    "family": "analyst_escalation",
+    "note": "Investigate the signal and surrounding context; no autonomous containment is justified."
+  },
+  "grounding": {
+    "supporting_evidence": [
+      "A0"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that a process stopped or tampered with the agent",
+      "that the endpoint itself was offline rather than the network or manager",
+      "that telemetry was deleted or defence controls were disabled"
+    ]
+  },
+  "the_trap": "A monitoring gap is operationally relevant, but the status record has no causal endpoint evidence.",
+  "rationale": "A0 records that the endpoint monitoring agent disconnected. It provides no process, command, service-control, or network-causation evidence, so deliberate defence evasion is only one of several possible explanations.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

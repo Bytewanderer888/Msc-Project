@@ -1,0 +1,16 @@
+[
+  {
+    "evidence_id": "A0",
+    "archive_member": "manifestations_raw/steps/6_macro_cron-20/client/logs/log/syslog",
+    "line_number": 1,
+    "record_sha256": "9b2917ed28334cebe1ecf61cb34e2994da04299e5bb97b3c4d80db9a59985370",
+    "raw_record": "Dec 10 10:04:34 client crontab[4271]: (judy) BEGIN EDIT (judy)"
+  },
+  {
+    "evidence_id": "EV-001",
+    "archive_member": "manifestations_raw/steps/6_macro_cron-20/client/logs/log/audit/audit.log",
+    "line_number": 6,
+    "record_sha256": "173f05604825e715c27f04e53b2fb320de66fe23bc1fe2b27c507fa6ba047faf",
+    "raw_record": "type=EXECVE msg=audit(1765361074.224:7191): argc=2 a0=\"crontab\" a1=\"-e\""
+  }
+]

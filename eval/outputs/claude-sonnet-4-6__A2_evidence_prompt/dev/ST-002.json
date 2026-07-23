@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.92,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "A0 shows schtasks.exe creating a scheduled task named 'SoundIentifier' (deliberate typo to evade detection) that executes a payload via WMIC process creation targeting an Alternate Data Stream (ADS) path 'C:\\Users\\Public\\Disk101.ini:59e9c935' \u2014 a classic ADS-based payload hiding technique. EV-001 shows a second scheduled task 'Disk Diag' created within one second, configured to run every 6 minutes executing 'C:\\Users\\Public\\Weber0.js' via explorer.exe, establishing persistence via a suspicious JS file in the public directory. Both tasks are created from the same cmd.exe parent (PID 1592) under corp\\Administrator at High integrity, indicating a scripted/automated attack sequence. The combination of ADS-based payload execution, recurring scheduled task persistence, use of public directories for payloads, and deliberate task name obfuscation are strong indicators of post-exploitation activity.",
+  "recommended_action": "isolate"
+}

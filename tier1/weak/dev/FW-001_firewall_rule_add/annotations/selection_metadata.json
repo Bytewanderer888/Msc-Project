@@ -1,0 +1,150 @@
+{
+  "schema_version": "1.0",
+  "case_id": "FW-001",
+  "case_name": "firewall_inbound_rule_added",
+  "security_proposition": "The inbound firewall rule was created to enable unauthorized remote access.",
+  "case_directory": "FW-001_firewall_rule_add",
+  "split": "dev",
+  "status": "audited_dev_2026-07-16",
+  "attack_category": {
+    "category": "Firewall modification (inbound rule added)",
+    "candidate_attack_mapping": "T1562.004",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: WEAK. An inbound-allow firewall rule is added via netsh — could enable remote access (attacker) or be legitimate admin configuration. No inbound connection exploits it and no follow-on activity confirms malice. Over-triage-prone (down-rank): the model must not conclude 'remote access established / breach'. Cross-corpus OTRF weak. Do not leak."
+  },
+  "source_provenance": {
+    "dataset": "OTRF Security-Datasets (mordor / atomic)",
+    "original_repository_path": "datasets/atomic/windows/defense_evasion/host/cmd_netsh_fw_mod_open_ports.zip",
+    "original_filename": "cmd_netsh_fw_mod_open_ports.zip",
+    "stored_filename": "",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "3d887b38c6a92892f950029f40114fe4598a798ad20453671dbe3d111b9ce4a2",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "",
+    "related_events": "",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "build/case.json",
+    "related_events_query": "build/case.json",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "WORKSTATION5",
+    "boundary_definition": [
+      "A0 = the netsh inbound-allow rule; EV = the rule registry entry, firewall epoch bump, deletion command, and matching registry deletion.",
+      "The same rule is removed about five seconds after creation; no inbound connection uses it and no other malicious activity follows — intent remains unconfirmed."
+    ],
+    "time_window_utc": {
+      "start": "2020-10-21T04:19:04.410Z",
+      "end": "2020-10-21T04:19:09.135Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "1732",
+    "process_guid": "{39e4a257-b6b8-5f8f-710c-000000000700}",
+    "query_file": "build/case.json"
+  },
+  "related_event_selection": {
+    "query_file": "build/case.json",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "1732",
+      "1851",
+      "1853",
+      "2081",
+      "2206"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "1732",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: netsh advfirewall firewall add rule action=allow dir=in — opens an inbound firewall port"
+    },
+    "EV-001": {
+      "event_record_id": "1851",
+      "event_type": "registry_value_set",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "EID13: the FirewallRules registry entry created (v2.30|Action=Allow|Active=TRUE)"
+    },
+    "EV-002": {
+      "event_record_id": "1853",
+      "event_type": "registry_value_set",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "EID13: the SharedAccess firewall Epoch increments (the rule took effect)"
+    },
+    "EV-003": {
+      "event_record_id": "2081",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "netsh deletes the same named TCP/450 firewall rule about five seconds later"
+    },
+    "EV-004": {
+      "event_record_id": "2206",
+      "event_type": "registry_object_change",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "EID12: the matching FirewallRules registry value is deleted"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "weak_config",
+      "note": "WEAK / over-triage-prone: an ambiguous firewall change, removed about five seconds later, with no confirmed exploitation. Cleanup is mitigating context but does not by itself prove benign intent."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "weak_defense_evasion_exemplar",
+      "cross_corpus_weak"
+    ],
+    "eligible_for_final_heldout_metrics": false
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

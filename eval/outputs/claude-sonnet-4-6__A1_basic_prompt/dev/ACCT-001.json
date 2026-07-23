@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.88,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "A PowerShell process running with a base64-encoded command (parent PID 4408) spawned multiple child processes that created local user accounts (A0: 'net user /add [id]_CMD', EV-001: 'New-LocalUser [id]_PowerShell', EV-002: 'net user /add [id]_Admin' with immediate addition to the local Administrators group), then subsequently deleted those accounts (EV-003, EV-004, EV-005) \u2014 a classic create-use-cleanup pattern consistent with post-exploitation account manipulation. The encoded PowerShell command imports a custom module from a non-standard path ('C:\\[x]\\invoke-[x]\\Invoke-[x].psd1') and logs execution to 'C:\\[x]\\atc_execution.csv', strongly suggesting an automated attack simulation or active red-team/adversary tooling. The combination of obfuscated encoded commands, lateral privilege escalation via Administrators group membership, execution from the Temp directory at High integrity, and deliberate artifact cleanup indicates intentional malicious or red-team activity that warrants immediate escalation.",
+  "recommended_action": "escalate"
+}

@@ -1,0 +1,13 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.82,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "All four events (A0, EV-001, EV-002, EV-003) are Windows Security event 5145 (network share object access) against SYSVOL, which is routine domain-joined behavior: EV-001 and EV-002 show host-01$ (the machine account) reading well-known default GPO gpt.ini files ({31B2F340...} and {6AC1786C...} are the Default Domain Policy and Default Domain Controllers Policy GUIDs) via a link-local IPv6 address, consistent with normal Group Policy refresh; A0 and EV-003 show user-02$ (another machine account from 10.0.1.4) enumerating the corp.local\\Policies directory and its root, also consistent with GPO processing. Access masks 0x120089 (read/synchronize) and 0x100081 (read attributes/list directory) are read-only and non-destructive. No write, modify, or suspicious lateral-movement indicators are present, no anomalous tools or processes are evidenced, and the activity pattern matches standard Group Policy client polling across a ~5-minute window.",
+  "recommended_action": "close_benign"
+}

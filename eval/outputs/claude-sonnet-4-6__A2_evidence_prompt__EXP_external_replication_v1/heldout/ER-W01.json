@@ -1,0 +1,10 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.45,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "A0 shows cscript.exe (Windows Script Host) initiating an outbound TCP connection to an external host on port 443, which is atypical \u2014 cscript.exe is a script interpreter that rarely has legitimate reasons to make direct network connections, and its use for outbound HTTPS is a known living-off-the-land technique. However, the evidence package is extremely sparse: there is only a single network connection event with no correlated process creation, parent process, command-line arguments, script content, or DNS resolution events to confirm malicious intent. The destination is anonymized ('external-01') so reputation cannot be assessed. Without additional context (e.g., what script was executed, parent process, user activity pattern), a benign administrative script cannot be ruled out, capping confidence significantly.",
+  "recommended_action": "investigate"
+}

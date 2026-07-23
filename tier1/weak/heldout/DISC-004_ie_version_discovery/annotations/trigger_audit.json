@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "DISC-004",
+  "rule_id": "SAFESOC-TRG-DISC-004",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "source_description": "mordor (cmd_discover_iexplorer_version_registry.zip)",
+  "raw_source_event_count": 68,
+  "complete_scope_event_count": 68,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "31",
+  "expected_record_key": "31",
+  "selected_raw_sha256": "40d71afade05f41957dd5fc04b8b3cfc951b1f8b136681159a6b0d788ee5497c",
+  "pass": true
+}

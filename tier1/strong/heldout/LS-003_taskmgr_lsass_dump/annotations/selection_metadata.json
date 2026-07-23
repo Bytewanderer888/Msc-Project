@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LS-003",
+  "case_name": "taskmgr_lsass_dump",
+  "security_proposition": "Task Manager obtained dump-capable access to LSASS and wrote an LSASS memory dump.",
+  "case_directory": "LS-003_taskmgr_lsass_dump",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "LSASS credential access via legitimate tool (Task Manager)",
+    "candidate_attack_mapping": "T1003.001",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = STRONG (confirmed lsass dump: taskmgr -> lsass 0x1fffff full access + a lsass.DMP file written). Calibration role = UNDER-TRIAGE-prone (up-rank): taskmgr.exe is a legitimate signed Windows tool, so a weak model under-rates it as benign admin activity. The escalation 0x1400(query)->0x1410(read)->0x1fffff(full)+dump is the tell. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1003.001/atomic_red_team/windows-sysmon.log",
+    "original_filename": "windows-sysmon.log",
+    "stored_filename": "ls003_taskmgr_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "a1905850598f1e943708c3329190e29c6cb046389c1575cb2afd6369b5f269f1",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "Source is the T1003.001/atomic_red_team main windows-sysmon.log, which contains TWO hosts (win-dc-807, win-dc-262); this case is scoped to win-dc-262's taskmgr process only. Single-SENSOR (Sysmon), single-HOST (win-dc-262). The log also holds other unrelated dumps (mimikatz/procdump/dumpert/notprocdump) that are NOT part of this case."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "ls003_taskmgr_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    }
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/ls003_events.json",
+    "related_events": "extracted/ls003_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "scope_type": "single_alert_lsass_dump",
+    "primary_host": "win-dc-262.attackrange.local",
+    "primary_user": "ATTACKRANGE\\Administrator",
+    "boundary_definition": [
+      "A0 = taskmgr.exe -> lsass 0x1fffff (full access, 21:34:57).",
+      "EV = the taskmgr launch, its benign 0x1400 query, the 0x1410 read, and the lsass (2).DMP dump file.",
+      "Scoped to win-dc-262 and the taskmgr process (guid ...16F9-601B...A301); the log's other host (win-dc-807) and other dumpers (mimikatz/procdump/dumpert/notprocdump) are EXCLUDED.",
+      "Also excluded: the redundant 0x1000 query."
+    ],
+    "time_window_utc": {
+      "start": "2021-02-03T21:34:49.728193800Z",
+      "end": "2021-02-03T21:34:57.927792400Z"
+    }
+  },
+  "main_alert_selection": {
+    "selection_method": "A process opening lsass.exe with dump-capable GrantedAccess (VM_READ) is the T1003.001 detection.",
+    "selection_reason": "taskmgr's escalation to 0x1fffff plus a written lsass.DMP is a confirmed dump; taskmgr as the actor makes it under-triage-prone.",
+    "event_record_id": "205113",
+    "process_guid": "",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "host",
+      "SourceProcessGuid",
+      "time_window",
+      "TargetImage==lsass.exe",
+      "GrantedAccess"
+    ],
+    "included_event_record_ids": [
+      "205113",
+      "204798",
+      "204847",
+      "204850",
+      "205112"
+    ],
+    "event_groups": [
+      {
+        "group": "escalating_access",
+        "event_record_ids": [
+          "204847",
+          "204850",
+          "205113"
+        ],
+        "description": "taskmgr -> lsass: 0x1400 (query, benign) -> 0x1410 (read) -> 0x1fffff (full). Escalation to a dump."
+      },
+      {
+        "group": "dump_outcome",
+        "event_record_ids": [
+          "205112"
+        ],
+        "description": "taskmgr wrote lsass (2).DMP — the full memory dump on disk (confirmed)."
+      },
+      {
+        "group": "context",
+        "event_record_ids": [
+          "204798"
+        ],
+        "description": "taskmgr.exe launched by Administrator at High integrity."
+      }
+    ]
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "205113",
+      "event_type": "process_access",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: taskmgr.exe opened lsass.exe with full access (GrantedAccess 0x1fffff) — a full memory read, far beyond normal process listing"
+    },
+    "EV-001": {
+      "event_record_id": "204798",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "taskmgr.exe launched (taskmgr /4) by ATTACKRANGE\\Administrator at High integrity"
+    },
+    "EV-002": {
+      "event_record_id": "204847",
+      "event_type": "process_access",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "taskmgr.exe queried lsass.exe (GrantedAccess 0x1400) — normal process-listing access, no VM_READ (benign baseline)"
+    },
+    "EV-003": {
+      "event_record_id": "204850",
+      "event_type": "process_access",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "taskmgr.exe read lsass.exe (GrantedAccess 0x1410, includes VM_READ) — the access escalates toward a dump"
+    },
+    "EV-004": {
+      "event_record_id": "205112",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "taskmgr.exe wrote a full memory dump of the target to C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\lsass (2).DMP — a confirmed LSASS credential dump"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "under_triage_intent",
+      "event_record_id": "",
+      "note": "RESEARCHER-PRIVATE: STRONG evidence, UNDER-TRIAGE-prone. Confirmed lsass dump (0x1fffff + .DMP), but the actor is the legitimate signed taskmgr.exe, so a weak model under-rates. The validator must UP-RANK to reflect the confirmed dump. Tests up-ranking."
+    },
+    {
+      "topic": "granted_access_escalation",
+      "event_record_id": "",
+      "note": "0x1400 (query, no VM_READ = benign) -> 0x1410/0x1fffff (VM_READ = dump-capable). The escalation + the .DMP file distinguish a genuine dump from normal Task Manager process-listing."
+    },
+    {
+      "topic": "no_der",
+      "event_record_id": "",
+      "note": "No encoding -> no DER."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "lsass_strong_under_triage_exemplar",
+      "legitimate_tool_abuse",
+      "bidirectional_up_rank_test"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-05",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

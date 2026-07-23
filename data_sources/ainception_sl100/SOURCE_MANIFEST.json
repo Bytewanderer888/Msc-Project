@@ -1,0 +1,23 @@
+{
+  "corpus": "AInception SL100",
+  "doi": "10.5281/zenodo.17659656",
+  "source_url": "https://zenodo.org/records/17659656",
+  "license": "CC BY 4.0",
+  "retrieved_utc_date": "2026-07-22",
+  "files": [
+    {
+      "path": "SL100.zip",
+      "bytes": 31592162,
+      "upstream_md5": "3d7841d3eaf6d4e297cc75aa9a33fe3d",
+      "sha256": "58eb1ab05a019565cdfb2c9d0403924c8c35188476b7e90829b8c04dcebd0f10",
+      "retention": "local_staging_cache"
+    },
+    {
+      "path": "The AInception datasets.pdf",
+      "bytes": 792228,
+      "upstream_md5": "ef597587efb3c870ad8f3182cf6293be",
+      "sha256": "5c6376543e7d49d8aa59242294b47c9ac380d52ee23bfd426704e4663e7ba81b",
+      "retention": "portable_documentation"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "RUN-001",
+  "rule_id": "SAFESOC-TRG-RUN-001",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-04",
+  "source_description": "mordor (apt29_evals_day2_manual.zip)",
+  "raw_source_event_count": 422695,
+  "complete_scope_event_count": 422695,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "1000064",
+  "expected_record_key": "1000064",
+  "selected_raw_sha256": "02352957f22f3eded02d7add993d3ed2d243ed055e259d80c421bc226583a99e",
+  "pass": true
+}

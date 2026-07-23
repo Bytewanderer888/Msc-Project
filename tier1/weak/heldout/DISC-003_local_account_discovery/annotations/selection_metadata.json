@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0",
+  "case_id": "DISC-003",
+  "case_name": "local_account_discovery_no_followon",
+  "security_proposition": "The observed local-account enumeration is adversary-driven reconnaissance.",
+  "case_directory": "DISC-003_local_account_discovery",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "Local account/group discovery (no follow-on)",
+    "candidate_attack_mapping": "T1087.001",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = WEAK. Local account enumeration (Get-LocalUser, Get-WmiObject Win32_UserAccount) — a recon indicator — but with NO follow-on (no credential access, lateral movement, or payload execution). Intent ambiguous (admin audit vs reconnaissance). Role = over-triage-prone (down-rank): the model must not conclude 'active reconnaissance / compromise'. Do not leak."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1087.001/AD_discovery/windows-sysmon.log",
+    "original_filename": "windows-sysmon.log",
+    "stored_filename": "disc003_localacct_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "c244d0b1fbb70fe5e76181fa490c46d8dea3716996243b2209de496fb5111eb5",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "host filter = win-host-987 (multi-host log)."
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/disc003_events.json",
+    "related_events": "extracted/disc003_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "win-host-987.attackrange.local",
+    "boundary_definition": [
+      "A0 = Get-LocalUser; EV = a cmd wrapper + two Win32_UserAccount enumerations.",
+      "No follow-on cred-access/lateral/exec — outcome absent."
+    ],
+    "time_window_utc": {
+      "start": "2021-08-24T21:37:13.448227800Z",
+      "end": "2021-08-24T21:37:22.665376000Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "30727372",
+    "process_guid": "{B81B27B7-6689-6125-C400-01000000C801}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "30727372",
+      "30727364",
+      "30727454",
+      "30727462"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "30727372",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: powershell Get-LocalUser — local account enumeration (T1087.001)"
+    },
+    "EV-001": {
+      "event_record_id": "30727364",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "cmd /c powershell Get-LocalUser"
+    },
+    "EV-002": {
+      "event_record_id": "30727454",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "cmd /c powershell Get-WmiObject Win32_UserAccount"
+    },
+    "EV-003": {
+      "event_record_id": "30727462",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "powershell Get-WmiObject Win32_UserAccount"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "weak_recon",
+      "note": "WEAK / over-triage-prone: local account enumeration only, no follow-on. The model must not over-read as active recon. Distinct from DISC-001 (AD/domain) and DISC-002 (system/OS)."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "weak_discovery_exemplar",
+      "over_triage_down_rank_test"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

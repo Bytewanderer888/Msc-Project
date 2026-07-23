@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.97,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "This is a textbook UAC bypass via sdclt.exe combined with steganographic payload delivery. EV-001 and EV-002 show PowerShell writing a malicious command and empty DelegateExecute value to HKU\\...\\Folder\\shell\\open\\command, which is the classic sdclt/control.exe UAC bypass registry hijack. A0 confirms sdclt.exe was then launched at High integrity level from cmd.exe, and EV-003 shows sdclt.exe spawning control.exe, which in turn (EV-004) spawns PowerShell with '-ep bypass -window hidden' executing steganographic code that reads pixel data from 'monkey.png' to reconstruct and IEX-execute a hidden payload \u2014 a sophisticated in-memory execution technique. EV-005 shows the registry key being cleaned up afterward, indicating deliberate anti-forensic tradecraft. The full chain \u2014 registry hijack, UAC bypass, steganographic payload extraction, and cleanup \u2014 is unambiguously malicious.",
+  "recommended_action": "isolate"
+}

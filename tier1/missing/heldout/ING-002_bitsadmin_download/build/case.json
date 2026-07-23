@@ -1,0 +1,82 @@
+{
+  "case_id": "ING-002",
+  "split": "heldout",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1105/atomic_red_team/windows-sysmon.log",
+  "computer": "win-dc-792.attackrange.local",
+  "staged_export": "extracted/ing002_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "5917230",
+    "EV": [
+      "5917149",
+      "5917171",
+      "5917221"
+    ]
+  },
+  "roles": {
+    "5917230": "triggering alert: bitsadmin /transfer is invoked with a GitHub raw URL and a %Temp% destination (T1105 ingress surface); transfer success is not established",
+    "5917149": "certutil -urlcache is invoked against the same URL and destination; record 5917171 later confirms its file creation",
+    "5917171": "EID11: the downloaded file Atomic-license.txt is written to %Temp%",
+    "5917221": "cmd.exe (parent powershell) wrapping the bitsadmin transfer"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "lolbin_download_text_file_not_executed",
+    "security_proposition": "The object staged by the observed LOLBin transfer activity subsequently executed.",
+    "case_directory": "ING-002_bitsadmin_download",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "ing002_download_sysmon.log",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Ingress tool transfer (staging visible, execution unconfirmed)",
+      "candidate_attack_mapping": "T1105",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = MISSING. bitsadmin and certutil are invoked with the same external URL and Temp destination; only the certutil-attributed file creation is confirmed. The object is characterized by filename only, with no content, hash, or reputation, and no execution of that destination is present in the scoped Sysmon source. The transfer/staging surface is present; malicious execution is not evidenced. Do not leak."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "host filter = win-dc-792 (multi-host log)."
+    },
+    "case_scope": {
+      "primary_host": "win-dc-792.attackrange.local",
+      "boundary_definition": [
+        "A0 = the bitsadmin transfer invocation; EV = the certutil invocation, its file-create confirmation, and the cmd wrapper.",
+        "The object is characterized only by its destination name. No process execution of that destination is present in the scoped Sysmon source."
+      ],
+      "absence_audit": {
+        "confirmation": "Sysmon ProcessCreate executing the transferred destination object or a command consuming that exact destination",
+        "sensor": "Microsoft-Windows-Sysmon/Operational",
+        "host": "win-dc-792.attackrange.local",
+        "raw_source": "_splunk_ingest/ing002_download_sysmon.log",
+        "source_window_utc": {
+          "start": "2021-03-24T21:49:05.303479700Z",
+          "end": "2021-03-24T21:52:01.768478100Z"
+        },
+        "result": "zero process-creation events executing or consuming the transferred destination; file creation is confirmed only for the certutil operation"
+      }
+    },
+    "curation_notes": [
+      {
+        "topic": "missing_outcome",
+        "note": "MISSING / over-triage-prone: LOLBIN transfer commands and one file creation are visible, but object content is unverified and execution is not evidenced in the scoped Sysmon source."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "missing_ingress_exemplar",
+        "over_triage_down_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

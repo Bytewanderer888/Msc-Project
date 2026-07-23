@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-S02",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "server-01.corp.local"
+    ],
+    "users": [
+      "svc-web",
+      "user-01",
+      "root"
+    ],
+    "time_window_utc": {
+      "start": "2022-02-08T08:36:38Z",
+      "end": "2022-02-08T08:36:57.308000Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "su_session",
+      "sudo_command",
+      "linux_audit"
+    ],
+    "sourcetypes_present": [
+      "linux_auth",
+      "linux_audit"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2022-02-08T08:36:57Z",
+    "event_type": "sudo_command",
+    "source_event": {
+      "provider": "Linux auth",
+      "channel": "/var/log/auth.log",
+      "event_code": 0,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "server-01.corp.local",
+    "attributes": {
+      "subject_user": "user-01",
+      "target_user": "root",
+      "tty": "pts/0",
+      "current_directory": "/var/www/intranet.corp.local/wp-content/uploads/2022/02",
+      "command_line": "/bin/cat /etc/shadow"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2022-02-08T08:36:38Z",
+      "event_type": "su_session",
+      "source_event": {
+        "provider": "Linux auth",
+        "channel": "/var/log/auth.log",
+        "event_code": 0,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "server-01.corp.local",
+      "attributes": {
+        "source_user": "svc-web",
+        "target_user": "user-01",
+        "uid": "33",
+        "status": "session_opened",
+        "tty": "pts/0"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2022-02-08T08:36:57.304000Z",
+      "event_type": "linux_audit_user_command",
+      "source_event": {
+        "provider": "Linux Audit",
+        "channel": "/var/log/audit/audit.log",
+        "event_code": 0,
+        "event_record_id": "SRC-EV-002"
+      },
+      "computer": "server-01.corp.local",
+      "attributes": {
+        "process_id": "28346",
+        "uid": "1001",
+        "command_hex": "636174202F6574632F736861646F77",
+        "current_directory": "/var/www/intranet.corp.local/wp-content/uploads/2022/02",
+        "tty": "pts/0",
+        "status": "success"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2022-02-08T08:36:57.308000Z",
+      "event_type": "linux_audit_session",
+      "source_event": {
+        "provider": "Linux Audit",
+        "channel": "/var/log/audit/audit.log",
+        "event_code": 0,
+        "event_record_id": "SRC-EV-003"
+      },
+      "computer": "server-01.corp.local",
+      "attributes": {
+        "process_id": "28346",
+        "uid": "0",
+        "target_user": "root",
+        "image": "/usr/bin/sudo",
+        "status": "session_open_success",
+        "tty": "pts/0"
+      }
+    }
+  ],
+  "deterministic_derivations": [
+    {
+      "derivation_id": "DER-001",
+      "derivation_method": "hex-decode EV-002 command field as UTF-8",
+      "source_evidence_id": "EV-002",
+      "source_field": "attributes.command_hex",
+      "derived_field": "decoded_command",
+      "value": "cat /etc/shadow"
+    }
+  ]
+}

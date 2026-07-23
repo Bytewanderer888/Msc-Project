@@ -1,0 +1,348 @@
+{
+  "experiment": "Gemini fixed thinking-budget sensitivity",
+  "model": "gemini-2.5-flash",
+  "control_thinking_budget": 0,
+  "treatment_thinking_budget": 1024,
+  "summary": {
+    "pairs": 8,
+    "packages": 16,
+    "control_endpoint_met": 1,
+    "treatment_endpoint_met": 3,
+    "control_direction_correct": 4,
+    "treatment_direction_correct": 6,
+    "pairs_with_any_decision_change": 8,
+    "treatment_usage": {
+      "input_tokens": 32882,
+      "response_tokens": 2898,
+      "thought_tokens": 14762,
+      "elapsed_seconds": 123.685
+    }
+  },
+  "pairs": [
+    {
+      "pair_type": "outcome",
+      "pair_id": "OC1",
+      "source_case": "SVC-001",
+      "control_endpoint_met": false,
+      "treatment_endpoint_met": false,
+      "control_direction_correct": true,
+      "treatment_direction_correct": false,
+      "changed_roles": [
+        "base",
+        "strong"
+      ],
+      "control_outputs": {
+        "base": {
+          "verdict": "suspicious",
+          "severity": "high",
+          "confidence": 0.8,
+          "recommended_action": "investigate"
+        },
+        "strong": {
+          "verdict": "malicious",
+          "severity": "high",
+          "confidence": 0.9,
+          "recommended_action": "isolate"
+        }
+      },
+      "treatment_outputs": {
+        "base": {
+          "verdict": "malicious",
+          "severity": "high",
+          "confidence": 0.9,
+          "recommended_action": "escalate"
+        },
+        "strong": {
+          "verdict": "malicious",
+          "severity": "high",
+          "confidence": 0.9,
+          "recommended_action": "escalate"
+        }
+      }
+    },
+    {
+      "pair_type": "outcome",
+      "pair_id": "OC2",
+      "source_case": "UQP-001",
+      "control_endpoint_met": false,
+      "treatment_endpoint_met": false,
+      "control_direction_correct": true,
+      "treatment_direction_correct": false,
+      "changed_roles": [
+        "base"
+      ],
+      "control_outputs": {
+        "base": {
+          "verdict": "suspicious",
+          "severity": "medium",
+          "confidence": 0.7,
+          "recommended_action": "investigate"
+        },
+        "strong": {
+          "verdict": "suspicious",
+          "severity": "high",
+          "confidence": 0.8,
+          "recommended_action": "investigate"
+        }
+      },
+      "treatment_outputs": {
+        "base": {
+          "verdict": "suspicious",
+          "severity": "high",
+          "confidence": 0.8,
+          "recommended_action": "investigate"
+        },
+        "strong": {
+          "verdict": "suspicious",
+          "severity": "high",
+          "confidence": 0.8,
+          "recommended_action": "investigate"
+        }
+      }
+    },
+    {
+      "pair_type": "outcome",
+      "pair_id": "OC5",
+      "source_case": "RUN-001",
+      "control_endpoint_met": true,
+      "treatment_endpoint_met": true,
+      "control_direction_correct": true,
+      "treatment_direction_correct": true,
+      "changed_roles": [
+        "base",
+        "strong"
+      ],
+      "control_outputs": {
+        "base": {
+          "verdict": "suspicious",
+          "severity": "low",
+          "confidence": 0.6,
+          "recommended_action": "investigate"
+        },
+        "strong": {
+          "verdict": "malicious",
+          "severity": "high",
+          "confidence": 0.9,
+          "recommended_action": "isolate"
+        }
+      },
+      "treatment_outputs": {
+        "base": {
+          "verdict": "suspicious",
+          "severity": "medium",
+          "confidence": 0.6,
+          "recommended_action": "investigate"
+        },
+        "strong": {
+          "verdict": "malicious",
+          "severity": "high",
+          "confidence": 0.9,
+          "recommended_action": "escalate"
+        }
+      }
+    },
+    {
+      "pair_type": "outcome",
+      "pair_id": "OC6",
+      "source_case": "AMQ-001",
+      "control_endpoint_met": false,
+      "treatment_endpoint_met": false,
+      "control_direction_correct": false,
+      "treatment_direction_correct": true,
+      "changed_roles": [
+        "base",
+        "strong"
+      ],
+      "control_outputs": {
+        "base": {
+          "verdict": "malicious",
+          "severity": "high",
+          "confidence": 0.9,
+          "recommended_action": "isolate"
+        },
+        "strong": {
+          "verdict": "malicious",
+          "severity": "high",
+          "confidence": 0.9,
+          "recommended_action": "isolate"
+        }
+      },
+      "treatment_outputs": {
+        "base": {
+          "verdict": "malicious",
+          "severity": "high",
+          "confidence": 0.9,
+          "recommended_action": "escalate"
+        },
+        "strong": {
+          "verdict": "malicious",
+          "severity": "critical",
+          "confidence": 0.9,
+          "recommended_action": "isolate"
+        }
+      }
+    },
+    {
+      "pair_type": "context",
+      "pair_id": "CC1",
+      "source_case": "DISC-002",
+      "control_endpoint_met": false,
+      "treatment_endpoint_met": true,
+      "control_direction_correct": false,
+      "treatment_direction_correct": true,
+      "changed_roles": [
+        "weak"
+      ],
+      "control_outputs": {
+        "weak": {
+          "verdict": "benign",
+          "severity": "informational",
+          "confidence": 0.9,
+          "recommended_action": "close_benign"
+        },
+        "counter": {
+          "verdict": "benign",
+          "severity": "informational",
+          "confidence": 0.9,
+          "recommended_action": "close_benign"
+        }
+      },
+      "treatment_outputs": {
+        "weak": {
+          "verdict": "suspicious",
+          "severity": "low",
+          "confidence": 0.6,
+          "recommended_action": "investigate"
+        },
+        "counter": {
+          "verdict": "benign",
+          "severity": "informational",
+          "confidence": 0.9,
+          "recommended_action": "close_benign"
+        }
+      }
+    },
+    {
+      "pair_type": "context",
+      "pair_id": "CC2",
+      "source_case": "RDL-001",
+      "control_endpoint_met": false,
+      "treatment_endpoint_met": false,
+      "control_direction_correct": false,
+      "treatment_direction_correct": true,
+      "changed_roles": [
+        "weak",
+        "counter"
+      ],
+      "control_outputs": {
+        "weak": {
+          "verdict": "suspicious",
+          "severity": "medium",
+          "confidence": 0.7,
+          "recommended_action": "investigate"
+        },
+        "counter": {
+          "verdict": "suspicious",
+          "severity": "medium",
+          "confidence": 0.8,
+          "recommended_action": "investigate"
+        }
+      },
+      "treatment_outputs": {
+        "weak": {
+          "verdict": "suspicious",
+          "severity": "high",
+          "confidence": 0.8,
+          "recommended_action": "investigate"
+        },
+        "counter": {
+          "verdict": "benign",
+          "severity": "informational",
+          "confidence": 0.9,
+          "recommended_action": "close_benign"
+        }
+      }
+    },
+    {
+      "pair_type": "context",
+      "pair_id": "CC3",
+      "source_case": "SMB-002",
+      "control_endpoint_met": false,
+      "treatment_endpoint_met": true,
+      "control_direction_correct": false,
+      "treatment_direction_correct": true,
+      "changed_roles": [
+        "weak",
+        "counter"
+      ],
+      "control_outputs": {
+        "weak": {
+          "verdict": "suspicious",
+          "severity": "low",
+          "confidence": 0.6,
+          "recommended_action": "investigate"
+        },
+        "counter": {
+          "verdict": "suspicious",
+          "severity": "medium",
+          "confidence": 0.7,
+          "recommended_action": "investigate"
+        }
+      },
+      "treatment_outputs": {
+        "weak": {
+          "verdict": "suspicious",
+          "severity": "medium",
+          "confidence": 0.7,
+          "recommended_action": "investigate"
+        },
+        "counter": {
+          "verdict": "benign",
+          "severity": "informational",
+          "confidence": 0.9,
+          "recommended_action": "close_benign"
+        }
+      }
+    },
+    {
+      "pair_type": "context",
+      "pair_id": "CC4",
+      "source_case": "PS-003",
+      "control_endpoint_met": false,
+      "treatment_endpoint_met": false,
+      "control_direction_correct": true,
+      "treatment_direction_correct": true,
+      "changed_roles": [
+        "counter"
+      ],
+      "control_outputs": {
+        "weak": {
+          "verdict": "suspicious",
+          "severity": "high",
+          "confidence": 0.8,
+          "recommended_action": "investigate"
+        },
+        "counter": {
+          "verdict": "benign",
+          "severity": "informational",
+          "confidence": 0.9,
+          "recommended_action": "close_benign"
+        }
+      },
+      "treatment_outputs": {
+        "weak": {
+          "verdict": "suspicious",
+          "severity": "high",
+          "confidence": 0.8,
+          "recommended_action": "investigate"
+        },
+        "counter": {
+          "verdict": "benign",
+          "severity": "low",
+          "confidence": 0.9,
+          "recommended_action": "close_benign"
+        }
+      }
+    }
+  ]
+}

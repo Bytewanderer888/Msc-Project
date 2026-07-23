@@ -1,0 +1,18 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.97,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006",
+    "EV-007",
+    "EV-008"
+  ],
+  "rationale": "A0 confirms PowerShell importing SharpHound.ps1 from C:\\Temp\\ under corp\\Administrator at High integrity, a well-known BloodHound AD reconnaissance tool. EV-001 confirms the SharpHound.exe binary was subsequently executed with '--CollectionMethod all', enumerating the full Active Directory environment. EV-002 through EV-008 confirm SharpHound successfully completed its collection, producing output files covering groups, GPOs, users, OUs, domains, computers, and a final BloodHound.zip archive \u2014 all written to C:\\Temp\\ \u2014 proving the AD enumeration ran to completion. The presence of both the PS1 loader and the standalone EXE, staged in C:\\Temp\\ and launched via cmd.exe, is consistent with an attacker (or insider threat) conducting pre-lateral-movement AD reconnaissance; no benign explanation accounts for this toolset and output pattern.",
+  "recommended_action": "isolate"
+}

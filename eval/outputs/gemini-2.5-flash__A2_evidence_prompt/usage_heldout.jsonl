@@ -1,0 +1,26 @@
+{"case": "GPO-001", "input_tokens": 2034, "output_tokens": 198, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "PS-003", "input_tokens": 3853, "output_tokens": 221, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "EVL-001", "input_tokens": 1657, "output_tokens": 174, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "ING-002", "input_tokens": 3007, "output_tokens": 197, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "LOGON-001", "input_tokens": 1674, "output_tokens": 172, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "ST-001", "input_tokens": 3291, "output_tokens": 207, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "SVC-001", "input_tokens": 4761, "output_tokens": 232, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "UQP-001", "input_tokens": 4325, "output_tokens": 178, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "LS-003", "input_tokens": 3307, "output_tokens": 173, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "PS-004", "input_tokens": 4027, "output_tokens": 188, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "RUN-001", "input_tokens": 2023, "output_tokens": 177, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "SMB-001", "input_tokens": 4836, "output_tokens": 208, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "WMI-001", "input_tokens": 2159, "output_tokens": 185, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "BF-002", "input_tokens": 18406, "output_tokens": 635, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "COL-001", "input_tokens": 2726, "output_tokens": 167, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "CRED-001", "input_tokens": 2804, "output_tokens": 208, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "DISC-001", "input_tokens": 4106, "output_tokens": 190, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "DISC-003", "input_tokens": 3061, "output_tokens": 173, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "DISC-004", "input_tokens": 1363, "output_tokens": 128, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "OD-001", "input_tokens": 3834, "output_tokens": 213, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "BF-002", "input_tokens": 18256, "output_tokens": 654, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "ST-001", "input_tokens": 3295, "output_tokens": 205, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "CRED-001", "input_tokens": 2803, "output_tokens": 212, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-15T15:43:57Z", "invocation_id": "20260715T154354Z-03abd703"}
+{"case": "SVC-001", "input_tokens": 4372, "output_tokens": 244, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-15T15:49:58Z", "invocation_id": "20260715T154954Z-4b72f71d"}
+{"case": "UQP-001", "input_tokens": 3936, "output_tokens": 222, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-15T15:50:07Z", "invocation_id": "20260715T154954Z-4b72f71d"}
+{"case": "ST-001", "input_tokens": 7595, "output_tokens": 231, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-16T09:15:37Z", "invocation_id": "20260716T091533Z-a919e0e7"}

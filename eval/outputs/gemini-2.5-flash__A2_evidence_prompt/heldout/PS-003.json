@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-003",
+    "EV-004",
+    "DER-001"
+  ],
+  "rationale": "A PowerShell command (A0) was executed with obfuscation (DER-001) by the Administrator. Immediately following this, the lsass.exe process (EV-003, EV-004) accessed the PowerShell process with '0x1000' (PROCESS_VM_READ) and '0x1478' (PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_QUERY_INFORMATION | PROCESS_DUP_HANDLE) granted access. This behavior is highly indicative of credential dumping, as lsass.exe is a critical process for authentication and its memory contains credentials.",
+  "recommended_action": "isolate"
+}

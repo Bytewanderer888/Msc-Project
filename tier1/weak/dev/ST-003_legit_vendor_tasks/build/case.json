@@ -1,0 +1,114 @@
+{
+  "case_id": "ST-003",
+  "split": "dev",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1053.005/atomic_red_team/4698_windows-security.log",
+  "staged_export": "extracted/st003_events.json",
+  "sourcetypes_present": [
+    "Security (Microsoft-Windows-Security-Auditing)"
+  ],
+  "selection": {
+    "A0": "353006",
+    "EV": [
+      "349689",
+      "349690",
+      "341746"
+    ]
+  },
+  "roles": {
+    "353006": "triggering alert: a scheduled task 'npcapwatchdog' runs a batch script (CheckStatus.bat) as NT AUTHORITY\\SYSTEM — but the command path is C:\\Program Files\\Npcap, the legitimate Npcap packet-capture driver (used by Wireshark/nmap)",
+    "349689": "legit: 'aurora-agent-signature-update' runs C:\\Program Files\\Aurora-Agent\\aurora-agent-util.exe as SYSTEM (author 'Nextron Systems', a security-tool vendor) — a signature auto-update",
+    "349690": "legit: 'aurora-agent-program-update' runs the same Aurora agent utility as SYSTEM — a program auto-update",
+    "341746": "legit: 'Mozilla\\Firefox Default Browser Agent' runs default-browser-agent.exe (author 'Mozilla')"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "legit_vendor_tasks",
+    "security_proposition": "The vendor-path scheduled-task definitions are malicious persistence rather than legitimate software maintenance.",
+    "case_directory": "ST-003_legit_vendor_tasks",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "st003_legit_tasks_security.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "Scheduled Task (legitimate vendor tasks)",
+      "candidate_attack_mapping": "T1053.005",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = WEAK (reclassified from COUNTER 2026-07-14: single-source Security log cannot decisively confirm A0/Npcap benignity — no Author/signature/hash). Several scheduled tasks have alarming SURFACE features (a .bat run as SYSTEM; SYSTEM-level exe auto-updates) that resemble malware persistence, but they are all LEGITIMATE VENDOR tasks (Npcap packet driver, Nextron Aurora EDR agent, Mozilla Firefox agent) — the command paths (C:\\Program Files\\<Vendor>) and authors are suggestive benign vendor provenance (not decisive: A0 lacks Author/signature). Calibration role = over-triage-prone (down-rank): a model must NOT flag legitimate vendor tasks as malicious persistence. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Security (Microsoft-Windows-Security-Auditing 4698)"
+      ],
+      "why_single_source": "Source is the 4698 task-created audit log; scoped to host win-host-569's legitimate vendor tasks. The log's other host (win-dc-84) and its attack tasks (\\atomic, \\test) are excluded. Single-sensor (Security), single-host."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "st003_legit_tasks_security",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_alert_legit_vendor_tasks",
+      "primary_host": "win-host-mhaag-attack-range-569",
+      "primary_user": "SYSTEM / vendor installers",
+      "boundary_definition": [
+        "A0 = the 'npcapwatchdog' task (a .bat run as SYSTEM — the most alarming-looking legit task).",
+        "EV = the two Aurora-Agent auto-update tasks and the Mozilla Firefox agent task — other legitimate vendor tasks on the same host.",
+        "Scoped to win-host-569's legitimate vendor tasks; the log's other host and attack tasks are excluded.",
+        "The vendor provenance is suggestive but not decisive (A0 lacks Author/signature): each task's command path is C:\\Program Files\\<Vendor> and the author is a known vendor."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "A scheduled task running a script/executable as SYSTEM is a common T1053.005 detection trigger.",
+      "selection_reason": "npcapwatchdog (a .bat as SYSTEM) is the most alarming-looking; its Npcap vendor path is suggestive but not decisive benign evidence."
+    },
+    "correlation_keys": [
+      "host",
+      "time_window",
+      "EventID==4698",
+      "author",
+      "action_command"
+    ],
+    "event_groups": [
+      {
+        "group": "legit_vendor_tasks",
+        "event_record_ids": [
+          "353006",
+          "349689",
+          "349690",
+          "341746"
+        ],
+        "description": "Npcap watchdog, Aurora-Agent auto-updates, and Firefox agent tasks in vendor paths; the package does not verify signatures."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "weak_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: WEAK / over-triage-prone. The surface features (SYSTEM .bat, SYSTEM auto-updates) resemble malware persistence, but the vendor paths (Program Files\\Npcap, Program Files\\Aurora-Agent) and authors (Nextron Systems, Mozilla) are suggestive but not decisive benign evidence. The model must not over-flag."
+      },
+      {
+        "topic": "surface_vs_reality",
+        "event_record_id": "353006",
+        "note": "A .bat run as SYSTEM via a scheduled task is the classic malware-persistence pattern — but Npcap is a legitimate, widely-installed packet-capture driver (the Nmap project). Vendor path + purpose (CheckStatus.bat watchdog) are suggestive of benign provenance but the package cannot decisively confirm it."
+      },
+      {
+        "topic": "security_4698_source",
+        "event_record_id": "",
+        "note": "Built from Security EventID 4698 (task created); the task action/author/principal live inside the TaskContent XML, parsed by the engine's 4698 handler."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "schtask_weak_exemplar",
+        "legit_vendor_task_over_triage_test",
+        "insufficient_benign_evidence_rule_dev"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

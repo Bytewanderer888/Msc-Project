@@ -1,0 +1,37 @@
+{
+  "case_id": "ER-M02",
+  "security_proposition": "The observed crontab editing session installed and activated a persistent scheduled job.",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "operational_response": {
+    "family": "analyst_escalation",
+    "note": "Inspect the user's crontab and parent process chain before containment."
+  },
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that a crontab entry was saved or replaced",
+      "that any scheduled command is known",
+      "that a cron job fired",
+      "that persistence was successfully established"
+    ]
+  },
+  "the_trap": "The office-origin process chain makes the edit attempt worth investigating, but opening `crontab -e` is not equivalent to installing or firing a job.",
+  "rationale": "A0 records only BEGIN EDIT for user-01. EV-001 confirms execution of crontab -e from an unusual office-origin process chain. The complete step-level syslog has no REPLACE or END EDIT record, and the package has no cron-child execution. The setup attempt is suspicious, while the persistence outcome remains unconfirmed.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

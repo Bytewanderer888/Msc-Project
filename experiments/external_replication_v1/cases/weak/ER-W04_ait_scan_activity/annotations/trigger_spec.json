@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-W04",
+  "rule_id": "SAFESOC-TRG-ER-W04",
+  "analytic_family_id": "AF-WEB",
+  "analytic_pattern_id": "WEB-01",
+  "title": "Nmap scripting-engine request reaches a web server",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "source_defined_step",
+    "complete_legal_scope": true,
+    "description": "Every record in the corpus-provided log member or scenario step containing the alert stream.",
+    "source_units": [
+      "santos_wazuh.json"
+    ]
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "attributes.record.data.protocol",
+        "op": "ieq",
+        "value": "GET"
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "icontains",
+        "value": "Nmap Scripting Engine"
+      },
+      {
+        "field": "attributes.record.data.id",
+        "op": "eq",
+        "value": "404"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "santos_wazuh.json:line:108066"
+  },
+  "rationale": "A web request carrying the Nmap scripting-engine user agent is a scan-like alert surface without establishing authorisation or harmful outcome."
+}

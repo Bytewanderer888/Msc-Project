@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-W01",
+  "rule_id": "SAFESOC-TRG-ER-W01",
+  "analytic_family_id": "AF-NET",
+  "analytic_pattern_id": "NET-01",
+  "title": "Windows Script Host opens an outbound TCP connection",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events for asset DESKTOP-FMI6MML in the corpus-native SIEM partition wazuh-alerts-4.x-2024.12.01; no timestamp or record identifier is used.",
+    "filter_predicate": {
+      "all": [
+        {
+          "field": "computer",
+          "op": "ieq",
+          "value": "DESKTOP-FMI6MML"
+        },
+        {
+          "field": "attributes.source_partition",
+          "op": "eq",
+          "value": "wazuh-alerts-4.x-2024.12.01"
+        }
+      ]
+    }
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 3
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\cscript.exe"
+      },
+      {
+        "field": "attributes.protocol",
+        "op": "ieq",
+        "value": "tcp"
+      },
+      {
+        "field": "attributes.initiated",
+        "op": "ieq",
+        "value": "true"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "QKEIgZMBrrvr6pEbBHVQ"
+  },
+  "rationale": "An outbound TCP connection from cscript.exe is a script-host network alert surface without proving payload or session intent."
+}

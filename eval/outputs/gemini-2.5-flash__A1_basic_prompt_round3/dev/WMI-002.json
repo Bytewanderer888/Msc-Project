@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "DER-001"
+  ],
+  "rationale": "The main alert (A0) shows the creation of a WMI CommandLineEventConsumer with a highly obfuscated, encoded PowerShell command (DER-001). This WMI persistence mechanism is further supported by the creation of an event filter (EV-001) and its binding (EV-002). The subsequent modification of the filter (EV-003) and binding (EV-004) indicates an attempt to change the trigger condition, which is typical of an attacker trying to maintain persistence or adapt their method. The PowerShell command itself, involving compressed and encoded data, is a strong indicator of malicious intent.",
+  "recommended_action": "isolate"
+}

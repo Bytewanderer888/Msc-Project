@@ -1,0 +1,25 @@
+{
+  "case_id": "ER-M01",
+  "status": "candidate_built_pending_qa",
+  "source_corpus": "CAM-LDS",
+  "doi": "10.5281/zenodo.18861762",
+  "source_archive": {
+    "path": "data_sources/cam_lds/manifestations_raw.zip",
+    "sha256": "f9cd31ef5035863e35894a13aeb6d7963dcfa47f4ad7fa257db39298eca7ffc9"
+  },
+  "selected_records": [
+    {
+      "evidence_id": "A0",
+      "archive_member": "manifestations_raw/steps/4-13/inetfw/logs/log/auth.log",
+      "line_number": 1,
+      "record_sha256": "d383cabaf15a39f10529c41fe620da32da45027438325f918e3aee77c80bde12"
+    },
+    {
+      "evidence_id": "EV-001",
+      "archive_member": "manifestations_raw/steps/4-12/inetfw/logs/log/audit/audit.log",
+      "line_number": 3,
+      "record_sha256": "d54c0ef34b577e67391e635acbbe795b3f79310d742b2262fb9f589d707fe7e3"
+    }
+  ],
+  "integrity_note": "Record hashes cover the exact UTF-8 source line without its line terminator. Only defender-side host telemetry is selected; attacker logs are used solely for source audit and are never model-visible."
+}

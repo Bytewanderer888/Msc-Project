@@ -1,0 +1,24 @@
+{
+  "dataset": "Splunk Attack Data (apt_simulations)",
+  "sources": [
+    {
+      "sensor": "sysmon",
+      "source_log": "attack_data-master/datasets/apt_simulations/ActiveMQ_exploit_Lockbit_Ransomware/windows-sysmon.log",
+      "sha256": "6fb7acc46cae31504b1d8fc7b731cfcbbfc61ef9819574a72d684c8ea47e9360"
+    },
+    {
+      "sensor": "security",
+      "source_log": "attack_data-master/datasets/apt_simulations/ActiveMQ_exploit_Lockbit_Ransomware/windows-security.log",
+      "sha256": "55555312391cf49c51fddbbd2c19aa09d7c1469205d0f3374bec68ad4df49a78"
+    }
+  ],
+  "primary_host": "EC2AMAZ-I41BETP.attackrange.local",
+  "tier": {
+    "tier": 2,
+    "sensors": [
+      "Sysmon",
+      "Security"
+    ],
+    "why_single_source": "GENUINE MULTI-SENSOR FUSION (not single-source): Sysmon (EID 1/3/11) and Security (EID 4688) from the SAME host (EC2AMAZ-I41BETP) and run, each carrying evidence the other lacks. Both scoped to that host (the intrusion's other host EC2AMAZ-TLJH2O4 is excluded)."
+  }
+}

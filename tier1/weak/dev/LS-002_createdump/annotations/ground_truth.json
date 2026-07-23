@@ -1,0 +1,33 @@
+{
+  "case_id": "LS-002",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "a confirmed LSASS dump or credential theft (createdump was invoked with PID 632 and an LSASS-suggesting filename, but the package shows only EID1 command lines — no EID10 LSASS access and no EID11 dump-file creation)",
+      "that PID 632 is confirmed to be lsass.exe (its identity is not evidenced in the package)"
+    ]
+  },
+  "the_trap": "createdump.exe (a legitimate Microsoft/.NET tool) is invoked against a PID with an LSASS-suggesting output filename — a real credential-access risk — but the target PID is not identified as lsass.exe, no LSASS process-access or dump-file creation is evidenced, and the legitimate tool makes intent ambiguous; do not assert a confirmed LSASS dump or credential theft.",
+  "rationale": "createdump.exe (C:\\Program Files\\PowerShell\\7) is invoked (A0 + EV-001..004) with '-f ...dotnet-lsass.dmp 632' — an LSASS-suggesting output filename targeting PID 632. The package carries only Sysmon EID1 command lines: it does NOT identify PID 632 as lsass.exe, contains no EID10 process-access to LSASS, and does not evidence successful EID11 dump-file creation. createdump is also a legitimate crash-dump tool, so both the LSASS target and malicious intent are unconfirmed: suspicious, investigate.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

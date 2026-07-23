@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.88,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-007",
+    "EV-022"
+  ],
+  "rationale": "A single external IP (23.93.242.200) generated 23 inbound TCP connections to RDP port 3389 on host-01.corp.local over approximately 5.5 minutes (A0 through EV-022), with each connection using a sequentially incrementing source port \u2014 a pattern strongly indicative of an automated RDP brute-force or credential-stuffing attack. The source IP (23.93.242.200) is a public internet address with no apparent legitimate business justification for direct RDP access to an internal host. The high connection frequency, especially the burst seen in EV-011 through EV-022 where multiple connections occur within seconds of each other, further supports automated attack tooling rather than a human user. Immediate action is warranted to block the source IP, review RDP authentication logs for successful logins, and assess whether the host should be isolated pending investigation.",
+  "recommended_action": "isolate"
+}

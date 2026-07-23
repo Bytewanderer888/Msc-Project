@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-W01",
+  "case_name": "script_host_tcp",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "The script-host connection to the external endpoint represents malicious command-and-control traffic.",
+  "attack_category": {
+    "category": "Non-Application Layer Protocol (candidate hypothesis)",
+    "candidate_attack_mapping": "T1095",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "Windows-APT Dataset 2025",
+    "scenario": "not authoritatively linkable at event level",
+    "capture_cluster": "wapt-DESKTOP-FMI6MML-2024-12-01T07:03Z",
+    "telemetry_depth": "single_source",
+    "sensors": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "all _source.rule fields, including detector description, severity, and ATT&CK mapping",
+      "Sysmon RuleName and system.message copies that contain ATT&CK labels",
+      "Wazuh product and manager identity",
+      "source agent names, IP addresses, and local account names",
+      "condition, verdict, severity, action, and upstream scenario identity"
+    ],
+    "deterministic_derivations": []
+  },
+  "operational_response_family": "analyst_escalation",
+  "nearest_frozen_case": null,
+  "differentiation": "No frozen case isolates a script-host external TCP connection with absent payload and session semantics."
+}

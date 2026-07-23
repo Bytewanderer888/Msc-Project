@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "The Administrator user created two scheduled tasks (A0, EV-001) using schtasks.exe. The first task attempts to execute a file from an alternate data stream, and the second attempts to execute a JavaScript file from the Public user directory. Both are highly suspicious and indicative of persistence mechanisms.",
+  "recommended_action": "isolate"
+}

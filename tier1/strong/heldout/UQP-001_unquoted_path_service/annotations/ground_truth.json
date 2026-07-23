@@ -1,0 +1,35 @@
+{
+  "case_id": "UQP-001",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "counter_evidence": [
+      "EV-004"
+    ],
+    "must_not_assert": [
+      "that the operator was unauthorized or that a real-world compromise outside this capture is established",
+      "that EV-003 proves payload effects beyond the observed path-intercepted execution as SYSTEM",
+      "that the service and files were successfully removed or that persistence remained active after the capture window"
+    ]
+  },
+  "the_trap": "The Example Service naming, WindowsServiceExample original filename, and cleanup command can invite under-triage. But the unquoted service path is deliberately populated at C:\\program.exe, the service is started, and EV-003 confirms that Windows resolves and executes C:\\program.exe from services.exe as NT AUTHORITY\\SYSTEM.",
+  "rationale": "A0 creates a service with the unquoted path C:\\Program Files\\windows_service.exe. EV-001 places the same executable at both the intended path and the higher-priority C:\\program.exe interception path, EV-002 starts the service, and EV-003 records C:\\program.exe executing under services.exe as NT AUTHORITY\\SYSTEM while its command line still names the intended Program Files path. This is decisive evidence that the unquoted-path interception succeeded with SYSTEM privileges. EV-004 is mitigating cleanup context, but it is only a stop/delete/cleanup command and does not undo the already observed privileged execution. Under this benchmark, malicious denotes decisive execution of an offensive security mechanism; it does not claim that the operator was unauthorized. Strong, malicious, high-critical; up-rank despite the example-binary and cleanup surface.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

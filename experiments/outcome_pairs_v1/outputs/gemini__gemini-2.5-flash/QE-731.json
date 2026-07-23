@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002"
+  ],
+  "rationale": "The Administrator user created a new service using 'sc.exe' (A0) and immediately started it (EV-001). This service then executed an arbitrary executable from a non-standard path (EV-002) with SYSTEM privileges, indicating persistence and privilege escalation. The use of 'sc.exe' to create and start a service from a temporary directory is highly suspicious.",
+  "recommended_action": "isolate"
+}

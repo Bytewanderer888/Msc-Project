@@ -1,0 +1,18 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.88,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-009",
+    "EV-010",
+    "EV-011",
+    "EV-012",
+    "EV-013",
+    "DER-001"
+  ],
+  "rationale": "The execution chain originates from WinRS (remote execution via WinRM) spawning cmd.exe (EV-001), which launches a PowerShell process with an encoded command (EV-002), which in turn spawns a child PowerShell process (A0) whose decoded payload (DER-001) implements a structured input-splitting wrapper that reads a payload from stdin, splits it on a null-byte delimiter, creates a ScriptBlock from the first part, and executes it \u2014 a classic Ansible-style or adversary-controlled remote execution harness. The child PowerShell (A0) then spawns chcp.com to set UTF-8 codepage (EV-009), writes a temporary DLL and cmdline file to %TEMP% (EV-010, EV-011), and invokes csc.exe to compile that DLL on-the-fly (EV-012, EV-013), which is a well-known in-memory/on-disk .NET compilation technique used by frameworks such as Ansible's win_shell but also by offensive tooling (e.g., Metasploit, CobaltStrike). lsass.exe performing SSPI-driven process-open calls against both PowerShell instances (EV-004, EV-005, EV-007, EV-008) with access mask 0x1478 (includes PROCESS_VM_READ/WRITE rights) is consistent with Kerberos/NTLM token validation during WinRM authentication and is not itself evidence of credential dumping, but the overall pattern \u2014 remote lateral movement via WinRM, multi-layer encoded PowerShell, stdin-based payload delivery, and dynamic .NET assembly compilation \u2014 is strongly indicative of an offensive framework executing a staged payload rather than legitimate administrative activity.",
+  "recommended_action": "isolate"
+}

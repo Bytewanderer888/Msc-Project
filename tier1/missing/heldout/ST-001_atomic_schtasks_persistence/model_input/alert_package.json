@@ -1,0 +1,298 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ST-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2020-12-07T12:36:14.448677900Z",
+      "end": "2020-12-07T12:36:18.058359600Z"
+    },
+    "event_count": 10,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-12-07T12:36:14.480007500Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "4456"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{40924FE2-21BE-5FCE-ED00-000000009101}",
+      "process_id": "4840",
+      "image": "C:\\Windows\\System32\\schtasks.exe",
+      "original_file_name": "sctasks.exe",
+      "command_line": "schtasks  /create /tn \"[id]_OnStartup\" /sc onstart /ru system /tr \"cmd.exe /c calc.exe\" ",
+      "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=EEB7A2162E4DBE32B56BEB84658483AE,SHA256=A9A4FD9C1BB7C5CF8F77F761CAE60F4AC4AFB8DAEEBB46B3AD6983D5E599CDC1,IMPHASH=8AC94113AD25518D369E4EE37BEDAB4F",
+      "parent_process_guid": "{40924FE2-21BE-5FCE-EB00-000000009101}",
+      "parent_process_id": "5064",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"schtasks /create /tn \"[id]_OnLogon\" /sc onlogon /tr \"cmd.exe /c calc.exe\" & schtasks /create /tn \"[id]_OnStartup\" /sc onstart /ru system /tr \"cmd.exe /c calc.exe\"\" "
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-12-07T12:36:14.448677900Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4439"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{40924FE2-21BE-5FCE-EC00-000000009101}",
+        "process_id": "4860",
+        "image": "C:\\Windows\\System32\\schtasks.exe",
+        "original_file_name": "sctasks.exe",
+        "command_line": "schtasks  /create /tn \"[id]_OnLogon\" /sc onlogon /tr \"cmd.exe /c calc.exe\" ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=EEB7A2162E4DBE32B56BEB84658483AE,SHA256=A9A4FD9C1BB7C5CF8F77F761CAE60F4AC4AFB8DAEEBB46B3AD6983D5E599CDC1,IMPHASH=8AC94113AD25518D369E4EE37BEDAB4F",
+        "parent_process_guid": "{40924FE2-21BE-5FCE-EB00-000000009101}",
+        "parent_process_id": "5064",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"schtasks /create /tn \"[id]_OnLogon\" /sc onlogon /tr \"cmd.exe /c calc.exe\" & schtasks /create /tn \"[id]_OnStartup\" /sc onstart /ru system /tr \"cmd.exe /c calc.exe\"\" "
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2020-12-07T12:36:14.573106500Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4487"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{40924FE2-21BE-5FCE-EF00-000000009101}",
+        "process_id": "5012",
+        "image": "C:\\Windows\\System32\\schtasks.exe",
+        "original_file_name": "sctasks.exe",
+        "command_line": "SCHTASKS  /Create /SC ONCE /TN spawn /TR C:\\windows\\system32\\cmd.exe /ST 20:10 ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=EEB7A2162E4DBE32B56BEB84658483AE,SHA256=A9A4FD9C1BB7C5CF8F77F761CAE60F4AC4AFB8DAEEBB46B3AD6983D5E599CDC1,IMPHASH=8AC94113AD25518D369E4EE37BEDAB4F",
+        "parent_process_guid": "{40924FE2-21BE-5FCE-EE00-000000009101}",
+        "parent_process_id": "5060",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"SCHTASKS /Create /SC ONCE /TN spawn /TR C:\\windows\\system32\\cmd.exe /ST 20:10\" "
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2020-12-07T12:36:14.627004800Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4518"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{40924FE2-21BE-5FCE-F100-000000009101}",
+        "process_id": "4764",
+        "image": "C:\\Windows\\System32\\schtasks.exe",
+        "original_file_name": "sctasks.exe",
+        "command_line": "SCHTASKS  /Create /S localhost /RU DOMAIN\\user /RP [redacted-password] /TN \"[x] task\" /TR \"C:\\windows\\system32\\cmd.exe\" /SC daily /ST 20:10 ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=EEB7A2162E4DBE32B56BEB84658483AE,SHA256=A9A4FD9C1BB7C5CF8F77F761CAE60F4AC4AFB8DAEEBB46B3AD6983D5E599CDC1,IMPHASH=8AC94113AD25518D369E4EE37BEDAB4F",
+        "parent_process_guid": "{40924FE2-21BE-5FCE-F000-000000009101}",
+        "parent_process_id": "4856",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"SCHTASKS /Create /S localhost /RU DOMAIN\\user /RP [redacted-password] /TN \"[x] task\" /TR \"C:\\windows\\system32\\cmd.exe\" /SC daily /ST 20:10\" "
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2020-12-07T12:36:14.682144500Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4534"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{40924FE2-21BE-5FCE-F200-000000009101}",
+        "process_id": "1172",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "original_file_name": "PowerShell.EXE",
+        "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" & {$Action = New-ScheduledTaskAction -Execute \\\"\"calc.exe\\\"\"\n$Trigger = New-ScheduledTaskTrigger -AtLogon\n$User = New-ScheduledTaskPrincipal -GroupId \\\"\"BUILTIN\\Administrators\\\"\" -RunLevel Highest\n$Set = New-ScheduledTaskSettingsSet\n$object = New-ScheduledTask -Action $Action -Principal $User -Trigger $Trigger -Settings $Set\nRegister-ScheduledTask [x]Task -InputObject $object} ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+        "parent_process_guid": "{40924FE2-21BD-5FCE-E600-000000009101}",
+        "parent_process_id": "5084",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"powershell.exe\" -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABJAG0AcABvAHIAdAAtAE0AbwBkAHUAbABlACAAIgBDADoAXABbAHgAXQBcAGkAbgB2AG8AawBlAC0AWwB4AF0AXABJAG4AdgBvAGsAZQAtAFsAeABdAC4AcABzAGQAMQAiACAALQBGAG8AcgBjAGUACgBJAG4AdgBvAGsAZQAtAFsAeABdAFQAZQBzAHQAIAAiAFsAaQBkAF0AIgAgAC0AQwBvAG4AZgBpAHIAbQA6ACQAZgBhAGwAcwBlACAALQBUAGkAbQBlAG8AdQB0AFMAZQBjAG8AbgBkAHMAIAAzADAAMAAgAC0ARQB4AGUAYwB1AHQAaQBvAG4ATABvAGcAUABhAHQAaAAgAEMAOgBcAFsAeABdAFwAYQB0AGMAXwBlAHgAZQBjAHUAdABpAG8AbgAuAGMAcwB2AA=="
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2020-12-07T12:36:17.899055800Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4770"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{40924FE2-21C1-5FCE-0101-000000009101}",
+        "process_id": "4552",
+        "image": "C:\\Windows\\System32\\schtasks.exe",
+        "original_file_name": "sctasks.exe",
+        "command_line": "schtasks  /delete /tn \"[id]_OnLogon\" /f  ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=EEB7A2162E4DBE32B56BEB84658483AE,SHA256=A9A4FD9C1BB7C5CF8F77F761CAE60F4AC4AFB8DAEEBB46B3AD6983D5E599CDC1,IMPHASH=8AC94113AD25518D369E4EE37BEDAB4F",
+        "parent_process_guid": "{40924FE2-21C1-5FCE-0001-000000009101}",
+        "parent_process_id": "3304",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"schtasks /delete /tn \"[id]_OnLogon\" /f >nul 2>&1 & schtasks /delete /tn \"[id]_OnStartup\" /f >nul 2>&1\" "
+      }
+    },
+    {
+      "evidence_id": "EV-006",
+      "event_time_utc": "2020-12-07T12:36:17.917062600Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4786"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{40924FE2-21C1-5FCE-0201-000000009101}",
+        "process_id": "2444",
+        "image": "C:\\Windows\\System32\\schtasks.exe",
+        "original_file_name": "sctasks.exe",
+        "command_line": "schtasks  /delete /tn \"[id]_OnStartup\" /f  ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=EEB7A2162E4DBE32B56BEB84658483AE,SHA256=A9A4FD9C1BB7C5CF8F77F761CAE60F4AC4AFB8DAEEBB46B3AD6983D5E599CDC1,IMPHASH=8AC94113AD25518D369E4EE37BEDAB4F",
+        "parent_process_guid": "{40924FE2-21C1-5FCE-0001-000000009101}",
+        "parent_process_id": "3304",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"schtasks /delete /tn \"[id]_OnLogon\" /f >nul 2>&1 & schtasks /delete /tn \"[id]_OnStartup\" /f >nul 2>&1\" "
+      }
+    },
+    {
+      "evidence_id": "EV-007",
+      "event_time_utc": "2020-12-07T12:36:17.983476900Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4816"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{40924FE2-21C1-5FCE-0401-000000009101}",
+        "process_id": "4328",
+        "image": "C:\\Windows\\System32\\schtasks.exe",
+        "original_file_name": "sctasks.exe",
+        "command_line": "SCHTASKS  /Delete /TN spawn /F  ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=EEB7A2162E4DBE32B56BEB84658483AE,SHA256=A9A4FD9C1BB7C5CF8F77F761CAE60F4AC4AFB8DAEEBB46B3AD6983D5E599CDC1,IMPHASH=8AC94113AD25518D369E4EE37BEDAB4F",
+        "parent_process_guid": "{40924FE2-21C1-5FCE-0301-000000009101}",
+        "parent_process_id": "4360",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"SCHTASKS /Delete /TN spawn /F >nul 2>&1\" "
+      }
+    },
+    {
+      "evidence_id": "EV-008",
+      "event_time_utc": "2020-12-07T12:36:18.028106800Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4846"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{40924FE2-21C2-5FCE-0601-000000009101}",
+        "process_id": "3840",
+        "image": "C:\\Windows\\System32\\schtasks.exe",
+        "original_file_name": "sctasks.exe",
+        "command_line": "SCHTASKS  /Delete /S localhost /RU DOMAIN\\user /RP [redacted-password] /TN \"[x] task\" /F  ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=EEB7A2162E4DBE32B56BEB84658483AE,SHA256=A9A4FD9C1BB7C5CF8F77F761CAE60F4AC4AFB8DAEEBB46B3AD6983D5E599CDC1,IMPHASH=8AC94113AD25518D369E4EE37BEDAB4F",
+        "parent_process_guid": "{40924FE2-21C2-5FCE-0501-000000009101}",
+        "parent_process_id": "1116",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"SCHTASKS /Delete /S localhost /RU DOMAIN\\user /RP [redacted-password] /TN \"[x] task\" /F >nul 2>&1\" "
+      }
+    },
+    {
+      "evidence_id": "EV-009",
+      "event_time_utc": "2020-12-07T12:36:18.058359600Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4859"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{40924FE2-21C2-5FCE-0701-000000009101}",
+        "process_id": "868",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "original_file_name": "PowerShell.EXE",
+        "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" & {Unregister-ScheduledTask -TaskName \\\"\"[x]Task\\\"\" -confirm:$false >$null 2>&1} ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+        "parent_process_guid": "{40924FE2-21C0-5FCE-FB00-000000009101}",
+        "parent_process_id": "4432",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"powershell.exe\" -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABJAG0AcABvAHIAdAAtAE0AbwBkAHUAbABlACAAIgBDADoAXABbAHgAXQBcAGkAbgB2AG8AawBlAC0AWwB4AF0AXABJAG4AdgBvAGsAZQAtAFsAeABdAC4AcABzAGQAMQAiACAALQBGAG8AcgBjAGUACgBJAG4AdgBvAGsAZQAtAFsAeABdAFQAZQBzAHQAIAAiAFsAaQBkAF0AIgAgAC0AQwBsAGUAYQBuAHUAcAA="
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

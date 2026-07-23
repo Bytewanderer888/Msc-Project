@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-W01",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01"
+    ],
+    "users": [
+      "user-01"
+    ],
+    "time_window_utc": {
+      "start": "2024-12-01T07:03:23.962853100Z",
+      "end": "2024-12-01T07:03:23.962853100Z"
+    },
+    "event_count": 1,
+    "event_types_present": [
+      "network_connection"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2024-12-01T07:03:23.962853100Z",
+    "event_type": "network_connection",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 3,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "host-01",
+    "attributes": {
+      "image": "C:\\Windows\\System32\\cscript.exe",
+      "process_id": "5344",
+      "user": "user-01",
+      "protocol": "tcp",
+      "initiated": "true",
+      "source_ip": "host-01",
+      "source_port": "49854",
+      "destination_ip": "external-01",
+      "destination_hostname": "external-01",
+      "destination_port": "443"
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [],
+  "deterministic_derivations": []
+}

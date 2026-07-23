@@ -1,0 +1,5291 @@
+{
+  "analysis_version": "1.0",
+  "generated_utc": "2026-07-22T12:44:56.941470+00:00",
+  "source": "12 complete frozen A2/A4 report cells (2 models x 2 splits x 3 rounds)",
+  "model_calls": 0,
+  "case_output_rows": 246,
+  "unit_summaries": [
+    {
+      "model": "gemini-2.5-flash",
+      "split": "dev",
+      "round": 1,
+      "n": 21,
+      "C2_joint_n": 9,
+      "C2_joint_rate": 0.4286,
+      "C2_wilson_95": [
+        0.2447,
+        0.6345
+      ],
+      "A4_all_pass_n": 9,
+      "A4_all_pass_rate": 0.4286,
+      "A4_wilson_95": [
+        0.2447,
+        0.6345
+      ],
+      "any_severe_ordinal_error_n": 4,
+      "any_severe_ordinal_error_rate": 0.1905,
+      "any_severe_ordinal_error_wilson_95": [
+        0.0767,
+        0.4
+      ],
+      "macro_condition_C2_rate": 0.4524,
+      "macro_condition_A4_rate": 0.4524,
+      "fields": {
+        "verdict": {
+          "in_band_n": 9,
+          "in_band_rate": 0.4286,
+          "mean_signed_distance": 0.2857,
+          "mean_signed_distance_bootstrap_95": [
+            -0.0476,
+            0.5714
+          ],
+          "mean_absolute_distance": 0.5714,
+          "mean_absolute_distance_bootstrap_95": [
+            0.381,
+            0.7619
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1546
+          ]
+        },
+        "severity": {
+          "in_band_n": 9,
+          "in_band_rate": 0.4286,
+          "mean_signed_distance": 0.2857,
+          "mean_signed_distance_bootstrap_95": [
+            -0.0476,
+            0.5714
+          ],
+          "mean_absolute_distance": 0.5714,
+          "mean_absolute_distance_bootstrap_95": [
+            0.381,
+            0.7619
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1546
+          ]
+        },
+        "action": {
+          "in_band_n": 9,
+          "in_band_rate": 0.4286,
+          "mean_signed_distance": 0.4762,
+          "mean_signed_distance_bootstrap_95": [
+            0.0952,
+            0.9048
+          ],
+          "mean_absolute_distance": 0.7619,
+          "mean_absolute_distance_bootstrap_95": [
+            0.4762,
+            1.0952
+          ],
+          "severe_error_n": 4,
+          "severe_error_rate": 0.1905,
+          "severe_error_wilson_95": [
+            0.0767,
+            0.4
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 6,
+          "C2_joint_n": 6,
+          "C2_joint_rate": 1.0,
+          "A4_all_pass_n": 6,
+          "A4_all_pass_rate": 1.0,
+          "fields": {
+            "verdict": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 7,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.1429,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.1429,
+          "fields": {
+            "verdict": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.2857,
+              "mean_signed_distance_bootstrap_95": [
+                -0.4286,
+                0.8571
+              ],
+              "mean_absolute_distance": 0.8571,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3543
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.2857,
+              "mean_signed_distance_bootstrap_95": [
+                -0.4286,
+                0.8571
+              ],
+              "mean_absolute_distance": 0.8571,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3543
+              ]
+            },
+            "action": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.5714,
+              "mean_signed_distance_bootstrap_95": [
+                -0.2857,
+                1.4286
+              ],
+              "mean_absolute_distance": 1.1429,
+              "mean_absolute_distance_bootstrap_95": [
+                0.7143,
+                1.5714
+              ],
+              "severe_error_n": 2,
+              "severe_error_rate": 0.2857,
+              "severe_error_wilson_95": [
+                0.0822,
+                0.6411
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 5,
+          "C2_joint_n": 0,
+          "C2_joint_rate": 0.0,
+          "A4_all_pass_n": 0,
+          "A4_all_pass_rate": 0.0,
+          "fields": {
+            "verdict": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 0.6,
+              "mean_signed_distance_bootstrap_95": [
+                -0.2,
+                1.0
+              ],
+              "mean_absolute_distance": 1.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "severity": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 0.6,
+              "mean_signed_distance_bootstrap_95": [
+                -0.2,
+                1.0
+              ],
+              "mean_absolute_distance": 1.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "action": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 1.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.8
+              ],
+              "mean_absolute_distance": 1.4,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                1.8
+              ],
+              "severe_error_n": 2,
+              "severe_error_rate": 0.4,
+              "severe_error_wilson_95": [
+                0.1176,
+                0.7693
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 3,
+          "C2_joint_n": 2,
+          "C2_joint_rate": 0.6667,
+          "A4_all_pass_n": 2,
+          "A4_all_pass_rate": 0.6667,
+          "fields": {
+            "verdict": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "severity": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "split": "dev",
+      "round": 2,
+      "n": 21,
+      "C2_joint_n": 9,
+      "C2_joint_rate": 0.4286,
+      "C2_wilson_95": [
+        0.2447,
+        0.6345
+      ],
+      "A4_all_pass_n": 8,
+      "A4_all_pass_rate": 0.381,
+      "A4_wilson_95": [
+        0.2075,
+        0.5912
+      ],
+      "any_severe_ordinal_error_n": 4,
+      "any_severe_ordinal_error_rate": 0.1905,
+      "any_severe_ordinal_error_wilson_95": [
+        0.0767,
+        0.4
+      ],
+      "macro_condition_C2_rate": 0.4524,
+      "macro_condition_A4_rate": 0.4107,
+      "fields": {
+        "verdict": {
+          "in_band_n": 9,
+          "in_band_rate": 0.4286,
+          "mean_signed_distance": 0.2857,
+          "mean_signed_distance_bootstrap_95": [
+            0.0,
+            0.5714
+          ],
+          "mean_absolute_distance": 0.5714,
+          "mean_absolute_distance_bootstrap_95": [
+            0.3333,
+            0.7619
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1546
+          ]
+        },
+        "severity": {
+          "in_band_n": 9,
+          "in_band_rate": 0.4286,
+          "mean_signed_distance": 0.2857,
+          "mean_signed_distance_bootstrap_95": [
+            0.0,
+            0.5714
+          ],
+          "mean_absolute_distance": 0.5714,
+          "mean_absolute_distance_bootstrap_95": [
+            0.381,
+            0.7619
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1546
+          ]
+        },
+        "action": {
+          "in_band_n": 9,
+          "in_band_rate": 0.4286,
+          "mean_signed_distance": 0.4762,
+          "mean_signed_distance_bootstrap_95": [
+            0.0952,
+            0.9048
+          ],
+          "mean_absolute_distance": 0.7619,
+          "mean_absolute_distance_bootstrap_95": [
+            0.4286,
+            1.0952
+          ],
+          "severe_error_n": 4,
+          "severe_error_rate": 0.1905,
+          "severe_error_wilson_95": [
+            0.0767,
+            0.4
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 6,
+          "C2_joint_n": 6,
+          "C2_joint_rate": 1.0,
+          "A4_all_pass_n": 5,
+          "A4_all_pass_rate": 0.8333,
+          "fields": {
+            "verdict": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 7,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.1429,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.1429,
+          "fields": {
+            "verdict": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.2857,
+              "mean_signed_distance_bootstrap_95": [
+                -0.4286,
+                0.8571
+              ],
+              "mean_absolute_distance": 0.8571,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3543
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.2857,
+              "mean_signed_distance_bootstrap_95": [
+                -0.4286,
+                0.8571
+              ],
+              "mean_absolute_distance": 0.8571,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3543
+              ]
+            },
+            "action": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.5714,
+              "mean_signed_distance_bootstrap_95": [
+                -0.2857,
+                1.4286
+              ],
+              "mean_absolute_distance": 1.1429,
+              "mean_absolute_distance_bootstrap_95": [
+                0.7143,
+                1.5714
+              ],
+              "severe_error_n": 2,
+              "severe_error_rate": 0.2857,
+              "severe_error_wilson_95": [
+                0.0822,
+                0.6411
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 5,
+          "C2_joint_n": 0,
+          "C2_joint_rate": 0.0,
+          "A4_all_pass_n": 0,
+          "A4_all_pass_rate": 0.0,
+          "fields": {
+            "verdict": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 0.6,
+              "mean_signed_distance_bootstrap_95": [
+                -0.2,
+                1.0
+              ],
+              "mean_absolute_distance": 1.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "severity": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 0.6,
+              "mean_signed_distance_bootstrap_95": [
+                -0.2,
+                1.0
+              ],
+              "mean_absolute_distance": 1.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "action": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 1.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.8
+              ],
+              "mean_absolute_distance": 1.4,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                1.8
+              ],
+              "severe_error_n": 2,
+              "severe_error_rate": 0.4,
+              "severe_error_wilson_95": [
+                0.1176,
+                0.7693
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 3,
+          "C2_joint_n": 2,
+          "C2_joint_rate": 0.6667,
+          "A4_all_pass_n": 2,
+          "A4_all_pass_rate": 0.6667,
+          "fields": {
+            "verdict": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "severity": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "split": "dev",
+      "round": 3,
+      "n": 21,
+      "C2_joint_n": 9,
+      "C2_joint_rate": 0.4286,
+      "C2_wilson_95": [
+        0.2447,
+        0.6345
+      ],
+      "A4_all_pass_n": 8,
+      "A4_all_pass_rate": 0.381,
+      "A4_wilson_95": [
+        0.2075,
+        0.5912
+      ],
+      "any_severe_ordinal_error_n": 4,
+      "any_severe_ordinal_error_rate": 0.1905,
+      "any_severe_ordinal_error_wilson_95": [
+        0.0767,
+        0.4
+      ],
+      "macro_condition_C2_rate": 0.4524,
+      "macro_condition_A4_rate": 0.4107,
+      "fields": {
+        "verdict": {
+          "in_band_n": 9,
+          "in_band_rate": 0.4286,
+          "mean_signed_distance": 0.2857,
+          "mean_signed_distance_bootstrap_95": [
+            0.0,
+            0.5714
+          ],
+          "mean_absolute_distance": 0.5714,
+          "mean_absolute_distance_bootstrap_95": [
+            0.381,
+            0.7619
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1546
+          ]
+        },
+        "severity": {
+          "in_band_n": 9,
+          "in_band_rate": 0.4286,
+          "mean_signed_distance": 0.2857,
+          "mean_signed_distance_bootstrap_95": [
+            0.0,
+            0.5714
+          ],
+          "mean_absolute_distance": 0.5714,
+          "mean_absolute_distance_bootstrap_95": [
+            0.381,
+            0.7619
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1546
+          ]
+        },
+        "action": {
+          "in_band_n": 9,
+          "in_band_rate": 0.4286,
+          "mean_signed_distance": 0.4762,
+          "mean_signed_distance_bootstrap_95": [
+            0.0476,
+            0.9048
+          ],
+          "mean_absolute_distance": 0.7619,
+          "mean_absolute_distance_bootstrap_95": [
+            0.4286,
+            1.0952
+          ],
+          "severe_error_n": 4,
+          "severe_error_rate": 0.1905,
+          "severe_error_wilson_95": [
+            0.0767,
+            0.4
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 6,
+          "C2_joint_n": 6,
+          "C2_joint_rate": 1.0,
+          "A4_all_pass_n": 5,
+          "A4_all_pass_rate": 0.8333,
+          "fields": {
+            "verdict": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 7,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.1429,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.1429,
+          "fields": {
+            "verdict": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.2857,
+              "mean_signed_distance_bootstrap_95": [
+                -0.4286,
+                0.8571
+              ],
+              "mean_absolute_distance": 0.8571,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3543
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.2857,
+              "mean_signed_distance_bootstrap_95": [
+                -0.4286,
+                0.8571
+              ],
+              "mean_absolute_distance": 0.8571,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3543
+              ]
+            },
+            "action": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.5714,
+              "mean_signed_distance_bootstrap_95": [
+                -0.2857,
+                1.4286
+              ],
+              "mean_absolute_distance": 1.1429,
+              "mean_absolute_distance_bootstrap_95": [
+                0.7143,
+                1.5714
+              ],
+              "severe_error_n": 2,
+              "severe_error_rate": 0.2857,
+              "severe_error_wilson_95": [
+                0.0822,
+                0.6411
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 5,
+          "C2_joint_n": 0,
+          "C2_joint_rate": 0.0,
+          "A4_all_pass_n": 0,
+          "A4_all_pass_rate": 0.0,
+          "fields": {
+            "verdict": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 0.6,
+              "mean_signed_distance_bootstrap_95": [
+                -0.2,
+                1.0
+              ],
+              "mean_absolute_distance": 1.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "severity": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 0.6,
+              "mean_signed_distance_bootstrap_95": [
+                -0.2,
+                1.0
+              ],
+              "mean_absolute_distance": 1.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "action": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 1.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.8
+              ],
+              "mean_absolute_distance": 1.4,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                1.8
+              ],
+              "severe_error_n": 2,
+              "severe_error_rate": 0.4,
+              "severe_error_wilson_95": [
+                0.1176,
+                0.7693
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 3,
+          "C2_joint_n": 2,
+          "C2_joint_rate": 0.6667,
+          "A4_all_pass_n": 2,
+          "A4_all_pass_rate": 0.6667,
+          "fields": {
+            "verdict": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "severity": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "split": "heldout",
+      "round": 1,
+      "n": 20,
+      "C2_joint_n": 12,
+      "C2_joint_rate": 0.6,
+      "C2_wilson_95": [
+        0.3866,
+        0.7812
+      ],
+      "A4_all_pass_n": 12,
+      "A4_all_pass_rate": 0.6,
+      "A4_wilson_95": [
+        0.3866,
+        0.7812
+      ],
+      "any_severe_ordinal_error_n": 1,
+      "any_severe_ordinal_error_rate": 0.05,
+      "any_severe_ordinal_error_wilson_95": [
+        0.0089,
+        0.2361
+      ],
+      "macro_condition_C2_rate": 0.5,
+      "macro_condition_A4_rate": 0.5,
+      "fields": {
+        "verdict": {
+          "in_band_n": 13,
+          "in_band_rate": 0.65,
+          "mean_signed_distance": 0.1,
+          "mean_signed_distance_bootstrap_95": [
+            -0.2,
+            0.4
+          ],
+          "mean_absolute_distance": 0.4,
+          "mean_absolute_distance_bootstrap_95": [
+            0.15,
+            0.65
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.05,
+          "severe_error_wilson_95": [
+            0.0089,
+            0.2361
+          ]
+        },
+        "severity": {
+          "in_band_n": 13,
+          "in_band_rate": 0.65,
+          "mean_signed_distance": 0.25,
+          "mean_signed_distance_bootstrap_95": [
+            -0.1,
+            0.65
+          ],
+          "mean_absolute_distance": 0.45,
+          "mean_absolute_distance_bootstrap_95": [
+            0.15,
+            0.8
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.05,
+          "severe_error_wilson_95": [
+            0.0089,
+            0.2361
+          ]
+        },
+        "action": {
+          "in_band_n": 13,
+          "in_band_rate": 0.65,
+          "mean_signed_distance": 0.15,
+          "mean_signed_distance_bootstrap_95": [
+            -0.2,
+            0.55
+          ],
+          "mean_absolute_distance": 0.45,
+          "mean_absolute_distance_bootstrap_95": [
+            0.15,
+            0.8
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.05,
+          "severe_error_wilson_95": [
+            0.0089,
+            0.2361
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 8,
+          "C2_joint_n": 6,
+          "C2_joint_rate": 0.75,
+          "A4_all_pass_n": 6,
+          "A4_all_pass_rate": 0.75,
+          "fields": {
+            "verdict": {
+              "in_band_n": 6,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": -0.25,
+              "mean_signed_distance_bootstrap_95": [
+                -0.625,
+                0.0
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.625
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "severity": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "action": {
+              "in_band_n": 6,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": -0.25,
+              "mean_signed_distance_bootstrap_95": [
+                -0.625,
+                0.0
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.625
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 6,
+          "C2_joint_n": 3,
+          "C2_joint_rate": 0.5,
+          "A4_all_pass_n": 3,
+          "A4_all_pass_rate": 0.5,
+          "fields": {
+            "verdict": {
+              "in_band_n": 4,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                -0.5,
+                0.5
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.6667
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 3,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.1667,
+              "mean_signed_distance_bootstrap_95": [
+                -0.3333,
+                0.6667
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.1667,
+                0.8333
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 4,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                -0.5,
+                0.5
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.6667
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 4,
+          "C2_joint_n": 3,
+          "C2_joint_rate": 0.75,
+          "A4_all_pass_n": 3,
+          "A4_all_pass_rate": 0.75,
+          "fields": {
+            "verdict": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "severity": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "action": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 2,
+          "C2_joint_n": 0,
+          "C2_joint_rate": 0.0,
+          "A4_all_pass_n": 0,
+          "A4_all_pass_rate": 0.0,
+          "fields": {
+            "verdict": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 1.5,
+              "mean_signed_distance_bootstrap_95": [
+                1.0,
+                2.0
+              ],
+              "mean_absolute_distance": 1.5,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                2.0
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.5,
+              "severe_error_wilson_95": [
+                0.0945,
+                0.9055
+              ]
+            },
+            "severity": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 2.0,
+              "mean_signed_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "mean_absolute_distance": 2.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.5,
+              "severe_error_wilson_95": [
+                0.0945,
+                0.9055
+              ]
+            },
+            "action": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 2.0,
+              "mean_signed_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "mean_absolute_distance": 2.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.5,
+              "severe_error_wilson_95": [
+                0.0945,
+                0.9055
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "split": "heldout",
+      "round": 2,
+      "n": 20,
+      "C2_joint_n": 12,
+      "C2_joint_rate": 0.6,
+      "C2_wilson_95": [
+        0.3866,
+        0.7812
+      ],
+      "A4_all_pass_n": 12,
+      "A4_all_pass_rate": 0.6,
+      "A4_wilson_95": [
+        0.3866,
+        0.7812
+      ],
+      "any_severe_ordinal_error_n": 1,
+      "any_severe_ordinal_error_rate": 0.05,
+      "any_severe_ordinal_error_wilson_95": [
+        0.0089,
+        0.2361
+      ],
+      "macro_condition_C2_rate": 0.5,
+      "macro_condition_A4_rate": 0.5,
+      "fields": {
+        "verdict": {
+          "in_band_n": 13,
+          "in_band_rate": 0.65,
+          "mean_signed_distance": 0.1,
+          "mean_signed_distance_bootstrap_95": [
+            -0.2,
+            0.4
+          ],
+          "mean_absolute_distance": 0.4,
+          "mean_absolute_distance_bootstrap_95": [
+            0.15,
+            0.65
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.05,
+          "severe_error_wilson_95": [
+            0.0089,
+            0.2361
+          ]
+        },
+        "severity": {
+          "in_band_n": 13,
+          "in_band_rate": 0.65,
+          "mean_signed_distance": 0.25,
+          "mean_signed_distance_bootstrap_95": [
+            -0.1,
+            0.65
+          ],
+          "mean_absolute_distance": 0.45,
+          "mean_absolute_distance_bootstrap_95": [
+            0.15,
+            0.8
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.05,
+          "severe_error_wilson_95": [
+            0.0089,
+            0.2361
+          ]
+        },
+        "action": {
+          "in_band_n": 13,
+          "in_band_rate": 0.65,
+          "mean_signed_distance": 0.15,
+          "mean_signed_distance_bootstrap_95": [
+            -0.2,
+            0.55
+          ],
+          "mean_absolute_distance": 0.45,
+          "mean_absolute_distance_bootstrap_95": [
+            0.15,
+            0.8
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.05,
+          "severe_error_wilson_95": [
+            0.0089,
+            0.2361
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 8,
+          "C2_joint_n": 6,
+          "C2_joint_rate": 0.75,
+          "A4_all_pass_n": 6,
+          "A4_all_pass_rate": 0.75,
+          "fields": {
+            "verdict": {
+              "in_band_n": 6,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": -0.25,
+              "mean_signed_distance_bootstrap_95": [
+                -0.625,
+                0.0
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.625
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "severity": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "action": {
+              "in_band_n": 6,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": -0.25,
+              "mean_signed_distance_bootstrap_95": [
+                -0.625,
+                0.0
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.625
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 6,
+          "C2_joint_n": 3,
+          "C2_joint_rate": 0.5,
+          "A4_all_pass_n": 3,
+          "A4_all_pass_rate": 0.5,
+          "fields": {
+            "verdict": {
+              "in_band_n": 4,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                -0.5,
+                0.5
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.6667
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 3,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.1667,
+              "mean_signed_distance_bootstrap_95": [
+                -0.3333,
+                0.6667
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.1667,
+                0.8333
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 4,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                -0.5,
+                0.5
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.6667
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 4,
+          "C2_joint_n": 3,
+          "C2_joint_rate": 0.75,
+          "A4_all_pass_n": 3,
+          "A4_all_pass_rate": 0.75,
+          "fields": {
+            "verdict": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "severity": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "action": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 2,
+          "C2_joint_n": 0,
+          "C2_joint_rate": 0.0,
+          "A4_all_pass_n": 0,
+          "A4_all_pass_rate": 0.0,
+          "fields": {
+            "verdict": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 1.5,
+              "mean_signed_distance_bootstrap_95": [
+                1.0,
+                2.0
+              ],
+              "mean_absolute_distance": 1.5,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                2.0
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.5,
+              "severe_error_wilson_95": [
+                0.0945,
+                0.9055
+              ]
+            },
+            "severity": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 2.0,
+              "mean_signed_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "mean_absolute_distance": 2.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.5,
+              "severe_error_wilson_95": [
+                0.0945,
+                0.9055
+              ]
+            },
+            "action": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 2.0,
+              "mean_signed_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "mean_absolute_distance": 2.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.5,
+              "severe_error_wilson_95": [
+                0.0945,
+                0.9055
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "split": "heldout",
+      "round": 3,
+      "n": 20,
+      "C2_joint_n": 12,
+      "C2_joint_rate": 0.6,
+      "C2_wilson_95": [
+        0.3866,
+        0.7812
+      ],
+      "A4_all_pass_n": 12,
+      "A4_all_pass_rate": 0.6,
+      "A4_wilson_95": [
+        0.3866,
+        0.7812
+      ],
+      "any_severe_ordinal_error_n": 1,
+      "any_severe_ordinal_error_rate": 0.05,
+      "any_severe_ordinal_error_wilson_95": [
+        0.0089,
+        0.2361
+      ],
+      "macro_condition_C2_rate": 0.5,
+      "macro_condition_A4_rate": 0.5,
+      "fields": {
+        "verdict": {
+          "in_band_n": 13,
+          "in_band_rate": 0.65,
+          "mean_signed_distance": 0.1,
+          "mean_signed_distance_bootstrap_95": [
+            -0.2,
+            0.4
+          ],
+          "mean_absolute_distance": 0.4,
+          "mean_absolute_distance_bootstrap_95": [
+            0.15,
+            0.65
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.05,
+          "severe_error_wilson_95": [
+            0.0089,
+            0.2361
+          ]
+        },
+        "severity": {
+          "in_band_n": 13,
+          "in_band_rate": 0.65,
+          "mean_signed_distance": 0.25,
+          "mean_signed_distance_bootstrap_95": [
+            -0.1,
+            0.65
+          ],
+          "mean_absolute_distance": 0.45,
+          "mean_absolute_distance_bootstrap_95": [
+            0.15,
+            0.8
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.05,
+          "severe_error_wilson_95": [
+            0.0089,
+            0.2361
+          ]
+        },
+        "action": {
+          "in_band_n": 13,
+          "in_band_rate": 0.65,
+          "mean_signed_distance": 0.15,
+          "mean_signed_distance_bootstrap_95": [
+            -0.2,
+            0.55
+          ],
+          "mean_absolute_distance": 0.45,
+          "mean_absolute_distance_bootstrap_95": [
+            0.15,
+            0.8
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.05,
+          "severe_error_wilson_95": [
+            0.0089,
+            0.2361
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 8,
+          "C2_joint_n": 6,
+          "C2_joint_rate": 0.75,
+          "A4_all_pass_n": 6,
+          "A4_all_pass_rate": 0.75,
+          "fields": {
+            "verdict": {
+              "in_band_n": 6,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": -0.25,
+              "mean_signed_distance_bootstrap_95": [
+                -0.625,
+                0.0
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.625
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "severity": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "action": {
+              "in_band_n": 6,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": -0.25,
+              "mean_signed_distance_bootstrap_95": [
+                -0.625,
+                0.0
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.625
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 6,
+          "C2_joint_n": 3,
+          "C2_joint_rate": 0.5,
+          "A4_all_pass_n": 3,
+          "A4_all_pass_rate": 0.5,
+          "fields": {
+            "verdict": {
+              "in_band_n": 4,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                -0.5,
+                0.5
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.6667
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 3,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.1667,
+              "mean_signed_distance_bootstrap_95": [
+                -0.3333,
+                0.6667
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.1667,
+                0.8333
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 4,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                -0.5,
+                0.5
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.6667
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 4,
+          "C2_joint_n": 3,
+          "C2_joint_rate": 0.75,
+          "A4_all_pass_n": 3,
+          "A4_all_pass_rate": 0.75,
+          "fields": {
+            "verdict": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "severity": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "action": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 2,
+          "C2_joint_n": 0,
+          "C2_joint_rate": 0.0,
+          "A4_all_pass_n": 0,
+          "A4_all_pass_rate": 0.0,
+          "fields": {
+            "verdict": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 1.5,
+              "mean_signed_distance_bootstrap_95": [
+                1.0,
+                2.0
+              ],
+              "mean_absolute_distance": 1.5,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                2.0
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.5,
+              "severe_error_wilson_95": [
+                0.0945,
+                0.9055
+              ]
+            },
+            "severity": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 2.0,
+              "mean_signed_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "mean_absolute_distance": 2.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.5,
+              "severe_error_wilson_95": [
+                0.0945,
+                0.9055
+              ]
+            },
+            "action": {
+              "in_band_n": 0,
+              "in_band_rate": 0.0,
+              "mean_signed_distance": 2.0,
+              "mean_signed_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "mean_absolute_distance": 2.0,
+              "mean_absolute_distance_bootstrap_95": [
+                1.0,
+                3.0
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.5,
+              "severe_error_wilson_95": [
+                0.0945,
+                0.9055
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "split": "dev",
+      "round": 1,
+      "n": 21,
+      "C2_joint_n": 10,
+      "C2_joint_rate": 0.4762,
+      "C2_wilson_95": [
+        0.2834,
+        0.6763
+      ],
+      "A4_all_pass_n": 10,
+      "A4_all_pass_rate": 0.4762,
+      "A4_wilson_95": [
+        0.2834,
+        0.6763
+      ],
+      "any_severe_ordinal_error_n": 5,
+      "any_severe_ordinal_error_rate": 0.2381,
+      "any_severe_ordinal_error_wilson_95": [
+        0.1063,
+        0.4509
+      ],
+      "macro_condition_C2_rate": 0.5024,
+      "macro_condition_A4_rate": 0.5024,
+      "fields": {
+        "verdict": {
+          "in_band_n": 11,
+          "in_band_rate": 0.5238,
+          "mean_signed_distance": 0.381,
+          "mean_signed_distance_bootstrap_95": [
+            0.1429,
+            0.619
+          ],
+          "mean_absolute_distance": 0.4762,
+          "mean_absolute_distance_bootstrap_95": [
+            0.2857,
+            0.7143
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1546
+          ]
+        },
+        "severity": {
+          "in_band_n": 10,
+          "in_band_rate": 0.4762,
+          "mean_signed_distance": 0.4762,
+          "mean_signed_distance_bootstrap_95": [
+            0.1905,
+            0.7619
+          ],
+          "mean_absolute_distance": 0.5714,
+          "mean_absolute_distance_bootstrap_95": [
+            0.3333,
+            0.8095
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.0476,
+          "severe_error_wilson_95": [
+            0.0085,
+            0.2267
+          ]
+        },
+        "action": {
+          "in_band_n": 12,
+          "in_band_rate": 0.5714,
+          "mean_signed_distance": 0.5714,
+          "mean_signed_distance_bootstrap_95": [
+            0.1905,
+            1.0
+          ],
+          "mean_absolute_distance": 0.6667,
+          "mean_absolute_distance_bootstrap_95": [
+            0.3333,
+            1.0476
+          ],
+          "severe_error_n": 5,
+          "severe_error_rate": 0.2381,
+          "severe_error_wilson_95": [
+            0.1063,
+            0.4509
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 6,
+          "C2_joint_n": 6,
+          "C2_joint_rate": 1.0,
+          "A4_all_pass_n": 6,
+          "A4_all_pass_rate": 1.0,
+          "fields": {
+            "verdict": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 7,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.1429,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.1429,
+          "fields": {
+            "verdict": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.5714,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.8571,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3543
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.7143,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.2857
+              ],
+              "mean_absolute_distance": 1.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.4286
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.1429,
+              "severe_error_wilson_95": [
+                0.0257,
+                0.5131
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.2857,
+              "mean_signed_distance": 0.8571,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.7143
+              ],
+              "mean_absolute_distance": 1.1429,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.7143
+              ],
+              "severe_error_n": 3,
+              "severe_error_rate": 0.4286,
+              "severe_error_wilson_95": [
+                0.1582,
+                0.7495
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 5,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.2,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.2,
+          "fields": {
+            "verdict": {
+              "in_band_n": 2,
+              "in_band_rate": 0.4,
+              "mean_signed_distance": 0.6,
+              "mean_signed_distance_bootstrap_95": [
+                0.2,
+                1.0
+              ],
+              "mean_absolute_distance": 0.6,
+              "mean_absolute_distance_bootstrap_95": [
+                0.2,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.2,
+              "mean_signed_distance": 0.8,
+              "mean_signed_distance_bootstrap_95": [
+                0.4,
+                1.0
+              ],
+              "mean_absolute_distance": 0.8,
+              "mean_absolute_distance_bootstrap_95": [
+                0.4,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.4,
+              "mean_signed_distance": 1.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.2,
+                1.8
+              ],
+              "mean_absolute_distance": 1.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.2,
+                1.8
+              ],
+              "severe_error_n": 2,
+              "severe_error_rate": 0.4,
+              "severe_error_wilson_95": [
+                0.1176,
+                0.7693
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 3,
+          "C2_joint_n": 2,
+          "C2_joint_rate": 0.6667,
+          "A4_all_pass_n": 2,
+          "A4_all_pass_rate": 0.6667,
+          "fields": {
+            "verdict": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "severity": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "split": "dev",
+      "round": 2,
+      "n": 21,
+      "C2_joint_n": 10,
+      "C2_joint_rate": 0.4762,
+      "C2_wilson_95": [
+        0.2834,
+        0.6763
+      ],
+      "A4_all_pass_n": 10,
+      "A4_all_pass_rate": 0.4762,
+      "A4_wilson_95": [
+        0.2834,
+        0.6763
+      ],
+      "any_severe_ordinal_error_n": 6,
+      "any_severe_ordinal_error_rate": 0.2857,
+      "any_severe_ordinal_error_wilson_95": [
+        0.1381,
+        0.4996
+      ],
+      "macro_condition_C2_rate": 0.5024,
+      "macro_condition_A4_rate": 0.5024,
+      "fields": {
+        "verdict": {
+          "in_band_n": 11,
+          "in_band_rate": 0.5238,
+          "mean_signed_distance": 0.381,
+          "mean_signed_distance_bootstrap_95": [
+            0.1429,
+            0.619
+          ],
+          "mean_absolute_distance": 0.4762,
+          "mean_absolute_distance_bootstrap_95": [
+            0.2857,
+            0.6667
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1546
+          ]
+        },
+        "severity": {
+          "in_band_n": 10,
+          "in_band_rate": 0.4762,
+          "mean_signed_distance": 0.4762,
+          "mean_signed_distance_bootstrap_95": [
+            0.1905,
+            0.7619
+          ],
+          "mean_absolute_distance": 0.5714,
+          "mean_absolute_distance_bootstrap_95": [
+            0.3333,
+            0.8095
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.0476,
+          "severe_error_wilson_95": [
+            0.0085,
+            0.2267
+          ]
+        },
+        "action": {
+          "in_band_n": 12,
+          "in_band_rate": 0.5714,
+          "mean_signed_distance": 0.619,
+          "mean_signed_distance_bootstrap_95": [
+            0.2381,
+            1.0476
+          ],
+          "mean_absolute_distance": 0.7143,
+          "mean_absolute_distance_bootstrap_95": [
+            0.3333,
+            1.0952
+          ],
+          "severe_error_n": 6,
+          "severe_error_rate": 0.2857,
+          "severe_error_wilson_95": [
+            0.1381,
+            0.4996
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 6,
+          "C2_joint_n": 6,
+          "C2_joint_rate": 1.0,
+          "A4_all_pass_n": 6,
+          "A4_all_pass_rate": 1.0,
+          "fields": {
+            "verdict": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 7,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.1429,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.1429,
+          "fields": {
+            "verdict": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.5714,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.8571,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3543
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.7143,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.2857
+              ],
+              "mean_absolute_distance": 1.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.4286
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.1429,
+              "severe_error_wilson_95": [
+                0.0257,
+                0.5131
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.2857,
+              "mean_signed_distance": 0.8571,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.7143
+              ],
+              "mean_absolute_distance": 1.1429,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.7143
+              ],
+              "severe_error_n": 3,
+              "severe_error_rate": 0.4286,
+              "severe_error_wilson_95": [
+                0.1582,
+                0.7495
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 5,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.2,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.2,
+          "fields": {
+            "verdict": {
+              "in_band_n": 2,
+              "in_band_rate": 0.4,
+              "mean_signed_distance": 0.6,
+              "mean_signed_distance_bootstrap_95": [
+                0.2,
+                1.0
+              ],
+              "mean_absolute_distance": 0.6,
+              "mean_absolute_distance_bootstrap_95": [
+                0.2,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.2,
+              "mean_signed_distance": 0.8,
+              "mean_signed_distance_bootstrap_95": [
+                0.4,
+                1.0
+              ],
+              "mean_absolute_distance": 0.8,
+              "mean_absolute_distance_bootstrap_95": [
+                0.4,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.4,
+              "mean_signed_distance": 1.2,
+              "mean_signed_distance_bootstrap_95": [
+                0.4,
+                2.0
+              ],
+              "mean_absolute_distance": 1.2,
+              "mean_absolute_distance_bootstrap_95": [
+                0.4,
+                2.0
+              ],
+              "severe_error_n": 3,
+              "severe_error_rate": 0.6,
+              "severe_error_wilson_95": [
+                0.2307,
+                0.8824
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 3,
+          "C2_joint_n": 2,
+          "C2_joint_rate": 0.6667,
+          "A4_all_pass_n": 2,
+          "A4_all_pass_rate": 0.6667,
+          "fields": {
+            "verdict": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "severity": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "split": "dev",
+      "round": 3,
+      "n": 21,
+      "C2_joint_n": 10,
+      "C2_joint_rate": 0.4762,
+      "C2_wilson_95": [
+        0.2834,
+        0.6763
+      ],
+      "A4_all_pass_n": 10,
+      "A4_all_pass_rate": 0.4762,
+      "A4_wilson_95": [
+        0.2834,
+        0.6763
+      ],
+      "any_severe_ordinal_error_n": 5,
+      "any_severe_ordinal_error_rate": 0.2381,
+      "any_severe_ordinal_error_wilson_95": [
+        0.1063,
+        0.4509
+      ],
+      "macro_condition_C2_rate": 0.5024,
+      "macro_condition_A4_rate": 0.5024,
+      "fields": {
+        "verdict": {
+          "in_band_n": 11,
+          "in_band_rate": 0.5238,
+          "mean_signed_distance": 0.381,
+          "mean_signed_distance_bootstrap_95": [
+            0.1429,
+            0.619
+          ],
+          "mean_absolute_distance": 0.4762,
+          "mean_absolute_distance_bootstrap_95": [
+            0.2857,
+            0.7143
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1546
+          ]
+        },
+        "severity": {
+          "in_band_n": 10,
+          "in_band_rate": 0.4762,
+          "mean_signed_distance": 0.4762,
+          "mean_signed_distance_bootstrap_95": [
+            0.1905,
+            0.7619
+          ],
+          "mean_absolute_distance": 0.5714,
+          "mean_absolute_distance_bootstrap_95": [
+            0.3333,
+            0.8095
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.0476,
+          "severe_error_wilson_95": [
+            0.0085,
+            0.2267
+          ]
+        },
+        "action": {
+          "in_band_n": 11,
+          "in_band_rate": 0.5238,
+          "mean_signed_distance": 0.619,
+          "mean_signed_distance_bootstrap_95": [
+            0.2381,
+            1.0
+          ],
+          "mean_absolute_distance": 0.7143,
+          "mean_absolute_distance_bootstrap_95": [
+            0.381,
+            1.0952
+          ],
+          "severe_error_n": 5,
+          "severe_error_rate": 0.2381,
+          "severe_error_wilson_95": [
+            0.1063,
+            0.4509
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 6,
+          "C2_joint_n": 6,
+          "C2_joint_rate": 1.0,
+          "A4_all_pass_n": 6,
+          "A4_all_pass_rate": 1.0,
+          "fields": {
+            "verdict": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 6,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 7,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.1429,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.1429,
+          "fields": {
+            "verdict": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.5714,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.8571,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3543
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 0.7143,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.2857
+              ],
+              "mean_absolute_distance": 1.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.5714,
+                1.4286
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.1429,
+              "severe_error_wilson_95": [
+                0.0257,
+                0.5131
+              ]
+            },
+            "action": {
+              "in_band_n": 1,
+              "in_band_rate": 0.1429,
+              "mean_signed_distance": 1.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.1429,
+                1.7143
+              ],
+              "mean_absolute_distance": 1.2857,
+              "mean_absolute_distance_bootstrap_95": [
+                0.7143,
+                1.7143
+              ],
+              "severe_error_n": 3,
+              "severe_error_rate": 0.4286,
+              "severe_error_wilson_95": [
+                0.1582,
+                0.7495
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 5,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.2,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.2,
+          "fields": {
+            "verdict": {
+              "in_band_n": 2,
+              "in_band_rate": 0.4,
+              "mean_signed_distance": 0.6,
+              "mean_signed_distance_bootstrap_95": [
+                0.2,
+                1.0
+              ],
+              "mean_absolute_distance": 0.6,
+              "mean_absolute_distance_bootstrap_95": [
+                0.2,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.2,
+              "mean_signed_distance": 0.8,
+              "mean_signed_distance_bootstrap_95": [
+                0.4,
+                1.0
+              ],
+              "mean_absolute_distance": 0.8,
+              "mean_absolute_distance_bootstrap_95": [
+                0.4,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4345
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.4,
+              "mean_signed_distance": 1.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.2,
+                1.8
+              ],
+              "mean_absolute_distance": 1.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.2,
+                1.8
+              ],
+              "severe_error_n": 2,
+              "severe_error_rate": 0.4,
+              "severe_error_wilson_95": [
+                0.1176,
+                0.7693
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 3,
+          "C2_joint_n": 2,
+          "C2_joint_rate": 0.6667,
+          "A4_all_pass_n": 2,
+          "A4_all_pass_rate": 0.6667,
+          "fields": {
+            "verdict": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "severity": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.6667,
+              "mean_signed_distance": 0.3333,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.3333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.5615
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "split": "heldout",
+      "round": 1,
+      "n": 20,
+      "C2_joint_n": 11,
+      "C2_joint_rate": 0.55,
+      "C2_wilson_95": [
+        0.3421,
+        0.7418
+      ],
+      "A4_all_pass_n": 11,
+      "A4_all_pass_rate": 0.55,
+      "A4_wilson_95": [
+        0.3421,
+        0.7418
+      ],
+      "any_severe_ordinal_error_n": 1,
+      "any_severe_ordinal_error_rate": 0.05,
+      "any_severe_ordinal_error_wilson_95": [
+        0.0089,
+        0.2361
+      ],
+      "macro_condition_C2_rate": 0.4896,
+      "macro_condition_A4_rate": 0.4896,
+      "fields": {
+        "verdict": {
+          "in_band_n": 14,
+          "in_band_rate": 0.7,
+          "mean_signed_distance": 0.2,
+          "mean_signed_distance_bootstrap_95": [
+            0.0,
+            0.4
+          ],
+          "mean_absolute_distance": 0.3,
+          "mean_absolute_distance_bootstrap_95": [
+            0.1,
+            0.5
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1611
+          ]
+        },
+        "severity": {
+          "in_band_n": 11,
+          "in_band_rate": 0.55,
+          "mean_signed_distance": 0.35,
+          "mean_signed_distance_bootstrap_95": [
+            0.1,
+            0.6
+          ],
+          "mean_absolute_distance": 0.45,
+          "mean_absolute_distance_bootstrap_95": [
+            0.25,
+            0.65
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1611
+          ]
+        },
+        "action": {
+          "in_band_n": 14,
+          "in_band_rate": 0.7,
+          "mean_signed_distance": 0.25,
+          "mean_signed_distance_bootstrap_95": [
+            0.0,
+            0.55
+          ],
+          "mean_absolute_distance": 0.35,
+          "mean_absolute_distance_bootstrap_95": [
+            0.15,
+            0.6
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.05,
+          "severe_error_wilson_95": [
+            0.0089,
+            0.2361
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 8,
+          "C2_joint_n": 7,
+          "C2_joint_rate": 0.875,
+          "A4_all_pass_n": 7,
+          "A4_all_pass_rate": 0.875,
+          "fields": {
+            "verdict": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "severity": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "action": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 6,
+          "C2_joint_n": 2,
+          "C2_joint_rate": 0.3333,
+          "A4_all_pass_n": 2,
+          "A4_all_pass_rate": 0.3333,
+          "fields": {
+            "verdict": {
+              "in_band_n": 3,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.1667,
+                0.8333
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.1667,
+                0.8333
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 2,
+              "in_band_rate": 0.3333,
+              "mean_signed_distance": 0.6667,
+              "mean_signed_distance_bootstrap_95": [
+                0.3333,
+                1.0
+              ],
+              "mean_absolute_distance": 0.6667,
+              "mean_absolute_distance_bootstrap_95": [
+                0.3333,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 3,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.1667,
+                0.8333
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.1667,
+                0.8333
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 4,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.25,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.25,
+          "fields": {
+            "verdict": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.25,
+              "mean_signed_distance": 0.75,
+              "mean_signed_distance_bootstrap_95": [
+                0.25,
+                1.0
+              ],
+              "mean_absolute_distance": 0.75,
+              "mean_absolute_distance_bootstrap_95": [
+                0.25,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "action": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.5
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.5
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.25,
+              "severe_error_wilson_95": [
+                0.0456,
+                0.6994
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 2,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.5,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.5,
+          "fields": {
+            "verdict": {
+              "in_band_n": 1,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.6576
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.6576
+              ]
+            },
+            "action": {
+              "in_band_n": 1,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.6576
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "split": "heldout",
+      "round": 2,
+      "n": 20,
+      "C2_joint_n": 11,
+      "C2_joint_rate": 0.55,
+      "C2_wilson_95": [
+        0.3421,
+        0.7418
+      ],
+      "A4_all_pass_n": 11,
+      "A4_all_pass_rate": 0.55,
+      "A4_wilson_95": [
+        0.3421,
+        0.7418
+      ],
+      "any_severe_ordinal_error_n": 1,
+      "any_severe_ordinal_error_rate": 0.05,
+      "any_severe_ordinal_error_wilson_95": [
+        0.0089,
+        0.2361
+      ],
+      "macro_condition_C2_rate": 0.4896,
+      "macro_condition_A4_rate": 0.4896,
+      "fields": {
+        "verdict": {
+          "in_band_n": 14,
+          "in_band_rate": 0.7,
+          "mean_signed_distance": 0.2,
+          "mean_signed_distance_bootstrap_95": [
+            0.0,
+            0.4
+          ],
+          "mean_absolute_distance": 0.3,
+          "mean_absolute_distance_bootstrap_95": [
+            0.1,
+            0.5
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1611
+          ]
+        },
+        "severity": {
+          "in_band_n": 11,
+          "in_band_rate": 0.55,
+          "mean_signed_distance": 0.35,
+          "mean_signed_distance_bootstrap_95": [
+            0.1,
+            0.6
+          ],
+          "mean_absolute_distance": 0.45,
+          "mean_absolute_distance_bootstrap_95": [
+            0.25,
+            0.65
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1611
+          ]
+        },
+        "action": {
+          "in_band_n": 15,
+          "in_band_rate": 0.75,
+          "mean_signed_distance": 0.2,
+          "mean_signed_distance_bootstrap_95": [
+            -0.05,
+            0.5
+          ],
+          "mean_absolute_distance": 0.3,
+          "mean_absolute_distance_bootstrap_95": [
+            0.1,
+            0.55
+          ],
+          "severe_error_n": 1,
+          "severe_error_rate": 0.05,
+          "severe_error_wilson_95": [
+            0.0089,
+            0.2361
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 8,
+          "C2_joint_n": 7,
+          "C2_joint_rate": 0.875,
+          "A4_all_pass_n": 7,
+          "A4_all_pass_rate": 0.875,
+          "fields": {
+            "verdict": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "severity": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "action": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 6,
+          "C2_joint_n": 2,
+          "C2_joint_rate": 0.3333,
+          "A4_all_pass_n": 2,
+          "A4_all_pass_rate": 0.3333,
+          "fields": {
+            "verdict": {
+              "in_band_n": 3,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.1667,
+                0.8333
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.1667,
+                0.8333
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 2,
+              "in_band_rate": 0.3333,
+              "mean_signed_distance": 0.6667,
+              "mean_signed_distance_bootstrap_95": [
+                0.3333,
+                1.0
+              ],
+              "mean_absolute_distance": 0.6667,
+              "mean_absolute_distance_bootstrap_95": [
+                0.3333,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 3,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.6667,
+              "mean_signed_distance_bootstrap_95": [
+                0.1667,
+                1.3333
+              ],
+              "mean_absolute_distance": 0.6667,
+              "mean_absolute_distance_bootstrap_95": [
+                0.1667,
+                1.3333
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.1667,
+              "severe_error_wilson_95": [
+                0.0301,
+                0.5635
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 4,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.25,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.25,
+          "fields": {
+            "verdict": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.25,
+              "mean_signed_distance": 0.75,
+              "mean_signed_distance_bootstrap_95": [
+                0.25,
+                1.0
+              ],
+              "mean_absolute_distance": 0.75,
+              "mean_absolute_distance_bootstrap_95": [
+                0.25,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "action": {
+              "in_band_n": 4,
+              "in_band_rate": 1.0,
+              "mean_signed_distance": 0.0,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "mean_absolute_distance": 0.0,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 2,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.5,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.5,
+          "fields": {
+            "verdict": {
+              "in_band_n": 1,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.6576
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.6576
+              ]
+            },
+            "action": {
+              "in_band_n": 1,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.6576
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "split": "heldout",
+      "round": 3,
+      "n": 20,
+      "C2_joint_n": 11,
+      "C2_joint_rate": 0.55,
+      "C2_wilson_95": [
+        0.3421,
+        0.7418
+      ],
+      "A4_all_pass_n": 11,
+      "A4_all_pass_rate": 0.55,
+      "A4_wilson_95": [
+        0.3421,
+        0.7418
+      ],
+      "any_severe_ordinal_error_n": 2,
+      "any_severe_ordinal_error_rate": 0.1,
+      "any_severe_ordinal_error_wilson_95": [
+        0.0279,
+        0.301
+      ],
+      "macro_condition_C2_rate": 0.4896,
+      "macro_condition_A4_rate": 0.4896,
+      "fields": {
+        "verdict": {
+          "in_band_n": 14,
+          "in_band_rate": 0.7,
+          "mean_signed_distance": 0.2,
+          "mean_signed_distance_bootstrap_95": [
+            0.0,
+            0.4
+          ],
+          "mean_absolute_distance": 0.3,
+          "mean_absolute_distance_bootstrap_95": [
+            0.1,
+            0.5
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1611
+          ]
+        },
+        "severity": {
+          "in_band_n": 11,
+          "in_band_rate": 0.55,
+          "mean_signed_distance": 0.35,
+          "mean_signed_distance_bootstrap_95": [
+            0.1,
+            0.6
+          ],
+          "mean_absolute_distance": 0.45,
+          "mean_absolute_distance_bootstrap_95": [
+            0.25,
+            0.65
+          ],
+          "severe_error_n": 0,
+          "severe_error_rate": 0.0,
+          "severe_error_wilson_95": [
+            0.0,
+            0.1611
+          ]
+        },
+        "action": {
+          "in_band_n": 12,
+          "in_band_rate": 0.6,
+          "mean_signed_distance": 0.4,
+          "mean_signed_distance_bootstrap_95": [
+            0.1,
+            0.75
+          ],
+          "mean_absolute_distance": 0.5,
+          "mean_absolute_distance_bootstrap_95": [
+            0.25,
+            0.8
+          ],
+          "severe_error_n": 2,
+          "severe_error_rate": 0.1,
+          "severe_error_wilson_95": [
+            0.0279,
+            0.301
+          ]
+        }
+      },
+      "by_condition": {
+        "strong": {
+          "n": 8,
+          "C2_joint_n": 7,
+          "C2_joint_rate": 0.875,
+          "A4_all_pass_n": 7,
+          "A4_all_pass_rate": 0.875,
+          "fields": {
+            "verdict": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "severity": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            },
+            "action": {
+              "in_band_n": 7,
+              "in_band_rate": 0.875,
+              "mean_signed_distance": -0.125,
+              "mean_signed_distance_bootstrap_95": [
+                -0.375,
+                0.0
+              ],
+              "mean_absolute_distance": 0.125,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.375
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3244
+              ]
+            }
+          }
+        },
+        "weak": {
+          "n": 6,
+          "C2_joint_n": 2,
+          "C2_joint_rate": 0.3333,
+          "A4_all_pass_n": 2,
+          "A4_all_pass_rate": 0.3333,
+          "fields": {
+            "verdict": {
+              "in_band_n": 3,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.1667,
+                0.8333
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.1667,
+                0.8333
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "severity": {
+              "in_band_n": 2,
+              "in_band_rate": 0.3333,
+              "mean_signed_distance": 0.6667,
+              "mean_signed_distance_bootstrap_95": [
+                0.3333,
+                1.0
+              ],
+              "mean_absolute_distance": 0.6667,
+              "mean_absolute_distance_bootstrap_95": [
+                0.3333,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.3903
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.3333,
+              "mean_signed_distance": 0.8333,
+              "mean_signed_distance_bootstrap_95": [
+                0.3333,
+                1.3333
+              ],
+              "mean_absolute_distance": 0.8333,
+              "mean_absolute_distance_bootstrap_95": [
+                0.3333,
+                1.3333
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.1667,
+              "severe_error_wilson_95": [
+                0.0301,
+                0.5635
+              ]
+            }
+          }
+        },
+        "missing": {
+          "n": 4,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.25,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.25,
+          "fields": {
+            "verdict": {
+              "in_band_n": 3,
+              "in_band_rate": 0.75,
+              "mean_signed_distance": 0.25,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "mean_absolute_distance": 0.25,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                0.75
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.25,
+              "mean_signed_distance": 0.75,
+              "mean_signed_distance_bootstrap_95": [
+                0.25,
+                1.0
+              ],
+              "mean_absolute_distance": 0.75,
+              "mean_absolute_distance_bootstrap_95": [
+                0.25,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.4899
+              ]
+            },
+            "action": {
+              "in_band_n": 2,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.75,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.5
+              ],
+              "mean_absolute_distance": 0.75,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.5
+              ],
+              "severe_error_n": 1,
+              "severe_error_rate": 0.25,
+              "severe_error_wilson_95": [
+                0.0456,
+                0.6994
+              ]
+            }
+          }
+        },
+        "counter": {
+          "n": 2,
+          "C2_joint_n": 1,
+          "C2_joint_rate": 0.5,
+          "A4_all_pass_n": 1,
+          "A4_all_pass_rate": 0.5,
+          "fields": {
+            "verdict": {
+              "in_band_n": 1,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.6576
+              ]
+            },
+            "severity": {
+              "in_band_n": 1,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.6576
+              ]
+            },
+            "action": {
+              "in_band_n": 1,
+              "in_band_rate": 0.5,
+              "mean_signed_distance": 0.5,
+              "mean_signed_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "mean_absolute_distance": 0.5,
+              "mean_absolute_distance_bootstrap_95": [
+                0.0,
+                1.0
+              ],
+              "severe_error_n": 0,
+              "severe_error_rate": 0.0,
+              "severe_error_wilson_95": [
+                0.0,
+                0.6576
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "paired_heldout_round1": {
+    "endpoint": "C2 joint decision correctness",
+    "scope": "heldout round 1 only",
+    "n_pairs": 20,
+    "gemini_pass_claude_fail": 4,
+    "gemini_fail_claude_pass": 3,
+    "paired_risk_difference_gemini_minus_claude": 0.05,
+    "paired_risk_difference_bootstrap_95": [
+      -0.2,
+      0.3
+    ],
+    "mcnemar_exact_two_sided_p": 1.0,
+    "ordinal_absolute_distance_difference": {
+      "verdict": {
+        "mean_gemini_minus_claude": 0.1,
+        "median_gemini_minus_claude": 0.0,
+        "bootstrap_95": [
+          -0.15,
+          0.35
+        ],
+        "interpretation": "negative favours Gemini; positive favours Claude"
+      },
+      "severity": {
+        "mean_gemini_minus_claude": 0.0,
+        "median_gemini_minus_claude": 0.0,
+        "bootstrap_95": [
+          -0.3,
+          0.3
+        ],
+        "interpretation": "negative favours Gemini; positive favours Claude"
+      },
+      "action": {
+        "mean_gemini_minus_claude": 0.1,
+        "median_gemini_minus_claude": 0.0,
+        "bootstrap_95": [
+          -0.25,
+          0.45
+        ],
+        "interpretation": "negative favours Gemini; positive favours Claude"
+      }
+    },
+    "discordant_cases": {
+      "gemini_only_correct": [
+        "COL-001",
+        "DISC-001",
+        "EVL-001",
+        "ING-002"
+      ],
+      "claude_only_correct": [
+        "DISC-004",
+        "GPO-001",
+        "LS-003"
+      ]
+    }
+  },
+  "stability": [
+    {
+      "model": "gemini-2.5-flash",
+      "split": "dev",
+      "n": 21,
+      "all_three_rounds_agree": {
+        "verdict": 21,
+        "severity": 20,
+        "action": 19,
+        "tuple": 19
+      },
+      "all_three_rounds_agree_rate": {
+        "verdict": 1.0,
+        "severity": 0.9524,
+        "action": 0.9048,
+        "tuple": 0.9048
+      },
+      "one_field_variation_n": 1,
+      "multi_field_variation_n": 1,
+      "pairwise_agreement_rate": {
+        "round_1_vs_2": {
+          "verdict": 1.0,
+          "severity": 0.9524,
+          "action": 0.9048,
+          "tuple": 0.9048
+        },
+        "round_1_vs_3": {
+          "verdict": 1.0,
+          "severity": 0.9524,
+          "action": 0.9048,
+          "tuple": 0.9048
+        },
+        "round_2_vs_3": {
+          "verdict": 1.0,
+          "severity": 1.0,
+          "action": 1.0,
+          "tuple": 1.0
+        }
+      },
+      "unstable_cases": [
+        {
+          "case_id": "UAC-001",
+          "stable": false,
+          "varied_fields": [
+            "action"
+          ],
+          "values": {
+            "verdict": [
+              "malicious",
+              "malicious",
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "high",
+              "high"
+            ],
+            "action": [
+              "isolate",
+              "escalate",
+              "escalate"
+            ]
+          }
+        },
+        {
+          "case_id": "WMI-002",
+          "stable": false,
+          "varied_fields": [
+            "severity",
+            "action"
+          ],
+          "values": {
+            "verdict": [
+              "malicious",
+              "malicious",
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "critical",
+              "critical"
+            ],
+            "action": [
+              "escalate",
+              "isolate",
+              "isolate"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "split": "heldout",
+      "n": 20,
+      "all_three_rounds_agree": {
+        "verdict": 20,
+        "severity": 20,
+        "action": 20,
+        "tuple": 20
+      },
+      "all_three_rounds_agree_rate": {
+        "verdict": 1.0,
+        "severity": 1.0,
+        "action": 1.0,
+        "tuple": 1.0
+      },
+      "one_field_variation_n": 0,
+      "multi_field_variation_n": 0,
+      "pairwise_agreement_rate": {
+        "round_1_vs_2": {
+          "verdict": 1.0,
+          "severity": 1.0,
+          "action": 1.0,
+          "tuple": 1.0
+        },
+        "round_1_vs_3": {
+          "verdict": 1.0,
+          "severity": 1.0,
+          "action": 1.0,
+          "tuple": 1.0
+        },
+        "round_2_vs_3": {
+          "verdict": 1.0,
+          "severity": 1.0,
+          "action": 1.0,
+          "tuple": 1.0
+        }
+      },
+      "unstable_cases": []
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "split": "dev",
+      "n": 21,
+      "all_three_rounds_agree": {
+        "verdict": 21,
+        "severity": 21,
+        "action": 19,
+        "tuple": 19
+      },
+      "all_three_rounds_agree_rate": {
+        "verdict": 1.0,
+        "severity": 1.0,
+        "action": 0.9048,
+        "tuple": 0.9048
+      },
+      "one_field_variation_n": 2,
+      "multi_field_variation_n": 0,
+      "pairwise_agreement_rate": {
+        "round_1_vs_2": {
+          "verdict": 1.0,
+          "severity": 1.0,
+          "action": 0.9524,
+          "tuple": 0.9524
+        },
+        "round_1_vs_3": {
+          "verdict": 1.0,
+          "severity": 1.0,
+          "action": 0.9524,
+          "tuple": 0.9524
+        },
+        "round_2_vs_3": {
+          "verdict": 1.0,
+          "severity": 1.0,
+          "action": 0.9048,
+          "tuple": 0.9048
+        }
+      },
+      "unstable_cases": [
+        {
+          "case_id": "BF-001",
+          "stable": false,
+          "varied_fields": [
+            "action"
+          ],
+          "values": {
+            "verdict": [
+              "malicious",
+              "malicious",
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "high",
+              "high"
+            ],
+            "action": [
+              "investigate",
+              "investigate",
+              "escalate"
+            ]
+          }
+        },
+        {
+          "case_id": "LGN-002",
+          "stable": false,
+          "varied_fields": [
+            "action"
+          ],
+          "values": {
+            "verdict": [
+              "malicious",
+              "malicious",
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "high",
+              "high"
+            ],
+            "action": [
+              "escalate",
+              "isolate",
+              "escalate"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "split": "heldout",
+      "n": 20,
+      "all_three_rounds_agree": {
+        "verdict": 20,
+        "severity": 19,
+        "action": 13,
+        "tuple": 12
+      },
+      "all_three_rounds_agree_rate": {
+        "verdict": 1.0,
+        "severity": 0.95,
+        "action": 0.65,
+        "tuple": 0.6
+      },
+      "one_field_variation_n": 8,
+      "multi_field_variation_n": 0,
+      "pairwise_agreement_rate": {
+        "round_1_vs_2": {
+          "verdict": 1.0,
+          "severity": 0.95,
+          "action": 0.75,
+          "tuple": 0.7
+        },
+        "round_1_vs_3": {
+          "verdict": 1.0,
+          "severity": 0.95,
+          "action": 0.8,
+          "tuple": 0.75
+        },
+        "round_2_vs_3": {
+          "verdict": 1.0,
+          "severity": 1.0,
+          "action": 0.7,
+          "tuple": 0.7
+        }
+      },
+      "unstable_cases": [
+        {
+          "case_id": "BF-002",
+          "stable": false,
+          "varied_fields": [
+            "action"
+          ],
+          "values": {
+            "verdict": [
+              "malicious",
+              "malicious",
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "high",
+              "high"
+            ],
+            "action": [
+              "investigate",
+              "escalate",
+              "isolate"
+            ]
+          }
+        },
+        {
+          "case_id": "COL-001",
+          "stable": false,
+          "varied_fields": [
+            "action"
+          ],
+          "values": {
+            "verdict": [
+              "suspicious",
+              "suspicious",
+              "suspicious"
+            ],
+            "severity": [
+              "high",
+              "high",
+              "high"
+            ],
+            "action": [
+              "escalate",
+              "investigate",
+              "escalate"
+            ]
+          }
+        },
+        {
+          "case_id": "CRED-001",
+          "stable": false,
+          "varied_fields": [
+            "action"
+          ],
+          "values": {
+            "verdict": [
+              "malicious",
+              "malicious",
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "high",
+              "high"
+            ],
+            "action": [
+              "escalate",
+              "isolate",
+              "escalate"
+            ]
+          }
+        },
+        {
+          "case_id": "DISC-004",
+          "stable": false,
+          "varied_fields": [
+            "action"
+          ],
+          "values": {
+            "verdict": [
+              "suspicious",
+              "suspicious",
+              "suspicious"
+            ],
+            "severity": [
+              "low",
+              "low",
+              "low"
+            ],
+            "action": [
+              "monitor",
+              "monitor",
+              "investigate"
+            ]
+          }
+        },
+        {
+          "case_id": "EVL-001",
+          "stable": false,
+          "varied_fields": [
+            "action"
+          ],
+          "values": {
+            "verdict": [
+              "suspicious",
+              "suspicious",
+              "suspicious"
+            ],
+            "severity": [
+              "high",
+              "high",
+              "high"
+            ],
+            "action": [
+              "investigate",
+              "investigate",
+              "escalate"
+            ]
+          }
+        },
+        {
+          "case_id": "LOGON-001",
+          "stable": false,
+          "varied_fields": [
+            "action"
+          ],
+          "values": {
+            "verdict": [
+              "malicious",
+              "malicious",
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "high",
+              "high"
+            ],
+            "action": [
+              "isolate",
+              "investigate",
+              "isolate"
+            ]
+          }
+        },
+        {
+          "case_id": "LS-003",
+          "stable": false,
+          "varied_fields": [
+            "action"
+          ],
+          "values": {
+            "verdict": [
+              "malicious",
+              "malicious",
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "high",
+              "high"
+            ],
+            "action": [
+              "escalate",
+              "isolate",
+              "isolate"
+            ]
+          }
+        },
+        {
+          "case_id": "SMB-001",
+          "stable": false,
+          "varied_fields": [
+            "severity"
+          ],
+          "values": {
+            "verdict": [
+              "malicious",
+              "malicious",
+              "malicious"
+            ],
+            "severity": [
+              "critical",
+              "high",
+              "high"
+            ],
+            "action": [
+              "isolate",
+              "isolate",
+              "isolate"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "runtime_uncertainty": [
+    {
+      "model": "gemini-2.5-flash__A2_evidence_prompt",
+      "split": "dev",
+      "target": "C2/C4 calibration-positive",
+      "profile": "integrity_only",
+      "oracle_positive_n": 12,
+      "recall_n": 0,
+      "recall_rate": 0.0,
+      "recall_wilson_95": [
+        0.0,
+        0.2425
+      ],
+      "review_n": 0,
+      "review_rate": 0.0,
+      "review_wilson_95": [
+        0.0,
+        0.1546
+      ],
+      "unrouted_error_n": 12
+    },
+    {
+      "model": "gemini-2.5-flash__A2_evidence_prompt",
+      "split": "dev",
+      "target": "C2/C4 calibration-positive",
+      "profile": "consequence_gate",
+      "oracle_positive_n": 12,
+      "recall_n": 7,
+      "recall_rate": 0.5833,
+      "recall_wilson_95": [
+        0.3195,
+        0.8067
+      ],
+      "review_n": 14,
+      "review_rate": 0.6667,
+      "review_wilson_95": [
+        0.4537,
+        0.8281
+      ],
+      "unrouted_error_n": 5
+    },
+    {
+      "model": "gemini-2.5-flash__A2_evidence_prompt",
+      "split": "dev",
+      "target": "C2/C4 calibration-positive",
+      "profile": "safety_first",
+      "oracle_positive_n": 12,
+      "recall_n": 11,
+      "recall_rate": 0.9167,
+      "recall_wilson_95": [
+        0.6461,
+        0.9851
+      ],
+      "review_n": 19,
+      "review_rate": 0.9048,
+      "review_wilson_95": [
+        0.7109,
+        0.9735
+      ],
+      "unrouted_error_n": 1
+    },
+    {
+      "model": "gemini-2.5-flash__A2_evidence_prompt",
+      "split": "heldout",
+      "target": "C2/C4 calibration-positive",
+      "profile": "integrity_only",
+      "oracle_positive_n": 8,
+      "recall_n": 2,
+      "recall_rate": 0.25,
+      "recall_wilson_95": [
+        0.0715,
+        0.5907
+      ],
+      "review_n": 3,
+      "review_rate": 0.15,
+      "review_wilson_95": [
+        0.0524,
+        0.3604
+      ],
+      "unrouted_error_n": 6
+    },
+    {
+      "model": "gemini-2.5-flash__A2_evidence_prompt",
+      "split": "heldout",
+      "target": "C2/C4 calibration-positive",
+      "profile": "consequence_gate",
+      "oracle_positive_n": 8,
+      "recall_n": 4,
+      "recall_rate": 0.5,
+      "recall_wilson_95": [
+        0.2152,
+        0.7848
+      ],
+      "review_n": 10,
+      "review_rate": 0.5,
+      "review_wilson_95": [
+        0.2993,
+        0.7007
+      ],
+      "unrouted_error_n": 4
+    },
+    {
+      "model": "gemini-2.5-flash__A2_evidence_prompt",
+      "split": "heldout",
+      "target": "C2/C4 calibration-positive",
+      "profile": "safety_first",
+      "oracle_positive_n": 8,
+      "recall_n": 6,
+      "recall_rate": 0.75,
+      "recall_wilson_95": [
+        0.4093,
+        0.9285
+      ],
+      "review_n": 13,
+      "review_rate": 0.65,
+      "review_wilson_95": [
+        0.4329,
+        0.8188
+      ],
+      "unrouted_error_n": 2
+    }
+  ],
+  "conformance": {
+    "n": 14,
+    "passed_n": 14,
+    "all_pass": true,
+    "scenarios": [
+      {
+        "scenario_id": "BASE",
+        "purpose": "Unmodified in-band control",
+        "condition": "weak",
+        "expected": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "observed": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "INV-EVIDENCE-ORDER",
+        "purpose": "Reordering evidence items must not alter any check",
+        "condition": "weak",
+        "expected": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "observed": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "INV-CONFIDENCE",
+        "purpose": "Confidence is exploratory and must not alter C1-C4",
+        "condition": "weak",
+        "expected": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "observed": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "INV-VALID-IRRELEVANT-ID",
+        "purpose": "Adding a valid irrelevant ID must not matter when a relevant key ID remains",
+        "condition": "weak",
+        "expected": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "observed": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "INV-ID-PRESERVING-PROSE",
+        "purpose": "A fixed synonym rewrite that preserves citations must not alter checks",
+        "condition": "weak",
+        "expected": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "observed": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "C1-INVALID-ID",
+        "purpose": "A fabricated evidence identifier must fail C1 only",
+        "condition": "weak",
+        "expected": {
+          "C1": false,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "observed": {
+          "C1": false,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "C1-UNSUPPORTED-DECODE",
+        "purpose": "A decoded-value claim without a derivation must fail C1 only",
+        "condition": "weak",
+        "expected": {
+          "C1": false,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "observed": {
+          "C1": false,
+          "C2": true,
+          "C3": true,
+          "C4": true
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "C2-VERDICT-OVER",
+        "purpose": "Changing only the weak-case verdict to malicious must fail C2 only",
+        "condition": "weak",
+        "expected": {
+          "C1": true,
+          "C2": false,
+          "C3": true,
+          "C4": true
+        },
+        "observed": {
+          "C1": true,
+          "C2": false,
+          "C3": true,
+          "C4": true
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "C2-SEVERITY-OVER",
+        "purpose": "Changing only weak-case severity to high must fail C2 only",
+        "condition": "weak",
+        "expected": {
+          "C1": true,
+          "C2": false,
+          "C3": true,
+          "C4": true
+        },
+        "observed": {
+          "C1": true,
+          "C2": false,
+          "C3": true,
+          "C4": true
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "C2-SEVERITY-UNDER",
+        "purpose": "Changing only strong-case severity to low must fail C2 only",
+        "condition": "strong",
+        "expected": {
+          "C1": true,
+          "C2": false,
+          "C3": true,
+          "C4": true
+        },
+        "observed": {
+          "C1": true,
+          "C2": false,
+          "C3": true,
+          "C4": true
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "C3-COUNTER-CITATION-REMOVED",
+        "purpose": "Removing the designated counter citation must fail C3 only",
+        "condition": "weak",
+        "expected": {
+          "C1": true,
+          "C2": true,
+          "C3": false,
+          "C4": true
+        },
+        "observed": {
+          "C1": true,
+          "C2": true,
+          "C3": false,
+          "C4": true
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "C4-ACTION-OVER",
+        "purpose": "Changing only weak-case action to isolate must fail C4 only",
+        "condition": "weak",
+        "expected": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": false
+        },
+        "observed": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": false
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "C4-ACTION-UNDER",
+        "purpose": "Changing only strong-case action to monitor must fail C4 only",
+        "condition": "strong",
+        "expected": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": false
+        },
+        "observed": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": false
+        },
+        "pass": true
+      },
+      {
+        "scenario_id": "C2-C4-COMBINED-OVER",
+        "purpose": "Overstating verdict, severity and action must fail C2 and C4 only",
+        "condition": "weak",
+        "expected": {
+          "C1": true,
+          "C2": false,
+          "C3": true,
+          "C4": false
+        },
+        "observed": {
+          "C1": true,
+          "C2": false,
+          "C3": true,
+          "C4": false
+        },
+        "pass": true
+      }
+    ]
+  }
+}

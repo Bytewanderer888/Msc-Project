@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "EV-001",
+    "EV-002",
+    "A0",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "The activity involves UAC bypass via sdclt.exe (A0, EV-003) to execute a PowerShell command (EV-004) that was previously written to the registry (EV-001, EV-002). The PowerShell command attempts to extract and execute code from an image file, which is a known technique for obfuscated payload delivery. The registry key is subsequently deleted (EV-005), indicating an attempt to clean up traces.",
+  "recommended_action": "isolate"
+}

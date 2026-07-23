@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1110.003/purplesharp_invalid_users_ntlm_xml/windows-security.log",
+      "sha256": "5c7354784cef32c1ffcd6f5a56919741e35f03d361404ea275ab79b2db5576d1"
+    }
+  ],
+  "primary_host": "win-host-mvelazco-02713-447.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Security (Microsoft-Windows-Security-Auditing 4625)"
+    ],
+    "why_single_source": "All 50 failed-logon (4625) records are on the single host win-host-447; single sensor (Security auth). The case is scoped to that host's 4625 records; any other host/event in the file is excluded."
+  }
+}

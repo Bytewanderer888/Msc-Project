@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.88,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-049"
+  ],
+  "rationale": "50 consecutive Event ID 4625 (failed logon) events were generated within approximately 181 milliseconds (A0 through EV-049), all originating from the same process (C:\\Tools\\[x]\\[x].exe) under subject user-01, targeting 50 distinct usernames that are random-looking 8-character uppercase strings inconsistent with real account names \u2014 a pattern strongly indicative of automated local account enumeration or credential stuffing via the LogonUser API (Advapi, logon type 2). Sub-status 0xc0000064 confirms each target username does not exist, suggesting the tool is iterating through a generated username list rather than targeting known accounts. The non-standard tool path (C:\\Tools\\) and the machine-generated username pattern rule out benign explanations; no successful logon or process creation context is present to confirm further compromise, but the activity itself constitutes confirmed malicious reconnaissance/brute-force behavior.",
+  "recommended_action": "isolate"
+}

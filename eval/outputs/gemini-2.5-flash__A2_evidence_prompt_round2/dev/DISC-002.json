@@ -1,0 +1,13 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "Multiple WMIC commands (A0, EV-001, EV-002, EV-003) are executed by 'ssm-agent-worker.exe', which is the Amazon Systems Manager Agent. These commands are used for legitimate system information gathering (DNSHostName, Domain, Caption, Version) and are consistent with the normal operation of a management agent.",
+  "recommended_action": "close_benign"
+}

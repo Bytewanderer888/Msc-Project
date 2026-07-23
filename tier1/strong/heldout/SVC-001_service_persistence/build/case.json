@@ -1,0 +1,131 @@
+{
+  "case_id": "SVC-001",
+  "split": "heldout",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1543.003/atomic_red_team/windows-sysmon.log",
+  "staged_export": "extracted/svc001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "4482",
+    "EV": [
+      "4522",
+      "4537",
+      "4563",
+      "4583",
+      "4808"
+    ]
+  },
+  "roles": {
+    "4482": "triggering alert: 'sc config Fax binPath= \"powershell.exe -noexit -c write-host 'T1543.003 Test'\"' — the legitimate Fax Windows service is hijacked (binPath modified) to launch PowerShell; the payload only prints a test string (benign)",
+    "4522": "'sc create AtomicTestService_CMD binPath= C:\\AtomicRedTeam\\...\\AtomicService.exe' — a new service is created",
+    "4537": "'sc start AtomicTestService_CMD' — the new service is started",
+    "4563": "'New-Service -Name AtomicTestService_PowerShell -BinaryPathName ...\\AtomicService.exe' — a second new service is created via PowerShell",
+    "4583": "AtomicService.exe runs as SYSTEM (spawned by services.exe); no child process is observed, but its on-disk behaviour is not captured",
+    "4808": "'sc config Fax binPath= C:\\WINDOWS\\system32\\fxssvc.exe' — the Fax service is restored to its real binary seconds later (the hijack is reverted)"
+  },
+  "derivations": [],
+  "model_visible_attribute_exclusions": {
+    "EV-003": [
+      "parent_command_line"
+    ]
+  },
+  "metadata": {
+    "case_name": "service_persistence",
+    "security_proposition": "A newly created or hijacked service mechanism executed a non-system binary under services.exe as SYSTEM.",
+    "case_directory": "SVC-001_service_persistence",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "svc001_service_persistence_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "Windows Service privileged execution",
+      "candidate_attack_mapping": "T1543.003",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = STRONG, calibration_role = up_rank. The capture contains service modification, creation, start, and decisive execution of the configured non-system binary from services.exe as NT AUTHORITY\\SYSTEM. The visible write-host test command and Fax restore are mitigating context, but they do not negate the privileged service execution or prove removal of the two new services. The malicious label denotes successful execution of an offensive mechanism, not a claim that the lab operator was unauthorized. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "windows-sysmon.log is host win-dc-61, Sysmon only (EID 1 process-create). The cmd.exe /c wrappers and unrelated host baseline are excluded. Single host, single sensor, verified."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "svc001_service_persistence_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "service_privileged_execution",
+      "primary_host": "win-dc-61.attackrange.local",
+      "primary_user": "Administrator (via cmd.exe/powershell.exe -> sc.exe)",
+      "boundary_definition": [
+        "A0 = the Fax service hijack (sc config Fax binPath= powershell ...write-host, 4482).",
+        "EV = the two new-service creations (AtomicTestService_CMD via sc create+start; AtomicTestService_PowerShell via New-Service), the AtomicService.exe execution (no children), and the Fax restore (fxssvc.exe).",
+        "EXCLUDED: the cmd.exe /c wrappers of the sc commands (redundant) and the host's unrelated service baseline.",
+        "DECISIVE OUTCOME: AtomicService.exe is launched by services.exe as NT AUTHORITY\\SYSTEM; the Fax restore is counter-evidence about persistence duration, not evidence that execution did not occur."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "A service binPath modified to launch powershell/cmd (service hijack) is a high-fidelity T1543.003 persistence detection.",
+      "selection_reason": "The Fax hijack is the triggering alert; the related service create/start chain and SYSTEM child process establish successful service-based privileged execution."
+    },
+    "correlation_keys": [
+      "host",
+      "time_window",
+      "Image==sc.exe",
+      "service_binPath_modified",
+      "ParentImage==services.exe"
+    ],
+    "event_groups": [
+      {
+        "group": "service_hijack",
+        "event_record_ids": [
+          "4482",
+          "4808"
+        ],
+        "description": "Fax service hijacked to PowerShell and later restored to fxssvc.exe; the restore is mitigating context."
+      },
+      {
+        "group": "new_services",
+        "event_record_ids": [
+          "4522",
+          "4537",
+          "4563",
+          "4583"
+        ],
+        "description": "Two new services (AtomicTestService_CMD/_PowerShell) created; AtomicService.exe runs as SYSTEM; its on-disk behaviour is not captured."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "annotation_correction",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: corrected from weak to strong on 2026-07-15. EV-004 is the decisive outcome: a newly configured non-system service binary executes from services.exe as SYSTEM. Requiring additional payload effects would make this stricter than other strong persistence cases."
+      },
+      {
+        "topic": "scope_of_malicious_label",
+        "event_record_id": "4482,4583",
+        "note": "The label records decisive service-based privileged execution. It does not assert that the operator was unauthorized or that AtomicService.exe performed data theft, C2, or another unobserved effect."
+      },
+      {
+        "topic": "reverted_hijack",
+        "event_record_id": "4808",
+        "note": "A command restores the Fax service to fxssvc.exe seconds later. Keep EV-005 as counter-evidence about lasting persistence; command success and removal of the two new services are not shown."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "subtle_strong_service_exemplar",
+        "under_triage_up_rank_test",
+        "privileged_service_execution"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

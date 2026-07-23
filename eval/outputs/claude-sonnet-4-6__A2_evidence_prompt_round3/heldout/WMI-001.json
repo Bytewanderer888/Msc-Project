@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.97,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "DER-001"
+  ],
+  "rationale": "A complete WMI persistence triad was created on host-01: an event filter (EV-001) triggers on logon of 'user-02', a CommandLineEventConsumer (A0) executes a base64-encoded PowerShell payload, and the filter-to-consumer binding (EV-002) ties them together \u2014 confirming a fully operational WMI subscription backdoor. DER-001 decodes the payload as a PowerShell cradle that disables SSL certificate validation and downloads a remote script from an internal IP (192.168.0.4:443/GoPro5/black/2018/_rp) for immediate execution via IEX, a classic fileless stager pattern. The consumer name 'WindowsParentalControlMigration' is a deceptive masquerade of a legitimate Windows component. The discrepancy in user context between filter/consumer creation (corp\\user-02) and the binding (user-01) may indicate lateral movement or credential abuse, warranting immediate host isolation.",
+  "recommended_action": "isolate"
+}

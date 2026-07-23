@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-S03",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "control-01.corp.local",
+      "vehicle-01"
+    ],
+    "users": [
+      "user-01",
+      "root"
+    ],
+    "time_window_utc": {
+      "start": "2025-01-07T13:49:56.287000Z",
+      "end": "2025-01-07T13:51:20Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "process_attachment",
+      "control_command_acknowledgement",
+      "vehicle_state",
+      "physical_impact"
+    ],
+    "sourcetypes_present": [
+      "linux_audit",
+      "flight_telemetry"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2025-01-07T13:49:56.287000Z",
+    "event_type": "process_attachment",
+    "source_event": {
+      "provider": "Linux Audit",
+      "channel": "/var/log/audit/audit.log",
+      "event_code": 101,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "control-01.corp.local",
+    "attributes": {
+      "image": "/tmp/session-tool/frida_server",
+      "process_id": "1789811",
+      "subject_user": "user-01",
+      "effective_user": "root",
+      "syscall": "ptrace",
+      "status": "success",
+      "target_process_id": "1561449",
+      "target_process_name": "QGroundControl"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2025-01-07T13:50:57Z",
+      "event_type": "control_command_acknowledgement",
+      "source_event": {
+        "provider": "Flight telemetry",
+        "channel": "vehicle-status",
+        "event_code": 0,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "vehicle-01",
+      "attributes": {
+        "action_command": "COMPONENT_ARM_DISARM",
+        "status": "accepted"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2025-01-07T13:50:58Z",
+      "event_type": "vehicle_state",
+      "source_event": {
+        "provider": "Flight telemetry",
+        "channel": "vehicle-status",
+        "event_code": 0,
+        "event_record_id": "SRC-EV-002"
+      },
+      "computer": "vehicle-01",
+      "attributes": {
+        "status": "disarmed"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2025-01-07T13:51:20Z",
+      "event_type": "physical_impact",
+      "source_event": {
+        "provider": "Flight telemetry",
+        "channel": "vehicle-status",
+        "event_code": 0,
+        "event_record_id": "SRC-EV-003"
+      },
+      "computer": "vehicle-01",
+      "attributes": {
+        "status": "ground_impact",
+        "impact_speed_mps": "19.36427"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1110.001/rdp_brute_sysmon/sysmon.log",
+      "sha256": "b015189928b8b892dfd7b3cb7e7314015bdfb8cc06019a59f68f3e46ca359b96"
+    }
+  ],
+  "primary_host": "ar-win-dc.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "rdp_brute_sysmon/sysmon.log is host ar-win-dc, Sysmon only (all 23 events are EID 3 network connections). Single host, single sensor, verified."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "case_id": "FW-001",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002"
+    ],
+    "counter_evidence": [
+      "EV-003",
+      "EV-004"
+    ],
+    "must_not_assert": [
+      "remote access was established or the host was breached (the inbound-allow rule is added but no inbound connection uses it and no follow-on activity confirms malice)"
+    ]
+  },
+  "the_trap": "An inbound-allow firewall rule is added via netsh and takes effect, but the same rule is deleted about five seconds later. No inbound connection uses it and no follow-on activity confirms malice. The cleanup is mitigating context, but it does not alone prove benign intent; do not assert that remote access was established or the host breached.",
+  "rationale": "A0 runs 'netsh advfirewall firewall add rule action=allow dir=in'; EV-001 is the FirewallRules registry entry (Action=Allow, Active=TRUE) and EV-002 the SharedAccess firewall Epoch bump confirming that the rule took effect. EV-003 deletes the same named TCP/450 rule about five seconds later and EV-004 records the matching registry deletion. Opening an inbound port is security-relevant, but the short lifetime, absent use, and absent follow-on leave intent unconfirmed: suspicious, investigate.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

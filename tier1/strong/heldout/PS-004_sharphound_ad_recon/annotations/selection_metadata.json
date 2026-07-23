@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.0",
+  "case_id": "PS-004",
+  "case_name": "sharphound_ad_recon",
+  "security_proposition": "The observed SharpHound execution produced a substantial Active Directory collection artifact set.",
+  "case_directory": "PS-004_sharphound_ad_recon",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "PowerShell execution / Active Directory reconnaissance",
+    "candidate_attack_mapping": "T1059.001",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = STRONG. SharpHound executes on a domain controller and produces the expected JSON and ZIP collection artifacts. The package does not contain an exit status, so it does not claim error-free completion. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1059.001/sharphound/windows-sysmon.log",
+    "original_filename": "windows-sysmon.log",
+    "stored_filename": "ps004_sharphound_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "29f4f1a561c219f2fe98db0e1269417a7632804c1431a9f1fadfccfba4f170c0",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "The folder ALSO holds a same-host (win-dc-233) PowerShell-Operational 4104 log, so a multi-source (Tier-2) build is possible. Built here as Tier-1 Sysmon: the process lineage + collection-output artifacts fully establish the strong/under-triage case. The 4104 script-block log is a documented future multi-source option (needs the classic-format parser)."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "ps004_sharphound_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    }
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/ps004_events.json",
+    "related_events": "extracted/ps004_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "scope_type": "single_alert_recon_burst",
+    "primary_host": "win-dc-233.attackrange.local",
+    "primary_user": "ATTACKRANGE\\Administrator",
+    "boundary_definition": [
+      "A0 = the first powershell import-module SharpHound.ps1 (record 648984, 13:51:58).",
+      "EV = the sharphound.exe --CollectionMethod all execution (13:53:52) and its complete collection outputs (13:53:54): BloodHound.zip + per-object JSON for users/groups/computers/OUs/GPOs/domains.",
+      "Scoped to the first of two near-identical collection runs; repeated import-module invocations and the second run ('-c all') omitted as redundant.",
+      "EXCLUDED: SharpHound .bin cache and Splunk-forwarder powershell noise."
+    ],
+    "time_window_utc": {
+      "start": "2021-06-03T13:51:58.211902500Z",
+      "end": "2021-06-03T13:53:54.703920600Z"
+    }
+  },
+  "main_alert_selection": {
+    "selection_method": "A PowerShell process importing a script module named SharpHound from a writable temp path is the T1059.001 detection.",
+    "selection_reason": "The import-module is the alerting signal; the correlated collector run + output artifacts reveal the actual (under-rated) impact.",
+    "event_record_id": "648984",
+    "process_guid": "{D419E45B-DE7E-60B8-674E-00000000C401}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "648984",
+      "649806",
+      "649831",
+      "649842",
+      "649843",
+      "649844",
+      "649845",
+      "649846",
+      "649857"
+    ],
+    "event_groups": [
+      {
+        "group": "execution",
+        "event_record_ids": [
+          "648984",
+          "649806"
+        ],
+        "description": "powershell module import -> sharphound.exe full collection."
+      },
+      {
+        "group": "collection_output",
+        "event_record_ids": [
+          "649857",
+          "649843",
+          "649831",
+          "649846",
+          "649844",
+          "649842",
+          "649845"
+        ],
+        "description": "BloodHound archive + per-object AD exports = complete AD collection."
+      }
+    ]
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "648984",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: powershell.exe imported the SharpHound collection module from c:\\temp (T1059.001 module load)"
+    },
+    "EV-001": {
+      "event_record_id": "649806",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the SharpHound collector executed with --CollectionMethod all (broad AD collection)"
+    },
+    "EV-002": {
+      "event_record_id": "649831",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "collector exported AD group objects (groups.json)"
+    },
+    "EV-003": {
+      "event_record_id": "649842",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "collector exported all Group Policy objects (gpos.json)"
+    },
+    "EV-004": {
+      "event_record_id": "649843",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "collector exported AD user objects (users.json)"
+    },
+    "EV-005": {
+      "event_record_id": "649844",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "collector exported AD organizational units (ous.json)"
+    },
+    "EV-006": {
+      "event_record_id": "649845",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "collector exported domain objects (domains.json)"
+    },
+    "EV-007": {
+      "event_record_id": "649846",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "collector exported AD computer objects (computers.json)"
+    },
+    "EV-008": {
+      "event_record_id": "649857",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "collector wrote a BloodHound collection archive (.zip)"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "under_triage_intent",
+      "event_record_id": "",
+      "note": "RESEARCHER-PRIVATE: STRONG and under-triage-prone. SharpHound execution plus the attributed JSON/ZIP artifact set establishes substantial AD collection; an exit status is not present."
+    },
+    {
+      "topic": "no_der",
+      "event_record_id": "",
+      "note": "Plaintext commands -> no DER. Collection scope left as raw file_create facts for the model to interpret, not pre-summarised."
+    },
+    {
+      "topic": "multi_source_option",
+      "event_record_id": "",
+      "note": "A same-host (win-dc-233) PowerShell-4104 log exists in the folder; a Tier-2 multi-source variant is possible (would add the SharpHound.ps1 script-block content). Deferred (needs the classic-format parser)."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "powershell_strong_under_triage_exemplar",
+      "bidirectional_up_rank_test"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-05",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

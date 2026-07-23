@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.92,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "A0 shows PowerShell launched with '-WindowStyle hidden' executing a DownloadFile call to a bit.ly-shortened URL ('http://bit.ly/L3g1tCrad1e') \u2014 a classic cradle pattern used to obfuscate the true download destination and stage a payload. EV-003 confirms the download succeeded: the same PowerShell process (PID 1668) created 'Default_File_Path.ps1' in the Administrator's home directory, meaning a remote script is now on disk. EV-002 shows a PSScriptPolicyTest temp file, consistent with PowerShell evaluating execution policy before running the dropped script. EV-001 establishes the parent chain: an interactive cmd.exe spawned from Explorer under the high-integrity Administrator context, indicating either hands-on-keyboard activity or a prior stage that opened the shell; no network connection event is present to confirm the download completed successfully, but the file-create in EV-003 is strong corroborating evidence that it did.",
+  "recommended_action": "isolate"
+}

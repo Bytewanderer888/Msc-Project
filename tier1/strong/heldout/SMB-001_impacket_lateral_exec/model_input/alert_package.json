@@ -1,0 +1,211 @@
+{
+  "schema_version": "1.0",
+  "case_id": "SMB-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator",
+      "NT AUTHORITY\\SYSTEM"
+    ],
+    "time_window_utc": {
+      "start": "2023-04-21T16:19:13.353470200Z",
+      "end": "2023-04-21T16:20:56.324884400Z"
+    },
+    "event_count": 7,
+    "event_types_present": [
+      "process_create",
+      "registry_value_set"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2023-04-21T16:19:15.475533900Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "117769"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{F02F376E-B783-6442-5A3B-00000000D902}",
+      "process_id": "5432",
+      "image": "C:\\Windows\\System32\\cmd.exe",
+      "original_file_name": "Cmd.Exe",
+      "command_line": "cmd.exe /Q /c calc.exe 1> \\\\127.0.0.1\\ADMIN$\\__1682093952.9918194 2>&1",
+      "current_directory": "C:\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+      "parent_process_guid": "{F02F376E-1673-6440-3B00-00000000D902}",
+      "parent_process_id": "2860",
+      "parent_image": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+      "parent_command_line": "C:\\Windows\\system32\\wbem\\wmiprvse.exe -secured -Embedding"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2023-04-21T16:19:13.353470200Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "117767"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{F02F376E-B781-6442-563B-00000000D902}",
+        "process_id": "4048",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "cmd.exe /Q /c cd \\ 1> \\\\127.0.0.1\\ADMIN$\\__1682093952.9918194 2>&1",
+        "current_directory": "C:\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{F02F376E-1673-6440-3B00-00000000D902}",
+        "parent_process_id": "2860",
+        "parent_image": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+        "parent_command_line": "C:\\Windows\\system32\\wbem\\wmiprvse.exe -secured -Embedding"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2023-04-21T16:19:15.504935200Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "117770"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{F02F376E-B783-6442-5C3B-00000000D902}",
+        "process_id": "5832",
+        "image": "C:\\Windows\\System32\\calc.exe",
+        "original_file_name": "CALC.EXE",
+        "command_line": "calc.exe  ",
+        "current_directory": "C:\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=2A5CC198FEFC04C2B6B95207A91D3668,SHA256=04FA16D1FBB5F047E7BF9756E8DDC1365AFEAAB22DD4A2C3F03E067B75BED8EA,IMPHASH=3843C3D4A5A7D1045ABE9A4BFCFAAB28",
+        "parent_process_guid": "{F02F376E-B783-6442-5A3B-00000000D902}",
+        "parent_process_id": "5432",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "cmd.exe /Q /c calc.exe 1> \\\\127.0.0.1\\ADMIN$\\__1682093952.9918194 2>&1"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2023-04-21T16:20:37.489170400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "117779"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{F02F376E-B7D5-6442-663B-00000000D902}",
+        "process_id": "3132",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "cmd.exe /Q /c cd \\ 1> \\\\127.0.0.1\\ADMIN$\\__1682094037.0726507 2>&1",
+        "current_directory": "C:\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{F02F376E-1673-6440-3B00-00000000D902}",
+        "parent_process_id": "2860",
+        "parent_image": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+        "parent_command_line": "C:\\Windows\\system32\\wbem\\wmiprvse.exe -secured -Embedding"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2023-04-21T16:20:56.306274200Z",
+      "event_type": "registry_value_set",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 13,
+        "event_record_id": "117785"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{F02F376E-166E-6440-0A00-00000000D902}",
+        "image": "C:\\Windows\\system32\\services.exe",
+        "target_object": "HKLM\\System\\CurrentControlSet\\Services\\BTOBTO\\ImagePath",
+        "details": "%%COMSPEC%% /Q /c echo cd  ^> \\\\127.0.0.1\\C$\\__output 2^>^&1 > %%SYSTEMROOT%%\\rIIBPrqF.bat & %%COMSPEC%% /Q /c %%SYSTEMROOT%%\\rIIBPrqF.bat & del %%SYSTEMROOT%%\\rIIBPrqF.bat",
+        "registry_event": "SetValue"
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2023-04-21T16:20:56.312151900Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "117786"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{F02F376E-B7E8-6442-6D3B-00000000D902}",
+        "process_id": "4012",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "C:\\Windows\\system32\\cmd.exe /Q /c echo cd  ^> \\\\127.0.0.1\\C$\\__output 2^>^&1 > C:\\Windows\\rIIBPrqF.bat & C:\\Windows\\system32\\cmd.exe /Q /c C:\\Windows\\rIIBPrqF.bat & del C:\\Windows\\rIIBPrqF.bat",
+        "current_directory": "C:\\Windows\\system32\\",
+        "user": "NT AUTHORITY\\SYSTEM",
+        "integrity_level": "System",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{F02F376E-166E-6440-0A00-00000000D902}",
+        "parent_process_id": "588",
+        "parent_image": "C:\\Windows\\System32\\services.exe",
+        "parent_command_line": "C:\\Windows\\system32\\services.exe"
+      }
+    },
+    {
+      "evidence_id": "EV-006",
+      "event_time_utc": "2023-04-21T16:20:56.324884400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "117788"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{F02F376E-B7E8-6442-6E3B-00000000D902}",
+        "process_id": "2396",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "C:\\Windows\\system32\\cmd.exe  /Q /c C:\\Windows\\rIIBPrqF.bat ",
+        "current_directory": "C:\\Windows\\system32\\",
+        "user": "NT AUTHORITY\\SYSTEM",
+        "integrity_level": "System",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{F02F376E-B7E8-6442-6D3B-00000000D902}",
+        "parent_process_id": "4012",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "C:\\Windows\\system32\\cmd.exe /Q /c echo cd  ^> \\\\127.0.0.1\\C$\\__output 2^>^&1 > C:\\Windows\\rIIBPrqF.bat & C:\\Windows\\system32\\cmd.exe /Q /c C:\\Windows\\rIIBPrqF.bat & del C:\\Windows\\rIIBPrqF.bat"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

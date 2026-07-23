@@ -1,0 +1,14 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.7,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "Multiple rapid network share object access events (A0, EV-001-EV-004) target the 'lsarpc' endpoint on the IPC$ share. This activity is commonly associated with legitimate remote administration but is also a known technique for reconnaissance and credential dumping by attackers. The absence of source IP, process, or user information prevents a definitive malicious verdict, but the repeated access warrants further investigation.",
+  "recommended_action": "investigate"
+}

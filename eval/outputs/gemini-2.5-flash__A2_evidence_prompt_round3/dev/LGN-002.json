@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "The process 'reg.exe' (EV-001) was executed to add a registry value 'UserInitMprLogonScript' under HKCU\\Environment, pointing to a batch file 'C:\\Users\\user-01\\AppData\\Local\\Temp\\art.bat' (A0). This registry key is known for persistence by executing a script at user logon. The use of a temporary directory for the script further suggests malicious intent.",
+  "recommended_action": "escalate"
+}

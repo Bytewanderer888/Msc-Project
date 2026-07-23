@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1136.001/atomic_red_team/windows-sysmon.log",
+      "sha256": "334fff113e8d15026a7a1a0d3343643ce7e8a73552b1f33ee476eaa7826cbe42"
+    }
+  ],
+  "primary_host": "win-dc-7216619.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "windows-sysmon.log is host win-dc-7216619, Sysmon only (EID 1). The net1.exe delegated children and cmd wrappers are redundant; single host, single sensor."
+  }
+}

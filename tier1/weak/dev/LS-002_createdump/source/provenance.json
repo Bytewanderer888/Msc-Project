@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1003.001/atomic_red_team/createdump_windows-sysmon.log",
+      "sha256": "b898327b2b446ba63c13934d50c899eb4b2ee2c722a7c6c4a1dae6c515720001"
+    }
+  ],
+  "primary_host": "win-host-mhaag-attack-range-622",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "createdump_windows-sysmon.log is host win-host-mhaag-attack-range-622; every other T1003.001/atomic_red_team log is a different host. Tier-1 single-sensor, verified."
+  }
+}

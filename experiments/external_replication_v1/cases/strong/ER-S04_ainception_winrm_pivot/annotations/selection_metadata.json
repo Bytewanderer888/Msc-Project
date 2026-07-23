@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-S04",
+  "case_name": "ainception_winrm_pivot",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "A custom remote-session client established a WinRM session from server-01, executed PowerShell activity on workstation-01, and produced a VNC-profile artifact on the source host.",
+  "attack_category": {
+    "category": "Remote Services: Windows Remote Management",
+    "candidate_attack_mapping": "T1021.006",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "AInception SL100",
+    "scenario": "continuous SL100 chain",
+    "capture_cluster": "sl100-chain",
+    "telemetry_depth": "multi_source",
+    "sensors": [
+      "source-host Sysmon",
+      "target-host Sysmon"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "scenario/action labels and supplied attack timeline",
+      "numeric attack-step prefix and all_exes path",
+      "dataset malicious flags, ATT&CK mappings, and detector output",
+      "condition, verdict, severity, action, and calibration role"
+    ],
+    "deterministic_derivations": []
+  },
+  "operational_response_family": "endpoint_isolation",
+  "nearest_frozen_case": null,
+  "differentiation": "The frozen set has no cross-host WinRM execution chain with source and target Sysmon correlation."
+}

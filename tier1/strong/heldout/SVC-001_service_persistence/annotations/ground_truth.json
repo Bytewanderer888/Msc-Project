@@ -1,0 +1,36 @@
+{
+  "case_id": "SVC-001",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004"
+    ],
+    "counter_evidence": [
+      "EV-005"
+    ],
+    "must_not_assert": [
+      "that the operator was unauthorized or that a real-world compromise outside this capture is established",
+      "that EV-004 proves payload effects beyond the observed service binary execution as SYSTEM",
+      "that all created services were removed or that persistence remained active after the capture window"
+    ]
+  },
+  "the_trap": "The visible write-host test command and the Fax restore command can invite under-triage. However, a new service is created and started, and EV-004 confirms that its non-system binary executes from services.exe as NT AUTHORITY\\SYSTEM. The cleanup context limits claims about lasting persistence, but it does not undo the evidenced SYSTEM-level service execution.",
+  "rationale": "A0 modifies an existing Windows service, EV-001 and EV-002 create and start a new service, and EV-003 creates and starts a second service. Most decisively, EV-004 records the configured non-system service binary executing under services.exe as NT AUTHORITY\\SYSTEM. This confirms successful service-based privileged execution rather than a setup-only indicator. EV-005 is mitigating context because it issues a command to restore the Fax service, but it neither negates EV-004 nor proves removal of the two new services. Under this benchmark, malicious denotes decisive execution of an offensive security mechanism; it does not claim that the operator was unauthorized. Strong, malicious, high-critical; up-rank despite the test-like command and cleanup context.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

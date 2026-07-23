@@ -1,0 +1,16 @@
+[
+  {
+    "evidence_id": "A0",
+    "archive_member": "manifestations_raw/steps/4-13/inetfw/logs/log/auth.log",
+    "line_number": 1,
+    "record_sha256": "d383cabaf15a39f10529c41fe620da32da45027438325f918e3aee77c80bde12",
+    "raw_record": "Dec 15 11:10:06 inetfw sudo:     root : TTY=pts/1 ; PWD=/usr/bin ; USER=root ; COMMAND=/usr/bin/systemctl daemon-reload"
+  },
+  {
+    "evidence_id": "EV-001",
+    "archive_member": "manifestations_raw/steps/4-12/inetfw/logs/log/audit/audit.log",
+    "line_number": 3,
+    "record_sha256": "d54c0ef34b577e67391e635acbbe795b3f79310d742b2262fb9f589d707fe7e3",
+    "raw_record": "type=PATH msg=audit(1765796989.444:6694): item=1 name=\"/etc/systemd/system/.auditf.service.swp\" inode=35810 dev=fc:01 mode=0100600 ouid=0 ogid=0 rdev=00:00 nametype=DELETE cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0\u001dOUID=\"root\" OGID=\"root\""
+  }
+]

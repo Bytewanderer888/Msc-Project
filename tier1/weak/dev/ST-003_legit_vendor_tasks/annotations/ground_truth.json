@@ -1,0 +1,33 @@
+{
+  "case_id": "ST-003",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0"
+    ],
+    "counter_evidence": [
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "must_not_assert": [
+      "confirmed malicious scheduled-task persistence (the package shows task definitions being created, not task execution, child processes, or a malicious outcome)",
+      "that the tasks are confirmed benign (A0's Npcap 'npcapwatchdog' task has no Author, and the single-source Security log carries no signature or hash to decisively confirm vendor provenance)"
+    ]
+  },
+  "the_trap": "Four scheduled-task definitions reference commands under vendor-named Program Files paths. A0 and the two Aurora tasks are configured to run as SYSTEM, while the Mozilla task is configured to run as Administrator. Three definitions carry matching vendor Authors, but A0 (the Npcap 'npcapwatchdog' task) has no Author and the Security log carries no signature or hash. Event 4698 proves task creation, not task execution. Do not over-flag this as confirmed malicious persistence, and do not close it as confirmed benign: investigate.",
+  "rationale": "A0 creates a boot-triggered Npcap task definition whose action is CheckStatus.bat and whose run-as account is SYSTEM. EV-001 to EV-003 provide mitigating context: three nearby task definitions reference Mozilla or Nextron paths and carry matching vendor Authors; the Mozilla task is configured for Administrator and the two Aurora tasks for SYSTEM. This pattern is consistent with routine vendor software, but the package contains no signature, hash, software inventory, task-execution event, child process, or malicious outcome. The available evidence is therefore insufficient to confirm either malicious persistence or benignity: suspicious, investigate.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

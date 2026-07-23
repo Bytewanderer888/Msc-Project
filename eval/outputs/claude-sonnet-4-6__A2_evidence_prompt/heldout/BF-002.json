@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.87,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-049"
+  ],
+  "rationale": "50 consecutive Event ID 4625 (failed logon) events were generated within approximately 181 milliseconds (A0 through EV-049), all originating from the same process (C:\\Tools\\[x]\\[x].exe) under subject user-01, targeting 50 distinct usernames that are random-looking 8-character uppercase strings inconsistent with real account names \u2014 a pattern strongly indicative of automated local account enumeration or credential stuffing via the LogonUser API (Advapi/MSV1_0, logon type 2). The sub_status 0xc0000064 ('user does not exist') across all events confirms the target accounts are non-existent, consistent with username enumeration rather than password spraying against known accounts. The originating process path C:\\Tools\\[x]\\[x].exe is non-standard and obfuscated in the telemetry, warranting immediate investigation; no benign explanation accounts for 50 rapid programmatic logon attempts against random non-existent usernames in under 200ms.",
+  "recommended_action": "investigate"
+}

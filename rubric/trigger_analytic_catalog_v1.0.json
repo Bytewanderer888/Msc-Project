@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "safesoc-trigger-analytics-v1",
+  "classification_axis": "Primary observable mechanism used by the trigger rule to generate the alert anchor; this is independent of ATT&CK semantics and evidence condition.",
+  "families": [
+    {
+      "family_id": "AF-PROC",
+      "name": "Process and command execution",
+      "definition": "Rules triggered primarily by process creation, parent-child relationships, executable identity, or command-line features.",
+      "patterns": [
+        {
+          "pattern_id": "PROC-01",
+          "name": "Command-line behaviour match",
+          "definition": "A process or audited command matches security-relevant program, option, target, or redirection features.",
+          "case_ids": [
+            "ACCT-001", "CERT-001", "COL-001", "DISC-001", "DISC-002", "DISC-004",
+            "ER-M01", "ER-M03", "ER-M04", "ER-S02", "FW-001", "ING-001",
+            "ING-002", "LS-002", "OD-001", "RDL-001", "SMB-001"
+          ]
+        },
+        {
+          "pattern_id": "PROC-02",
+          "name": "Script-interpreter behaviour",
+          "definition": "A script interpreter is identified through encoded, hidden, obfuscated, discovery, download, or module-loading command features.",
+          "case_ids": ["DISC-003", "PS-001", "PS-002", "PS-003", "PS-004"]
+        },
+        {
+          "pattern_id": "PROC-03",
+          "name": "Execution-chain relationship",
+          "definition": "The alert depends on a parent-child or staged execution relationship rather than one isolated command token.",
+          "case_ids": ["AMQ-001", "ER-S04", "UAC-001"]
+        },
+        {
+          "pattern_id": "PROC-04",
+          "name": "Executable name or path anomaly",
+          "definition": "The executable name, extension, Unicode presentation, or launch path is the primary observable alert surface.",
+          "case_ids": ["RTLO-001", "RUN-001"]
+        }
+      ]
+    },
+    {
+      "family_id": "AF-REG",
+      "name": "Registry and policy modification",
+      "definition": "Rules triggered by registry writes that change persistence, logon, credential, or security-control configuration.",
+      "patterns": [
+        {
+          "pattern_id": "REG-01",
+          "name": "Registry persistence value",
+          "definition": "A registry value associated with logon or autorun behaviour is created or modified.",
+          "case_ids": ["CRED-001", "LGN-002", "LOGON-001", "RK-001"]
+        },
+        {
+          "pattern_id": "REG-02",
+          "name": "Security-control registry change",
+          "definition": "A registry value controlling security telemetry or defensive service behaviour is modified.",
+          "case_ids": ["EVL-001"]
+        }
+      ]
+    },
+    {
+      "family_id": "AF-PERS",
+      "name": "Persistence object creation",
+      "definition": "Rules triggered by creation or modification of scheduled jobs, services, or WMI persistence objects.",
+      "patterns": [
+        {
+          "pattern_id": "PERS-01",
+          "name": "Scheduled-job definition",
+          "definition": "A cron or Windows scheduled-task definition is created, edited, or configured for later execution.",
+          "case_ids": ["ER-M02", "ST-001", "ST-002", "ST-003"]
+        },
+        {
+          "pattern_id": "PERS-02",
+          "name": "Service configuration",
+          "definition": "A service definition or binary path is created or changed in a persistence-relevant way.",
+          "case_ids": ["SVC-001", "UQP-001"]
+        },
+        {
+          "pattern_id": "PERS-03",
+          "name": "WMI subscription object",
+          "definition": "A WMI command-line consumer or subscription object contains a persistence-relevant command payload.",
+          "case_ids": ["WMI-001", "WMI-002"]
+        }
+      ]
+    },
+    {
+      "family_id": "AF-ACCESS",
+      "name": "Cross-process and sensitive-process access",
+      "definition": "Rules triggered by process-handle access, remote thread creation, or runtime attachment to another process.",
+      "patterns": [
+        {
+          "pattern_id": "ACCESS-01",
+          "name": "Sensitive-process handle access",
+          "definition": "A process opens a high-access handle to a sensitive credential-bearing process.",
+          "case_ids": ["LS-001", "LS-003"]
+        },
+        {
+          "pattern_id": "ACCESS-02",
+          "name": "Cross-process thread injection",
+          "definition": "A remote thread is created in another process with an anomalous or unbacked start address.",
+          "case_ids": ["INJ-001"]
+        },
+        {
+          "pattern_id": "ACCESS-03",
+          "name": "Runtime instrumentation attachment",
+          "definition": "A privileged instrumentation process attaches to another running process through an operating-system tracing primitive.",
+          "case_ids": ["ER-S03"]
+        }
+      ]
+    },
+    {
+      "family_id": "AF-AUTH",
+      "name": "Authentication and session anomaly",
+      "definition": "Aggregate rules triggered by repeated connection or authentication events within a declared time window.",
+      "patterns": [
+        {
+          "pattern_id": "AUTH-01",
+          "name": "Inbound connection burst",
+          "definition": "Repeated inbound connections from one source to an authentication service exceed a declared threshold.",
+          "case_ids": ["BF-001"]
+        },
+        {
+          "pattern_id": "AUTH-02",
+          "name": "Failed-authentication spray",
+          "definition": "Rapid failures across multiple target identities satisfy count, time-window, and distinct-user thresholds.",
+          "case_ids": ["BF-002"]
+        }
+      ]
+    },
+    {
+      "family_id": "AF-NET",
+      "name": "Network and remote-resource activity",
+      "definition": "Rules triggered by endpoint network connections or access to remote management and shared resources.",
+      "patterns": [
+        {
+          "pattern_id": "NET-01",
+          "name": "Endpoint network connection",
+          "definition": "A process-level network event matches protocol, direction, endpoint, or management-port features.",
+          "case_ids": ["ER-C02", "ER-W01"]
+        },
+        {
+          "pattern_id": "NET-02",
+          "name": "Remote resource access",
+          "definition": "A file-share, named-pipe, or policy-resource access event matches a security-relevant remote object pattern.",
+          "case_ids": ["GPO-001", "SMB-002"]
+        }
+      ]
+    },
+    {
+      "family_id": "AF-MOD",
+      "name": "Module loading",
+      "definition": "Rules triggered by one or more library image-load events involving a security-relevant host process or path.",
+      "patterns": [
+        {
+          "pattern_id": "MOD-01",
+          "name": "Process module-load pattern",
+          "definition": "A host process loads one or more libraries from a path or burst pattern that forms the alert surface.",
+          "case_ids": ["ER-C01", "ER-C03"]
+        }
+      ]
+    },
+    {
+      "family_id": "AF-WEB",
+      "name": "Web and HTTP request activity",
+      "definition": "Rules triggered by HTTP request paths, user agents, parameters, response status, or web-endpoint command features.",
+      "patterns": [
+        {
+          "pattern_id": "WEB-01",
+          "name": "HTTP request pattern",
+          "definition": "An HTTP request matches repository, scanner, method, path, user-agent, or response-status features.",
+          "case_ids": ["ER-C04", "ER-W04"]
+        },
+        {
+          "pattern_id": "WEB-02",
+          "name": "Web endpoint command parameter",
+          "definition": "A request to an uploaded server-side endpoint carries an encoded or command-bearing parameter.",
+          "case_ids": ["ER-S01"]
+        }
+      ]
+    },
+    {
+      "family_id": "AF-STATE",
+      "name": "System and monitoring state",
+      "definition": "Rules triggered by explicit operating-system state or monitoring-health notifications rather than process semantics.",
+      "patterns": [
+        {
+          "pattern_id": "STATE-01",
+          "name": "Host state anomaly",
+          "definition": "A native operating-system event reports an anomalous shutdown or availability state.",
+          "case_ids": ["ER-W02"]
+        },
+        {
+          "pattern_id": "STATE-02",
+          "name": "Monitoring health change",
+          "definition": "A monitoring service reports loss of endpoint connectivity or visibility.",
+          "case_ids": ["ER-W03"]
+        }
+      ]
+    }
+  ]
+}

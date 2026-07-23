@@ -1,0 +1,38 @@
+{
+  "case_id": "ING-001",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004",
+      "EV-005",
+      "EV-006",
+      "EV-007"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "the DLL executed",
+      "the DLL was loaded (no image-load event exists)",
+      "a process spawned from the DLL",
+      "code execution or host compromise occurred"
+    ]
+  },
+  "the_trap": "A DLL is downloaded to staging paths, but execution or loading is not evidenced within the short retained source. The model must not assert compromise from staging alone or claim that the object never executed outside the captured window.",
+  "rationale": "curl downloads a DLL to four staging locations and the file-create events confirm that objects landed on disk. No EID1 execution, EID7 image load, or rundll32/regsvr32 invocation involving the object is present within the retained 0.46-second Sysmon source. Staging is observed; the bounded execution outcome is not evidenced: suspicious, investigate, not confirmed compromise.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

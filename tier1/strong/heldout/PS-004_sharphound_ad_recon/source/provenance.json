@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1059.001/sharphound/windows-sysmon.log",
+      "sha256": "29f4f1a561c219f2fe98db0e1269417a7632804c1431a9f1fadfccfba4f170c0"
+    }
+  ],
+  "primary_host": "win-dc-233.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "The folder ALSO holds a same-host (win-dc-233) PowerShell-Operational 4104 log, so a multi-source (Tier-2) build is possible. Built here as Tier-1 Sysmon: the process lineage + collection-output artifacts fully establish the strong/under-triage case. The 4104 script-block log is a documented future multi-source option (needs the classic-format parser)."
+  }
+}

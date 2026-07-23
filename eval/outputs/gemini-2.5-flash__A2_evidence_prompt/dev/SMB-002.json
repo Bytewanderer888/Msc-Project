@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.7,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "The user 'user-01$' (a machine account) accessed IPC$ (A0, EV-004, EV-005, EV-006, EV-007) and then SYSVOL (EV-001, EV-002, EV-003) from the same IP address. While machine accounts accessing these shares can be normal, the sequence of accessing IPC$ and then specifically gpt.ini files within SYSVOL is suspicious and could indicate reconnaissance or an attempt to enumerate Group Policy Objects.",
+  "recommended_action": "investigate"
+}

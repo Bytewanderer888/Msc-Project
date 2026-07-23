@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LS-003",
+  "rule_id": "SAFESOC-TRG-LS-003",
+  "analytic_family_id": "AF-ACCESS",
+  "analytic_pattern_id": "ACCESS-01",
+  "title": "Task Manager obtains full access to LSASS",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "full_source",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source; no event-level answer selector is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 10
+      },
+      {
+        "field": "attributes.source_image",
+        "op": "iendswith",
+        "value": "\\taskmgr.exe"
+      },
+      {
+        "field": "attributes.target_image",
+        "op": "iendswith",
+        "value": "\\lsass.exe"
+      },
+      {
+        "field": "attributes.granted_access",
+        "op": "ieq",
+        "value": "0x1fffff"
+      },
+      {
+        "field": "attributes.call_trace",
+        "op": "icontains",
+        "value": "dbgcore.dll"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "205113"
+  },
+  "rationale": "Task Manager opening LSASS with full access is a reproducible high-risk credential-access alert surface."
+}

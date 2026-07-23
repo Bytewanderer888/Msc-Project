@@ -1,0 +1,15 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.72,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "A PowerShell process using an encoded command (EV-001 parent) spawned cmd.exe \u2192 reg.exe to add a Run key persistence entry for 'C:\\Path\\[x].exe' (A0, EV-002), which is a classic persistence technique. Approximately 4 seconds later, a second PowerShell instance (EV-003 parent, different PID/GUID) with a different encoded command \u2014 decoded suffix suggests a '-Cleanup' phase \u2014 spawned cmd.exe \u2192 reg.exe to delete the same Run key value (EV-003, EV-004, EV-005), indicating the persistence was transient and cleaned up, consistent with a post-exploitation framework (e.g., Cobalt Strike, Metasploit) running a test or a red-team tool performing self-cleanup. The obfuscated/encoded PowerShell parent commands, execution from the Administrator Temp directory, and the add-then-delete pattern are strong indicators of adversarial or red-team tooling; however, the registry value was confirmed deleted (EV-005) and no evidence of 'C:\\Path\\[x].exe' execution or lateral movement is present, capping severity. The redacted '[x]' placeholders suggest sanitization of a real IOC, warranting further investigation into the decoded PowerShell commands and the referenced module path.",
+  "recommended_action": "investigate"
+}

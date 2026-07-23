@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "ER-M04",
+  "rule_id": "SAFESOC-TRG-ER-M04",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "source_description": "external archive (manifestations_raw.zip: manifestations_raw/steps/3_ssh_healthcheck-31/linuxshare/logs/log/audit/audit.log)",
+  "raw_source_event_count": 9,
+  "complete_scope_event_count": 9,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "manifestations_raw/steps/3_ssh_healthcheck-31/linuxshare/logs/log/audit/audit.log:line:2",
+  "expected_record_key": "manifestations_raw/steps/3_ssh_healthcheck-31/linuxshare/logs/log/audit/audit.log:line:2",
+  "selected_raw_sha256": "0af7d5f39e59344463654986757a7df6d18dc3f3fbadae452cf9ef5a9ec7749c",
+  "pass": true
+}

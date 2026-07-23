@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-S03",
+  "rule_id": "SAFESOC-TRG-ER-S03",
+  "analytic_family_id": "AF-ACCESS",
+  "analytic_pattern_id": "ACCESS-03",
+  "title": "Root-capable instrumentation process attaches to flight control",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "source_defined_step",
+    "complete_legal_scope": true,
+    "description": "Every record in the corpus-provided log member or scenario step containing the alert stream.",
+    "source_units": [
+      "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/audit.log"
+    ]
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "attributes.raw_text",
+        "op": "regex",
+        "value": "\\bsyscall=101\\b"
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "icontains",
+        "value": "success=yes"
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "regex",
+        "value": "\\beuid=0\\b"
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "regex",
+        "value": "\\bcomm=\\\"frida_server\\\""
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "regex",
+        "value": "\\bocomm=\\\"QGroundControl\\\""
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/audit.log:audit:626718"
+  },
+  "rationale": "A successful root-capable ptrace attachment by an instrumentation process to the flight-control application is a direct runtime-manipulation alert."
+}

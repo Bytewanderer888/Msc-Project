@@ -1,0 +1,33 @@
+{
+  "case_id": "ER-S02",
+  "builder": "experiments/external_replication_v1/build_ait_cases.py",
+  "source_archive": "data_sources/ait_ads/ait_ads.zip",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "member": "harrison_wazuh.json",
+      "record_sha256": "718e6a87f521f21c8a95e8b78cb5808903e9e90abf79acdf3fcc093096240bb0"
+    },
+    {
+      "evidence_id": "EV-001",
+      "member": "harrison_wazuh.json",
+      "record_sha256": "41995a5e1613b5060088aee9ebfa52a20c30a0ae2e4d2b81b1c721504add19b4"
+    },
+    {
+      "evidence_id": "EV-002",
+      "member": "harrison_aminer.json",
+      "record_sha256": "4896e109620d79aa8e1ce67584cfb063937ae2f3305cbc24aa1147826939d499"
+    },
+    {
+      "evidence_id": "EV-003",
+      "member": "harrison_aminer.json",
+      "record_sha256": "6a535f6fdacf83512f9f7f5983c33ed5c832e29804ce80d65a5d8412a0dfd9ae"
+    }
+  ],
+  "literal_redactions": [
+    "hostnames -> server-01.corp.local",
+    "jward -> user-01",
+    "www-data -> svc-web",
+    "site domain -> intranet.corp.local"
+  ]
+}

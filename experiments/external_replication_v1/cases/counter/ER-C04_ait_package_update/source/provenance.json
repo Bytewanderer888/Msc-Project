@@ -1,0 +1,31 @@
+{
+  "case_id": "ER-C04",
+  "status": "candidate_built_pending_qa",
+  "source_corpus": "AIT Alert Data Set",
+  "doi": "10.5281/zenodo.8263181",
+  "source_archive": {
+    "path": "data_sources/ait_ads/ait_ads.zip",
+    "sha256": "9f0595c4ebe56ac9223763881f55369dd4f249a8108064e4ae108eb3309aeeb9"
+  },
+  "selected_records": [
+    {
+      "evidence_id": "A0",
+      "archive_member": "russellmitchell_wazuh.json",
+      "line_number": 16,
+      "record_sha256": "fe8e59b3655d55812998dd9d371b85bb6f569e32415b1d74896ba56f8d10bea5"
+    },
+    {
+      "evidence_id": "EV-001",
+      "archive_member": "russellmitchell_wazuh.json",
+      "line_number": 15,
+      "record_sha256": "e8e7d28c8f41e6de84805c6c0b56d8acbad02406411ea7032cacf7bcf760a2de"
+    },
+    {
+      "evidence_id": "EV-002",
+      "archive_member": "russellmitchell_wazuh.json",
+      "line_number": 20,
+      "record_sha256": "2466b2b91c6ed72da6942636cf392c555d549f37d2f2f8056d486888cf0a8b42"
+    }
+  ],
+  "integrity_note": "Record hashes cover the exact UTF-8 JSONL record without its line terminator. The archive hash is pinned in data_sources/ait_ads/SOURCE_MANIFEST.json."
+}

@@ -1,0 +1,131 @@
+{
+  "case_id": "INJ-001",
+  "split": "dev",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1055/sliver/notepad_windows-sysmon.log",
+  "staged_export": "extracted/inj001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "15275583",
+    "EV": [
+      "15275575",
+      "15275927",
+      "15275935",
+      "15277465",
+      "15277473"
+    ]
+  },
+  "roles": {
+    "15275583": "triggering alert: ILL_UNBLINKING.exe created a remote thread in notepad.exe with an unbacked start address (StartModule '-') — remote code injection",
+    "15275575": "the notepad.exe target — spawned by ILL_UNBLINKING.exe with an EMPTY command line (a sacrificial process, not user-opened)",
+    "15275927": "notepad.exe target of the 2nd injection round (empty cmdline, spawned by ILL_UNBLINKING)",
+    "15275935": "2nd CreateRemoteThread: ILL_UNBLINKING.exe -> notepad.exe, unbacked StartModule '-'",
+    "15277465": "notepad.exe target of the 3rd injection round (empty cmdline)",
+    "15277473": "3rd CreateRemoteThread: ILL_UNBLINKING.exe -> notepad.exe, unbacked StartModule '-'"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "sliver_notepad_injection",
+    "security_proposition": "The source process performed remote-code injection into the observed notepad.exe targets.",
+    "case_directory": "INJ-001_sliver_notepad_injection",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "inj001_sliver_notepad_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "Process injection (CreateRemoteThread)",
+      "candidate_attack_mapping": "T1055",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = STRONG. A non-system binary repeatedly spawns notepad.exe processes and creates remote threads at unbacked start addresses. Direction injector->target is confirmed. Calibration role = PRESERVE (validator must not down-rank confirmed injection). Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "notepad_windows-sysmon.log is host win-dc-84 (single). The sliver folder's other logs (T1055_windows-sysmon, sliver_windows-system) are the same host but separate/sparse captures; this case uses the notepad Sysmon capture only. Single-sensor."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "inj001_sliver_notepad_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_alert_injection_campaign",
+      "primary_host": "win-dc-mhaag-attack-range-84.attackrange.local",
+      "primary_user": "unknown_see_observed_context",
+      "boundary_definition": [
+        "A0 = the first CreateRemoteThread (ILL_UNBLINKING -> notepad, unbacked StartModule, 22:02:30).",
+        "EV = the notepad target for A0, plus the 2nd and 3rd spawn+inject rounds (22:03 and 22:05).",
+        "Three rounds of 'spawn notepad -> create an unbacked remote thread' by the same source process lineage.",
+        "EXCLUDED: 27 EID10 process-access handle-opens (injection plumbing) and unrelated events."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "A CreateRemoteThread (EID8) into another process with an unbacked StartModule ('-') is the T1055 process-injection detection.",
+      "selection_reason": "ILL_UNBLINKING (a non-system, randomly-named binary) creating an unbacked remote thread in a freshly spawned empty-cmdline notepad is unambiguous process injection; two more rounds corroborate it."
+    },
+    "correlation_keys": [
+      "host",
+      "SourceProcessGuid",
+      "TargetProcessGuid",
+      "time_window",
+      "StartModule"
+    ],
+    "event_groups": [
+      {
+        "group": "injections",
+        "event_record_ids": [
+          "15275583",
+          "15275935",
+          "15277473"
+        ],
+        "description": "3x CreateRemoteThread ILL_UNBLINKING -> notepad with StartModule '-' (unbacked start address)."
+      },
+      {
+        "group": "sacrificial_targets",
+        "event_record_ids": [
+          "15275575",
+          "15275927",
+          "15277465"
+        ],
+        "description": "3x notepad.exe spawned by ILL_UNBLINKING with empty command line (spawned to be injected)."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "strong_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: STRONG / preserve. Repeated remote-thread creation at unbacked addresses confirms process injection. The validator must preserve a high severity."
+      },
+      {
+        "topic": "injection_semantics",
+        "event_record_id": "",
+        "note": "EID8 direction = SOURCE(ILL_UNBLINKING) -> TARGET(notepad). StartModule '-' means Sysmon did not resolve the remote-thread start address to a loaded module. This supports unbacked injected code but does not identify a specific payload family."
+      },
+      {
+        "topic": "raw_source_audit",
+        "event_record_id": "",
+        "note": "2026-07-16: all three EID8 events and their notepad targets were checked against the raw source; omitted EID10 events are redundant handle-access plumbing."
+      },
+      {
+        "topic": "no_der",
+        "event_record_id": "",
+        "note": "No encoding -> no DER."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "injection_strong_exemplar",
+        "severity_preservation_test",
+        "createremotethread_direction_and_unbacked_rule_dev"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

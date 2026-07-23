@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SafeSOC trigger analytic taxonomy catalogue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "catalog_id",
+    "classification_axis",
+    "families"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "catalog_id": {"const": "safesoc-trigger-analytics-v1"},
+    "classification_axis": {"type": "string", "minLength": 20},
+    "families": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["family_id", "name", "definition", "patterns"],
+        "properties": {
+          "family_id": {"type": "string", "pattern": "^AF-[A-Z]+$"},
+          "name": {"type": "string", "minLength": 4},
+          "definition": {"type": "string", "minLength": 20},
+          "patterns": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["pattern_id", "name", "definition", "case_ids"],
+              "properties": {
+                "pattern_id": {"type": "string", "pattern": "^[A-Z]+-[0-9]{2}$"},
+                "name": {"type": "string", "minLength": 4},
+                "definition": {"type": "string", "minLength": 20},
+                "case_ids": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {"type": "string", "pattern": "^[A-Z0-9]+-[A-Z]?[0-9]{2,3}$"}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

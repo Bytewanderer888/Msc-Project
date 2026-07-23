@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.62,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "A0 shows netsh.exe running at High integrity under a standard user account (host-01\\user-01) to add an inbound TCP firewall rule on port 450 with the name '[x] testing', spawned from a bare cmd.exe with no visible parent command context. EV-001 confirms the rule was written to the Windows Firewall registry key, and EV-003/EV-004 confirm the rule was deleted ~5 seconds later \u2014 the transient add-then-delete pattern is consistent with a probe or cleanup step (e.g., confirming firewall manipulation capability or removing evidence of a backdoor rule), but could also reflect a legitimate test script. The '[x] testing' name and non-standard port 450 are weak indicators of malicious intent; however, the elevated integrity level for a standard user, the ephemeral nature of the rule, and the anonymous cmd.exe parent warrant further investigation to determine how elevated privileges were obtained and what initiated the cmd.exe session.",
+  "recommended_action": "investigate"
+}

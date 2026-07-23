@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.97,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "DER-001"
+  ],
+  "rationale": "A complete WMI persistence triad was established on host-01: an event filter (EV-001) triggers on logon of 'user-02', a CommandLineEventConsumer (A0) executes a base64-encoded PowerShell payload, and the filter-to-consumer binding (EV-002) ties them together \u2014 all created within milliseconds. DER-001 confirms the decoded payload disables SSL certificate validation and then downloads and executes arbitrary code via IEX from an internal IP (192.168.0.4:443/GoPro5/black/2018/_rp), a classic cradle pattern consistent with a C2 stager. The consumer name 'WindowsParentalControlMigration' is a masquerading technique to blend with legitimate Windows components. The binding was created under a different user account ('user-01') than the filter/consumer ('corp\\user-02'), suggesting possible lateral movement or privilege abuse.",
+  "recommended_action": "isolate"
+}

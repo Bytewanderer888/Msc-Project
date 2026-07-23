@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "LOGON-001",
+  "rule_id": "SAFESOC-TRG-LOGON-001",
+  "analytic_family_id": "AF-REG",
+  "analytic_pattern_id": "REG-01",
+  "source_description": "raw log (sysmon.log)",
+  "raw_source_event_count": 10496,
+  "complete_scope_event_count": 10496,
+  "predicate_match_count": 3,
+  "qualifying_group_count": 0,
+  "selection_strategy": "latest_match",
+  "selected_record_key": "1057604",
+  "expected_record_key": "1057604",
+  "selected_raw_sha256": "92209a7d07ab1dc70ff7cf594ee9a5a12dbba9ae8ba3ab2d0c24197e7298a4b5",
+  "pass": true
+}

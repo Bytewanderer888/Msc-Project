@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1087.002/AD_discovery/windows-sysmon.log",
+      "sha256": "1b78f515120a7e5ac532444fd7fd322c8dc1abf8efebe0295abad3939972db0d"
+    }
+  ],
+  "primary_host": "win-dc-391.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "Scoped to host win-dc-391's account-discovery burst in AD_discovery/windows-sysmon.log; Sysmon only (EID 1 process-create). The log's other host (win-host-944) and the repeat burst are excluded. Single host, single sensor."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.8,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "The main alert (A0) shows `powershell.exe` being executed by the 'Administrator' user with 'High' integrity. The command line contains a redacted string-concatenation expression, a `.Replace` method, and `| ieX` (Invoke-Expression). This pattern strongly indicates an attempt to execute an obfuscated command, which is a common technique used by malware and adversaries. The absence of the actual payload or subsequent events prevents a definitive 'malicious' verdict, but the observed activity is highly suspicious.",
+  "recommended_action": "investigate"
+}

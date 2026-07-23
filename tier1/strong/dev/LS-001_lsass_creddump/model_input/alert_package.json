@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LS-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [],
+    "time_window_utc": {
+      "start": "2022-01-12T16:25:27.967136500Z",
+      "end": "2022-01-12T16:29:59.905423800Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "process_access"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2022-01-12T16:29:39.746187400Z",
+    "event_type": "process_access",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 10,
+      "event_record_id": "40595850"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "source_process_guid": "{9DBE88B5-01F3-61DF-5803-010000001302}",
+      "source_process_id": "392468",
+      "source_image": "C:\\Users\\Administrator\\Downloads\\mimikatz_trunk\\x64\\mimikatz.exe",
+      "target_process_guid": "{9DBE88B5-2DA6-61D7-0B00-000000001302}",
+      "target_process_id": "636",
+      "target_image": "C:\\Windows\\system32\\lsass.exe",
+      "granted_access": "0x1010",
+      "call_trace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a6144|C:\\Windows\\System32\\KERNELBASE.dll+221bd|C:\\Users\\Administrator\\Downloads\\mimikatz_trunk\\x64\\mimikatz.exe+c0612|C:\\Users\\Administrator\\Downloads\\mimikatz_trunk\\x64\\mimikatz.exe+c0e27|C:\\Users\\Administrator\\Downloads\\mimikatz_trunk\\x64\\mimikatz.exe+85738|C:\\Users\\Administrator\\Downloads\\mimikatz_trunk\\x64\\mimikatz.exe+85570|C:\\Users\\Administrator\\Downloads\\mimikatz_trunk\\x64\\mimikatz.exe+852a3|C:\\Users\\Administrator\\Downloads\\mimikatz_trunk\\x64\\mimikatz.exe+c7435|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+51791"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2022-01-12T16:25:27.967136500Z",
+      "event_type": "process_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 10,
+        "event_record_id": "40591054"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "source_process_guid": "{9DBE88B5-2DA7-61D7-0C00-000000001302}",
+        "source_process_id": "840",
+        "source_image": "C:\\Windows\\system32\\svchost.exe",
+        "target_process_guid": "{9DBE88B5-2DA6-61D7-0B00-000000001302}",
+        "target_process_id": "636",
+        "target_image": "C:\\Windows\\system32\\lsass.exe",
+        "granted_access": "0x1400",
+        "call_trace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a6144|C:\\Windows\\System32\\KERNELBASE.dll+5eab4|c:\\windows\\system32\\lsm.dll+e9d6|c:\\windows\\system32\\lsm.dll+7f5d|C:\\Windows\\System32\\RPCRT4.dll+7a583|C:\\Windows\\System32\\RPCRT4.dll+d9f41|C:\\Windows\\System32\\RPCRT4.dll+62d3c|C:\\Windows\\System32\\RPCRT4.dll+4a284|C:\\Windows\\System32\\RPCRT4.dll+4919d|C:\\Windows\\System32\\RPCRT4.dll+49a4b|C:\\Windows\\System32\\RPCRT4.dll+310ac|C:\\Windows\\System32\\RPCRT4.dll+3152c|C:\\Windows\\System32\\RPCRT4.dll+1ae1c|C:\\Windows\\System32\\RPCRT4.dll+1c67b|C:\\Windows\\System32\\RPCRT4.dll+43a2a|C:\\Windows\\SYSTEM32\\ntdll.dll+1d35e|C:\\Windows\\SYSTEM32\\ntdll.dll+1ecc9|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+51791"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2022-01-12T16:29:45.974761600Z",
+      "event_type": "process_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 10,
+        "event_record_id": "40597812"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "source_process_guid": "{9DBE88B5-01F9-61DF-7803-010000001302}",
+        "source_process_id": "393024",
+        "source_image": "C:\\Windows\\System32\\rundll32.exe",
+        "target_process_guid": "{9DBE88B5-2DA6-61D7-0B00-000000001302}",
+        "target_process_id": "636",
+        "target_image": "C:\\Windows\\system32\\lsass.exe",
+        "granted_access": "0x1410",
+        "call_trace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a6144|C:\\Windows\\System32\\KERNELBASE.dll+221bd|C:\\windows\\System32\\comsvcs.dll+3a17f|C:\\Windows\\System32\\rundll32.exe+3b0c|C:\\Windows\\System32\\rundll32.exe+6097|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+51791"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2022-01-12T16:29:59.905423800Z",
+      "event_type": "process_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 10,
+        "event_record_id": "40604410"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "source_process_guid": "{9DBE88B5-0207-61DF-E803-010000001302}",
+        "source_process_id": "392620",
+        "source_image": "C:\\Windows\\Temp\\xordump.exe",
+        "target_process_guid": "{9DBE88B5-2DA6-61D7-0B00-000000001302}",
+        "target_process_id": "636",
+        "target_image": "C:\\Windows\\system32\\lsass.exe",
+        "granted_access": "0x1fffff",
+        "call_trace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a6144|C:\\Windows\\SYSTEM32\\ntdll.dll+6cd1a|C:\\Windows\\System32\\KERNEL32.DLL+1cff8|C:\\Windows\\System32\\KERNEL32.DLL+25a87|C:\\Windows\\SYSTEM32\\dbgcore.DLL+15a38|C:\\Windows\\SYSTEM32\\dbgcore.DLL+e3f5|C:\\Windows\\SYSTEM32\\dbgcore.DLL+b027|C:\\Windows\\SYSTEM32\\dbgcore.DLL+5db1|C:\\Windows\\SYSTEM32\\dbgcore.DLL+67d3|C:\\Windows\\Temp\\xordump.exe+688be"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

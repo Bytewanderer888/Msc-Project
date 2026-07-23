@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ACCT-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2020-10-09T10:41:25.707607800Z",
+      "end": "2020-10-09T10:41:29.005041000Z"
+    },
+    "event_count": 6,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-10-09T10:41:25.707607800Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "4218"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{733EE690-3E55-5F80-DA00-000000007F01}",
+      "process_id": "4924",
+      "image": "C:\\Windows\\System32\\cmd.exe",
+      "original_file_name": "Cmd.Exe",
+      "command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"net user /add \"[id]_CMD\" \"[id]_CMD!\"\" ",
+      "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+      "parent_process_guid": "{733EE690-3E54-5F80-D400-000000007F01}",
+      "parent_process_id": "4408",
+      "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "parent_command_line": "\"powershell.exe\" -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABJAG0AcABvAHIAdAAtAE0AbwBkAHUAbABlACAAIgBDADoAXABbAHgAXQBcAGkAbgB2AG8AawBlAC0AWwB4AF0AXABJAG4AdgBvAGsAZQAtAFsAeABdAC4AcABzAGQAMQAiACAALQBGAG8AcgBjAGUACgBJAG4AdgBvAGsAZQAtAFsAeABdAFQAZQBzAHQAIAAiAFsAaQBkAF0AIgAgAC0AQwBvAG4AZgBpAHIAbQA6ACQAZgBhAGwAcwBlACAALQBUAGkAbQBlAG8AdQB0AFMAZQBjAG8AbgBkAHMAIAAzADAAMAAgAC0ARQB4AGUAYwB1AHQAaQBvAG4ATABvAGcAUABhAHQAaAAgAEMAOgBcAFsAeABdAFwAYQB0AGMAXwBlAHgAZQBjAHUAdABpAG8AbgAuAGMAcwB2AA=="
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-10-09T10:41:25.793286100Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4259"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{733EE690-3E55-5F80-DD00-000000007F01}",
+        "process_id": "2900",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "original_file_name": "PowerShell.EXE",
+        "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" & {New-LocalUser -Name \\\"\"[id]_PowerShell\\\"\" -NoPassword} ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+        "parent_process_guid": "{733EE690-3E54-5F80-D400-000000007F01}",
+        "parent_process_id": "4408",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"powershell.exe\" -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABJAG0AcABvAHIAdAAtAE0AbwBkAHUAbABlACAAIgBDADoAXABbAHgAXQBcAGkAbgB2AG8AawBlAC0AWwB4AF0AXABJAG4AdgBvAGsAZQAtAFsAeABdAC4AcABzAGQAMQAiACAALQBGAG8AcgBjAGUACgBJAG4AdgBvAGsAZQAtAFsAeABdAFQAZQBzAHQAIAAiAFsAaQBkAF0AIgAgAC0AQwBvAG4AZgBpAHIAbQA6ACQAZgBhAGwAcwBlACAALQBUAGkAbQBlAG8AdQB0AFMAZQBjAG8AbgBkAHMAIAAzADAAMAAgAC0ARQB4AGUAYwB1AHQAaQBvAG4ATABvAGcAUABhAHQAaAAgAEMAOgBcAFsAeABdAFwAYQB0AGMAXwBlAHgAZQBjAHUAdABpAG8AbgAuAGMAcwB2AA=="
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2020-10-09T10:41:26.062239400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4277"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{733EE690-3E56-5F80-DE00-000000007F01}",
+        "process_id": "4764",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"net user /add \"[id]_Admin\" \"[id]_pass\" & net localgroup administrators \"[id]_Admin\" /add\" ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{733EE690-3E54-5F80-D400-000000007F01}",
+        "parent_process_id": "4408",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"powershell.exe\" -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABJAG0AcABvAHIAdAAtAE0AbwBkAHUAbABlACAAIgBDADoAXABbAHgAXQBcAGkAbgB2AG8AawBlAC0AWwB4AF0AXABJAG4AdgBvAGsAZQAtAFsAeABdAC4AcABzAGQAMQAiACAALQBGAG8AcgBjAGUACgBJAG4AdgBvAGsAZQAtAFsAeABdAFQAZQBzAHQAIAAiAFsAaQBkAF0AIgAgAC0AQwBvAG4AZgBpAHIAbQA6ACQAZgBhAGwAcwBlACAALQBUAGkAbQBlAG8AdQB0AFMAZQBjAG8AbgBkAHMAIAAzADAAMAAgAC0ARQB4AGUAYwB1AHQAaQBvAG4ATABvAGcAUABhAHQAaAAgAEMAOgBcAFsAeABdAFwAYQB0AGMAXwBlAHgAZQBjAHUAdABpAG8AbgAuAGMAcwB2AA=="
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2020-10-09T10:41:28.716975300Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4542"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{733EE690-3E58-5F80-F000-000000007F01}",
+        "process_id": "4368",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"net user /del \"[id]_CMD\" >nul 2>&1\" ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{733EE690-3E57-5F80-EB00-000000007F01}",
+        "parent_process_id": "2588",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"powershell.exe\" -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABJAG0AcABvAHIAdAAtAE0AbwBkAHUAbABlACAAIgBDADoAXABbAHgAXQBcAGkAbgB2AG8AawBlAC0AWwB4AF0AXABJAG4AdgBvAGsAZQAtAFsAeABdAC4AcABzAGQAMQAiACAALQBGAG8AcgBjAGUACgBJAG4AdgBvAGsAZQAtAFsAeABdAFQAZQBzAHQAIAAiAFsAaQBkAF0AIgAgAC0AQwBsAGUAYQBuAHUAcAA="
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2020-10-09T10:41:28.750713400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4582"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{733EE690-3E58-5F80-F300-000000007F01}",
+        "process_id": "4340",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "original_file_name": "PowerShell.EXE",
+        "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" & {Remove-LocalUser -Name \\\"\"[id]_PowerShell\\\"\" -ErrorAction Ignore} ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+        "parent_process_guid": "{733EE690-3E57-5F80-EB00-000000007F01}",
+        "parent_process_id": "2588",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"powershell.exe\" -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABJAG0AcABvAHIAdAAtAE0AbwBkAHUAbABlACAAIgBDADoAXABbAHgAXQBcAGkAbgB2AG8AawBlAC0AWwB4AF0AXABJAG4AdgBvAGsAZQAtAFsAeABdAC4AcABzAGQAMQAiACAALQBGAG8AcgBjAGUACgBJAG4AdgBvAGsAZQAtAFsAeABdAFQAZQBzAHQAIAAiAFsAaQBkAF0AIgAgAC0AQwBsAGUAYQBuAHUAcAA="
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2020-10-09T10:41:29.005041000Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4600"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{733EE690-3E59-5F80-F400-000000007F01}",
+        "process_id": "4912",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"net user /del \"[id]_Admin\" >nul 2>&1\" ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{733EE690-3E57-5F80-EB00-000000007F01}",
+        "parent_process_id": "2588",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"powershell.exe\" -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABJAG0AcABvAHIAdAAtAE0AbwBkAHUAbABlACAAIgBDADoAXABbAHgAXQBcAGkAbgB2AG8AawBlAC0AWwB4AF0AXABJAG4AdgBvAGsAZQAtAFsAeABdAC4AcABzAGQAMQAiACAALQBGAG8AcgBjAGUACgBJAG4AdgBvAGsAZQAtAFsAeABdAFQAZQBzAHQAIAAiAFsAaQBkAF0AIgAgAC0AQwBsAGUAYQBuAHUAcAA="
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

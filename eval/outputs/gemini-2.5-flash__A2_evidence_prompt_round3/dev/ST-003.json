@@ -1,0 +1,10 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "The alert A0 indicates the creation of a scheduled task named '\\npcapwatchdog' which executes 'C:\\Program Files\\Npcap\\CheckStatus.bat'. Npcap is a legitimate network packet capture library. The task is set to run at boot as 'NT AUTHORITY\\SYSTEM', which is typical for system-level utilities. This activity appears to be a legitimate system or software maintenance task.",
+  "recommended_action": "close_benign"
+}

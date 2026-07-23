@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "case_id": "RUN-001",
+  "rule_id": "SAFESOC-TRG-RUN-001",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-04",
+  "title": "Rundll32 loads a DLL-like file from user AppData",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source after any pre-existing host and sensor scope is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 1
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\rundll32.exe"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "icontains",
+        "value": "\\AppData\\"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\.(?:dll|lock),[A-Za-z0-9_]+"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "1000064"
+  },
+  "rationale": "Rundll32 loading an export from a user-writable AppData path is a stable proxy-execution alert surface."
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "case_id": "BF-002",
+  "rule_id": "SAFESOC-TRG-BF-002",
+  "analytic_family_id": "AF-AUTH",
+  "analytic_pattern_id": "AUTH-02",
+  "title": "Rapid failed-logon spray across distinct usernames",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "full_source",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source; no event-level answer selector is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 4625
+      },
+      {
+        "field": "attributes.sub_status",
+        "op": "ieq",
+        "value": "0xc0000064"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_in_highest_count_group"
+  },
+  "expected_a0": {
+    "record_key": "335396"
+  },
+  "rationale": "A rapid burst of unknown-account failures over many target usernames is a password-spray analytic; A0 represents the qualifying group.",
+  "aggregation": {
+    "group_by": [
+      "computer",
+      "attributes.workstation_name"
+    ],
+    "count_gte": 10,
+    "within_seconds_lte": 60,
+    "distinct": {
+      "field": "attributes.target_user_name",
+      "count_gte": 10
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-C03",
+  "case_name": "signed_spooler_modules",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "The spooler DLL loads establish exploitation of the print service.",
+  "attack_category": {
+    "category": "Exploitation of Remote Services false-positive surface",
+    "candidate_attack_mapping": "T1210",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "Windows-APT Dataset 2025",
+    "scenario": "not authoritatively linkable at event level",
+    "capture_cluster": "wapt-DESKTOP-DS4FBF4-2024-11-06T06:27Z",
+    "telemetry_depth": "single_source",
+    "sensors": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "all _source.rule fields, including detector description, severity, and ATT&CK mapping",
+      "Sysmon RuleName and system.message copies that contain ATT&CK labels",
+      "Wazuh product and manager identity",
+      "source agent names, IP addresses, and local account names",
+      "condition, verdict, severity, action, and upstream scenario identity"
+    ],
+    "deterministic_derivations": []
+  },
+  "operational_response_family": "none",
+  "nearest_frozen_case": null,
+  "differentiation": "No frozen counter case uses signature-verified standard Windows print-driver module loads."
+}

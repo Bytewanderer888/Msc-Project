@@ -1,0 +1,32 @@
+[
+  {
+    "evidence_id": "A0",
+    "archive_member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/audit.log",
+    "audit_serial": "626718",
+    "byte_start": 5216359,
+    "byte_end": 5216917,
+    "record_sha256": "dfcbc11e93970b4775f5f54c310dc9333bda6c722df8b1fcdf8d32c677086752",
+    "record": "type=SYSCALL msg=audit(1736250596.287:626718): arch=c000003e syscall=101 success=yes exit=0 a0=4206 a1=17d369 a2=0 a3=11 items=0 ppid=1789809 pid=1789811 auid=1001 uid=1001 gid=1001 euid=0 suid=0 fsuid=0 egid=1001 sgid=1001 fsgid=1001 tty=pts9 ses=3 comm=\"frida_server\" exe=\"/tmp/_MEIgRTfs4/frida_server\" subj=unconfined key=\"ptrace_monitor\"\ntype=OBJ_PID msg=audit(1736250596.287:626718): opid=1561449 oauid=1001 ouid=1000 oses=3 obj=unconfined ocomm=\"QGroundControl\"\ntype=PROCTITLE msg=audit(1736250596.287:626718): proctitle=\"/tmp/_MEIgRTfs4/frida_server\""
+  },
+  {
+    "evidence_id": "EV-001",
+    "archive_member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/drone_flight_logs.log",
+    "line_number": 487,
+    "record_sha256": "7405230f2b2a25c5affcc25659c1f03774a9631f41e67921825bcb797bea5343",
+    "record": "2025-01-07 13:50:57 Got COMMAND_ACK: COMPONENT_ARM_DISARM: ACCEPTED"
+  },
+  {
+    "evidence_id": "EV-002",
+    "archive_member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/drone_flight_logs.log",
+    "line_number": 491,
+    "record_sha256": "4f40fcd8b09a66007a983cc11c5b9c4b610f64bcf0514f16e752a9e6adc2dbfd",
+    "record": "2025-01-07 13:50:58 DISARMED"
+  },
+  {
+    "evidence_id": "EV-003",
+    "archive_member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/drone_flight_logs.log",
+    "line_number": 520,
+    "record_sha256": "cfbec6765a4824e618d532973e76b5e1144012b4addd1c8fb3be7d961410c7d8",
+    "record": "2025-01-07 13:51:20 AP: SIM Hit ground at 19.36427 m/s"
+  }
+]

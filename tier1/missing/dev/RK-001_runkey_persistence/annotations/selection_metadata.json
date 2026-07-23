@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "case_id": "RK-001",
+  "case_name": "runkey_set_target_never_executes",
+  "security_proposition": "The executable configured in the Run-key value executed within the retained Sysmon source.",
+  "case_directory": "RK-001_runkey_persistence",
+  "split": "dev",
+  "status": "audited_dev_2026-07-16",
+  "attack_category": {
+    "category": "Registry Run-key persistence (target not observed executing)",
+    "candidate_attack_mapping": "T1547.001",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = MISSING. Native Sysmon telemetry confirms that a Run-key value pointing to C:\\Path\\AtomicRedTeam.exe was set and then deleted seconds later. No process creation for that target is present in the retained Sysmon source. The setup is visible, but the named confirmation — execution of the configured target — is not evidenced. Role = over-triage-prone (down-rank): the model must not conclude 'payload executed' or durable active persistence. Do not leak."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1547.001/atomic_red_team/windows-sysmon.log",
+    "original_filename": "windows-sysmon.log",
+    "stored_filename": "rk001_runkey_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "11d8c6f7ca60994936ae9332ea67e5c220027ae1addad48203df6bdde9d46f5d",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "single host win-dc-942 (6,287 events)."
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/rk001_events.json",
+    "related_events": "extracted/rk001_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "win-dc-942.attackrange.local",
+    "boundary_definition": [
+      "A0 = the EID13 Run-key value-set; EV-001/EV-002 are the cmd.exe and reg.exe creation chain.",
+      "EV-003/EV-004 are the matching cleanup command chain; EV-005 is the native Sysmon DeleteValue confirmation.",
+      "No Sysmon ProcessCreate for C:\\Path\\AtomicRedTeam.exe is present in the retained source."
+    ],
+    "absence_audit": {
+      "confirmation": "Sysmon ProcessCreate with Image C:\\Path\\AtomicRedTeam.exe",
+      "sensor": "Microsoft-Windows-Sysmon/Operational",
+      "host": "win-dc-942.attackrange.local",
+      "raw_source": "_splunk_ingest/rk001_runkey_sysmon.log",
+      "source_window_utc": {
+        "start": "2020-11-27T08:45:27.694Z",
+        "end": "2020-11-27T08:50:35.059Z"
+      },
+      "result": "zero matching target-process creations; the same value is deleted by records 4820, 4834, and 4847 approximately four seconds after it is set"
+    },
+    "time_window_utc": {
+      "start": "2020-11-27T08:47:42.301334500Z",
+      "end": "2020-11-27T08:47:46.229911500Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "4430",
+    "process_guid": "{3368E97D-BD2E-5FC0-E900-000000009101}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "4430",
+      "4403",
+      "4417",
+      "4820",
+      "4834",
+      "4847"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "4430",
+      "event_type": "registry_value_set",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: registry Run-key SET — HKU\\...\\CurrentVersion\\Run\\'Atomic Red Team' = C:\\Path\\AtomicRedTeam.exe (T1547.001 persistence)"
+    },
+    "EV-001": {
+      "event_record_id": "4403",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "cmd.exe (spawned by PowerShell) issuing the REG ADD to the Run key"
+    },
+    "EV-002": {
+      "event_record_id": "4417",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "reg.exe performing the actual REG ADD that writes the Run-key value"
+    },
+    "EV-003": {
+      "event_record_id": "4820",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "cmd.exe issuing the matching REG DELETE cleanup command seconds later"
+    },
+    "EV-004": {
+      "event_record_id": "4834",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "reg.exe performing the matching REG DELETE cleanup operation"
+    },
+    "EV-005": {
+      "event_record_id": "4847",
+      "event_type": "registry_object_change",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "Sysmon EID12 DeleteValue confirming removal of the same Run-key value"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "missing_outcome",
+      "note": "MISSING / over-triage-prone: the Run-key state is set and then removed, while execution of its configured target is not evidenced in the retained Sysmon source."
+    },
+    {
+      "topic": "lifecycle_completion",
+      "event_record_id": "4820,4834,4847",
+      "note": "The matching cleanup command and native DeleteValue event are included so the package does not manufacture missing by omitting same-lifecycle evidence."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "missing_persistence_exemplar",
+      "over_triage_down_rank_test"
+    ],
+    "eligible_for_final_heldout_metrics": false
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

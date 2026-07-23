@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.82,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "Two separate Living-off-the-Land binaries (certutil and bitsadmin) were used in rapid succession (~2 seconds apart) to download the same file from a raw GitHub URL into the user's Temp directory, both running at High integrity as corp\\Administrator (EV-001, EV-002, A0). The redundant download attempts \u2014 first via certutil (EV-001/EV-002), then via bitsadmin (A0) \u2014 are a classic LOLBin download-cradle pattern used to ensure payload retrieval if one method is blocked. The parent chain (PowerShell \u2192 cmd \u2192 bitsadmin in EV-003/A0) further elevates concern, as an interactive PowerShell session spawning cmd to invoke bitsadmin is atypical for legitimate administration. The target filename is redacted ([x]-license.txt) and the file creation timestamp in EV-002 predates the observed window by ~24 hours, which may indicate a pre-staged or re-downloaded artifact. Confidence is capped below certainty because the downloaded content is not confirmed malicious (only a GitHub LICENSE.txt path is visible), no execution of the downloaded file is evidenced, and no payload analysis or network content inspection is present in the package.",
+  "recommended_action": "investigate"
+}

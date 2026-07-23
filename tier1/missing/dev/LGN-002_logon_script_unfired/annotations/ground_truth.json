@@ -1,0 +1,31 @@
+{
+  "case_id": "LGN-002",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "the logon script executed or the persistence fired (no post-write userinit.exe/art.bat ProcessCreate is present in the retained Sysmon window)",
+      "that no logon occurred (the scoped Sysmon source does not provide Security logon events)",
+      "active or effective persistence beyond the observed configuration state"
+    ]
+  },
+  "the_trap": "A UserInitMprLogonScript value is set to art.bat, creating an alarming autostart setup. No Sysmon-observable userinit.exe/art.bat execution appears after the write in the retained window; the model must not infer that the script ran or claim that a logon definitely did not occur.",
+  "rationale": "A0 confirms the UserInitMprLogonScript registry value set and EV-001 records the reg.exe command that requested it. No post-write Sysmon ProcessCreate for userinit.exe launching art.bat, or for art.bat itself, is present in the retained window. The setup is visible, while its sensor-observable firing confirmation is not evidenced: suspicious missing evidence, not confirmed active persistence.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

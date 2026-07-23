@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "WMI-001",
+  "rule_id": "SAFESOC-TRG-WMI-001",
+  "analytic_family_id": "AF-PERS",
+  "analytic_pattern_id": "PERS-03",
+  "source_description": "mordor (apt29_evals_day2_manual.zip)",
+  "raw_source_event_count": 422695,
+  "complete_scope_event_count": 422695,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "790795",
+  "expected_record_key": "790795",
+  "selected_raw_sha256": "60e5790e5f3a0d5b980c0731d6067078db5fe5b6404e0cbaa9d985d486685f64",
+  "pass": true
+}

@@ -1,0 +1,173 @@
+{
+  "config": "eval/expected_run_matrix.json",
+  "deferred_rule": "Add Claude A2 held-out round 1 after corrected dev stability is known; add rounds 2-3 only if exact A2 dev agreement is below 20/21.",
+  "generated_utc": "2026-07-22T12:45:37Z",
+  "record_schema": "safesoc.run_matrix_report.v1",
+  "runs": [
+    {
+      "complete": true,
+      "expected_n": 21,
+      "found_n": 21,
+      "label": "Gemini A1 dev round 1",
+      "missing": [],
+      "model_tag": "gemini-2.5-flash__A1_basic_prompt",
+      "split": "dev",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 21,
+      "found_n": 21,
+      "label": "Gemini A1 dev round 2",
+      "missing": [],
+      "model_tag": "gemini-2.5-flash__A1_basic_prompt_round2",
+      "split": "dev",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 21,
+      "found_n": 21,
+      "label": "Gemini A1 dev round 3",
+      "missing": [],
+      "model_tag": "gemini-2.5-flash__A1_basic_prompt_round3",
+      "split": "dev",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 21,
+      "found_n": 21,
+      "label": "Gemini A2 dev round 1",
+      "missing": [],
+      "model_tag": "gemini-2.5-flash__A2_evidence_prompt",
+      "split": "dev",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 21,
+      "found_n": 21,
+      "label": "Gemini A2 dev round 2",
+      "missing": [],
+      "model_tag": "gemini-2.5-flash__A2_evidence_prompt_round2",
+      "split": "dev",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 21,
+      "found_n": 21,
+      "label": "Gemini A2 dev round 3",
+      "missing": [],
+      "model_tag": "gemini-2.5-flash__A2_evidence_prompt_round3",
+      "split": "dev",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 20,
+      "found_n": 20,
+      "label": "Gemini A2 held-out round 1",
+      "missing": [],
+      "model_tag": "gemini-2.5-flash__A2_evidence_prompt",
+      "split": "heldout",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 20,
+      "found_n": 20,
+      "label": "Gemini A2 held-out round 2",
+      "missing": [],
+      "model_tag": "gemini-2.5-flash__A2_evidence_prompt_round2",
+      "split": "heldout",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 20,
+      "found_n": 20,
+      "label": "Gemini A2 held-out round 3",
+      "missing": [],
+      "model_tag": "gemini-2.5-flash__A2_evidence_prompt_round3",
+      "split": "heldout",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 21,
+      "found_n": 21,
+      "label": "Claude A1 dev round 1",
+      "missing": [],
+      "model_tag": "claude-sonnet-4-6__A1_basic_prompt",
+      "split": "dev",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 21,
+      "found_n": 21,
+      "label": "Claude A2 dev round 1",
+      "missing": [],
+      "model_tag": "claude-sonnet-4-6__A2_evidence_prompt",
+      "split": "dev",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 21,
+      "found_n": 21,
+      "label": "Claude A2 dev round 2",
+      "missing": [],
+      "model_tag": "claude-sonnet-4-6__A2_evidence_prompt_round2",
+      "split": "dev",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 21,
+      "found_n": 21,
+      "label": "Claude A2 dev round 3",
+      "missing": [],
+      "model_tag": "claude-sonnet-4-6__A2_evidence_prompt_round3",
+      "split": "dev",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 20,
+      "found_n": 20,
+      "label": "Claude A2 held-out round 1",
+      "missing": [],
+      "model_tag": "claude-sonnet-4-6__A2_evidence_prompt",
+      "split": "heldout",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 20,
+      "found_n": 20,
+      "label": "Claude A2 held-out round 2",
+      "missing": [],
+      "model_tag": "claude-sonnet-4-6__A2_evidence_prompt_round2",
+      "split": "heldout",
+      "unexpected": []
+    },
+    {
+      "complete": true,
+      "expected_n": 20,
+      "found_n": 20,
+      "label": "Claude A2 held-out round 3",
+      "missing": [],
+      "model_tag": "claude-sonnet-4-6__A2_evidence_prompt_round3",
+      "split": "heldout",
+      "unexpected": []
+    }
+  ],
+  "summary": {
+    "complete": 16,
+    "incomplete": 0,
+    "runs": 16
+  }
+}

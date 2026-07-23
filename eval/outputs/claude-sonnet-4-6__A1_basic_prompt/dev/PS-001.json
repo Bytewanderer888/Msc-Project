@@ -1,0 +1,16 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.92,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-010",
+    "EV-011",
+    "EV-012",
+    "DER-001"
+  ],
+  "rationale": "The chain begins with a WinRS-hosted cmd.exe (EV-001, parent: winrshost.exe) executing a multi-layer encoded PowerShell command, indicating remote lateral movement or C2 execution. The decoded payload (DER-001) implements a classic Ansible/Metasploit-style exec-wrapper that reads a null-delimited payload from stdin, splits it into a script block and JSON data, and invokes the script block dynamically \u2014 a well-known technique used by Ansible's raw/win_shell modules but also heavily abused by post-exploitation frameworks. The child PowerShell process (A0) then drops a temporary DLL and cmdline file (EV-010, EV-011) and spawns csc.exe (EV-012) to compile them in-memory from the Temp directory, which is a strong indicator of in-memory .NET payload staging/compilation. Additionally, lsass.exe performs process-open operations (0x1478 \u2014 read VM + query info) against both PowerShell instances (EV-004, EV-005, EV-007, EV-008), consistent with credential access or token interrogation activity accompanying the execution chain.",
+  "recommended_action": "isolate"
+}

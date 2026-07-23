@@ -1,0 +1,75 @@
+{
+  "case_id": "EVL-001",
+  "split": "heldout",
+  "mordor_log": "datasets/atomic/windows/defense_evasion/host/cmd_disable_eventlog_service_startuptype_modification_via_registry.zip",
+  "computer": "Pedro01",
+  "sourcetypes_present": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "6256",
+    "EV": [
+      "5897"
+    ]
+  },
+  "roles": {
+    "6256": "triggering alert: EID13 registry SET of Services\\EventLog\\Start = 4 (Disabled) — a defense-evasion attempt to turn off the Windows Event Log (T1562.002)",
+    "5897": "REG ADD command that writes the EventLog Start value"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "disable_eventlog_startup_pending",
+    "security_proposition": "The EventLog startup-type registry change caused Windows event logging to become disabled in the retained source window.",
+    "case_directory": "EVL-001_disable_eventlog",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "OTRF Security-Datasets (mordor / atomic)",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Impair defenses: EventLog startup configuration changed, outcome unconfirmed",
+      "candidate_attack_mapping": "T1562.002",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: MISSING. The Windows Event Log service Start value is set to 4, an alarming defense-evasion setup. No reboot/shutdown transition or service-state confirmation follows in the scoped Sysmon source, so actual disabling or log loss is not evidenced. The package must not claim either that evasion succeeded or that logging definitely remained unaffected. Cross-corpus OTRF missing. Do not leak."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "case_scope": {
+      "primary_host": "Pedro01",
+      "boundary_definition": [
+        "A0 = the EID13 EventLog\\Start=4 set; EV = the REG ADD command.",
+        "The scoped Sysmon source contains no reboot or shutdown/restart process after A0. It does not establish EventLog service state or whether logs were lost."
+      ],
+      "absence_audit": {
+        "confirmation": "post-write Sysmon evidence of reboot/shutdown or another visible transition that could activate the changed startup configuration",
+        "sensor": "Microsoft-Windows-Sysmon/Operational",
+        "host": "Pedro01",
+        "raw_source": "data_sources/otrf_selected_raw/datasets/atomic/windows/defense_evasion/host/cmd_disable_eventlog_service_startuptype_modification_via_registry.zip",
+        "source_window_utc": {
+          "anchor": "2022-08-04T15:21:16.119Z",
+          "end": "2022-08-04T15:21:26.520Z"
+        },
+        "result": "zero Sysmon reboot events or shutdown/restart process invocations after A0; service state and log loss remain unobserved rather than disproved"
+      }
+    },
+    "curation_notes": [
+      {
+        "topic": "missing_outcome",
+        "note": "MISSING / over-triage-prone: EventLog startup configuration is changed, but no scoped Sysmon confirmation establishes whether logging was disabled or evidence was lost."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "missing_defense_evasion_exemplar",
+        "cross_corpus_missing"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

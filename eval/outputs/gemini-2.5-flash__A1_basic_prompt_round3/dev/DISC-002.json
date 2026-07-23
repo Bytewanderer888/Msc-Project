@@ -1,0 +1,13 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "Multiple WMIC commands (A0, EV-001, EV-002, EV-003) were executed by 'ssm-agent-worker.exe', which is part of the legitimate Amazon SSM Agent. These commands are used to gather system information (OS version, hostname, domain, OS caption), a common activity for system management tools.",
+  "recommended_action": "close_benign"
+}

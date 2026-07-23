@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "low",
+  "confidence": 0.8,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "Multiple HTTP requests from 'client-01' to 'web-01.corp.local' are observed (A0, EV-001, EV-002, EV-003). The User-Agent string explicitly identifies 'Nmap Scripting Engine' in all requests, indicating active reconnaissance. While no successful compromise is evidenced (all requests resulted in 404), this activity is suspicious as it suggests an attacker is mapping the network.",
+  "recommended_action": "investigate"
+}

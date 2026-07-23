@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "case_id": "AMQ-001",
+  "rule_id": "SAFESOC-TRG-AMQ-001",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-03",
+  "title": "Java-spawned command stages and starts a downloaded file",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source after any pre-existing host and sensor scope is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 1
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\cmd.exe"
+      },
+      {
+        "field": "attributes.parent_image",
+        "op": "iendswith",
+        "value": "\\java.exe"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "icontains",
+        "value": "certutil"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)https?://"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\bstart\\s+/B\\b"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "sysmon:7134"
+  },
+  "rationale": "A Java child shell that retrieves a file and starts it in the background is a plausible exploitation alert independent of outcome labels."
+}

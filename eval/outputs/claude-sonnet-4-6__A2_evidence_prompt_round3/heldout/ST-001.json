@@ -1,0 +1,19 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.72,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006",
+    "EV-007",
+    "EV-008",
+    "EV-009"
+  ],
+  "rationale": "The evidence shows a structured create-then-delete lifecycle for multiple scheduled tasks (A0/EV-001 create OnLogon/OnStartup tasks running calc.exe as SYSTEM; EV-002/EV-003 create additional tasks spawning cmd.exe; EV-004 registers a task via PowerShell for BUILTIN\\Administrators at highest run level; EV-005 through EV-009 delete all created tasks within ~3.5 seconds), all executed from C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\ under a base64-encoded PowerShell parent (EV-004/EV-009 parent), which is a strong indicator of an automated security testing or red-team framework (e.g., Atomic Red Team) exercising T1053.005 persistence techniques. The use of calc.exe as the payload, the placeholder task names ([id], [x]), the immediate cleanup, and the symmetric create/delete pattern are consistent with controlled test execution rather than genuine persistence establishment. However, the encoded parent command, credential exposure in EV-003/EV-008, execution from Temp, and SYSTEM-level task creation cannot be dismissed without confirming the testing context \u2014 no authorisation record or tool signature is present in the package to confirm benign intent.",
+  "recommended_action": "investigate"
+}

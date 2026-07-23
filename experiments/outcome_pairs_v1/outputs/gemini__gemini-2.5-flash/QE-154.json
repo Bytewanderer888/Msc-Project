@@ -1,0 +1,10 @@
+{
+  "verdict": "suspicious",
+  "severity": "low",
+  "confidence": 0.6,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "The alert A0 indicates that certutil.exe created a file with a '.lock' extension in a user's AppData directory. While certutil.exe is a legitimate Windows utility, its use to create a file with a '.lock' extension in this location is unusual and could be indicative of suspicious activity, such as ransomware or data exfiltration. However, without further evidence of the file's content or subsequent actions, a definitive malicious verdict cannot be made.",
+  "recommended_action": "investigate"
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0",
+  "case_id": "UAC-001",
+  "case_name": "sdclt.exe auto-elevation UAC bypass via Folder shell open command hijack",
+  "security_proposition": "The per-user Folder handler hijack caused a PowerShell payload to execute at high integrity through sdclt.exe and control.exe.",
+  "case_directory": "UAC-001_sdclt_uac_bypass",
+  "split": "dev",
+  "status": "audited_dev_2026-07-16",
+  "attack_category": {
+    "category": "sdclt-based UAC bypass",
+    "candidate_attack_mapping": "T1548.002",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = STRONG. The registry hijack and sdclt process chain establish the bypass mechanism and elevated execution. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "OTRF Security-Datasets (mordor)",
+    "original_repository_path": "datasets/compound/apt29/day1/apt29_evals_day1_manual.zip",
+    "original_filename": "apt29_evals_day1_manual.zip",
+    "stored_filename": "",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "98a073140860560d70080ace9142961be4f64b4862bae892d62d0f254d0fdbe5",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "",
+    "related_events": "",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "build/case.json",
+    "related_events_query": "build/case.json",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "SCRANTON.dmevals.local",
+    "boundary_definition": [
+      "The case follows one registry-hijack lifecycle from handler creation through elevated payload execution and cleanup.",
+      "The later key deletion is retained as mitigating cleanup evidence; it does not undo the observed high-integrity execution."
+    ],
+    "time_window_utc": {
+      "start": "2020-05-02T02:58:18.576Z",
+      "end": "2020-05-02T02:59:15.911Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "348988",
+    "process_guid": "{47ab858c-e1e3-5eac-b503-000000000400}",
+    "query_file": "build/case.json"
+  },
+  "related_event_selection": {
+    "query_file": "build/case.json",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "348988",
+      "348643",
+      "348647",
+      "349079",
+      "349211",
+      "350757"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "348988",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: medium-integrity explorer launches sdclt.exe, which starts at high integrity"
+    },
+    "EV-001": {
+      "event_record_id": "348643",
+      "event_type": "registry_value_set",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the per-user Folder shell open handler is set to a PowerShell command"
+    },
+    "EV-002": {
+      "event_record_id": "348647",
+      "event_type": "registry_value_set",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "DelegateExecute is set to an empty value for the hijacked handler"
+    },
+    "EV-003": {
+      "event_record_id": "349079",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "high-integrity sdclt.exe starts high-integrity control.exe for BackupAndRestoreCenter"
+    },
+    "EV-004": {
+      "event_record_id": "349211",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "high-integrity control.exe starts the configured PowerShell payload at high integrity"
+    },
+    "EV-005": {
+      "event_record_id": "350757",
+      "event_type": "registry_object_change",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the per-user Folder shell open command key is deleted after execution"
+    }
+  },
+  "curation_notes": [
+    "Subtle-strong (up-rank): the surface is two Microsoft system binaries running (sdclt.exe -> control.exe /name Microsoft.BackupAndRestoreCenter), which reads as benign backup / control-panel activity and invites under-triage. The package does not perform signature verification.",
+    "Confirmed malice sits in the EVs: HKCU Classes\\Folder\\shell\\open\\command\\(Default) is hijacked to PowerShell and DelegateExecute emptied, sdclt auto-elevates (Medium->High), and control.exe starts that PowerShell payload at High integrity. The key is later deleted. Confirmed UAC bypass; correct verdict malicious/high."
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "subtle_strong_exemplar",
+      "cross_corpus_generalisation",
+      "severity_preservation_test"
+    ],
+    "eligible_for_final_heldout_metrics": false
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

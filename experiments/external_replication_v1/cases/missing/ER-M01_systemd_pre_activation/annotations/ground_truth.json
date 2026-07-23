@@ -1,0 +1,37 @@
+{
+  "case_id": "ER-M01",
+  "security_proposition": "The observed service-management preparation activated a new systemd persistence service.",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "operational_response": {
+    "family": "endpoint_isolation",
+    "note": "Investigate the unit and host; containment would require confirmation or human approval."
+  },
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that the service unit contents are present in the package",
+      "that the service was enabled or started",
+      "that a service payload executed",
+      "that later events outside the alert-time window are part of this package"
+    ]
+  },
+  "the_trap": "A service-named editor artifact and a root daemon reload are persistence-relevant preparation, but neither event is service activation.",
+  "rationale": "EV-001 records removal of an editor swap artifact beneath /etc/systemd/system for a service-named file. A0 then records root invoking systemctl daemon-reload. The alert-time package has no enable, start, active-unit, or payload-process evidence, so active persistence is not established.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

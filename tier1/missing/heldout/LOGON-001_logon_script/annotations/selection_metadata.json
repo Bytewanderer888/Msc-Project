@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LOGON-001",
+  "case_name": "logon_script_post_delete_reconfiguration_unfired",
+  "security_proposition": "The selected final UserInitMprLogonScript configuration executed its configured target after A0.",
+  "case_directory": "LOGON-001_logon_script",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "Logon-script persistence (selected post-delete reconfiguration, no subsequent firing observed)",
+    "candidate_attack_mapping": "T1037.001",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = MISSING. A UserInitMprLogonScript registry value is configured to C:\\Windows\\System32\\calc.exe in a final post-delete lifecycle. The same raw capture contains an earlier configuration that fired, but that earlier value was deleted before the selected A0. From A0 at 09:27:14.880Z through source end at 09:29:06.117Z, no subsequent userinit.exe -> calc.exe firing is observed. The bounded claim is that execution of the selected final configuration is not evidenced, not that the mechanism never fired anywhere in the capture. Role = down-rank: suspicious / low-medium / investigate. Do not leak."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1037.001/logonscript_reg/sysmon.log",
+    "original_filename": "sysmon.log",
+    "stored_filename": "logon001_logonscript_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "47f5cfe452ccfb39bdda44187c1c6057030834a31f21cce0c5ac54a176ce2827",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "host filter = win-dc-429 (multi-host log)."
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/logon001_events.json",
+    "related_events": "extracted/logon001_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "win-dc-429.attackrange.local",
+    "boundary_definition": [
+      "A0 = the final EID13 UserInitMprLogonScript set at 09:27:14.880Z; EV = the correlated reg.exe REG ADD that wrote it.",
+      "Record 1057583 deleted the preceding value at 09:27:09.913Z, establishing a lifecycle boundary before the selected A0.",
+      "An earlier lifecycle (set record 1051834 at 09:18:30.392Z) fired via userinit.exe -> calc.exe (record 1055590 at 09:21:45.820Z) and was later deleted (record 1057290 at 09:25:44.328Z); it must not be described as if the capture never fired.",
+      "No subsequent userinit.exe -> calc.exe firing is observed after selected A0 through source end at 09:29:06.117Z."
+    ],
+    "absence_audit": {
+      "confirmation": "a post-A0 Sysmon ProcessCreate showing userinit.exe launching calc.exe",
+      "sensor": "Microsoft-Windows-Sysmon/Operational",
+      "host": "win-dc-429.attackrange.local",
+      "lifecycle_start": "2021-09-27T09:27:09.913407300Z (record 1057583 DeleteValue)",
+      "anchor": "2021-09-27T09:27:14.880774500Z (record 1057604 SetValue)",
+      "source_end": "2021-09-27T09:29:06.117482000Z",
+      "result": "zero post-A0 userinit.exe -> calc.exe ProcessCreate events",
+      "out_of_scope_match": "record 1055590 at 09:21:45.819888900Z belongs to an earlier configuration and precedes two deletion boundaries"
+    },
+    "time_window_utc": {
+      "start": "2021-09-27T09:27:14.875116400Z",
+      "end": "2021-09-27T09:27:14.880774500Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "1057604",
+    "process_guid": "{5EBD8912-8E72-6151-D300-00000000FD01}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "1057604",
+      "1057596"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "1057604",
+      "event_type": "registry_value_set",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: EID13 registry SET of HKU\\...\\Environment\\UserInitMprLogonScript = C:\\Windows\\System32\\calc.exe — logon-script persistence (T1037.001)"
+    },
+    "EV-001": {
+      "event_record_id": "1057596",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "reg.exe performing the REG ADD that configures the UserInitMprLogonScript value"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "missing_outcome",
+      "note": "MISSING / over-triage-prone for the selected final post-delete lifecycle: the registry setup is visible, but no post-A0 userinit.exe -> calc.exe firing appears before source end. An earlier lifecycle did fire and is explicitly retained in the absence audit; the claim is bounded to the selected reconfiguration."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "missing_persistence_exemplar",
+      "over_triage_down_rank_test"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

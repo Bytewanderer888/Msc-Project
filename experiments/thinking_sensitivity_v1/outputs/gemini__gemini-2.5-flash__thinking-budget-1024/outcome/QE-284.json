@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "The `sc.exe` utility was used by an Administrator (A0) to create and immediately start (EV-001) a new service named '[x]_CMD'. The service's binary path, `C:\\[x]\\[x]\\[id]\\bin\\[x].exe`, is highly non-standard and indicative of an attempt to establish persistence with a custom executable. The execution from a user's temporary directory further supports a malicious intent.",
+  "recommended_action": "escalate"
+}

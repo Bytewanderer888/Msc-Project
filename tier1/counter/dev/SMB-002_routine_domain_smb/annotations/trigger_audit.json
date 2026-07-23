@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "SMB-002",
+  "rule_id": "SAFESOC-TRG-SMB-002",
+  "analytic_family_id": "AF-NET",
+  "analytic_pattern_id": "NET-02",
+  "source_description": "raw logs [security]",
+  "raw_source_event_count": 37,
+  "complete_scope_event_count": 37,
+  "predicate_match_count": 12,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "security:309958",
+  "expected_record_key": "security:309958",
+  "selected_raw_sha256": "247d0b5c3e168638c56cec742a629c7f3bcb10ac2cd50ad0511fc67fba756c67",
+  "pass": true
+}

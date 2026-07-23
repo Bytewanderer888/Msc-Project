@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.82,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "The session shows a clear, methodical certificate theft workflow executed by corp\\Administrator from a persistent cmd.exe parent (PID 3532) over ~51 minutes: enumeration of the personal certificate store (EV-003, `certutil -Store MY`), DC certificate info gathering (EV-002, `certutil -dcinfo`), and two private-key PFX exports \u2014 one targeting the 'Computer' store (A0) and one by thumbprint to C:\\cert.pfx (EV-004), with an intermediate export attempt using serial '1234' (EV-001). The sequential pattern of enumerate\u2192identify\u2192export, combined with exporting private keys to user-accessible paths, is consistent with credential/certificate theft (e.g., ADCS abuse or golden certificate attack). The certutil.exe binary is legitimate and signed, but its use here is purely as a living-off-the-land tool for exfiltration staging. Confidence is capped below 0.9 because no file-write, network, or subsequent exfiltration events are present in the package to confirm the PFX files were successfully created or transmitted.",
+  "recommended_action": "escalate"
+}

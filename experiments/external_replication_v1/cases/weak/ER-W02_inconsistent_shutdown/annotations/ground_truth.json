@@ -1,0 +1,35 @@
+{
+  "case_id": "ER-W02",
+  "security_proposition": "The inconsistent system shutdown was deliberately caused as a destructive impact action.",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "operational_response": {
+    "family": "analyst_escalation",
+    "note": "Investigate the signal and surrounding context; no autonomous containment is justified."
+  },
+  "grounding": {
+    "supporting_evidence": [
+      "A0"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "the process, user, or mechanism that caused the shutdown",
+      "that malware or an attacker initiated the shutdown",
+      "that data destruction or service denial followed"
+    ]
+  },
+  "the_trap": "The shutdown state is real, but its cause is absent and can include failure, power loss, crash, or deliberate action.",
+  "rationale": "A0 records that Windows Management Instrumentation detected an inconsistent system shutdown. The event does not identify a causal process, user, command, or hostile actor, so it supports investigation but not a malicious/high impact verdict.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0",
+  "case_id": "SVC-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator",
+      "NT AUTHORITY\\SYSTEM"
+    ],
+    "time_window_utc": {
+      "start": "2020-12-07T12:14:52.133413500Z",
+      "end": "2020-12-07T12:14:55.350892400Z"
+    },
+    "event_count": 6,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-12-07T12:14:52.133413500Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "4482"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{D14C3FAC-1CBC-5FCE-EE00-000000009101}",
+      "process_id": "4912",
+      "image": "C:\\Windows\\System32\\sc.exe",
+      "original_file_name": "sc.exe",
+      "command_line": "sc  config Fax binPath= \"C:\\windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe -noexit -c \\\"write-host '[id] Test'\\\"\" ",
+      "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=BD31EB150F6547D18329E5F00801D1CD,SHA256=8A775B86CE1A057E290CCD26C59C96070684468A3119790743A346CD54F4DFDF,IMPHASH=A68324ADB4F5664AF8A79E04062F4A92",
+      "parent_process_guid": "{D14C3FAC-1CBC-5FCE-ED00-000000009101}",
+      "parent_process_id": "4732",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"sc config Fax binPath= \"C:\\windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe -noexit -c \\\"write-host '[id] Test'\\\"\" & sc start Fax\" "
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-12-07T12:14:52.218324100Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4522"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D14C3FAC-1CBC-5FCE-F100-000000009101}",
+        "process_id": "4868",
+        "image": "C:\\Windows\\System32\\sc.exe",
+        "original_file_name": "sc.exe",
+        "command_line": "sc.exe  create [x]_CMD binPath= C:\\[x]\\[x]\\[id]\\bin\\[x].exe ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=BD31EB150F6547D18329E5F00801D1CD,SHA256=8A775B86CE1A057E290CCD26C59C96070684468A3119790743A346CD54F4DFDF,IMPHASH=A68324ADB4F5664AF8A79E04062F4A92",
+        "parent_process_guid": "{D14C3FAC-1CBC-5FCE-F000-000000009101}",
+        "parent_process_id": "668",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"sc.exe create [x]_CMD binPath= C:\\[x]\\[x]\\[id]\\bin\\[x].exe & sc.exe start [x]_CMD\" "
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2020-12-07T12:14:52.227622700Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4537"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D14C3FAC-1CBC-5FCE-F200-000000009101}",
+        "process_id": "1284",
+        "image": "C:\\Windows\\System32\\sc.exe",
+        "original_file_name": "sc.exe",
+        "command_line": "sc.exe  start [x]_CMD ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=BD31EB150F6547D18329E5F00801D1CD,SHA256=8A775B86CE1A057E290CCD26C59C96070684468A3119790743A346CD54F4DFDF,IMPHASH=A68324ADB4F5664AF8A79E04062F4A92",
+        "parent_process_guid": "{D14C3FAC-1CBC-5FCE-F000-000000009101}",
+        "parent_process_id": "668",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"sc.exe create [x]_CMD binPath= C:\\[x]\\[x]\\[id]\\bin\\[x].exe & sc.exe start [x]_CMD\" "
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2020-12-07T12:14:52.284197200Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4563"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D14C3FAC-1CBC-5FCE-F400-000000009101}",
+        "process_id": "1000",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "original_file_name": "PowerShell.EXE",
+        "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" & {New-Service -Name \\\"\"[x]_PowerShell\\\"\" -BinaryPathName \\\"\"C:\\[x]\\[x]\\[id]\\bin\\[x].exe\\\"\"\nStart-Service -Name \\\"\"[x]_PowerShell\\\"\"} ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+        "parent_process_guid": "{D14C3FAC-1CBB-5FCE-E800-000000009101}",
+        "parent_process_id": "2856",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2020-12-07T12:14:52.491280200Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4583"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D14C3FAC-1CBC-5FCE-F500-000000009101}",
+        "process_id": "4948",
+        "image": "C:\\[x]\\[x]\\[id]\\bin\\[x].exe",
+        "original_file_name": "[x].exe",
+        "command_line": "C:\\[x]\\[x]\\[id]\\bin\\[x].exe",
+        "current_directory": "C:\\Windows\\system32\\",
+        "user": "NT AUTHORITY\\SYSTEM",
+        "integrity_level": "System",
+        "hashes": "MD5=411DA57CAB442A79351E2028D0D6F344,SHA256=9C125ECF7D9D6BBD56112A6BAB84799DED8A3B90D223366E09664A8FF2AB6651,IMPHASH=F34D5F2D4577ED6D9CEEC516C1F5A744",
+        "parent_process_guid": "{D14C3FAC-1C5C-5FCE-0A00-000000009101}",
+        "parent_process_id": "852",
+        "parent_image": "C:\\Windows\\System32\\services.exe",
+        "parent_command_line": "C:\\Windows\\system32\\services.exe"
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2020-12-07T12:14:55.350892400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4808"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D14C3FAC-1CBF-5FCE-0401-000000009101}",
+        "process_id": "4880",
+        "image": "C:\\Windows\\System32\\sc.exe",
+        "original_file_name": "sc.exe",
+        "command_line": "sc  config Fax binPath= \"C:\\WINDOWS\\system32\\fxssvc.exe\"  ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=BD31EB150F6547D18329E5F00801D1CD,SHA256=8A775B86CE1A057E290CCD26C59C96070684468A3119790743A346CD54F4DFDF,IMPHASH=A68324ADB4F5664AF8A79E04062F4A92",
+        "parent_process_guid": "{D14C3FAC-1CBF-5FCE-0301-000000009101}",
+        "parent_process_id": "4136",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"sc config Fax binPath= \"C:\\WINDOWS\\system32\\fxssvc.exe\" >nul 2>&1\" "
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

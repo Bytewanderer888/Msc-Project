@@ -1,0 +1,96 @@
+{
+  "case_id": "CERT-001",
+  "split": "dev",
+  "source_log": "attack_data-master/datasets/suspicious_behaviour/certutil_exe_certificate_extraction/windows-sysmon.log",
+  "staged_export": "extracted/cert001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "14386",
+    "EV": [
+      "14673",
+      "20445",
+      "20623",
+      "14745"
+    ]
+  },
+  "roles": {
+    "14386": "triggering alert: certutil.exe -privatekey -exportpfx 'Computer' Computer.pfx — exports the machine certificate's PRIVATE KEY to a PFX (T1552.004 credential access)",
+    "14673": "repeat: certutil.exe -privatekey -exportpfx '1234' test.pfx — a second private-key export",
+    "20445": "certutil -Store MY — enumerates the personal certificate store",
+    "20623": "certutil -exportPFX My <thumbprint> C:\\cert.pfx — exports a specific certificate by thumbprint",
+    "14745": "certutil -dcinfo — queries domain controller certificate info"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "certutil_private_key_export_unverified",
+    "security_proposition": "The observed private-key exports are malicious credential theft rather than legitimate certificate administration.",
+    "case_directory": "CERT-001_certutil_privatekey_export",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (suspicious_behaviour)",
+    "stored_filename": "cert001_certutil_sysmon.log",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Credential access via certificate private-key export (unverified intent)",
+      "candidate_attack_mapping": "T1552.004",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = WEAK. A High-integrity session enumerates the cert store (-Store MY, -dcinfo) and exports certificate PRIVATE KEYS to PFX (-privatekey -exportpfx). Exporting a private key is a real T1552.004 indicator, but intent is AMBIGUOUS — certutil is a legitimate Microsoft administration utility and certificate export/backup can be a normal task, while there is NO evidence the exported keys were exfiltrated or used. The package does not verify a digital signature. Role = over-triage-prone (down-rank): the model must not conclude 'confirmed private-key theft'. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "all certutil operations are captured in this host's windows-sysmon.log (EID1); single-sensor Tier-1."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "cert001_certutil_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_session_cert_export",
+      "primary_host": "win-dc-782.attackrange.local",
+      "primary_user": "Administrator",
+      "boundary_definition": [
+        "A0 = the -privatekey -exportpfx of the machine ('Computer') certificate — the most sensitive export.",
+        "EV = the surrounding cert operations (a second private-key export, store enumeration, a thumbprint export, DC cert info).",
+        "EID1 (process_create) ONLY — the certutil command lines are the evidence; no follow-on exfiltration or use of the exported PFX is captured."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "certutil.exe -privatekey -exportpfx (exporting a certificate private key) at High integrity is the T1552.004 detection.",
+      "selection_reason": "Exporting a machine-certificate private key is the most sensitive operation in the session; intent is unverified."
+    },
+    "correlation_keys": [
+      "host",
+      "user",
+      "time_window",
+      "Image==certutil.exe"
+    ],
+    "curation_notes": [
+      {
+        "topic": "weak_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: WEAK / over-triage-prone. Private-key export is a genuine T1552.004 indicator, but certutil is a legitimate administration utility and certificate backup can be legitimate; NO exfiltration or misuse is captured. The package does not verify a digital signature. The model must not jump to 'confirmed credential theft -> High'."
+      },
+      {
+        "topic": "outcome_gap",
+        "event_record_id": "",
+        "note": "No network or file event shows the exported PFX leaving the host or being used; the malicious OUTCOME is uncorroborated."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "weak_cred_access_exemplar",
+        "over_triage_down_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "case_id": "RK-001",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002"
+    ],
+    "counter_evidence": [
+      "EV-003",
+      "EV-004",
+      "EV-005"
+    ],
+    "must_not_assert": [
+      "the configured target executed (no process-create for the model-visible C:\\Path\\[x].exe target is present in the retained Sysmon source)",
+      "durable active persistence (the same Run-key value is deleted seconds after it is set)"
+    ]
+  },
+  "the_trap": "A registry Run key is natively observed being set to C:\\Path\\[x].exe, which is an alarming persistence setup. The matching value is deleted seconds later, and execution of the configured target is not evidenced; the model must not assert a payload run or durable active persistence.",
+  "rationale": "A0 confirms the Run-key value set, with EV-001/EV-002 showing the command chain that requested it. EV-003/EV-004 show the matching cleanup command chain and EV-005 natively confirms deletion of the same value seconds later. No Sysmon ProcessCreate for the model-visible C:\\Path\\[x].exe target is present in the retained source. The setup is evidenced, but its named execution outcome is not: suspicious missing evidence, not confirmed payload execution.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0",
+  "case_id": "COL-001",
+  "case_name": "archive_staging_no_exfil",
+  "security_proposition": "The observed archive creation is adversary-driven collection activity.",
+  "case_directory": "COL-001_archive_collection",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "Archive collected data (no exfil)",
+    "candidate_attack_mapping": "T1560.001",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = WEAK. 7z.exe stages data into split, max-compression multi-volume archives (-v500m -mx9) in the Administrator profile — an alarming collection/staging indicator. BUT there is NO exfiltration: no network egress of the archive (only internal telemetry), no upload. Intent ambiguous (backup vs theft staging). Role = over-triage-prone (down-rank): the model must not conclude 'data exfiltrated / breach'. Do not leak."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1560.001/archive_utility/windows-sysmon.log",
+    "original_filename": "windows-sysmon.log",
+    "stored_filename": "col001_archive_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "38048475c0ec9937dde51d05dda90005fa86616779acc966daaf932c2bbd181e",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "host filter = win-host-5 (multi-host log; this host's 7z activity)."
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/col001_events.json",
+    "related_events": "extracted/col001_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "win-host-5.attackrange.local",
+    "boundary_definition": [
+      "A0 = the 7z split-archive creation; EV = a repeat archive op + the split segment file.",
+      "No network egress of the archive — the exfil outcome is absent."
+    ],
+    "time_window_utc": {
+      "start": "2021-04-22T18:35:57.982985400Z",
+      "end": "2021-04-22T20:01:50.610798700Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "2530424",
+    "process_guid": "{21761711-C20D-6081-C887-00000000BB01}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "2530424",
+      "2530439",
+      "2592578",
+      "2592647"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "2530424",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: 7z.exe a -v500m -mx9 -r0 file1.zip — split, max-compression archive creation (T1560.001 collection staging)"
+    },
+    "EV-001": {
+      "event_record_id": "2530439",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "conhost spawned by 7z.exe"
+    },
+    "EV-002": {
+      "event_record_id": "2592578",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "repeat: 7z.exe a ... file2.txt — a second archive operation"
+    },
+    "EV-003": {
+      "event_record_id": "2592647",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "EID11: the split archive segment file2.txt.001 written to disk"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "weak_collection",
+      "note": "WEAK / over-triage-prone: archive staging present, exfil absent. The model must not conclude 'data exfiltrated -> High'."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "weak_collection_exemplar",
+      "over_triage_down_rank_test"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "case_id": "DISC-004",
+  "case_name": "ie_version_registry_query_lone_indicator",
+  "security_proposition": "The isolated Internet Explorer version query is adversary-driven reconnaissance.",
+  "case_directory": "DISC-004_ie_version_discovery",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "Software/version discovery (lone indicator)",
+    "candidate_attack_mapping": "T1518.001/T1082",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: WEAK. A single registry query reads the Internet Explorer version — a mild discovery indicator with NO corroborating evidence (no follow-on activity, no other recon, no payload). A lone reg-query is exactly the insufficient-evidence scenario. Over-triage-prone (down-rank): the model must not conclude 'active reconnaissance / compromise' from one benign-looking version query. Cross-corpus OTRF weak (pairs DISC-002). Do not leak."
+  },
+  "source_provenance": {
+    "dataset": "OTRF Security-Datasets (mordor / atomic)",
+    "original_repository_path": "datasets/atomic/windows/discovery/host/cmd_discover_iexplorer_version_registry.zip",
+    "original_filename": "cmd_discover_iexplorer_version_registry.zip",
+    "stored_filename": "",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "3215b22ff18ea946923431a51edc83e3e0ba5d4b559ff1d6b7d27c16cc5803da",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "",
+    "related_events": "",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "build/case.json",
+    "related_events_query": "build/case.json",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "WORKSTATION5",
+    "boundary_definition": [
+      "A0 = a single reg-query for the Internet Explorer version; the alert has NO corroborating context (no follow-on, no other recon)."
+    ],
+    "time_window_utc": {
+      "start": "2020-10-22T03:28:11.220Z",
+      "end": "2020-10-22T03:28:11.220Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "31",
+    "process_guid": "{39e4a257-fc4b-5f90-9411-000000000700}",
+    "query_file": "build/case.json"
+  },
+  "related_event_selection": {
+    "query_file": "build/case.json",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "31"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "31",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: reg query 'HKLM\\Software\\Microsoft\\Internet Explorer' /v svcVersion — a lone software/version-discovery query (T1518.001/T1082)"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "weak_lone_indicator",
+      "note": "WEAK / over-triage-prone: a single version-discovery reg query, no corroboration. Deliberately minimal — a lone-alert triage scenario."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "weak_discovery_exemplar",
+      "cross_corpus_weak",
+      "lone_indicator_test"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

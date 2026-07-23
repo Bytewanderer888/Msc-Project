@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.88,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "Within a ~4-second window, corp\\Administrator executed five distinct domain user-enumeration commands from C:\\Temp\\ via a cmd.exe session: 'net user /domain' (A0), 'net users /domain' (EV-001), 'dsquery user' (EV-002), 'wmic /NAMESPACE:\\\\root\\directory\\ldap PATH ds_user GET ds_samaccountname' (EV-003), 'powershell get-wmiobject -class ds_user -namespace root\\directory\\ldap' (EV-004), and 'powershell Get-ADUser -Filter *' (EV-005). The rapid, sequential use of multiple redundant techniques to enumerate all domain users \u2014 spanning net.exe, dsquery, WMIC LDAP queries, and two PowerShell AD methods \u2014 is strongly indicative of automated or scripted Active Directory reconnaissance (T1087.002), not routine administrative activity. The working directory C:\\Temp\\ is anomalous for legitimate admin tooling, and the breadth of methods used in under 4 seconds suggests a post-exploitation enumeration script rather than manual administration. No benign explanation accounts for this combination and velocity.",
+  "recommended_action": "escalate"
+}

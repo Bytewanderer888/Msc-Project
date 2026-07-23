@@ -1,0 +1,603 @@
+{
+  "schema_version": "1.0",
+  "case_id": "BF-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "NT AUTHORITY\\NETWORK SERVICE"
+    ],
+    "time_window_utc": {
+      "start": "2025-01-10T19:33:06.2899097Z",
+      "end": "2025-01-10T19:38:40.9917168Z"
+    },
+    "event_count": 23,
+    "event_types_present": [
+      "network_connection"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2025-01-10T19:33:06.2899097Z",
+    "event_type": "network_connection",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 3,
+      "event_record_id": "4816"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+      "process_id": "712",
+      "image": "C:\\Windows\\System32\\svchost.exe",
+      "user": "NT AUTHORITY\\NETWORK SERVICE",
+      "protocol": "tcp",
+      "initiated": "false",
+      "source_ip": "23.93.242.200",
+      "source_port": "52977",
+      "destination_ip": "10.0.1.14",
+      "destination_hostname": "host-01.corp.local",
+      "destination_port": "3389"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2025-01-10T19:33:39.1277526Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4827"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "52994",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2025-01-10T19:33:43.5191727Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4828"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "52995",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2025-01-10T19:33:44.5357098Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4829"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "52996",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2025-01-10T19:33:53.5531577Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4830"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "52999",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2025-01-10T19:34:03.2762107Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4831"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53010",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-006",
+      "event_time_utc": "2025-01-10T19:35:22.1215140Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4840"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53049",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-007",
+      "event_time_utc": "2025-01-10T19:37:16.9975593Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4851"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53104",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-008",
+      "event_time_utc": "2025-01-10T19:37:30.3781330Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4853"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53108",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-009",
+      "event_time_utc": "2025-01-10T19:37:44.7759147Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4858"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53115",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-010",
+      "event_time_utc": "2025-01-10T19:37:48.8868857Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4859"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53116",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-011",
+      "event_time_utc": "2025-01-10T19:37:58.0937672Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4860"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53118",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-012",
+      "event_time_utc": "2025-01-10T19:38:02.4708363Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4861"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53121",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-013",
+      "event_time_utc": "2025-01-10T19:38:05.7689237Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4862"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53122",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-014",
+      "event_time_utc": "2025-01-10T19:38:06.7846179Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4863"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53123",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-015",
+      "event_time_utc": "2025-01-10T19:38:11.1929764Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4864"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53125",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-016",
+      "event_time_utc": "2025-01-10T19:38:13.2408086Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4865"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53128",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-017",
+      "event_time_utc": "2025-01-10T19:38:14.2878901Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4866"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53129",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-018",
+      "event_time_utc": "2025-01-10T19:38:16.3508818Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4867"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53130",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-019",
+      "event_time_utc": "2025-01-10T19:38:18.4136209Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4868"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53132",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-020",
+      "event_time_utc": "2025-01-10T19:38:28.6517239Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4869"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53133",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-021",
+      "event_time_utc": "2025-01-10T19:38:30.9495719Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4871"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53134",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    },
+    {
+      "evidence_id": "EV-022",
+      "event_time_utc": "2025-01-10T19:38:40.9917168Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "4885"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{cc0ec799-66e1-6781-1300-000000000202}",
+        "process_id": "712",
+        "image": "C:\\Windows\\System32\\svchost.exe",
+        "user": "NT AUTHORITY\\NETWORK SERVICE",
+        "protocol": "tcp",
+        "initiated": "false",
+        "source_ip": "23.93.242.200",
+        "source_port": "53140",
+        "destination_ip": "10.0.1.14",
+        "destination_hostname": "host-01.corp.local",
+        "destination_port": "3389"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "RK-001",
+  "rule_id": "SAFESOC-TRG-RK-001",
+  "analytic_family_id": "AF-REG",
+  "analytic_pattern_id": "REG-01",
+  "source_description": "raw log (windows-sysmon.log)",
+  "raw_source_event_count": 6287,
+  "complete_scope_event_count": 6287,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "4430",
+  "expected_record_key": "4430",
+  "selected_raw_sha256": "610788348f23c6875b453c99daef5c9f44663a22f44477d6a63553b66e35e018",
+  "pass": true
+}

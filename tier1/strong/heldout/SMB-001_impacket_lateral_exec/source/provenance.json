@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1021.002/atomic_red_team/wmiexec_windows-sysmon.log",
+      "sha256": "09584b182588aaba8b5cabe6330d71decf7d0f6b3c8e541e9f606616d1d90817"
+    }
+  ],
+  "primary_host": "ar-win-2.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "wmiexec_windows-sysmon.log is host ar-win-2 (single host), Sysmon only (EID 1 process-create + EID 13 registry). It is the SUPERSET capture \u2014 the sibling smbexec_windows-sysmon.log contains only records 117785/117786/117788, all present here. Single-sensor, verified."
+  }
+}

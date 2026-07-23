@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "RTLO-001",
+  "rule_id": "SAFESOC-TRG-RTLO-001",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-04",
+  "source_description": "mordor (apt29_evals_day1_manual.zip)",
+  "raw_source_event_count": 127762,
+  "complete_scope_event_count": 127762,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "346422",
+  "expected_record_key": "346422",
+  "selected_raw_sha256": "48f34ba034809af4213b955a1babc638fc6672940c5b657757e926e111084205",
+  "pass": true
+}

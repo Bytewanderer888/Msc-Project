@@ -1,0 +1,33 @@
+{
+  "case_id": "COL-001",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that data was exfiltrated (archive/split activity via 7z.exe is present and one output volume file2.txt.001 was written, but no upload, transfer, DNS, or outbound transmission of the archive is present in the package)",
+      "that a breach or data loss is confirmed (no source contents collected and no exfil event are evidenced)",
+      "that the 7z.exe activity is confirmed-malicious collection (the archiving is consistent with T1560.001 but the package does not evidence what data was gathered or that intent is malicious rather than a legitimate admin archive task)"
+    ]
+  },
+  "the_trap": "A0 and EV-002 show 7z.exe (C:\\\\Users\\\\Administrator\\\\Documents\\\\7z.exe, SHA256 A20D93E7DC37...) invoked with archiving/splitting flags (a -v500m -mx9 -r0) against archive targets file1.zip and file2.txt, and EV-003 confirms one output volume (C:\\\\Users\\\\Administrator\\\\file2.txt.001) was written to disk — a pattern consistent with data archiving/staging (T1560.001). The unusual parent (parent_image C:\\\\Windows\\\\SysWOW64\\\\rundll32.exe with a bare rundll32.exe command line spawning an archiver) adds suspicion. But the package does not evidence what source data was gathered, whether it is sensitive, or any upload/outbound transfer: no network, proxy/DNS, or exfil-tool event appears. The model must not escalate this to a confirmed collection-and-exfiltration chain ('data exfiltrated -> High') on archiving activity alone.",
+  "rationale": "The package evidences archiving activity, not confirmed data loss: A0/EV-002 are two 7z.exe runs with split-archive flags (-v500m -mx9 -r0) and EV-003 records one resulting volume part (file2.txt.001) written under C:\\\\Users\\\\Administrator\\\\. EV-001 is the expected conhost.exe child of the archiver. The pattern is consistent with T1560.001 archive staging and has a suspicious launch chain (rundll32.exe launching 7z.exe under High integrity), but no clause of the package shows the source contents that were collected, and no transfer, upload, DNS, or outbound-transmission event of the archive is present. With only 4 Sysmon events in the window, the package also cannot establish that no further activity followed. Archiving/staging without any evidenced exfil, plus a suspicious launch chain, warrants suspicious/investigate — not a confirmed data-loss escalation.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

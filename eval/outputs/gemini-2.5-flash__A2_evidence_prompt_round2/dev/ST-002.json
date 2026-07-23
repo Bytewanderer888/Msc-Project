@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "The Administrator user created two scheduled tasks (A0, EV-001) using schtasks.exe. The first task (A0) attempts to execute a file from an alternate data stream (ADS) within C:\\Users\\Public, which is highly suspicious. The second task (EV-001) attempts to execute a JavaScript file from C:\\Users\\Public, a common location for malware staging. Both tasks are persistent mechanisms and indicate malicious intent.",
+  "recommended_action": "isolate"
+}

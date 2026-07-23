@@ -1,0 +1,509 @@
+{
+  "cases": [
+    {
+      "case": "ACCT-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "AMQ-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "isolate",
+          "severity": "critical",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "isolate",
+          "severity": "critical",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "isolate",
+          "severity": "critical",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "BF-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "investigate",
+          "severity": "medium",
+          "verdict": "suspicious"
+        },
+        "round_2": {
+          "recommended_action": "investigate",
+          "severity": "medium",
+          "verdict": "suspicious"
+        },
+        "round_3": {
+          "recommended_action": "investigate",
+          "severity": "medium",
+          "verdict": "suspicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "CERT-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "DISC-002",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        },
+        "round_2": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        },
+        "round_3": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "FW-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        },
+        "round_2": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        },
+        "round_3": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "ING-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "INJ-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "LGN-002",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "LS-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "isolate",
+          "severity": "critical",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "isolate",
+          "severity": "critical",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "isolate",
+          "severity": "critical",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "LS-002",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "PS-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "PS-002",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "RDL-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        },
+        "round_2": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        },
+        "round_3": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "RK-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        },
+        "round_2": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        },
+        "round_3": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "RTLO-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "SMB-002",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "investigate",
+          "severity": "medium",
+          "verdict": "suspicious"
+        },
+        "round_2": {
+          "recommended_action": "investigate",
+          "severity": "medium",
+          "verdict": "suspicious"
+        },
+        "round_3": {
+          "recommended_action": "investigate",
+          "severity": "medium",
+          "verdict": "suspicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "ST-002",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "ST-003",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        },
+        "round_2": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        },
+        "round_3": {
+          "recommended_action": "close_benign",
+          "severity": "informational",
+          "verdict": "benign"
+        }
+      },
+      "exact_flip": false,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "UAC-001",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "isolate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": true,
+      "severity_flip": false,
+      "verdict_flip": false
+    },
+    {
+      "case": "WMI-002",
+      "decisions": {
+        "round_1": {
+          "recommended_action": "escalate",
+          "severity": "high",
+          "verdict": "malicious"
+        },
+        "round_2": {
+          "recommended_action": "isolate",
+          "severity": "critical",
+          "verdict": "malicious"
+        },
+        "round_3": {
+          "recommended_action": "isolate",
+          "severity": "critical",
+          "verdict": "malicious"
+        }
+      },
+      "exact_flip": true,
+      "severity_flip": true,
+      "verdict_flip": false
+    }
+  ],
+  "common_cases": 21,
+  "generated_utc": "2026-07-16T09:28:58Z",
+  "model_tag": "gemini-2.5-flash__A2_evidence_prompt",
+  "not_present_in_every_round": [],
+  "record_schema": "safesoc.stability.v1",
+  "round_directories": {
+    "1": "outputs/gemini-2.5-flash__A2_evidence_prompt/dev",
+    "2": "outputs/gemini-2.5-flash__A2_evidence_prompt_round2/dev",
+    "3": "outputs/gemini-2.5-flash__A2_evidence_prompt_round3/dev"
+  },
+  "rounds": [
+    1,
+    2,
+    3
+  ],
+  "split": "dev",
+  "summary": {
+    "denominator": 21,
+    "exact_agreement_n": 19,
+    "severity_agreement_n": 20,
+    "verdict_agreement_n": 21
+  }
+}

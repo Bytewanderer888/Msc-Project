@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-C04",
+  "rule_id": "SAFESOC-TRG-ER-C04",
+  "analytic_family_id": "AF-WEB",
+  "analytic_pattern_id": "WEB-01",
+  "title": "Linux package-manager HTTP metadata request",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "source_defined_step",
+    "complete_legal_scope": true,
+    "description": "Every record in the corpus-provided log member or scenario step containing the alert stream.",
+    "source_units": [
+      "russellmitchell_wazuh.json"
+    ]
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "attributes.record.data.http.http_user_agent",
+        "op": "istartswith",
+        "value": "Debian APT-HTTP/"
+      },
+      {
+        "field": "attributes.record.data.http.hostname",
+        "op": "ieq",
+        "value": "archive.ubuntu.com"
+      },
+      {
+        "field": "attributes.record.data.http.url",
+        "op": "iendswith",
+        "value": "/InRelease"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "russellmitchell_wazuh.json:line:16"
+  },
+  "rationale": "An outbound package-manager HTTP request can resemble tool transfer, while the user agent and repository path provide deterministic routine context."
+}

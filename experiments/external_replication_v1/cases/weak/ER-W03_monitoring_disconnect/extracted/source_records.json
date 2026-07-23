@@ -1,0 +1,40 @@
+[
+  {
+    "evidence_id": "A0",
+    "csv_record_number": 7330,
+    "source_record_id": "ei2Lg5MBenunWll4wRw3",
+    "record_sha256": "c3d318e66d08a6cb1aa571e51dc88056597ce390934312946df38a33131832bd",
+    "record": {
+      "_index": "wazuh-alerts-4.x-2024.12.01",
+      "_id": "ei2Lg5MBenunWll4wRw3",
+      "_version": "1",
+      "_score": "1",
+      "_source.agent.name": "DESKTOP-DS4FBF4",
+      "_source.agent.id": "1",
+      "_source.manager.name": "Maryam",
+      "_source.rule.firedtimes": "1",
+      "_source.rule.mail": "FALSE",
+      "_source.rule.level": "3",
+      "_source.rule.pci_dss": "[\"10.6.1\",\"10.2.6\"]",
+      "_source.rule.hipaa": "[\"164.312.b\"]",
+      "_source.rule.tsc": "[\"CC7.2\",\"CC7.3\",\"CC6.8\"]",
+      "_source.rule.description": "Wazuh agent disconnected.",
+      "_source.rule.groups": "[\"ossec\"]",
+      "_source.rule.id": "504",
+      "_source.rule.nist_800_53": "[\"AU.6\",\"AU.14\",\"AU.5\"]",
+      "_source.rule.gpg13": "[\"10.1\"]",
+      "_source.rule.gdpr": "[\"IV_35.7.d\"]",
+      "_source.decoder.name": "ossec",
+      "_source.full_log": "ossec: Agent disconnected: 'DESKTOP-DS4FBF4-any'.",
+      "_source.input.type": "log",
+      "_source.@timestamp": "Dec 1, 2024 @ 18:46:26.298",
+      "_source.location": "wazuh-monitord",
+      "_source.id": "1733078786",
+      "_source.timestamp": "Dec 1, 2024 @ 18:46:26.298",
+      "_source.agent.ip": "192.168.117.133",
+      "_source.rule.mitre.technique": "[\"Disable or Modify Tools\"]",
+      "_source.rule.mitre.id": "[\"T1562.001\"]",
+      "_source.rule.mitre.tactic": "[\"Defense Evasion\"]"
+    }
+  }
+]

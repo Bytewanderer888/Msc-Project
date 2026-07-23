@@ -1,0 +1,16 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.92,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006",
+    "EV-007"
+  ],
+  "rationale": "A cmd.exe process (PID 2936) running as corp\\Administrator at High integrity level orchestrated four sequential curl.exe invocations (A0, EV-002, EV-004, EV-006) using the -k flag (TLS certificate validation bypass) to download a DLL from a raw GitHub commit URL, depositing it redundantly to multiple writable locations: C:\\Users\\Public\\Music\\ (EV-001, EV-003), C:\\ProgramData\\ (EV-005), and %Temp% (EV-007). The redundant download attempts to multiple staging paths is a classic resilience/fallback pattern used by malware stagers to ensure at least one copy lands regardless of AV or permission failures. The use of -k to suppress certificate errors, the raw GitHub commit URL as a payload host, the x64.dll naming convention, and the choice of world-writable staging directories (Public\\Music, ProgramData, Temp) are all strong indicators of malicious payload staging; no legitimate software deployment scenario would require this pattern. Execution of the dropped DLL is not evidenced in this package, but confirmed file creation across all four target paths (EV-001, EV-003, EV-005, EV-007) means the payload is confirmed present on disk.",
+  "recommended_action": "isolate"
+}

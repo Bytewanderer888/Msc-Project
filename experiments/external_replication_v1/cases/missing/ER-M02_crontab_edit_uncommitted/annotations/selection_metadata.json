@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-M02",
+  "case_name": "crontab_edit_uncommitted",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "The observed crontab editing session installed and activated a persistent scheduled job.",
+  "attack_category": {
+    "category": "Scheduled Task/Job: Cron",
+    "candidate_attack_mapping": "T1053.003",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "CAM-LDS",
+    "scenario": "cam-s6-macro-cron",
+    "capture_cluster": "cam-s6-macro-cron",
+    "telemetry_depth": "multi_source",
+    "sensors": [
+      "Linux audit",
+      "Linux syslog"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "attacker-side AttackMate commands, output, and ATT&CK metadata",
+      "source scenario and variant names",
+      "condition, verdict, severity, action, and ground truth",
+      "user judy -> user-01",
+      "host client -> workstation-01"
+    ],
+    "deterministic_derivations": []
+  },
+  "operational_response_family": "analyst_escalation",
+  "nearest_frozen_case": null,
+  "differentiation": "This Linux cron case tests edit-start versus installed-job reasoning, unlike the frozen Windows scheduled-task cases."
+}

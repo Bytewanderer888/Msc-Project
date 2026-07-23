@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.0,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "The main alert (A0) shows a suspicious executable name using a right-to-left override (RTLO) character, masquerading as a screensaver. This process then initiates a network connection to an internal IP on a non-standard port (EV-001). Subsequently, it spawns cmd.exe (EV-002), which then spawns powershell.exe (EV-003), indicating a potential command-and-control or further execution attempt.",
+  "recommended_action": "isolate"
+}

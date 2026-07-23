@@ -1,0 +1,123 @@
+{
+  "case_id": "LS-002",
+  "split": "dev",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1003.001/atomic_red_team/createdump_windows-sysmon.log",
+  "staged_export": "extracted/ls002_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "65364864",
+    "EV": [
+      "65365536",
+      "65397981",
+      "65399564",
+      "65436350"
+    ]
+  },
+  "roles": {
+    "65364864": "triggering alert: createdump.exe (.NET diagnostic LOLBin) invoked with target PID 632 and output filename dotnet-lsass.dmp — a possible LSASS dump",
+    "65365536": "repeat: createdump.exe -f dotnet-lsass.dmp with NO target PID specified",
+    "65397981": "repeat: createdump.exe -f dotnet-lsass.dmp, no target PID",
+    "65399564": "repeat: createdump.exe -f dotnet-lsass.dmp, no target PID",
+    "65436350": "repeat: createdump.exe -f dotnet-lsass.dmp, no target PID"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "lsass_createdump_unverified",
+    "security_proposition": "createdump.exe targeted LSASS and produced a credential-access dump.",
+    "case_directory": "LS-002_createdump",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "ls002_createdump_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "LSASS credential access (unverified target)",
+      "candidate_attack_mapping": "T1003.001",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = WEAK. createdump.exe (a .NET LOLBin able to dump lsass) ran at High integrity with an lsass-SUGGESTING output filename (dotnet-lsass.dmp) and a target PID 632 — but target identity is UNVERIFIED (no process_create for 632, no lsass-by-name access, no dump file), and 4 of 5 invocations had no target PID. Calibration role = over-triage-prone (down-rank): a filename and a plausible PID are SUGGESTIVE, not proof; a model must not conclude 'LSASS was dumped'. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "createdump_windows-sysmon.log is host win-host-mhaag-attack-range-622; every other T1003.001/atomic_red_team log is a different host. Tier-1 single-sensor, verified."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "ls002_createdump_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_alert_lolbin_dump_attempts",
+      "primary_host": "win-host-mhaag-attack-range-622",
+      "primary_user": "WIN-HOST-MHAAG-\\Administrator",
+      "boundary_definition": [
+        "A0 = the createdump invocation WITH target PID 632 (12:43:15) — the only one specifying a target.",
+        "EV = the four repeated createdump invocations (12:43-13:02) with the same lsass-named output but NO target PID.",
+        "EID1 (process_create) ONLY — no EID10 lsass access and no EID11 dump file, so neither the target identity nor a successful dump is corroborated.",
+        "The output filename 'dotnet-lsass.dmp' is operator-chosen and is NOT proof the target is lsass."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "createdump.exe (a legitimate .NET process-dump utility) run at High integrity with an LSASS-suggesting output is the credential-access detection surface.",
+      "selection_reason": "The PID-632 invocation is the only one with a target; the output name and PID are suggestive but unverified. The package does not verify a digital signature."
+    },
+    "correlation_keys": [
+      "host",
+      "user",
+      "time_window",
+      "Image==createdump.exe",
+      "output_filename"
+    ],
+    "event_groups": [
+      {
+        "group": "dump_attempt",
+        "event_record_ids": [
+          "65364864"
+        ],
+        "description": "createdump -f dotnet-lsass.dmp 632 — targets PID 632 (identity unverified)."
+      },
+      {
+        "group": "repeated_attempts_no_target",
+        "event_record_ids": [
+          "65365536",
+          "65397981",
+          "65399564",
+          "65436350"
+        ],
+        "description": "repeated createdump runs with the lsass-named output but no target PID."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "weak_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: WEAK / over-triage-prone. Suggestive (LOLBin + lsass-named output + plausible PID) but UNVERIFIED (no lsass-by-name access, no dump file, target-PID identity unconfirmed, 4/5 runs had no target). The model must not jump to 'lsass dumped -> High'."
+      },
+      {
+        "topic": "target_identity_gap",
+        "event_record_id": "65364864",
+        "note": "This is the case that motivates the LSASS rubric TARGET-IDENTITY rule: an output filename and an unverified target PID are NOT proof of LSASS identity (the DECISIONS.md v0.1 known gap)."
+      },
+      {
+        "topic": "eid1_only",
+        "event_record_id": "",
+        "note": "EID1-only capture; the createdump command lines are the evidence. No EID10/EID11 to corroborate the target or a successful dump."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "lsass_weak_exemplar",
+        "target_identity_verification_rule_dev",
+        "over_triage_down_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

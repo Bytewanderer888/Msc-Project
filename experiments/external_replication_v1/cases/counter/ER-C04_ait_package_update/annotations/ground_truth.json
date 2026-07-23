@@ -1,0 +1,38 @@
+{
+  "case_id": "ER-C04",
+  "security_proposition": "The outbound HTTP burst represents attacker-directed payload transfer rather than routine operating-system repository metadata retrieval.",
+  "evidence_condition": "counter",
+  "calibration_role": "down_rank",
+  "correct_verdict": "benign",
+  "acceptable_severity": [
+    "informational",
+    "low"
+  ],
+  "acceptable_actions": [
+    "close_benign",
+    "monitor"
+  ],
+  "operational_response": {
+    "family": "none",
+    "note": "Close or monitor this repository-metadata burst; the package does not justify containment."
+  },
+  "grounding": {
+    "supporting_evidence": [],
+    "counter_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002"
+    ],
+    "must_not_assert": [
+      "that any executable package was downloaded or installed",
+      "that HTTP 304 proves a complete software update succeeded",
+      "that all traffic from the host before or after this 33-millisecond window was routine",
+      "that the model package contains an IDS benign classification"
+    ]
+  },
+  "the_trap": "Outbound HTTP can resemble tool transfer, but every selected request uses the Debian APT client, targets official Ubuntu repositories, and requests distribution metadata; the base-release request received HTTP 304.",
+  "rationale": "A0, EV-001, and EV-002 are a 33-millisecond burst from one Linux host using the same Debian APT user agent. They request base, security, and update-channel InRelease metadata from archive.ubuntu.com and security.ubuntu.com. A0 received an HTTP 304 response. This affirmative context is a coherent routine repository check, not merely an absence of malicious follow-on, while the package does not establish package installation.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

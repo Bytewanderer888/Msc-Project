@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-C01",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01"
+    ],
+    "users": [
+      "SYSTEM"
+    ],
+    "time_window_utc": {
+      "start": "2024-12-01T07:55:03.531669600Z",
+      "end": "2024-12-01T07:55:03.608522500Z"
+    },
+    "event_count": 5,
+    "event_types_present": [
+      "image_load"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2024-12-01T07:55:03.531669600Z",
+    "event_type": "image_load",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 7,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "host-01",
+    "attributes": {
+      "image": "C:\\Windows\\Temp\\[guid]\\DismHost.exe",
+      "image_loaded": "C:\\Windows\\Temp\\[guid]\\DismCorePS.dll",
+      "original_file_name": "DismProvPS.DLL",
+      "file_version": "10.0.17134.1 (WinBuild.160101.0800)",
+      "description": "DismCore Proxy Stub",
+      "product": "Microsoft\u00ae Windows\u00ae Operating System",
+      "company": "Microsoft Corporation",
+      "signed": "true",
+      "signature": "Microsoft Windows",
+      "signature_status": "Valid",
+      "user": "SYSTEM"
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2024-12-01T07:55:03.535684000Z",
+      "event_type": "image_load",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 7,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "image": "C:\\Windows\\Temp\\[guid]\\DismHost.exe",
+        "image_loaded": "C:\\Windows\\Temp\\[guid]\\DismProv.dll",
+        "original_file_name": "DismProv.dll",
+        "file_version": "10.0.17134.1 (WinBuild.160101.0800)",
+        "description": "DISM Provider Store",
+        "product": "Microsoft\u00ae Windows\u00ae Operating System",
+        "company": "Microsoft Corporation",
+        "signed": "true",
+        "signature": "Microsoft Windows",
+        "signature_status": "Valid",
+        "user": "SYSTEM"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2024-12-01T07:55:03.561840000Z",
+      "event_type": "image_load",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 7,
+        "event_record_id": "SRC-EV-002"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "image": "C:\\Windows\\Temp\\[guid]\\DismHost.exe",
+        "image_loaded": "C:\\Windows\\Temp\\[guid]\\OSProvider.dll",
+        "original_file_name": "OSProvider.dll",
+        "file_version": "10.0.17134.1 (WinBuild.160101.0800)",
+        "description": "DISM OS Services Provider",
+        "product": "Microsoft\u00ae Windows\u00ae Operating System",
+        "company": "Microsoft Corporation",
+        "signed": "true",
+        "signature": "Microsoft Windows",
+        "signature_status": "Valid",
+        "user": "SYSTEM"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2024-12-01T07:55:03.593531000Z",
+      "event_type": "image_load",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 7,
+        "event_record_id": "SRC-EV-003"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "image": "C:\\Windows\\Temp\\[guid]\\DismHost.exe",
+        "image_loaded": "C:\\Windows\\Temp\\[guid]\\LogProvider.dll",
+        "original_file_name": "LogProvider.dll",
+        "file_version": "10.0.17134.1 (WinBuild.160101.0800)",
+        "description": "DISM Logging Provider",
+        "product": "Microsoft\u00ae Windows\u00ae Operating System",
+        "company": "Microsoft Corporation",
+        "signed": "true",
+        "signature": "Microsoft Windows",
+        "signature_status": "Valid",
+        "user": "SYSTEM"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2024-12-01T07:55:03.608522500Z",
+      "event_type": "image_load",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 7,
+        "event_record_id": "SRC-EV-004"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "image": "C:\\Windows\\Temp\\[guid]\\DismHost.exe",
+        "image_loaded": "C:\\Windows\\Temp\\[guid]\\DmiProvider.dll",
+        "original_file_name": "DmiProvider.dll",
+        "file_version": "10.0.17134.1 (WinBuild.160101.0800)",
+        "description": "DISM Driver Provider",
+        "product": "Microsoft\u00ae Windows\u00ae Operating System",
+        "company": "Microsoft Corporation",
+        "signed": "true",
+        "signature": "Microsoft Windows",
+        "signature_status": "Valid",
+        "user": "SYSTEM"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

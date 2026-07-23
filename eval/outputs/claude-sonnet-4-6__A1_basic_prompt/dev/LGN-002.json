@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.95,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "A0 shows reg.exe writing a batch file path (C:\\Users\\user-01\\AppData\\Local\\Temp\\art.bat) to the UserInitMprLogonScript registry value under the user's environment hive, which is a well-known persistence mechanism that executes the specified script at every user logon. EV-001 confirms the explicit command used to set this value, run at High integrity from cmd.exe, targeting HKCU\\Environment\\UserInitMprLogonScript. The payload resides in a Temp directory \u2014 a common staging location for malicious scripts \u2014 and the registry key name 'art.bat' is consistent with Atomic Red Team simulation or actual adversary tooling. The combination of logon script persistence via a Temp-resident batch file is a clear indicator of malicious intent.",
+  "recommended_action": "isolate"
+}

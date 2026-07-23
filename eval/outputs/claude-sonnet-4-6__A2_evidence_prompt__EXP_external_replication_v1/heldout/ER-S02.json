@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.92,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "DER-001"
+  ],
+  "rationale": "A web service account (svc-web, uid 33) opened an su session to user-01 (EV-001), after which user-01 successfully executed 'sudo cat /etc/shadow' as root (A0, EV-002 confirmed via DER-001, EV-003). The working directory (/var/www/intranet.corp.local/wp-content/uploads/2022/02) strongly suggests the initial foothold was a web shell or file upload exploit on a WordPress instance, with the attacker then escalating privileges to read the system password hash file. The full chain \u2014 web process \u2192 lateral user switch \u2192 sudo privilege escalation \u2192 credential harvesting \u2014 is confirmed by audit logs showing status 'success' (EV-002) and a root session opened (EV-003), leaving no benign explanation for this sequence.",
+  "recommended_action": "isolate"
+}

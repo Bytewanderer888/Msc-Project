@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (suspicious_behaviour)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/suspicious_behaviour/certutil_exe_certificate_extraction/windows-sysmon.log",
+      "sha256": "ff0fc71c4824ae7c6d5a9f3d48d1381bf7f76dc3acd87c2f6197da555cc2486d"
+    }
+  ],
+  "primary_host": "win-dc-782.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "all certutil operations are captured in this host's windows-sysmon.log (EID1); single-sensor Tier-1."
+  }
+}

@@ -1,0 +1,30 @@
+{"case": "DISC-002", "input_tokens": 2612, "output_tokens": 263, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "RDL-001", "input_tokens": 1731, "output_tokens": 256, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "SMB-002", "input_tokens": 2860, "output_tokens": 270, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "ST-003", "input_tokens": 1718, "output_tokens": 237, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "ACCT-001", "input_tokens": 5532, "output_tokens": 338, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "ING-001", "input_tokens": 5265, "output_tokens": 309, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "LGN-002", "input_tokens": 1435, "output_tokens": 254, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "PS-001", "input_tokens": 19598, "output_tokens": 371, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "RK-001", "input_tokens": 2530, "output_tokens": 262, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "WMI-002", "input_tokens": 10382, "output_tokens": 285, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "INJ-001", "input_tokens": 3009, "output_tokens": 266, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "LS-001", "input_tokens": 2741, "output_tokens": 290, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "RTLO-001", "input_tokens": 2456, "output_tokens": 317, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "ST-002", "input_tokens": 1663, "output_tokens": 304, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "UAC-001", "input_tokens": 2399, "output_tokens": 289, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "BF-001", "input_tokens": 7699, "output_tokens": 283, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "CERT-001", "input_tokens": 2969, "output_tokens": 291, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "FW-001", "input_tokens": 1710, "output_tokens": 267, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "LS-002", "input_tokens": 3229, "output_tokens": 316, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "PS-002", "input_tokens": 2172, "output_tokens": 286, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "AMQ-001", "input_tokens": 5579, "output_tokens": 332, "model": "claude-sonnet-4-6", "billing_mode": "realtime"}
+{"case": "ACCT-001", "input_tokens": 6442, "output_tokens": 355, "model": "claude-sonnet-4-6", "billing_mode": "realtime", "completed_utc": "2026-07-20T13:21:39Z", "invocation_id": "20260720T132128Z-2ee1cc09"}
+{"case": "RK-001", "input_tokens": 4238, "output_tokens": 291, "model": "claude-sonnet-4-6", "billing_mode": "realtime", "completed_utc": "2026-07-20T13:21:48Z", "invocation_id": "20260720T132128Z-2ee1cc09"}
+{"case": "RTLO-001", "input_tokens": 2451, "output_tokens": 295, "model": "claude-sonnet-4-6", "billing_mode": "realtime", "completed_utc": "2026-07-20T13:21:56Z", "invocation_id": "20260720T132128Z-2ee1cc09"}
+{"case": "UAC-001", "input_tokens": 3375, "output_tokens": 332, "model": "claude-sonnet-4-6", "billing_mode": "realtime", "completed_utc": "2026-07-20T13:22:05Z", "invocation_id": "20260720T132128Z-2ee1cc09"}
+{"case": "WMI-002", "input_tokens": 10628, "output_tokens": 330, "model": "claude-sonnet-4-6", "billing_mode": "realtime", "completed_utc": "2026-07-20T13:22:15Z", "invocation_id": "20260720T132128Z-2ee1cc09"}
+{"case": "FW-001", "input_tokens": 2505, "output_tokens": 298, "model": "claude-sonnet-4-6", "billing_mode": "realtime", "completed_utc": "2026-07-20T13:22:25Z", "invocation_id": "20260720T132128Z-2ee1cc09"}
+{"case": "LS-002", "input_tokens": 3199, "output_tokens": 281, "model": "claude-sonnet-4-6", "billing_mode": "realtime", "completed_utc": "2026-07-20T13:22:33Z", "invocation_id": "20260720T132128Z-2ee1cc09"}
+{"case": "ST-003", "input_tokens": 1693, "output_tokens": 238, "model": "claude-sonnet-4-6", "billing_mode": "realtime", "completed_utc": "2026-07-20T13:22:39Z", "invocation_id": "20260720T132128Z-2ee1cc09"}
+{"case": "AMQ-001", "input_tokens": 6349, "output_tokens": 348, "model": "claude-sonnet-4-6", "billing_mode": "realtime", "completed_utc": "2026-07-20T13:22:49Z", "invocation_id": "20260720T132128Z-2ee1cc09"}

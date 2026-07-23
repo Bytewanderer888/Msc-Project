@@ -1,0 +1,17 @@
+{
+  "dataset": "OTRF Security-Datasets (mordor / atomic)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "datasets/atomic/windows/defense_evasion/host/cmd_netsh_fw_mod_open_ports.zip",
+      "sha256": "3d887b38c6a92892f950029f40114fe4598a798ad20453671dbe3d111b9ce4a2"
+    }
+  ],
+  "primary_host": "WORKSTATION5",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "sysmon"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "case_id": "RUN-001",
+  "split": "heldout",
+  "mordor_log": "datasets/compound/apt29/day2/apt29_evals_day2_manual.zip",
+  "computer": "UTICA",
+  "sourcetypes_present": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "1000064",
+    "EV": [
+      "773293",
+      "1001598"
+    ]
+  },
+  "roles": {
+    "1000064": "triggering alert: rundll32 loads a .lock-named object through the non-standard VoidFunc export",
+    "773293": "certutil creates the .lock-named object; this does not establish a network download",
+    "1001598": "the same rundll32 process initiates an outbound connection consistent with a callback, not by itself proof of C2"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "rundll32 loads a DLL masqueraded as a .lock file, beaconing to C2",
+    "security_proposition": "Rundll32 executed a masqueraded DLL-like object through a non-standard export and made an associated outbound connection.",
+    "case_directory": "RUN-001_rundll32_lock_dll",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "OTRF Security-Datasets (mordor)",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Rundll32 execution of a masqueraded DLL-like object",
+      "candidate_attack_mapping": "T1218.011",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = STRONG. Rundll32 loads a .lock-named object through a non-standard export and the same process makes an outbound connection. The file-create event does not prove a network download, and the connection alone is not labelled confirmed C2. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "case_scope": {
+      "primary_host": "UTICA.dmevals.local"
+    },
+    "curation_notes": [
+      "Subtle-strong (up-rank): signed rundll32 launched from explorer invites under-triage as routine system activity.",
+      "Rundll32 loads a .lock-named object through VoidFunc and the same process opens an outbound connection. The file-create event does not prove network download, and the connection is consistent with a callback rather than labelled confirmed C2."
+    ],
+    "experimental_role": {
+      "used_for": [
+        "subtle_strong_heldout",
+        "cross_corpus_generalisation",
+        "severity_preservation_test"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

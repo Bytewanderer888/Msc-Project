@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-S04",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "server-01.corp.local",
+      "workstation-01.corp.local"
+    ],
+    "users": [
+      "admin-01"
+    ],
+    "time_window_utc": {
+      "start": "2025-01-07T13:14:38.019000Z",
+      "end": "2025-01-07T13:14:41.382000Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "process_create",
+      "network_connect",
+      "file_create"
+    ],
+    "sourcetypes_present": [
+      "sysmon_source_host",
+      "sysmon_target_host"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2025-01-07T13:14:38.647000Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "server-01.corp.local",
+    "attributes": {
+      "process_id": "5312",
+      "image": "C:\\Users\\admin-01\\Downloads\\remote-client.exe",
+      "command_line": "C:\\Users\\admin-01\\Downloads\\remote-client.exe",
+      "current_directory": "C:\\Users\\admin-01\\Downloads\\",
+      "user": "CORP\\admin-01",
+      "integrity_level": "High"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2025-01-07T13:14:38.019000Z",
+      "event_type": "network_connect",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "workstation-01.corp.local",
+      "attributes": {
+        "image": "System",
+        "source_ip": "server-01.corp.local",
+        "source_port": "62204",
+        "destination_ip": "workstation-01.corp.local",
+        "destination_port": "5985",
+        "protocol": "tcp"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2025-01-07T13:14:39.175000Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "SRC-EV-002"
+      },
+      "computer": "workstation-01.corp.local",
+      "attributes": {
+        "process_id": "6504",
+        "image": "C:\\Windows\\System32\\wsmprovhost.exe",
+        "target_filename": "C:\\Users\\admin-01\\AppData\\Local\\Temp\\__PSScriptPolicyTest_[random].psm1",
+        "user": "CORP\\admin-01"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2025-01-07T13:14:41.382000Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "SRC-EV-003"
+      },
+      "computer": "server-01.corp.local",
+      "attributes": {
+        "process_id": "868",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "target_filename": "C:\\Windows\\Temp\\remote-session-output.vnc",
+        "user": "CORP\\admin-01"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

@@ -1,0 +1,15 @@
+{
+  "case_id": "ER-S01",
+  "builder": "experiments/external_replication_v1/build_ait_cases.py",
+  "source_archive": "data_sources/ait_ads/ait_ads.zip",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "member": "russellmitchell_aminer.json",
+      "contains": "ekmkimzkps-1642996700.9285.php?wp_meta="
+    }
+  ],
+  "literal_redactions": [
+    "database password -> [redacted-password]"
+  ]
+}

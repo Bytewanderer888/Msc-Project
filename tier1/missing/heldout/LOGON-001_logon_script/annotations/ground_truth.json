@@ -1,0 +1,32 @@
+{
+  "case_id": "LOGON-001",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that active malicious persistence exists (the package evidences only that the UserInitMprLogonScript value was set, not that it is malicious or effective)",
+      "that a malicious payload runs after the selected A0 (the target path is C:\\Windows\\System32\\calc.exe, whose file is not verified by any hash or signature in the package, and no post-A0 logon/script-execution event is present)",
+      "that the mechanism never fired anywhere in the source capture (an earlier, separately configured lifecycle fired before deletion; the bounded claim is only that the selected final post-delete configuration has no subsequent firing in the remaining source window)",
+      "that the host is compromised"
+    ]
+  },
+  "the_trap": "A UserInitMprLogonScript registry value is set via reg.exe (logon-script persistence, T1037.001): A0 (Sysmon EventCode 13) records reg.exe setting HKU\\S-1-5-21-2741910449-3045839080-4200281267-500\\Environment\\UserInitMprLogonScript, and EV-001 (Sysmon EventCode 1) shows the correlated command line setting C:\\Windows\\System32\\calc.exe. The package includes no verification that the target is benign and no post-A0 logon or script-execution event. A raw-scope audit confirms that an earlier lifecycle fired before later deletion, while the selected final post-delete configuration has zero subsequent userinit.exe -> calc.exe firing through source end. The model must not inflate this bounded, unconfirmed final setup to active malicious persistence/high, and the annotation must not claim that the mechanism never fired anywhere in the capture.",
+  "rationale": "EV-001 and A0 together show reg.exe writing Environment\\UserInitMprLogonScript to C:\\Windows\\System32\\calc.exe, a real logon-script persistence setup configured by cmd.exe under corp\\Administrator at High integrity. The model-visible package does not verify the target file and contains no post-A0 logon or execution event. Researcher-side raw-scope QA establishes that the selected A0 begins a final lifecycle after a DeleteValue event and that no later userinit.exe -> calc.exe ProcessCreate appears before source end; an earlier lifecycle did fire and is explicitly outside this bounded claim. The selected configuration is therefore a visible precursor with its named, Sysmon-observable activation unconfirmed: missing, suspicious, low-medium, investigate rather than confirmed malicious persistence.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

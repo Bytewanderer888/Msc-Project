@@ -1,0 +1,145 @@
+{
+  "case_id": "OD-001",
+  "split": "heldout",
+  "sources": [
+    {
+      "sensor": "sysmon",
+      "source_log": "attack_data-master/datasets/malware/olympic_destroyer/sysmon.log",
+      "computer": "win-dc-tcontreras-attack-range-173",
+      "splunk_source": "olympic_sysmon"
+    },
+    {
+      "sensor": "security",
+      "source_log": "attack_data-master/datasets/malware/olympic_destroyer/security.log",
+      "computer": "win-dc-tcontreras-attack-range-173",
+      "splunk_source": "olympic_security"
+    }
+  ],
+  "staged_export": "extracted/od001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational",
+    "Microsoft-Windows-Security-Auditing"
+  ],
+  "selection": {
+    "A0": "sysmon:290147",
+    "EV": [
+      "sysmon:290231",
+      "sysmon:290240",
+      "sysmon:290266",
+      "sysmon:290300",
+      "security:324614"
+    ]
+  },
+  "roles": {
+    "sysmon:290147": "triggering alert: vssadmin delete shadows /all /quiet is launched; deletion success is not independently recorded",
+    "sysmon:290231": "bcdedit is launched to request bootstatuspolicy ignoreallfailures; result status is absent",
+    "sysmon:290240": "bcdedit is launched to request recoveryenabled no; result status is absent",
+    "sysmon:290266": "wevtutil cl System is launched; System-log clear success is not independently recorded",
+    "sysmon:290300": "wevtutil cl Security is launched at the time of the corroborating Security 1102 event",
+    "security:324614": "Security Event 1102 confirms that the audit log was cleared and names the account"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "destruction_antiforensics",
+    "security_proposition": "A high-integrity destructive and anti-forensic command sequence was launched, including a confirmed Security-log clear.",
+    "case_directory": "OD-001_destruction_antiforensics",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (malware/olympic_destroyer)",
+    "stored_filename": "olympic_sysmon.log + olympic_security.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "Destructive wiper + anti-forensics (multi-sensor fusion)",
+      "candidate_attack_mapping": "T1490",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = STRONG (Tier-2 fusion). Sysmon records high-integrity vssadmin, bcdedit, and wevtutil command invocations; Security Event 1102 independently confirms that the Security audit log was cleared and identifies the account. Success of shadow-copy deletion, BCD changes, and System-log clearing is not asserted without result telemetry. Do not leak to model."
+    },
+    "tier": {
+      "tier": 2,
+      "sensors": [
+        "Sysmon",
+        "Security"
+      ],
+      "why_single_source": "GENUINE MULTI-SENSOR FUSION: Sysmon (EID 1) carries the destructive commands; Security carries the 1102 log-clear event that Sysmon cannot see (and whose 4688 process audits were wiped by that very clear). Same host (win-dc-173), same 10:56 window. The Security log is stanza format, converted to XML by the engine."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "sources": [
+        "olympic_sysmon",
+        "olympic_security"
+      ],
+      "sourcetype": "XmlWinEventLog / stanza"
+    },
+    "case_scope": {
+      "scope_type": "tier2_multisensor_destruction_antiforensics",
+      "primary_host": "win-dc-tcontreras-attack-range-173.attackrange.local",
+      "primary_user": "ATTACKRANGE\\Administrator (stolen)",
+      "boundary_definition": [
+        "A0 = vssadmin delete shadows (sysmon:290147, 10:56:41).",
+        "Sysmon EV = the two bcdedit recovery-disable commands and the two wevtutil log-clear commands (10:56:42).",
+        "Security EV = the single 1102 'audit log cleared' (security:324614, 10:56:42) — the only surviving Security event, recording the erasure.",
+        "Scoped to win-dc-tcontreras-attack-range-173; the other host (win-host-985) and routine domain traffic are excluded.",
+        "The destruction's Security 4688 audits are ABSENT because the attacker cleared the log — this absence is itself the point, and Sysmon supplies what Security lost."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "vssadmin delete shadows is a high-fidelity T1490 (inhibit recovery) destruction/ransomware detection.",
+      "selection_reason": "It is the destructive trigger; the bcdedit/wevtutil commands and the Security 1102 confirm a destructive-wiper + anti-forensic attack."
+    },
+    "correlation_keys": [
+      "host",
+      "time_window(10:56)",
+      "destruction_commands",
+      "log_clear(wevtutil<->1102)",
+      "cross_sensor(sysmon+security)"
+    ],
+    "event_groups": [
+      {
+        "group": "sysmon_destruction",
+        "event_record_ids": [
+          "sysmon:290147",
+          "sysmon:290231",
+          "sysmon:290240",
+          "sysmon:290266",
+          "sysmon:290300"
+        ],
+        "description": "vssadmin shadow delete, bcdedit recovery disable, wevtutil clear System + Security."
+      },
+      {
+        "group": "security_antiforensic_keystone",
+        "event_record_ids": [
+          "security:324614"
+        ],
+        "description": "1102 audit-log-cleared by Administrator — proves the Security log was wiped and names the actor."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "strong_fusion_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: STRONG / preserve (Tier-2). The destructive and anti-forensic command burst is corroborated by a confirmed Security-log clear; other requested outcomes remain bounded."
+      },
+      {
+        "topic": "fusion_is_the_point",
+        "event_record_id": "sysmon:290300,security:324614",
+        "note": "wevtutil cl Security (Sysmon) and the 1102 log-cleared (Security) are the SAME act seen from two sensors: Sysmon has the command, Security has the result + the account. The clear is why the destruction's own Security audits are gone and Sysmon is the sole witness."
+      },
+      {
+        "topic": "stanza_security",
+        "event_record_id": "security:324614",
+        "note": "The Security log is Splunk stanza (key=value) format; the engine converts it to XML on load. RecordNumber 324614 = EventID 1102."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "tier2_fusion_exemplar",
+        "preserve_hold_high_test",
+        "antiforensics_cross_sensor_rule_dev"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

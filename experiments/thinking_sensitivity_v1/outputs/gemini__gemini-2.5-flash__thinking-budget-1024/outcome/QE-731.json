@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002"
+  ],
+  "rationale": "An Administrator account created a new service with a suspicious binary path (A0) and immediately started it (EV-001). The service successfully executed the non-standard binary under the SYSTEM account (EV-002), indicating successful privilege escalation and persistence. The use of `sc.exe` from a user's temporary directory to install a service from an obfuscated path is highly indicative of malicious activity.",
+  "recommended_action": "escalate"
+}

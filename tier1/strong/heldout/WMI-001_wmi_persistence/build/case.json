@@ -1,0 +1,70 @@
+{
+  "case_id": "WMI-001",
+  "split": "heldout",
+  "mordor_log": "datasets/compound/apt29/day2/apt29_evals_day2_manual.zip",
+  "computer": "UTICA",
+  "sourcetypes_present": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "790795",
+    "EV": [
+      "790794",
+      "790982"
+    ]
+  },
+  "roles": {
+    "790795": "triggering alert: a command-line WMI event consumer with an encoded PowerShell destination is created",
+    "790794": "the matching WMI event filter is created",
+    "790982": "the filter-to-consumer binding completes the installed WMI subscription mechanism"
+  },
+  "derivations": [
+    {
+      "id": "DER-001",
+      "from": "A0",
+      "field": "destination",
+      "as": "decoded_consumer_command",
+      "method": "base64_utf16le",
+      "note": "base64 (UTF-16LE) PowerShell payload carried in the WMI CommandLineEventConsumer"
+    }
+  ],
+  "metadata": {
+    "case_name": "WMI event-subscription persistence masquerading as WindowsParentalControlMigration",
+    "security_proposition": "A complete WMI event-subscription persistence mechanism with an offensively meaningful consumer command was installed.",
+    "case_directory": "WMI-001_wmi_persistence",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "OTRF Security-Datasets (mordor)",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "WMI event-subscription persistence",
+      "candidate_attack_mapping": "T1546.003",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = STRONG. Native WMI telemetry records the filter, offensively meaningful command-line consumer, and binding as created. Installation of the complete mechanism is decisive even without a later firing event. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "case_scope": {
+      "primary_host": "UTICA.dmevals.local"
+    },
+    "curation_notes": [
+      "Subtle-strong (up-rank): a WMI __EventFilter / CommandLineEventConsumer / FilterToConsumerBinding trio named 'WindowsParentalControlMigration' reads like a legitimate Windows feature or a normal system-management subscription, which invites under-triage.",
+      "Confirmed malice: the consumer runs a hidden base64 PowerShell payload (DER-001) triggered on user logon (Win32_LoggedOnUser filter). Classic WMI event-subscription persistence (T1546.003); correct verdict malicious/high."
+    ],
+    "experimental_role": {
+      "used_for": [
+        "wmi_strong_heldout",
+        "cross_corpus_generalisation",
+        "bidirectional_up_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

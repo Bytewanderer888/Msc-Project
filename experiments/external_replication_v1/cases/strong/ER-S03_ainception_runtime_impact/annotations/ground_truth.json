@@ -1,0 +1,39 @@
+{
+  "case_id": "ER-S03",
+  "security_proposition": "A root-capable runtime instrumentation process attached to the flight-control application and was followed by an accepted mid-flight disarm and ground impact.",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "operational_response": {
+    "family": "network_blocking",
+    "note": "Isolate the control endpoint and block its control path under human approval while preserving flight and audit evidence."
+  },
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "the exact in-memory function or bytes modified inside QGroundControl",
+      "that the audit record alone proves the later command's complete causal path",
+      "that the package concerns real-world hardware rather than a controlled vehicle environment",
+      "injury, property damage, or activity outside the selected time window"
+    ]
+  },
+  "the_trap": "The process-attachment record and physical outcome are in different telemetry sources. The evidence must be fused temporally without inventing unseen in-memory details.",
+  "rationale": "A0 records a successful root-effective ptrace operation by frida_server against the QGroundControl process. Sixty-one seconds later EV-001 records acceptance of a component arm/disarm command, EV-002 records the disarmed state, and EV-003 records ground impact at 19.36427 m/s. This is decisive runtime manipulation plus an observed safety impact, while the exact injected function and full causal implementation remain outside the logs.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

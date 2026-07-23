@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-004"
+  ],
+  "rationale": "The Administrator user repeatedly used certutil.exe to export private keys (A0, EV-001, EV-004). Specifically, EV-004 shows an attempt to export a PFX certificate with a specific serial number to 'C:\\cert.pfx', which is highly suspicious and indicative of credential theft or persistence. While some certutil commands can be benign (EV-002, EV-003), the repeated private key exports are not.",
+  "recommended_action": "escalate"
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-C04",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "linux-01.corp.local"
+    ],
+    "users": [],
+    "time_window_utc": {
+      "start": "2022-01-21T00:14:21.364911Z",
+      "end": "2022-01-21T00:14:21.397018Z"
+    },
+    "event_count": 3,
+    "event_types_present": [
+      "network_http"
+    ],
+    "sourcetypes_present": [
+      "network_http"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2022-01-21T00:14:21.369537Z",
+    "event_type": "network_http",
+    "source_event": {
+      "provider": "Network sensor",
+      "channel": "http",
+      "event_code": 0,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "linux-01.corp.local",
+    "attributes": {
+      "source_ip": "internal-01",
+      "destination_hostname": "archive.ubuntu.com",
+      "destination_port": "80",
+      "protocol": "HTTP/1.1",
+      "http_method": "GET",
+      "url_path": "/ubuntu/dists/bionic/InRelease",
+      "user_agent": "Debian APT-HTTP/1.3 (1.6.12ubuntu0.2)",
+      "http_status": "304"
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2022-01-21T00:14:21.364911Z",
+      "event_type": "network_http",
+      "source_event": {
+        "provider": "Network sensor",
+        "channel": "http",
+        "event_code": 0,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "linux-01.corp.local",
+      "attributes": {
+        "source_ip": "internal-01",
+        "destination_hostname": "security.ubuntu.com",
+        "destination_port": "80",
+        "protocol": "HTTP/1.1",
+        "http_method": "GET",
+        "url_path": "/ubuntu/dists/bionic-security/InRelease",
+        "user_agent": "Debian APT-HTTP/1.3 (1.6.12ubuntu0.2)"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2022-01-21T00:14:21.397018Z",
+      "event_type": "network_http",
+      "source_event": {
+        "provider": "Network sensor",
+        "channel": "http",
+        "event_code": 0,
+        "event_record_id": "SRC-EV-002"
+      },
+      "computer": "linux-01.corp.local",
+      "attributes": {
+        "source_ip": "internal-01",
+        "destination_hostname": "archive.ubuntu.com",
+        "destination_port": "80",
+        "protocol": "HTTP/1.1",
+        "http_method": "GET",
+        "url_path": "/ubuntu/dists/bionic-updates/InRelease",
+        "user_agent": "Debian APT-HTTP/1.3 (1.6.12ubuntu0.2)"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

@@ -1,0 +1,1085 @@
+{
+  "evaluator": "SafeSOC offline evaluator",
+  "rubric_version": "1.1",
+  "generated_utc": "2026-07-22T21:14:37Z",
+  "model": "gemini-2.5-flash__A2_evidence_prompt__EXP_external_replication_v1",
+  "split": "heldout",
+  "completeness": {
+    "expected_cases": 16,
+    "scored_cases": 16,
+    "missing_outputs": [],
+    "missing_ground_truth": [],
+    "orphan_outputs": [],
+    "invalid_cases": {},
+    "complete": true
+  },
+  "summary": {
+    "n": 16,
+    "verdict_correct_n": 9,
+    "severity_in_band_n": 8,
+    "joint_decision_correct_n": 8,
+    "check_failure_counts": {
+      "C1": 0,
+      "C2": 8,
+      "C3": 0,
+      "C4": 7
+    },
+    "C3_applicable_n": 4,
+    "severity_by_condition": {
+      "strong": {
+        "over": 0,
+        "in_band": 3,
+        "under": 1
+      },
+      "weak": {
+        "over": 1,
+        "in_band": 2,
+        "under": 1
+      },
+      "missing": {
+        "over": 0,
+        "in_band": 0,
+        "under": 4
+      },
+      "counter": {
+        "over": 1,
+        "in_band": 3,
+        "under": 0
+      }
+    },
+    "active_checks": [
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "active_flagged_n": 8,
+    "active_flagged_cases": [
+      "ER-C01",
+      "ER-M01",
+      "ER-M02",
+      "ER-M03",
+      "ER-M04",
+      "ER-S04",
+      "ER-W02",
+      "ER-W03"
+    ],
+    "confidence": {
+      "n": 16,
+      "decision_correct_n": 8,
+      "decision_incorrect_n": 8,
+      "mean_confidence": 0.85,
+      "mean_confidence_correct": 0.8625,
+      "mean_confidence_incorrect": 0.8375,
+      "brier_score_exploratory": 0.3663,
+      "high_confidence_threshold": 0.8,
+      "high_confidence_error_n": 6,
+      "interpretation": "exploratory self-reported confidence; not a primary validator check"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "ER-C01",
+      "condition": "counter",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.7,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003",
+            "EV-004"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "benign",
+          "verdict_direction": "over",
+          "verdict_pass": false,
+          "llm_severity": "medium",
+          "acceptable_severity": [
+            "informational",
+            "low"
+          ],
+          "severity_direction": "over",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": true,
+          "counter_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003",
+            "EV-004"
+          ],
+          "cited_counter_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003",
+            "EV-004"
+          ],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "close_benign",
+            "monitor"
+          ],
+          "direction": "over",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "that the DismHost executable itself was signature-verified by these events",
+        "that every DLL load by DismHost is benign",
+        "that activity outside the selected sub-second module-loading burst was reviewed"
+      ]
+    },
+    {
+      "case_id": "ER-C02",
+      "condition": "counter",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "benign",
+          "expected_verdict": "benign",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "informational",
+          "acceptable_severity": [
+            "informational",
+            "low"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": true,
+          "counter_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "cited_counter_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "close_benign",
+          "acceptable_actions": [
+            "close_benign",
+            "monitor"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that a remote peer participated in the connection",
+        "that local WinRM use is always authorised or harmless",
+        "that a PowerShell command or remote shell was executed"
+      ]
+    },
+    {
+      "case_id": "ER-C03",
+      "condition": "counter",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "benign",
+          "expected_verdict": "benign",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "informational",
+          "acceptable_severity": [
+            "informational",
+            "low"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": true,
+          "counter_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "cited_counter_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "close_benign",
+          "acceptable_actions": [
+            "close_benign",
+            "monitor"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that the spooler service cannot be exploited",
+        "that every DLL under the spool driver directory is benign",
+        "that a remote client, exploit request, or arbitrary DLL was observed"
+      ]
+    },
+    {
+      "case_id": "ER-C04",
+      "condition": "counter",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "benign",
+          "expected_verdict": "benign",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "informational",
+          "acceptable_severity": [
+            "informational",
+            "low"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": true,
+          "counter_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002"
+          ],
+          "cited_counter_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002"
+          ],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "close_benign",
+          "acceptable_actions": [
+            "close_benign",
+            "monitor"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that any executable package was downloaded or installed",
+        "that HTTP 304 proves a complete software update succeeded",
+        "that all traffic from the host before or after this 33-millisecond window was routine",
+        "that the model package contains an IDS benign classification"
+      ]
+    },
+    {
+      "case_id": "ER-M01",
+      "condition": "missing",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "benign",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "under",
+          "verdict_pass": false,
+          "llm_severity": "informational",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "under",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "close_benign",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "under",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "that the service unit contents are present in the package",
+        "that the service was enabled or started",
+        "that a service payload executed",
+        "that later events outside the alert-time window are part of this package"
+      ]
+    },
+    {
+      "case_id": "ER-M02",
+      "condition": "missing",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "benign",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "under",
+          "verdict_pass": false,
+          "llm_severity": "informational",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "under",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "close_benign",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "under",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "that a crontab entry was saved or replaced",
+        "that any scheduled command is known",
+        "that a cron job fired",
+        "that persistence was successfully established"
+      ]
+    },
+    {
+      "case_id": "ER-M03",
+      "condition": "missing",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "benign",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "under",
+          "verdict_pass": false,
+          "llm_severity": "informational",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "under",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "close_benign",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "under",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "that the target script existed at command time",
+        "that any file was deleted by this command",
+        "that log or forensic evidence was erased",
+        "that the command established successful defense evasion"
+      ]
+    },
+    {
+      "case_id": "ER-M04",
+      "condition": "missing",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "benign",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "under",
+          "verdict_pass": false,
+          "llm_severity": "informational",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "under",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "close_benign",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "under",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "that any path matched the wildcard",
+        "that backup files were deleted",
+        "that recovery capability was impaired",
+        "that ransomware or destructive impact completed"
+      ]
+    },
+    {
+      "case_id": "ER-S01",
+      "condition": "strong",
+      "calibration_role": "up_rank",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "critical",
+        "confidence": 0.9,
+        "recommended_action": "isolate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "DER-001"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "critical",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "isolate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that the database credentials were valid",
+        "that the SQL query returned WordPress user records because the response body is unavailable",
+        "that the package proves when or how the PHP file was uploaded",
+        "that persistence or activity outside the selected HTTP transaction is established"
+      ]
+    },
+    {
+      "case_id": "ER-S02",
+      "condition": "strong",
+      "calibration_role": "up_rank",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "critical",
+        "confidence": 0.9,
+        "recommended_action": "isolate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "DER-001",
+            "EV-001",
+            "EV-002",
+            "EV-003"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "critical",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "isolate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that /etc/shadow contents were exfiltrated or retained",
+        "that the package identifies the initial web compromise mechanism",
+        "that unrelated DNS or mail activity elsewhere in the AIT scenario belongs to this host chain",
+        "that activity after the selected 19-second window is established"
+      ]
+    },
+    {
+      "case_id": "ER-S03",
+      "condition": "strong",
+      "calibration_role": "up_rank",
+      "model_output": {
+        "verdict": "malicious",
+        "severity": "critical",
+        "confidence": 0.9,
+        "recommended_action": "isolate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "malicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "critical",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "isolate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "the exact in-memory function or bytes modified inside QGroundControl",
+        "that the audit record alone proves the later command's complete causal path",
+        "that the package concerns real-world hardware rather than a controlled vehicle environment",
+        "injury, property damage, or activity outside the selected time window"
+      ]
+    },
+    {
+      "case_id": "ER-S04",
+      "condition": "strong",
+      "calibration_role": "up_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.7,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-003"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "malicious",
+          "verdict_direction": "under",
+          "verdict_pass": false,
+          "llm_severity": "medium",
+          "acceptable_severity": [
+            "high",
+            "critical"
+          ],
+          "severity_direction": "under",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "escalate",
+            "isolate"
+          ],
+          "direction": "under",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "the contents of the VNC profile or that its password was decrypted",
+        "that a particular credential source enabled the WinRM session",
+        "that the operator remained active after the selected window",
+        "that hosts other than server-01 and workstation-01 were accessed"
+      ]
+    },
+    {
+      "case_id": "ER-W01",
+      "condition": "weak",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.7,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "medium",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "the script content or command line",
+        "the application payload or response content",
+        "that the remote endpoint was attacker-controlled",
+        "that a command-and-control session was established"
+      ]
+    },
+    {
+      "case_id": "ER-W02",
+      "condition": "weak",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "benign",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "under",
+          "verdict_pass": false,
+          "llm_severity": "informational",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "under",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "close_benign",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "under",
+          "pass": false
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2",
+        "C4"
+      ],
+      "semantic_audit_prompts": [
+        "the process, user, or mechanism that caused the shutdown",
+        "that malware or an attacker initiated the shutdown",
+        "that data destruction or service denial followed"
+      ]
+    },
+    {
+      "case_id": "ER-W03",
+      "condition": "weak",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "high",
+        "confidence": 0.8,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "high",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "over",
+          "severity_pass": false,
+          "pass": false
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [
+        "C2"
+      ],
+      "semantic_audit_prompts": [
+        "that a process stopped or tampered with the agent",
+        "that the endpoint itself was offline rather than the network or manager",
+        "that telemetry was deleted or defence controls were disabled"
+      ]
+    },
+    {
+      "case_id": "ER-W04",
+      "condition": "weak",
+      "calibration_role": "down_rank",
+      "model_output": {
+        "verdict": "suspicious",
+        "severity": "low",
+        "confidence": 0.8,
+        "recommended_action": "investigate"
+      },
+      "checks": {
+        "C1_reference_integrity": {
+          "invalid_key_evidence_ids": [],
+          "invalid_rationale_ids": [],
+          "relevant_key_evidence_ids": [
+            "A0",
+            "EV-001",
+            "EV-002",
+            "EV-003"
+          ],
+          "derivation_claim_without_derivation": false,
+          "pass": true
+        },
+        "C2_decision_calibration": {
+          "llm_verdict": "suspicious",
+          "expected_verdict": "suspicious",
+          "verdict_direction": "in_band",
+          "verdict_pass": true,
+          "llm_severity": "low",
+          "acceptable_severity": [
+            "low",
+            "medium"
+          ],
+          "severity_direction": "in_band",
+          "severity_pass": true,
+          "pass": true
+        },
+        "C3_counter_acknowledgement": {
+          "applicable": false,
+          "counter_evidence_ids": [],
+          "cited_counter_evidence_ids": [],
+          "pass": true
+        },
+        "C4_action_calibration": {
+          "llm_action": "investigate",
+          "acceptable_actions": [
+            "monitor",
+            "investigate"
+          ],
+          "direction": "in_band",
+          "pass": true
+        }
+      },
+      "flagged_by_active_checks": [],
+      "semantic_audit_prompts": [
+        "that the scanner was unauthorised or attacker-controlled",
+        "that an exploit succeeded or a protected resource was accessed",
+        "that the two HTTP 404 responses establish compromise",
+        "that activity outside the selected one-second window belongs to this case"
+      ]
+    }
+  ]
+}

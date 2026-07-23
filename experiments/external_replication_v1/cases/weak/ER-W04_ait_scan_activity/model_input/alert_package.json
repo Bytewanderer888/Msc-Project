@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-W04",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "web-01.corp.local"
+    ],
+    "users": [],
+    "time_window_utc": {
+      "start": "2022-01-17T11:21:46.000000Z",
+      "end": "2022-01-17T11:21:46.959357Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "http_access",
+      "network_http"
+    ],
+    "sourcetypes_present": [
+      "apache_access",
+      "network_http"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2022-01-17T11:21:46.000000Z",
+    "event_type": "http_access",
+    "source_event": {
+      "provider": "Apache HTTP Server",
+      "channel": "/var/log/apache2/access.log",
+      "event_code": 0,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "web-01.corp.local",
+    "attributes": {
+      "source_ip": "client-01",
+      "http_method": "GET",
+      "url_path": "/nmaplowercheck1642418506",
+      "http_status": "404",
+      "response_bytes": "7533",
+      "user_agent": "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2022-01-17T11:21:46.720864Z",
+      "event_type": "network_http",
+      "source_event": {
+        "provider": "Network sensor",
+        "channel": "http",
+        "event_code": 0,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "web-01.corp.local",
+      "attributes": {
+        "source_ip": "client-01",
+        "source_port": "36344",
+        "destination_ip": "web-01.corp.local",
+        "destination_port": "80",
+        "protocol": "HTTP/1.1",
+        "http_method": "GET",
+        "url_path": "/nmaplowercheck1642418506",
+        "http_status": "404",
+        "user_agent": "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2022-01-17T11:21:46.000000Z",
+      "event_type": "http_access",
+      "source_event": {
+        "provider": "Apache HTTP Server",
+        "channel": "/var/log/apache2/access.log",
+        "event_code": 0,
+        "event_record_id": "SRC-EV-002"
+      },
+      "computer": "web-01.corp.local",
+      "attributes": {
+        "source_ip": "client-01",
+        "http_method": "GET",
+        "url_path": "/HNAP1",
+        "http_status": "404",
+        "response_bytes": "7535",
+        "user_agent": "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2022-01-17T11:21:46.959357Z",
+      "event_type": "network_http",
+      "source_event": {
+        "provider": "Network sensor",
+        "channel": "http",
+        "event_code": 0,
+        "event_record_id": "SRC-EV-003"
+      },
+      "computer": "web-01.corp.local",
+      "attributes": {
+        "source_ip": "client-01",
+        "source_port": "36386",
+        "destination_ip": "web-01.corp.local",
+        "destination_port": "80",
+        "protocol": "HTTP/1.1",
+        "http_method": "GET",
+        "url_path": "/HNAP1",
+        "http_status": "404",
+        "user_agent": "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

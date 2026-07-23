@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "The initial process (A0) uses a right-to-left override (RTLO) character in its filename, a common obfuscation technique. This process then initiates a network connection to an internal IP (EV-001) and spawns cmd.exe (EV-002), which subsequently spawns powershell.exe (EV-003). This chain of events, especially the RTLO character and the subsequent command execution and network activity, is highly indicative of malicious intent.",
+  "recommended_action": "isolate"
+}

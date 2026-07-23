@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0",
+  "case_id": "UQP-001",
+  "case_name": "unquoted_path_service_execution",
+  "security_proposition": "An unquoted service path was intercepted so that C:\\program.exe executed under services.exe as SYSTEM.",
+  "case_directory": "UQP-001_unquoted_path_service",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "Unquoted-path service privileged execution",
+    "candidate_attack_mapping": "T1574.009",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = STRONG, calibration_role = up_rank. The capture proves deliberate path interception: C:\\program.exe is planted before an unquoted service path, the service starts, and services.exe executes C:\\program.exe as NT AUTHORITY\\SYSTEM. Example naming and cleanup are mitigating context but do not negate the privileged execution. The malicious label denotes successful execution of an offensive mechanism, not a claim that the lab operator was unauthorized. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (suspicious_behaviour)",
+    "original_repository_path": "datasets/suspicious_behaviour/first_time_windows_service/windows-sysmon.log",
+    "original_filename": "windows-sysmon.log",
+    "stored_filename": "uqp001_service_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "169810177257faf0dad0c5ff3a11bd439d412fc8026956588f25f9baddd1d306",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "the whole service create/hijack/delete chain is in this host's windows-sysmon.log (EID1); single-sensor Tier-1."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "uqp001_service_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    }
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/uqp001_events.json",
+    "related_events": "extracted/uqp001_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "scope_type": "single_service_create_hijack_delete",
+    "primary_host": "win-dc-533.attackrange.local",
+    "primary_user": "Administrator",
+    "boundary_definition": [
+      "A0 = the sc create with the unquoted binpath.",
+      "EV = the copy that plants C:\\program.exe (unquoted-path artifact), the C:\\program.exe execution as the service (hijack fires), sc start, and sc delete.",
+      "EV-003 is the decisive result: Windows resolves the unquoted path to C:\\program.exe and services.exe launches it as SYSTEM. EV-004 is counter-evidence about duration because it issues stop/delete/cleanup commands, whose success is not confirmed."
+    ],
+    "time_window_utc": {
+      "start": "2020-12-09T11:21:53.832952200Z",
+      "end": "2020-12-09T11:21:57.309968700Z"
+    }
+  },
+  "main_alert_selection": {
+    "selection_method": "a first-time service with an unquoted, hijackable binpath is the T1574.009 detection.",
+    "selection_reason": "the create is the setup alert; EV-003 confirms the path-interception outcome by showing C:\\program.exe execute from services.exe as SYSTEM.",
+    "event_record_id": "8401",
+    "process_guid": "{58D8C100-B351-5FD0-0000-0010E7731100}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "host",
+      "user",
+      "time_window",
+      "service_name==Example Service"
+    ],
+    "included_event_record_ids": [
+      "8401",
+      "8385",
+      "8433",
+      "8420",
+      "8701"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "8401",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: sc create 'Example Service' with an UNQUOTED binpath 'C:\\Program Files\\windows_service.exe' — a first-time service whose path is hijackable (T1574.009)"
+    },
+    "EV-001": {
+      "event_record_id": "8385",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "setup: cmd /c copies WindowsServiceExample.exe to both C:\\Program Files\\windows_service.exe AND C:\\program.exe (the unquoted-path hijack location)"
+    },
+    "EV-002": {
+      "event_record_id": "8420",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "sc start 'Example Service'"
+    },
+    "EV-003": {
+      "event_record_id": "8433",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the unquoted path resolves to C:\\program.exe, which runs as the service (the hijack fires) — but the binary is the benign WindowsServiceExample.exe"
+    },
+    "EV-004": {
+      "event_record_id": "8701",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "sc delete 'Example Service' — a service-deletion command is issued (success not confirmed)"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "annotation_correction",
+      "event_record_id": "",
+      "note": "RESEARCHER-PRIVATE: corrected from weak to strong on 2026-07-15. The path interception is not merely possible: EV-003 proves C:\\program.exe executes under services.exe as SYSTEM. Requiring a second payload effect would ignore the completed privilege-relevant mechanism."
+    },
+    {
+      "topic": "scope_of_malicious_label",
+      "event_record_id": "8433",
+      "note": "WindowsServiceExample naming and the later cleanup command limit claims about operator intent and lasting persistence, but they do not make the completed SYSTEM-level path interception benign."
+    },
+    {
+      "topic": "cleanup_counter_evidence",
+      "event_record_id": "8701",
+      "note": "Keep the stop/delete/cleanup command as counter-evidence. It does not prove successful cleanup and cannot reverse the already observed EV-003 execution."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {
+      "EV-001": [
+        "parent_command_line"
+      ]
+    },
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "subtle_strong_unquoted_path_exemplar",
+      "under_triage_up_rank_test",
+      "heldout_generalization"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

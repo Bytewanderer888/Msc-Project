@@ -1,0 +1,35 @@
+{
+  "case_id": "ING-002",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that malware was executed or the host was compromised",
+      "that the downloaded file was run (the package shows no process executing the transferred object; only bitsadmin/certutil/cmd/powershell processes appear, and the object is characterized only by its 'license.txt' name, not its content)",
+      "that the transferred object was executed or caused code execution",
+      "that the transferred object is a benign license file (the evidence shows an object NAMED '[x]-license.txt' with no recorded content, hash, or reputation)",
+      "that both the bitsadmin and certutil download operations succeeded (A0 and EV-001 show invocation; only EV-002 confirms file creation by certutil)"
+    ]
+  },
+  "the_trap": "bitsadmin (A0) and certutil (EV-001) are each invoked with a raw.githubusercontent.com URL whose path ends in 'LICENSE.txt' and a destination under '...\\\\Temp\\\\2\\\\' — a classic LOLBIN download/staging pattern, with the bitsadmin invocation appearing in a powershell.exe -> cmd.exe chain (EV-003). EV-002 confirms that certutil created an object named '[x]-license.txt'; it does not prove that the separate bitsadmin transfer succeeded. The package records no content, hash, reputation, or subsequent execution of the object. The model must not treat the 'LICENSE.txt' name as proof of benign content or infer malware execution or host compromise from the transfer commands.",
+  "rationale": "EV-001 shows certutil invoked with -urlcache -split -f, while A0 shows bitsadmin invoked with /transfer against the same raw.githubusercontent.com path and a destination under '...\\\\Temp\\\\2\\\\'. EV-002 (Sysmon event_code 11) confirms that certutil created a file named '[x]-license.txt'; the package does not independently confirm that the bitsadmin transfer succeeded. The file is characterized only by its name, with no recorded content, hash, or reputation, and no process_create event shows it being executed. The download/staging behavior is suspicious, but the confirming malicious outcome is missing, so the evidence does not establish compromise.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

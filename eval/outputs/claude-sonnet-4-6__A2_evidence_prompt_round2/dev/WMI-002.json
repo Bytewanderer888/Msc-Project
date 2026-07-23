@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.93,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "DER-001"
+  ],
+  "rationale": "A complete WMI persistence triad was established by Administrator on host-01: an event filter (EV-001) triggers on notepad.exe process start, a CommandLineEventConsumer (A0) carries a heavily obfuscated PowerShell payload (no-profile, hidden window, base64+gzip encoded), and a filter-to-consumer binding (EV-002) links them \u2014 all created within milliseconds of each other. DER-001 confirms the decoded payload decompresses and executes an in-memory second-stage via IEX, a classic fileless execution pattern. EV-003 and EV-004 show the filter was subsequently modified (~6.5 hours later) to trigger on 'not-notepad.exe', suggesting the attacker adjusted the trigger condition, possibly to prevent repeated accidental firing or to evade detection \u2014 the subscription remains active. No evidence of cleanup or deletion is present, meaning the WMI subscription persists on the host.",
+  "recommended_action": "isolate"
+}

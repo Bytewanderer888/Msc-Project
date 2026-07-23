@@ -1,0 +1,130 @@
+{
+  "case_id": "ACCT-001",
+  "split": "dev",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1136.001/atomic_red_team/windows-sysmon.log",
+  "staged_export": "extracted/acct001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "4218",
+    "EV": [
+      "4259",
+      "4277",
+      "4542",
+      "4600",
+      "4582"
+    ]
+  },
+  "roles": {
+    "4218": "triggering alert: Sysmon process creation records cmd /c net user /add targeting local account 'T1136.001_CMD' — an account-creation command associated with T1136.001",
+    "4259": "Sysmon process creation records PowerShell New-LocalUser targeting another local account",
+    "4277": "Sysmon process creation records commands requesting creation of 'T1136.001_Admin' and addition to a local group",
+    "4542": "Sysmon process creation records a net user /del cleanup command targeting 'T1136.001_CMD' seconds later",
+    "4600": "Sysmon process creation records a net user /del cleanup command targeting 'T1136.001_Admin' seconds later",
+    "4582": "Sysmon process creation records a PowerShell Remove-LocalUser cleanup command targeting 'T1136.001_PowerShell' seconds later"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "create_local_account",
+    "security_proposition": "The observed account-management sequence established usable local-account persistence.",
+    "case_directory": "ACCT-001_create_local_account",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "acct001_create_account_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "Create Account (creation and cleanup commands observed)",
+      "candidate_attack_mapping": "T1136.001",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = MISSING. Sysmon EID 1 records commands requesting creation of three local accounts and a group addition, followed seconds later by cleanup commands targeting all three accounts. These process-creation events prove that the commands were launched, not that the account operations succeeded. The package also contains no evidence of a surviving account or subsequent account use. Calibration role = over-triage-prone (down-rank): a model must not infer confirmed backdoor persistence or High severity from the command lines alone. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "windows-sysmon.log is host win-dc-7216619, Sysmon only (EID 1). The net1.exe delegated children and cmd wrappers are redundant; single host, single sensor."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "acct001_create_account_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "account_creation_and_cleanup_commands",
+      "primary_host": "win-dc-7216619.attackrange.local",
+      "primary_user": "Administrator (via cmd/powershell)",
+      "boundary_definition": [
+        "A0 = net user /add of the first test account (4218).",
+        "EV = another account-creation command, an account-creation plus group-add command, and three cleanup commands targeting the three account names.",
+        "ABSENT from the scoped Sysmon source: a later ProcessCreate attributed to any of the three requested account names. Sysmon does not establish the underlying account-operation success or SAM state."
+      ],
+      "absence_audit": {
+        "confirmation": "Sysmon ProcessCreate attributed to T1136.001_CMD, T1136.001_PowerShell, or T1136.001_Admin after the creation commands",
+        "sensor": "Microsoft-Windows-Sysmon/Operational",
+        "host": "win-dc-7216619.attackrange.local",
+        "raw_source": "_splunk_ingest/acct001_create_account_sysmon.log",
+        "source_window_utc": {
+          "start": "2020-10-09T10:39:12.911642600Z",
+          "end": "2020-10-09T10:47:54.752898700Z"
+        },
+        "result": "zero process-creation events attributed to the three requested account names; cleanup commands targeting all three are present"
+      }
+    },
+    "main_alert_selection": {
+      "selection_method": "net user /add (local account creation) is a common T1136.001 backdoor-persistence detection.",
+      "selection_reason": "The creation commands are alarming; the nearby cleanup commands and absence of evidence confirming a surviving or used account make the outcome uncertain."
+    },
+    "correlation_keys": [
+      "host",
+      "time_window",
+      "account_name",
+      "create_then_delete"
+    ],
+    "event_groups": [
+      {
+        "group": "creations",
+        "event_record_ids": [
+          "4218",
+          "4259",
+          "4277"
+        ],
+        "description": "Process-creation events for net user and New-LocalUser account-creation commands; one command also requests a group addition."
+      },
+      {
+        "group": "deletions",
+        "event_record_ids": [
+          "4542",
+          "4600",
+          "4582"
+        ],
+        "description": "Process-creation events for cleanup commands targeting all three account names seconds later; command success is not established."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "missing_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: MISSING / over-triage-prone. Account-creation commands are alarming, but cleanup commands target all three accounts seconds later and the package does not establish a surviving or used backdoor account."
+      },
+      {
+        "topic": "created_then_deleted",
+        "event_record_id": "4542,4582,4600",
+        "note": "Cleanup commands targeting the same three account names are launched at 10:41:28-29; Sysmon EID 1 does not establish whether the requested deletions succeeded."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "account_missing_exemplar",
+        "over_triage_down_rank_test",
+        "persistence_surface_vs_outcome_rule_dev"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

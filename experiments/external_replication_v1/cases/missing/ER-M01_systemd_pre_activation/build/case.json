@@ -1,0 +1,23 @@
+{
+  "case_id": "ER-M01",
+  "builder": "experiments/external_replication_v1/build_cam_missing_cases.py",
+  "source_archive": "data_sources/cam_lds/manifestations_raw.zip",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "archive_member": "manifestations_raw/steps/4-13/inetfw/logs/log/auth.log",
+      "line_number": 1,
+      "record_sha256": "d383cabaf15a39f10529c41fe620da32da45027438325f918e3aee77c80bde12"
+    },
+    {
+      "evidence_id": "EV-001",
+      "archive_member": "manifestations_raw/steps/4-12/inetfw/logs/log/audit/audit.log",
+      "line_number": 3,
+      "record_sha256": "d54c0ef34b577e67391e635acbbe795b3f79310d742b2262fb9f589d707fe7e3"
+    }
+  ],
+  "literal_redactions": [
+    "service filename auditf -> [x]",
+    "host inetfw -> gateway-01"
+  ]
+}

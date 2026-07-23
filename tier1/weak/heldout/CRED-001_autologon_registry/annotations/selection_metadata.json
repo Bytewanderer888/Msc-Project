@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0",
+  "case_id": "CRED-001",
+  "case_name": "autologon_registry_creds_reverted",
+  "security_proposition": "The observed AutoLogon registry writes are adversary-driven credential exposure or theft.",
+  "case_directory": "CRED-001_autologon_registry",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "Credentials in registry: AutoLogon set then reverted",
+    "candidate_attack_mapping": "T1552.002",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = WEAK. AutoLogon username and password values are written to Winlogon. A later event shows DefaultPassword deletion, but deletion of DefaultUserName is not evidenced. No read, use, exfiltration, or authentication follow-on is observed. Intent remains ambiguous. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1552.002/autoadminlogon/windows-sysmon.log",
+    "original_filename": "windows-sysmon.log",
+    "stored_filename": "cred001_autologon_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "dbeffd8bf951771952046f3d81444f16e444a8470bab33d1442c20f69ab6bd19",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "host filter = win-dc-456 (multi-host log)."
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/cred001_events.json",
+    "related_events": "extracted/cred001_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "win-dc-456.attackrange.local",
+    "boundary_definition": [
+      "A0 = the DefaultUserName write; EV = the DefaultPassword write, the two EID13 sets, and the EID12 delete (revert).",
+      "No credential read/exfil/use — outcome absent; the value is reverted."
+    ],
+    "time_window_utc": {
+      "start": "2021-09-06T14:02:45.638216300Z",
+      "end": "2021-09-06T14:03:32.881351300Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "48598",
+    "process_guid": "{323FE7D8-1F85-6136-7A09-00000000F001}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "48598",
+      "48607",
+      "48606",
+      "48615",
+      "48813"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "48598",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: reg add Winlogon /v DefaultUserName /d administrator — writing plaintext AutoLogon credentials to the registry (T1552.002)"
+    },
+    "EV-001": {
+      "event_record_id": "48606",
+      "event_type": "registry_value_set",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "EID13: DefaultUserName set = administrator"
+    },
+    "EV-002": {
+      "event_record_id": "48607",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "reg add Winlogon /v DefaultPassword /d 12345 — the plaintext password value"
+    },
+    "EV-003": {
+      "event_record_id": "48615",
+      "event_type": "registry_value_set",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "EID13: DefaultPassword set = 12345"
+    },
+    "EV-004": {
+      "event_record_id": "48813",
+      "event_type": "registry_object_change",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "EID12: DefaultPassword value DELETED (regedit cleanup) — the credential is removed shortly after"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "weak_creds",
+      "note": "WEAK / over-triage-prone: AutoLogon values are written and DefaultPassword is later deleted; no read, use, exfiltration, or authentication follow-on is evidenced."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {
+      "12345": "[redacted-password]"
+    }
+  },
+  "experimental_role": {
+    "used_for": [
+      "weak_cred_access_exemplar",
+      "over_triage_down_rank_test"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

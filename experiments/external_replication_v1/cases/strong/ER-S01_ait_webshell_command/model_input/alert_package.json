@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-S01",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "web-01.corp.local"
+    ],
+    "users": [],
+    "time_window_utc": {
+      "start": "2022-01-24T03:59:14Z",
+      "end": "2022-01-24T03:59:14Z"
+    },
+    "event_count": 1,
+    "event_types_present": [
+      "http_access"
+    ],
+    "sourcetypes_present": [
+      "apache_access"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2022-01-24T03:59:14Z",
+    "event_type": "http_access",
+    "source_event": {
+      "provider": "Apache HTTP Server",
+      "channel": "/var/log/apache2/intranet-access.log",
+      "event_code": 0,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "web-01.corp.local",
+    "attributes": {
+      "source_ip": "external-01",
+      "http_method": "GET",
+      "url_path": "/wp-content/uploads/2022/01/ekmkimzkps-1642996700.9285.php",
+      "query_parameter": "wp_meta=[encoded-data]",
+      "http_status": "200",
+      "response_bytes": "507686",
+      "user_agent": "python-requests/2.27.1"
+    }
+  },
+  "evidence_items": [],
+  "deterministic_derivations": [
+    {
+      "derivation_id": "DER-001",
+      "derivation_method": "URL-decode wp_meta, then Base64-decode as UTF-8 JSON; redact password argument",
+      "source_evidence_id": "A0",
+      "source_field": "attributes.query_parameter",
+      "derived_field": "decoded_argument_vector",
+      "value": "[\"mysql\", \"-u\", \"wordpress\", \"-p[redacted-password]\", \"wordpress_db\", \"-e\", \"\\\"select * from wp_users\\\"\"]"
+    }
+  ]
+}

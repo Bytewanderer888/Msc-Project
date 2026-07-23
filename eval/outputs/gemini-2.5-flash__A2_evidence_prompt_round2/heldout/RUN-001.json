@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002"
+  ],
+  "rationale": "A file named 'kxwn.lock' was created in AppData\\Roaming\\Microsoft by certutil.exe (EV-001). Subsequently, rundll32.exe executed this 'kxwn.lock' file (A0), which then initiated an outbound network connection to a private IP address on port 443 (EV-002). This sequence of events strongly suggests the execution of malicious code and subsequent command and control communication.",
+  "recommended_action": "isolate"
+}

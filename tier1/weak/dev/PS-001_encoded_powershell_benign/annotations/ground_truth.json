@@ -1,0 +1,37 @@
+{
+  "case_id": "PS-001",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002"
+    ],
+    "counter_evidence": [
+      "EV-004",
+      "EV-005",
+      "EV-007",
+      "EV-008"
+    ],
+    "must_not_assert": [
+      "credentials were dumped from LSASS (the LSASS accesses are lsass.exe -> powershell.exe, the reversed direction (LSASS opening a handle to PowerShell), not PowerShell reading LSASS memory)",
+      "the payload executed a specific action (the C2 exec-wrapper reads its command from STDIN, which is absent from the capture)",
+      "a confirmed compromise occurred"
+    ]
+  },
+  "the_trap": "An encoded PowerShell execution chain with inline compilation can be over-read as a confirmed credential-dumping compromise. The command supplied to the decoded STDIN wrapper is unavailable, while the LSASS accesses run in the opposite direction from the claimed dump.",
+  "rationale": "A0/EV-001/EV-002 record an encoded PowerShell execution chain, and the visible descendants and artifacts show inline compilation. This is a genuine suspicious signal, but its meaning remains ambiguous because the command supplied to the decoded STDIN wrapper is unavailable. EV-004/EV-005/EV-007/EV-008 show lsass.exe as the source accessing PowerShell, not PowerShell reading LSASS. The package therefore supports suspicious weak evidence, not confirmed credential dumping or compromise.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

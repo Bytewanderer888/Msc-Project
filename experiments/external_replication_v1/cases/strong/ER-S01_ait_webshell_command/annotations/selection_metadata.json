@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-S01",
+  "case_name": "ait_webshell_command",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "A command-capable PHP endpoint under the WordPress uploads path handled the observed database-query request.",
+  "attack_category": {
+    "category": "Server Software Component: Web Shell",
+    "candidate_attack_mapping": "T1505.003",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "AIT Alert Data Set",
+    "scenario": "russellmitchell",
+    "capture_cluster": "ait-russellmitchell",
+    "telemetry_depth": "single_source",
+    "sensors": [
+      "Apache access log surfaced by AMiner"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "AIT scenario and attack-phase labels",
+      "AMiner analysis-component name and message",
+      "raw password",
+      "condition, verdict, severity, action, ATT&CK mapping"
+    ],
+    "deterministic_derivations": [
+      "DER-001"
+    ]
+  },
+  "operational_response_family": "network_blocking",
+  "nearest_frozen_case": null,
+  "differentiation": "No frozen case contains Apache/webshell request evidence or a server-side command endpoint."
+}

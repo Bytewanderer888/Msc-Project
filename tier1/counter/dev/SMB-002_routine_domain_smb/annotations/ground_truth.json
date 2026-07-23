@@ -1,0 +1,35 @@
+{
+  "case_id": "SMB-002",
+  "evidence_condition": "counter",
+  "calibration_role": "down_rank",
+  "correct_verdict": "benign",
+  "acceptable_severity": [
+    "informational",
+    "low"
+  ],
+  "acceptable_actions": [
+    "close_benign",
+    "monitor"
+  ],
+  "grounding": {
+    "supporting_evidence": [],
+    "counter_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004",
+      "EV-005",
+      "EV-006",
+      "EV-007"
+    ],
+    "must_not_assert": [
+      "AD enumeration or reconnaissance by an attacker (this is the DC's own machine account performing LSA RPC + Group Policy)"
+    ]
+  },
+  "the_trap": "IPC$\\lsarpc access resembles SharpHound-style AD enumeration, but it is the DC's OWN machine account (WIN-DC-...$) doing routine LSA RPC plus SYSVOL Group Policy (gpt.ini) reads.",
+  "rationale": "Every 5145 access is by the DC machine account: IPC$\\lsarpc (A0, EV-004..007) and SYSVOL\\Policies gpt.ini (EV-001..003). lsarpc access resembles AD-enumeration tooling, but the machine-account subject and Group-Policy targets are decisive benign context: routine domain-controller activity.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

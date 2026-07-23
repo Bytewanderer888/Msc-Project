@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "The `certutil.exe` utility was used to download an executable from a remote IP (10.0.2.13:8080) to a temporary directory (A0, EV-001). This downloaded executable (`qSwUwejx.exe`) was then immediately executed (EV-002) by the Administrator user. Subsequently, this newly executed process initiated an outbound network connection to a different port (4444) on the same remote IP (10.0.2.13) (EV-003), strongly indicating command and control activity.",
+  "recommended_action": "isolate"
+}

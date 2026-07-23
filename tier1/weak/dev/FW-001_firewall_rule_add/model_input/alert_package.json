@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0",
+  "case_id": "FW-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01"
+    ],
+    "users": [
+      "host-01\\user-01"
+    ],
+    "time_window_utc": {
+      "start": "2020-10-21T04:19:04.410Z",
+      "end": "2020-10-21T04:19:09.135Z"
+    },
+    "event_count": 5,
+    "event_types_present": [
+      "process_create",
+      "registry_object_change",
+      "registry_value_set"
+    ],
+    "sourcetypes_present": [
+      "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-10-21T04:19:04.410Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "1732"
+    },
+    "computer": "host-01",
+    "attributes": {
+      "process_guid": "{39e4a257-b6b8-5f8f-710c-000000000700}",
+      "process_id": "10188",
+      "image": "C:\\Windows\\System32\\netsh.exe",
+      "original_file_name": "netsh.exe",
+      "command_line": "netsh  advfirewall firewall add rule name=\"[x] testing\" action=allow dir=in protocol=TCP localport=450",
+      "current_directory": "C:\\Users\\user-01\\",
+      "user": "host-01\\user-01",
+      "integrity_level": "High",
+      "hashes": "SHA1=E7A3B17F625283E3064D91A988D0B1694BA3E9B8,MD5=79CBBF946E797103BED792740AEBFEC1,SHA256=90F0822D26680C8FFD703A080C876F87695580747A3704C169E39E1A8802EA38,IMPHASH=90B4317BE51850B8EF9F14EB56FB7DDC",
+      "parent_process_guid": "{39e4a257-b6a7-5f8f-6f0c-000000000700}",
+      "parent_process_id": "4160",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"C:\\windows\\system32\\cmd.exe\" "
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-10-21T04:19:04.510Z",
+      "event_type": "registry_value_set",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 13,
+        "event_record_id": "1851"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "process_guid": "{39e4a257-f137-5f8b-4500-000000000700}",
+        "image": "C:\\windows\\system32\\svchost.exe",
+        "target_object": "HKLM\\System\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\FirewallRules\\{F7259D6F-D580-4DF1-8371-60520B42164D}",
+        "details": "v2.30|Action=Allow|Active=TRUE|Dir=In|Protocol=6|LPort=450|Name=[x] testing|",
+        "registry_event": "SetValue"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2020-10-21T04:19:04.510Z",
+      "event_type": "registry_value_set",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 13,
+        "event_record_id": "1853"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "process_guid": "{39e4a257-f137-5f8b-4500-000000000700}",
+        "image": "C:\\windows\\system32\\svchost.exe",
+        "target_object": "HKLM\\System\\CurrentControlSet\\Services\\SharedAccess\\Epoch\\Epoch",
+        "details": "DWORD (0x0000025f)",
+        "registry_event": "SetValue"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2020-10-21T04:19:09.027Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "2081"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "process_guid": "{39e4a257-b6bd-5f8f-730c-000000000700}",
+        "process_id": "9812",
+        "image": "C:\\Windows\\System32\\netsh.exe",
+        "original_file_name": "netsh.exe",
+        "command_line": "netsh  advfirewall firewall delete rule name=\"[x] testing\" protocol=TCP localport=450 ",
+        "current_directory": "C:\\Users\\user-01\\",
+        "user": "host-01\\user-01",
+        "integrity_level": "High",
+        "hashes": "SHA1=E7A3B17F625283E3064D91A988D0B1694BA3E9B8,MD5=79CBBF946E797103BED792740AEBFEC1,SHA256=90F0822D26680C8FFD703A080C876F87695580747A3704C169E39E1A8802EA38,IMPHASH=90B4317BE51850B8EF9F14EB56FB7DDC",
+        "parent_process_guid": "{39e4a257-b6a7-5f8f-6f0c-000000000700}",
+        "parent_process_id": "4160",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\windows\\system32\\cmd.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2020-10-21T04:19:09.135Z",
+      "event_type": "registry_object_change",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 12,
+        "event_record_id": "2206"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "process_guid": "{39e4a257-f137-5f8b-4500-000000000700}",
+        "process_id": "2948",
+        "image": "C:\\windows\\system32\\svchost.exe",
+        "target_object": "HKLM\\System\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\FirewallRules\\{F7259D6F-D580-4DF1-8371-60520B42164D}"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

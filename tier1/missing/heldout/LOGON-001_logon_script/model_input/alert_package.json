@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LOGON-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2021-09-27T09:27:14.875116400Z",
+      "end": "2021-09-27T09:27:14.880774500Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "process_create",
+      "registry_value_set"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2021-09-27T09:27:14.880774500Z",
+    "event_type": "registry_value_set",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 13,
+      "event_record_id": "1057604"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{5EBD8912-8E72-6151-D300-00000000FD01}",
+      "image": "C:\\Windows\\system32\\reg.exe",
+      "target_object": "HKU\\S-1-5-21-2741910449-3045839080-4200281267-500\\Environment\\UserInitMprLogonScript",
+      "details": "C:\\Windows\\System32\\calc.exe",
+      "registry_event": "SetValue"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2021-09-27T09:27:14.875116400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "1057596"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{5EBD8912-8E72-6151-D300-00000000FD01}",
+        "process_id": "5864",
+        "image": "C:\\Windows\\System32\\reg.exe",
+        "original_file_name": "reg.exe",
+        "command_line": "reg  add HKCU\\Environment /v UserInitMprLogonScript /t REG_SZ /d C:\\Windows\\System32\\calc.exe",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=59A22FA6CF85026BB6BC69A1ADD75C50,SHA256=9E28034CE3AEEA6951F790F8997DF44CFBF80BEFF9FB17413DBA317016A716AD,IMPHASH=EE7EB7FA7D163340753B7223ADA14352",
+        "parent_process_guid": "{5EBD8912-8E1C-6151-C800-00000000FD01}",
+        "parent_process_id": "3608",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" "
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

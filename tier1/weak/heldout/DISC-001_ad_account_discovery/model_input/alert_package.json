@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0",
+  "case_id": "DISC-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2021-08-24T09:32:05.897869500Z",
+      "end": "2021-08-24T09:32:09.470305500Z"
+    },
+    "event_count": 6,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2021-08-24T09:32:05.897869500Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "48627"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{80A11F3A-BC95-6124-7609-00000000F001}",
+      "process_id": "7144",
+      "image": "C:\\Windows\\System32\\net.exe",
+      "original_file_name": "net.exe",
+      "command_line": "net  user /domain",
+      "current_directory": "C:\\Temp\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=C6B6DAA95CEA707F8D986D933E4A9596,SHA256=FDDC5F29F779A6EF73D70A2C551397FDEE63F549F2BCE4FE6A7AEEDC11F4F72E,IMPHASH=C41B15F592DE4589047CE5119CE87468",
+      "parent_process_guid": "{80A11F3A-B9A5-6124-1609-00000000F001}",
+      "parent_process_id": "4404",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"cmd.exe\" /s /k pushd \"C:\\Temp\""
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2021-08-24T09:32:05.997526700Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "48659"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{80A11F3A-BC95-6124-7A09-00000000F001}",
+        "process_id": "2332",
+        "image": "C:\\Windows\\System32\\net.exe",
+        "original_file_name": "net.exe",
+        "command_line": "net  users /domain",
+        "current_directory": "C:\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=C6B6DAA95CEA707F8D986D933E4A9596,SHA256=FDDC5F29F779A6EF73D70A2C551397FDEE63F549F2BCE4FE6A7AEEDC11F4F72E,IMPHASH=C41B15F592DE4589047CE5119CE87468",
+        "parent_process_guid": "{80A11F3A-B9A5-6124-1609-00000000F001}",
+        "parent_process_id": "4404",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"cmd.exe\" /s /k pushd \"C:\\Temp\""
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2021-08-24T09:32:06.063229700Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "48675"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{80A11F3A-BC96-6124-7C09-00000000F001}",
+        "process_id": "4508",
+        "image": "C:\\Windows\\System32\\dsquery.exe",
+        "original_file_name": "dsquery.exe",
+        "command_line": "dsquery  user",
+        "current_directory": "C:\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=0F173F934D6FED9B140763559F70DF65,SHA256=3201CC050F642D0B3AD759EDCF57287082200831A258FBC2F17B4C96B53A28A7,IMPHASH=D442E29184F60B794AD2B7508D569FC3",
+        "parent_process_guid": "{80A11F3A-B9A5-6124-1609-00000000F001}",
+        "parent_process_id": "4404",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"cmd.exe\" /s /k pushd \"C:\\Temp\""
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2021-08-24T09:32:06.285180800Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "48691"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{80A11F3A-BC96-6124-7D09-00000000F001}",
+        "process_id": "2664",
+        "image": "C:\\Windows\\System32\\wbem\\WMIC.exe",
+        "original_file_name": "wmic.exe",
+        "command_line": "wmic  /NAMESPACE:\\\\root\\directory\\ldap PATH ds_user GET ds_samaccountname /VALUE",
+        "current_directory": "C:\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=2CEE7F1AD77D8817E0F043E5E5ED1C83,SHA256=6679EA8FBEB539B5852CE8838420471FED0600F5050F3370DBB355DAC76BF072,IMPHASH=1B1A3F43BF37B5BFE60751F2EE2F326E",
+        "parent_process_guid": "{80A11F3A-B9A5-6124-1609-00000000F001}",
+        "parent_process_id": "4404",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"cmd.exe\" /s /k pushd \"C:\\Temp\""
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2021-08-24T09:32:06.614546300Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "48727"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{80A11F3A-BC96-6124-8009-00000000F001}",
+        "process_id": "6424",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "original_file_name": "PowerShell.EXE",
+        "command_line": "powershell.exe  get-wmiobject -class ds_user -namespace root\\directory\\ldap",
+        "current_directory": "C:\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+        "parent_process_guid": "{80A11F3A-BC96-6124-7F09-00000000F001}",
+        "parent_process_id": "4688",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "cmd.exe  /c powershell.exe get-wmiobject -class ds_user -namespace root\\directory\\ldap"
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2021-08-24T09:32:09.470305500Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "48785"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{80A11F3A-BC99-6124-8209-00000000F001}",
+        "process_id": "3396",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "original_file_name": "PowerShell.EXE",
+        "command_line": "powershell.exe  Get-ADUser -Filter *",
+        "current_directory": "C:\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+        "parent_process_guid": "{80A11F3A-BC99-6124-8109-00000000F001}",
+        "parent_process_id": "6396",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "cmd.exe  /c powershell.exe Get-ADUser -Filter *"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

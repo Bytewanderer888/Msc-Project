@@ -1,0 +1,19 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.72,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006",
+    "EV-007",
+    "EV-008",
+    "EV-009"
+  ],
+  "rationale": "The evidence shows a structured create-then-delete lifecycle for multiple scheduled tasks (persistence mechanisms triggering cmd.exe/calc.exe on logon, startup, and daily schedule) executed from the Temp directory under corp\\Administrator with High integrity, strongly resembling an automated security testing or red-team framework (A0, EV-001 through EV-004). The parent PowerShell process uses a base64-encoded command importing a module from a bracketed path (e.g., C:\\[x]\\invoke-[x]\\) which is a common red-team/C2 framework pattern (EV-004, EV-009). Critically, each created task is subsequently deleted within seconds (EV-005 through EV-009), suggesting a test-and-cleanup pattern rather than durable persistence; however, the tasks were confirmed created and the payload references (cmd.exe spawning calc.exe as SYSTEM) are classic persistence-technique validation payloads. No evidence of actual payload execution or lateral movement is present, but the encoded parent command, Temp-directory working path, and systematic persistence-technique enumeration warrant investigation rather than closure.",
+  "recommended_action": "investigate"
+}

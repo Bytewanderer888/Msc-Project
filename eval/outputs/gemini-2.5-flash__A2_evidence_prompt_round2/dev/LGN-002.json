@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "The process 'reg.exe' (EV-001) was used to modify the 'UserInitMprLogonScript' registry key (A0). This key is known for persistence, allowing an arbitrary script ('art.bat') to execute upon user logon. This is a clear attempt to establish persistence.",
+  "recommended_action": "escalate"
+}

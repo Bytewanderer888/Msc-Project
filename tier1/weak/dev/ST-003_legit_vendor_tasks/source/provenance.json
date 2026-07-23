@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1053.005/atomic_red_team/4698_windows-security.log",
+      "sha256": "caecdaf2af3ae17bb835f63f7bee7c7e6269f00d17aa6fe5423aaf8d0abb9c0a"
+    }
+  ],
+  "primary_host": "win-host-mhaag-attack-range-569",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Security (Microsoft-Windows-Security-Auditing 4698)"
+    ],
+    "why_single_source": "Source is the 4698 task-created audit log; scoped to host win-host-569's legitimate vendor tasks. The log's other host (win-dc-84) and its attack tasks (\\atomic, \\test) are excluded. Single-sensor (Security), single-host."
+  }
+}

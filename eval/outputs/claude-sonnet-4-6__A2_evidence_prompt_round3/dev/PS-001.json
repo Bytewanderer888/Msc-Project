@@ -1,0 +1,18 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.88,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-009",
+    "EV-010",
+    "EV-011",
+    "EV-012",
+    "EV-013",
+    "DER-001"
+  ],
+  "rationale": "The execution chain originates from WinRS (remote execution via WinRM) spawning cmd.exe (EV-001), which launches a PowerShell process with an encoded command (EV-002), which in turn spawns a child PowerShell process (A0) \u2014 indicating remote lateral movement or remote command execution by an attacker. The decoded payload (DER-001) implements a structured input-splitting wrapper that reads a piped payload, splits it on a null-byte delimiter, creates a ScriptBlock from the first part, and executes it \u2014 a classic Ansible/framework-style execution wrapper, but the multi-layer encoding, `-ExecutionPolicy Unrestricted`, and dynamic ScriptBlock creation from piped input are consistent with Ansible or similar automation frameworks; however, the subsequent spawning of csc.exe (EV-012) to compile a temporary DLL (EV-010, EV-011, EV-013) from a .cmdline file in the user's Temp directory is a strong indicator of in-memory .NET payload compilation, consistent with post-exploitation frameworks (e.g., Ansible's `win_shell` can trigger csc.exe, but the combination with remote WinRM entry, encoded multi-layer commands, and dynamic ScriptBlock execution from piped input raises the overall suspicion significantly). The lsass.exe process-access events (EV-004, EV-005, EV-007, EV-008) targeting the PowerShell processes via SSPI/RPC call stacks are consistent with Kerberos/NTLM authentication for the remote session rather than credential dumping, and do not independently confirm malicious intent, but the overall chain \u2014 remote WinRM entry, multi-layer encoded PowerShell, dynamic ScriptBlock execution, and on-disk DLL compilation \u2014 is highly consistent with a post-exploitation framework (e.g., Metasploit, CobaltStrike, or similar) operating under the Administrator account.",
+  "recommended_action": "isolate"
+}

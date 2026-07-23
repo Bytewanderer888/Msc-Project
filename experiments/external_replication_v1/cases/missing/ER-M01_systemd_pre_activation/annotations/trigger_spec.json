@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-M01",
+  "rule_id": "SAFESOC-TRG-ER-M01",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "title": "Root reloads the systemd manager configuration",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "source_defined_step",
+    "complete_legal_scope": true,
+    "description": "Every record in the corpus-provided log member or scenario step containing the alert stream.",
+    "source_units": [
+      "manifestations_raw/steps/4-13/inetfw/logs/log/auth.log"
+    ]
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "attributes.raw_text",
+        "op": "icontains",
+        "value": "sudo:"
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "regex",
+        "value": "COMMAND=/usr/bin/systemctl\\s+daemon-reload\\b"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "manifestations_raw/steps/4-13/inetfw/logs/log/auth.log:line:1"
+  },
+  "rationale": "A privileged systemd daemon reload is a persistence-relevant setup alert without asserting that any service was enabled or started."
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "BF-002",
+  "rule_id": "SAFESOC-TRG-BF-002",
+  "analytic_family_id": "AF-AUTH",
+  "analytic_pattern_id": "AUTH-02",
+  "source_description": "raw log (windows-security.log)",
+  "raw_source_event_count": 137,
+  "complete_scope_event_count": 137,
+  "predicate_match_count": 50,
+  "qualifying_group_count": 1,
+  "selection_strategy": "earliest_in_highest_count_group",
+  "selected_record_key": "335396",
+  "expected_record_key": "335396",
+  "selected_raw_sha256": "dcb2c69eb465989bb0c892953e72e07d60835136a4ace591760cff5f3f744b0c",
+  "pass": true
+}

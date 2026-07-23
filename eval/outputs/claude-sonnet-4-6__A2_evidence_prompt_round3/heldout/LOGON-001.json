@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.88,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "EV-001 confirms reg.exe was executed under corp\\Administrator at High integrity to set HKCU\\Environment\\UserInitMprLogonScript, a well-known persistence mechanism that causes the specified payload to execute at every user logon. A0 confirms the registry value was successfully written with the value 'C:\\Windows\\System32\\calc.exe' \u2014 while calc.exe itself is benign, its placement here is a classic stand-in/placeholder for a real payload and the persistence technique itself is unambiguously adversarial. The parent process is a bare cmd.exe with no command-line arguments, which is consistent with an interactive or scripted attacker shell rather than a legitimate administrative workflow. No evidence of a legitimate administrative or software-deployment context is present to explain this action.",
+  "recommended_action": "isolate"
+}

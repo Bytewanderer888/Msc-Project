@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-M03",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "server-01.corp.local"
+    ],
+    "users": [
+      "root"
+    ],
+    "time_window_utc": {
+      "start": "2025-09-24T06:48:52.324Z",
+      "end": "2025-09-24T06:48:52.324Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "file_removal_command",
+      "file_removal_result"
+    ],
+    "sourcetypes_present": [
+      "linux_audit"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2025-09-24T06:48:52.324Z",
+    "event_type": "file_removal_command",
+    "source_event": {
+      "provider": "Linux Audit subsystem",
+      "channel": "/var/log/audit/audit.log",
+      "event_code": 59,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "server-01.corp.local",
+    "attributes": {
+      "user": "root",
+      "image": "/usr/bin/rm",
+      "command_line": "rm [x].sh",
+      "target_filename": "[x].sh",
+      "terminal": "pts1"
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2025-09-24T06:48:52.324Z",
+      "event_type": "file_removal_result",
+      "source_event": {
+        "provider": "Linux Audit subsystem",
+        "channel": "/var/log/audit/audit.log",
+        "event_code": 263,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "server-01.corp.local",
+      "attributes": {
+        "process_name": "rm",
+        "operation": "unlinkat",
+        "status": "success=no",
+        "exit_code": "-2",
+        "error": "ENOENT"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

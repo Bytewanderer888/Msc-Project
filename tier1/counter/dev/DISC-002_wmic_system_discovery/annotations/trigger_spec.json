@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "case_id": "DISC-002",
+  "rule_id": "SAFESOC-TRG-DISC-002",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "title": "Operating-system discovery with WMIC",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events for the pre-declared ar-win-2 asset in the multi-host source log.",
+    "filter_predicate": {
+      "field": "computer",
+      "op": "ieq",
+      "value": "ar-win-2.attackrange.local"
+    }
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 1
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\wmic.exe"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\bOS\\s+get\\s+Version\\b"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "latest_match",
+    "justification": "The source contains periodic inventory cycles; the latest matching version query anchors the final complete cycle retained by the case."
+  },
+  "expected_a0": {
+    "record_key": "164519"
+  },
+  "rationale": "WMIC querying the operating-system version is a behavioural system-discovery rule; its parent context is not used to force the trigger."
+}

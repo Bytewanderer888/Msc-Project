@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "EV-001",
+    "EV-002",
+    "A0",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "PowerShell (EV-001, EV-002) modified the registry to hijack sdclt.exe (A0) via the 'DelegateExecute' method, which then launched control.exe (EV-003) and subsequently executed a hidden PowerShell command (EV-004) with a suspicious image-based data exfiltration/decoding technique. This is a clear UAC bypass and execution of obfuscated code.",
+  "recommended_action": "escalate"
+}

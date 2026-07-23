@@ -1,0 +1,28 @@
+{
+  "corpus": "CAM-LDS",
+  "upstream_version": "Zenodo record 18861762",
+  "doi": "10.5281/zenodo.18861762",
+  "source_url": "https://zenodo.org/records/18861762",
+  "license": "CC BY 4.0",
+  "retrieved_utc_date": "2026-07-22",
+  "files": [
+    {
+      "path": "manifestations_raw.zip",
+      "bytes": 535892639,
+      "sha256": "f9cd31ef5035863e35894a13aeb6d7963dcfa47f4ad7fa257db39298eca7ffc9",
+      "retention": "local_staging_cache"
+    },
+    {
+      "path": "labels.json",
+      "bytes": 791024,
+      "sha256": "cc27fee6d78b6de3d5d2172b334269bbcd9747dac80b6882e8982229b2540afe",
+      "retention": "portable_ground_truth_metadata"
+    },
+    {
+      "path": "attack_times.csv",
+      "bytes": 106740,
+      "sha256": "e300f508c5611e11a835d2dea575b152e85c9eed08ac3e945ec7f42cc0433d81",
+      "retention": "portable_ground_truth_metadata"
+    }
+  ]
+}

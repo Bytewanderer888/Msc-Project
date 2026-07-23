@@ -1,0 +1,11 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.78,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "EV-001 shows reg.exe executed at High integrity level by host-01\\user-01 from C:\\Users\\IT01-user-01\\Downloads\\ \u2014 an atypical working directory for administrative registry changes \u2014 with the explicit command to set HKLM\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Start to 4 (disabled), confirmed written by A0. Disabling the Windows Event Log service is a well-known defense-evasion technique used to suppress audit trails. The parent process is cmd.exe with no visible command-line arguments, providing no legitimate administrative context. However, no confirmed malware execution, lateral movement, or payload delivery is evidenced in this package, and the action could theoretically be a misconfigured administrative script; the absence of broader attack-chain evidence caps confidence below malicious.",
+  "recommended_action": "investigate"
+}

@@ -1,0 +1,10 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "The alert shows `reg.exe` being executed by `cmd.exe` to query a legitimate registry key related to Internet Explorer's version (A0). This is a common administrative or system information gathering command and does not indicate malicious activity without further context.",
+  "recommended_action": "close_benign"
+}

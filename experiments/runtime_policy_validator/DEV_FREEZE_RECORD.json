@@ -1,0 +1,70 @@
+{
+  "record_schema": "safesoc.runtime_policy_freeze.v1",
+  "frozen_utc": "2026-07-16T10:13:05Z",
+  "status": "superseded by runtime policy v1.1 before any held-out runtime evaluation",
+  "superseded_by": "1.1",
+  "supersession_reason": "Dev-only methodological review added a high-consequence target, downgraded citation omissions from block to review, and added a full-A4 oracle guard.",
+  "policy_version": "1.0",
+  "development_model_rounds": [
+    "gemini-2.5-flash__A2_evidence_prompt",
+    "gemini-2.5-flash__A2_evidence_prompt_round2",
+    "gemini-2.5-flash__A2_evidence_prompt_round3"
+  ],
+  "primary_target": "C2 or C4 calibration failure in the frozen A4 offline evaluator",
+  "secondary_target": "any active A4 check failure",
+  "default_deployment_profile": "consequence_gate",
+  "development_result": {
+    "rounds": 3,
+    "n_per_round": 21,
+    "calibration_positive_n_per_round": 12,
+    "hard_runtime_failure_n_per_round": 0,
+    "profiles": {
+      "integrity_only": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 12,
+        "tn": 9,
+        "recall": 0.0,
+        "precision": null,
+        "human_review_n": 0,
+        "human_review_rate": 0.0
+      },
+      "consequence_gate": {
+        "tp": 7,
+        "fp": 7,
+        "fn": 5,
+        "tn": 2,
+        "recall": 0.5833,
+        "precision": 0.5,
+        "human_review_n": 14,
+        "human_review_rate": 0.6667
+      },
+      "safety_first": {
+        "tp": 11,
+        "fp": 8,
+        "fn": 1,
+        "tn": 1,
+        "recall": 0.9167,
+        "precision": 0.5789,
+        "human_review_n": 19,
+        "human_review_rate": 0.9048,
+        "false_negative_cases": [
+          "SMB-002"
+        ]
+      }
+    }
+  },
+  "frozen_assets_sha256": {
+    "eval/runtime_policy_v1.0.json": "c6c99b5bac752cfe4e020666914d51b16aaef7afbb47a7d633b5bf704a04fb59",
+    "eval/runtime_validator.py": "918a1f28d57ae048923f50e0a6aca141c4b065e143f0c6b54b90fb6c21565cbf",
+    "eval/compare_runtime_to_oracle.py": "87b96d62fd9f08463aab756c2eb4bd8ade7354f93e28658208026a4c3c0be73b",
+    "eval/tests/test_runtime_validator.py": "7ca37fd125129f63c4a579ce7569a3e448ac8b201d903e21808bc577f8f87619",
+    "eval/reports/runtime_gemini-2.5-flash__A2_evidence_prompt_dev.json": "31f1307da687976827ea55bb9261fbbd40a00c0ddc20db2e81bf5f3dea5028ac",
+    "eval/reports/runtime_gemini-2.5-flash__A2_evidence_prompt_round2_dev.json": "7d64e8209789ba116bf102c776eb886c189455dd5d271e284417eb7a44069823",
+    "eval/reports/runtime_gemini-2.5-flash__A2_evidence_prompt_round3_dev.json": "86b095947004bb48d00b140aed38b724d67475b963ac3e2d87d359bef81bcdac",
+    "eval/reports/runtime_vs_A4_gemini-2.5-flash__A2_evidence_prompt_dev_calibration.json": "7bd7524919c9ed2e615c5e2a068f808b4b1bfe106f88799749c02df7ef5a2bc5",
+    "eval/reports/runtime_vs_A4_gemini-2.5-flash__A2_evidence_prompt_round2_dev_calibration.json": "d3cb5d51e0a9cba379954b85b77e192cd95d0601b2c0dcacd777091649ab5318",
+    "eval/reports/runtime_vs_A4_gemini-2.5-flash__A2_evidence_prompt_round3_dev_calibration.json": "7a07bd547ec47e509798ecf738c43f7330b9cab9ae88afffe2cb53c72ca922a8"
+  },
+  "post_freeze_rule": "Do not change policy behaviour after inspecting held-out runtime-to-A4 results. Any behaviour-changing revision requires a new policy version and must not replace the v1.0 held-out result."
+}

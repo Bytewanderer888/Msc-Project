@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-003"
+  ],
+  "rationale": "The main alert (A0) shows mimikatz.exe accessing lsass.exe, which is a known credential dumping technique. This is further corroborated by EV-003, where xordump.exe, another suspicious executable from a temporary directory, also accesses lsass.exe with extensive granted access (0x1fffff). The presence of multiple tools attempting to access LSASS strongly indicates malicious intent.",
+  "recommended_action": "isolate"
+}

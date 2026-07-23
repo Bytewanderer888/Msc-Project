@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1003.001/atomic_red_team/windows-sysmon.log",
+      "sha256": "a1905850598f1e943708c3329190e29c6cb046389c1575cb2afd6369b5f269f1"
+    }
+  ],
+  "primary_host": "win-dc-262.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "Source is the T1003.001/atomic_red_team main windows-sysmon.log, which contains TWO hosts (win-dc-807, win-dc-262); this case is scoped to win-dc-262's taskmgr process only. Single-SENSOR (Sysmon), single-HOST (win-dc-262). The log also holds other unrelated dumps (mimikatz/procdump/dumpert/notprocdump) that are NOT part of this case."
+  }
+}

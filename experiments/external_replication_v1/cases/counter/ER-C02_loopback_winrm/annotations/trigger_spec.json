@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-C02",
+  "rule_id": "SAFESOC-TRG-ER-C02",
+  "analytic_family_id": "AF-NET",
+  "analytic_pattern_id": "NET-01",
+  "title": "WinRM connection over the local IPv6 loopback interface",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events for asset DESKTOP-QGB4EQH in the corpus-native SIEM partition wazuh-alerts-4.x-2024.12.01; no timestamp or record identifier is used.",
+    "filter_predicate": {
+      "all": [
+        {
+          "field": "computer",
+          "op": "ieq",
+          "value": "DESKTOP-QGB4EQH"
+        },
+        {
+          "field": "attributes.source_partition",
+          "op": "eq",
+          "value": "wazuh-alerts-4.x-2024.12.01"
+        }
+      ]
+    }
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 3
+      },
+      {
+        "field": "attributes.destination_port",
+        "op": "eq",
+        "value": "5985"
+      },
+      {
+        "field": "attributes.source_ip",
+        "op": "regex",
+        "value": "(?i)^(?:::1|0:0:0:0:0:0:0:1)$"
+      },
+      {
+        "field": "attributes.destination_ip",
+        "op": "regex",
+        "value": "(?i)^(?:::1|0:0:0:0:0:0:0:1)$"
+      },
+      {
+        "field": "attributes.initiated",
+        "op": "ieq",
+        "value": "true"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "YaHngZMBrrvr6pEbFX2-"
+  },
+  "rationale": "A WinRM-port connection is a plausible remote-services alert even when later context establishes that both endpoints are loopback."
+}

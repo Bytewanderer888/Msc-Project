@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-003"
+  ],
+  "rationale": "The main alert (A0) shows PowerShell downloading a file from a suspicious shortened URL ('http://bit.ly/L3g1tCrad1e') using Net.WebClient, with the window style hidden. Evidence EV-003 confirms the successful creation of the downloaded file 'Default_File_Path.ps1' in the Administrator's directory. This behavior is indicative of a drive-by download or initial access attempt.",
+  "recommended_action": "isolate"
+}

@@ -1,0 +1,37 @@
+{
+  "case_id": "ER-S01",
+  "security_proposition": "A command-capable PHP endpoint under the WordPress uploads path handled the observed database-query request.",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "operational_response": {
+    "family": "network_blocking",
+    "note": "Block access to the endpoint and contain the web host under human approval; this metadata does not expand the model action enum."
+  },
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "DER-001"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that the database credentials were valid",
+      "that the SQL query returned WordPress user records because the response body is unavailable",
+      "that the package proves when or how the PHP file was uploaded",
+      "that persistence or activity outside the selected HTTP transaction is established"
+    ]
+  },
+  "the_trap": "The package is only one HTTP access record, but the uploads-path PHP target, command-bearing decoded argument vector, successful HTTP status, and large response make it more than an unconfirmed scan or upload precursor.",
+  "rationale": "A0 records an external client requesting a randomly named PHP file under a WordPress uploads directory with a wp_meta argument. DER-001 decodes that argument to a mysql command selecting from wp_users, with the password redacted. The server returned HTTP 200 and a 507686-byte response. This decisively establishes handling of a command-bearing webshell-style request, while not proving the unseen response contents or credential validity.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

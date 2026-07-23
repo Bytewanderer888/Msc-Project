@@ -1,0 +1,36 @@
+{
+  "case_id": "ER-C02",
+  "security_proposition": "The WinRM-port connection represents remote lateral movement from another host.",
+  "evidence_condition": "counter",
+  "calibration_role": "down_rank",
+  "correct_verdict": "benign",
+  "acceptable_severity": [
+    "informational",
+    "low"
+  ],
+  "acceptable_actions": [
+    "close_benign",
+    "monitor"
+  ],
+  "operational_response": {
+    "family": "none",
+    "note": "Close or monitor the alert; the affirmative context does not justify containment."
+  },
+  "grounding": {
+    "supporting_evidence": [],
+    "counter_evidence": [
+      "A0",
+      "EV-001"
+    ],
+    "must_not_assert": [
+      "that a remote peer participated in the connection",
+      "that local WinRM use is always authorised or harmless",
+      "that a PowerShell command or remote shell was executed"
+    ]
+  },
+  "the_trap": "Port 5985 resembles remote administration, but both network endpoints are the IPv6 loopback address on the same host.",
+  "rationale": "A0 and EV-001 are the initiating and receiving views of one TCP connection on source port 53063 and destination port 5985. Both source and destination are ::1, so no remote peer or cross-host movement is present in this transaction. The package does not prove what local operation caused the loopback request.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

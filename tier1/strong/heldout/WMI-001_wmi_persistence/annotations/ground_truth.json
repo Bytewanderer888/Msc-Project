@@ -1,0 +1,29 @@
+{
+  "case_id": "WMI-001",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "DER-001"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": []
+  },
+  "the_trap": "A WMI __EventFilter / CommandLineEventConsumer / FilterToConsumerBinding trio named 'WindowsParentalControlMigration' (EV-001 EventCode 19, A0 EventCode 20, EV-002 EventCode 21) reads like a legitimate Windows feature or routine system-management subscription, inviting under-triage. But the consumer's destination (A0) is a hidden PowerShell command (`-exec bypass -Noninteractive -windowstyle hidden -e <base64>`) whose decode (DER-001) disables TLS certificate validation and stages an IEX download from https://192.168.0.4:443/GoPro5/black/2018/_rp; the filter (EV-001) subscribes to `__InstanceCreationEvent` on `Win32_LoggedOnUser` matching '%user-02%', arming the consumer to fire on that user's logon. This is a complete WMI event-subscription persistence trio (T1546.003). The model must not under-rate on the legitimate-sounding consumer/filter name, and must not treat the created subscription as harmless because no execution of the payload is captured in the package.",
+  "rationale": "All three components of a WMI event-subscription persistence trio are recorded as Created within a 78ms window on host-01.corp.local: an __EventFilter (EV-001, EventCode 19) whose query fires on `__InstanceCreationEvent WITHIN 10 WHERE TargetInstance ISA 'Win32_LoggedOnUser' AND ... like '%user-02%'`, a CommandLineEventConsumer (A0, EventCode 20) named 'WindowsParentalControlMigration', and a FilterToConsumerBinding (EV-002, EventCode 21) joining them. The consumer's destination is a hidden `-exec bypass -Noninteractive -windowstyle hidden` PowerShell command; DER-001 deterministically decodes its base64 (UTF-16LE) argument to a payload that disables `ServerCertificateValidationCallback` and `IEX`-executes a string downloaded from https://192.168.0.4:443/GoPro5/black/2018/_rp. The benign-sounding 'WindowsParentalControlMigration' name is cover; the created subscription establishes T1546.003 persistence armed to run the payload on user-02 logon. The package does not include an event showing the consumer has fired, so this is confirmed persistence-mechanism installation rather than confirmed payload execution — which is sufficient for malicious/high and escalation. Up-rank past the benign-sounding name.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "low",
+  "confidence": 0.45,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "All four events show wmic.exe spawned by Amazon SSM Agent (ssm-agent-worker.exe, PID 616) within a ~350ms window, collectively querying DNSHostName, Domain, OS Caption, and OS Version \u2014 a classic host-discovery/enumeration pattern (EV-001, EV-002, EV-003, A0). While AWS SSM legitimately uses WMIC for inventory and compliance checks, the rapid sequential enumeration of multiple system properties in under half a second is atypical of standard SSM inventory runs and resembles reconnaissance activity. The SYSTEM integrity level and SSM parent are consistent with legitimate AWS management, but the pattern warrants verification that an authorized SSM document or Run Command triggered these queries rather than a compromised SSM channel or post-exploitation tool leveraging the agent.",
+  "recommended_action": "investigate"
+}

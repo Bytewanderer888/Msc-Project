@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "A0 shows certutil.exe creating a file with a '.lock' extension in a user's AppData\\Roaming directory. EV-001 then shows rundll32.exe executing this '.lock' file as a library, which is highly unusual and indicative of malicious code execution. The use of a common utility (certutil) for file creation and rundll32 for execution of a non-standard file type strongly suggests an attempt to evade detection and execute malicious payload.",
+  "recommended_action": "isolate"
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ING-002",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2021-03-24T21:49:22.223069500Z",
+      "end": "2021-03-24T21:49:24.396072700Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "file_create",
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2021-03-24T21:49:24.396072700Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "5917230"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{896A638B-B3E4-605B-6F69-00000000AE01}",
+      "process_id": "932",
+      "image": "C:\\Windows\\System32\\bitsadmin.exe",
+      "original_file_name": "bitsadmin.exe",
+      "command_line": "C:\\Windows\\System32\\bitsadmin.exe  /transfer qcxjb7 /Priority HIGH https://raw.githubusercontent.com/[x]/[x]/master/LICENSE.txt C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\[x]-license.txt ",
+      "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=F548717B821860C2B2242367732FE105,SHA256=E1057A20945BCE8F00C0BE5E3DB40C4A98AB33F42F4D2DF919AEDB0EF6651D6E,IMPHASH=CE0EB5030AA7D3C8606F11BBCA0BC912",
+      "parent_process_guid": "{896A638B-B3E4-605B-6E69-00000000AE01}",
+      "parent_process_id": "7500",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"C:\\Windows\\System32\\bitsadmin.exe /transfer qcxjb7 /Priority HIGH https://raw.githubusercontent.com/[x]/[x]/master/LICENSE.txt %temp%\\[x]-license.txt\" "
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2021-03-24T21:49:22.223069500Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "5917149"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{896A638B-B3E2-605B-6B69-00000000AE01}",
+        "process_id": "2208",
+        "image": "C:\\Windows\\System32\\certutil.exe",
+        "original_file_name": "CertUtil.exe",
+        "command_line": "certutil  -urlcache -split -f https://raw.githubusercontent.com/[x]/[x]/master/LICENSE.txt [x]-license.txt\"  ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=BF7CEA72AE186A10239F830F93492A73,SHA256=A50DFE408565C2BB011D013AC43E616B2A595B1D06EB9B083F519672732498DA,IMPHASH=442218E88D4D6AA0BE3165DD7B20A4C4",
+        "parent_process_guid": "{896A638B-B3E2-605B-6A69-00000000AE01}",
+        "parent_process_id": "5720",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"cmd /c certutil -urlcache -split -f https://raw.githubusercontent.com/[x]/[x]/master/LICENSE.txt [x]-license.txt\"  "
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2021-03-24T21:49:22.541643000Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "5917171"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{896A638B-B3E2-605B-6B69-00000000AE01}",
+        "process_id": "2208",
+        "image": "C:\\Windows\\system32\\certutil.exe",
+        "target_filename": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\[x]-license.txt",
+        "creation_utc_time": "2021-03-23 13:43:55.516"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2021-03-24T21:49:24.376149800Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "5917221"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{896A638B-B3E4-605B-6E69-00000000AE01}",
+        "process_id": "7500",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"C:\\Windows\\System32\\bitsadmin.exe /transfer qcxjb7 /Priority HIGH https://raw.githubusercontent.com/[x]/[x]/master/LICENSE.txt %%temp%%\\[x]-license.txt\" ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{896A638B-FBAD-6058-BE11-00000000AE01}",
+        "parent_process_id": "4492",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" "
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

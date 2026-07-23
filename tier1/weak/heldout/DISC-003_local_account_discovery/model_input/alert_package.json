@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0",
+  "case_id": "DISC-003",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\user-01"
+    ],
+    "time_window_utc": {
+      "start": "2021-08-24T21:37:13.448227800Z",
+      "end": "2021-08-24T21:37:22.665376000Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2021-08-24T21:37:13.455304000Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "30727372"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{B81B27B7-6689-6125-C400-01000000C801}",
+      "process_id": "6160",
+      "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "original_file_name": "PowerShell.EXE",
+      "command_line": "powershell.exe  Get-LocalUser",
+      "current_directory": "C:\\Users\\user-01\\",
+      "user": "corp\\user-01",
+      "integrity_level": "Medium",
+      "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+      "parent_process_guid": "{B81B27B7-6689-6125-C300-01000000C801}",
+      "parent_process_id": "7096",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "cmd.exe  /c powershell.exe Get-LocalUser"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2021-08-24T21:37:13.448227800Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "30727364"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{B81B27B7-6689-6125-C300-01000000C801}",
+        "process_id": "7096",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "cmd.exe  /c powershell.exe Get-LocalUser",
+        "current_directory": "C:\\Users\\user-01\\",
+        "user": "corp\\user-01",
+        "integrity_level": "Medium",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{B81B27B7-6638-6125-B000-01000000C801}",
+        "parent_process_id": "1208",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2021-08-24T21:37:22.657541900Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "30727454"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{B81B27B7-6692-6125-C800-01000000C801}",
+        "process_id": "1288",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "cmd.exe  /c powershell.exe Get-WmiObject Win32_UserAccount",
+        "current_directory": "C:\\Users\\user-01\\",
+        "user": "corp\\user-01",
+        "integrity_level": "Medium",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{B81B27B7-6638-6125-B000-01000000C801}",
+        "parent_process_id": "1208",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2021-08-24T21:37:22.665376000Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "30727462"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{B81B27B7-6692-6125-C900-01000000C801}",
+        "process_id": "5308",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "original_file_name": "PowerShell.EXE",
+        "command_line": "powershell.exe  Get-WmiObject Win32_UserAccount",
+        "current_directory": "C:\\Users\\user-01\\",
+        "user": "corp\\user-01",
+        "integrity_level": "Medium",
+        "hashes": "MD5=097CE5761C89434367598B34FE32893B,SHA256=BA4038FD20E474C047BE8AAD5BFACDB1BFC1DDBE12F803F473B7918D8D819436,IMPHASH=CAEE994F79D85E47C06E5FA9CDEAE453",
+        "parent_process_guid": "{B81B27B7-6692-6125-C800-01000000C801}",
+        "parent_process_id": "1288",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "cmd.exe  /c powershell.exe Get-WmiObject Win32_UserAccount"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

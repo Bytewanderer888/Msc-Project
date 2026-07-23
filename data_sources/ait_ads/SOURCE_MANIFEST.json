@@ -1,0 +1,24 @@
+{
+  "corpus": "AIT Alert Data Set",
+  "upstream_version": "1",
+  "doi": "10.5281/zenodo.8263181",
+  "source_url": "https://zenodo.org/records/8263181",
+  "license": "CC BY 4.0",
+  "retrieved_utc_date": "2026-07-22",
+  "files": [
+    {
+      "path": "ait_ads.zip",
+      "bytes": 96202946,
+      "upstream_md5": "43db6b1f0996e0024befd617706c50e9",
+      "sha256": "9f0595c4ebe56ac9223763881f55369dd4f249a8108064e4ae108eb3309aeeb9",
+      "retention": "local_staging_cache"
+    },
+    {
+      "path": "labels.csv",
+      "bytes": 3703,
+      "upstream_md5": "60ff33796c77fd2136c4d1a4bc841bd9",
+      "sha256": "633e09b42772eabbbe5b48598220860eead60b7352efb01973fc45a5034290c0",
+      "retention": "portable_ground_truth_metadata"
+    }
+  ]
+}

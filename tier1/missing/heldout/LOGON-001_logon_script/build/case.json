@@ -1,0 +1,79 @@
+{
+  "case_id": "LOGON-001",
+  "split": "heldout",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1037.001/logonscript_reg/sysmon.log",
+  "computer": "win-dc-429.attackrange.local",
+  "staged_export": "extracted/logon001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "1057604",
+    "EV": [
+      "1057596"
+    ]
+  },
+  "roles": {
+    "1057604": "triggering alert: EID13 registry SET of HKU\\...\\Environment\\UserInitMprLogonScript = C:\\Windows\\System32\\calc.exe — logon-script persistence (T1037.001)",
+    "1057596": "reg.exe performing the REG ADD that configures the UserInitMprLogonScript value"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "logon_script_post_delete_reconfiguration_unfired",
+    "security_proposition": "The selected final UserInitMprLogonScript configuration executed its configured target after A0.",
+    "case_directory": "LOGON-001_logon_script",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "logon001_logonscript_sysmon.log",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Logon-script persistence (selected post-delete reconfiguration, no subsequent firing observed)",
+      "candidate_attack_mapping": "T1037.001",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = MISSING. A UserInitMprLogonScript registry value is configured to C:\\Windows\\System32\\calc.exe in a final post-delete lifecycle. The same raw capture contains an earlier configuration that fired, but that earlier value was deleted before the selected A0. From A0 at 09:27:14.880Z through source end at 09:29:06.117Z, no subsequent userinit.exe -> calc.exe firing is observed. The bounded claim is that execution of the selected final configuration is not evidenced, not that the mechanism never fired anywhere in the capture. Role = down-rank: suspicious / low-medium / investigate. Do not leak."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "host filter = win-dc-429 (multi-host log)."
+    },
+    "case_scope": {
+      "primary_host": "win-dc-429.attackrange.local",
+      "boundary_definition": [
+        "A0 = the final EID13 UserInitMprLogonScript set at 09:27:14.880Z; EV = the correlated reg.exe REG ADD that wrote it.",
+        "Record 1057583 deleted the preceding value at 09:27:09.913Z, establishing a lifecycle boundary before the selected A0.",
+        "An earlier lifecycle (set record 1051834 at 09:18:30.392Z) fired via userinit.exe -> calc.exe (record 1055590 at 09:21:45.820Z) and was later deleted (record 1057290 at 09:25:44.328Z); it must not be described as if the capture never fired.",
+        "No subsequent userinit.exe -> calc.exe firing is observed after selected A0 through source end at 09:29:06.117Z."
+      ],
+      "absence_audit": {
+        "confirmation": "a post-A0 Sysmon ProcessCreate showing userinit.exe launching calc.exe",
+        "sensor": "Microsoft-Windows-Sysmon/Operational",
+        "host": "win-dc-429.attackrange.local",
+        "lifecycle_start": "2021-09-27T09:27:09.913407300Z (record 1057583 DeleteValue)",
+        "anchor": "2021-09-27T09:27:14.880774500Z (record 1057604 SetValue)",
+        "source_end": "2021-09-27T09:29:06.117482000Z",
+        "result": "zero post-A0 userinit.exe -> calc.exe ProcessCreate events",
+        "out_of_scope_match": "record 1055590 at 09:21:45.819888900Z belongs to an earlier configuration and precedes two deletion boundaries"
+      }
+    },
+    "curation_notes": [
+      {
+        "topic": "missing_outcome",
+        "note": "MISSING / over-triage-prone for the selected final post-delete lifecycle: the registry setup is visible, but no post-A0 userinit.exe -> calc.exe firing appears before source end. An earlier lifecycle did fire and is explicitly retained in the absence audit; the claim is bounded to the selected reconfiguration."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "missing_persistence_exemplar",
+        "over_triage_down_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

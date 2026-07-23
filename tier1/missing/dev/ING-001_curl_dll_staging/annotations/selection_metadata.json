@@ -1,0 +1,228 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ING-001",
+  "case_name": "curl_dll_staging",
+  "security_proposition": "The staged DLL was executed or loaded within the retained Sysmon window.",
+  "case_directory": "ING-001_curl_dll_staging",
+  "split": "dev",
+  "status": "audited_dev_2026-07-16",
+  "attack_category": {
+    "category": "Ingress Tool Transfer (download staged, not executed)",
+    "candidate_attack_mapping": "T1105",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = MISSING. curl.exe makes four insecure (-k) external downloads of AllTheThingsx64.dll to classic staging locations. No execution, image load, or rundll32/regsvr32 invocation of that object is present in the retained 0.46-second Sysmon source, and its content/reputation is not established by these events. The bounded confirming outcome is not evidenced. Calibration role = over-triage-prone (down-rank): a model must not conclude confirmed infection from staging alone. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1105/atomic_red_team/windows-sysmon_curl.log",
+    "original_filename": "windows-sysmon_curl.log",
+    "stored_filename": "ing001_curl_download_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "8f13a7382e2c6c2b32353971cd642fad77e929c7c26e37989bbeace4a0f381f5",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "windows-sysmon_curl.log is host win-dc-469, Sysmon only (EID 1 process-create + EID 11 file-create used; EID 7/10/12 curl-internal noise excluded). Single host, single sensor, verified."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "ing001_curl_download_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    }
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/ing001_events.json",
+    "related_events": "extracted/ing001_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "scope_type": "ingress_download_staged_not_executed",
+    "primary_host": "win-dc-469.attackrange.local",
+    "primary_user": "Administrator (via cmd.exe -> curl.exe)",
+    "boundary_definition": [
+      "A0 = the first curl download of AllTheThingsx64.dll to C:\\Users\\Public\\Music (34354060).",
+      "EV = the three further curl downloads (Public\\Music, ProgramData, Temp) and the four allthethingsx64.dll file-creates confirming the payload on disk.",
+      "EXCLUDED: the curl-internal image loads / process access / registry events (EID 7/10/12/5/25) that are download plumbing, not evidence.",
+      "ABSENT in the retained source (the crux): no execution (EID1), image load (EID7), or rundll32/regsvr32 invocation of allthethingsx64.dll. The source covers only the bounded download burst and must not support an unbounded claim that the object never executed later."
+    ],
+    "absence_audit": {
+      "confirmation": "Sysmon ProcessCreate, ImageLoad, or rundll32/regsvr32 invocation involving allthethingsx64.dll",
+      "sensor": "Microsoft-Windows-Sysmon/Operational",
+      "host": "win-dc-469.attackrange.local",
+      "raw_source": "_splunk_ingest/ing001_curl_download_sysmon.log",
+      "source_window_utc": {
+        "start": "2021-10-19T16:32:41.994656500Z",
+        "end": "2021-10-19T16:32:42.454400000Z"
+      },
+      "adequacy_note": "The retained source is a short approximately 0.46-second capture of the download burst; the claim is limited to execution not being evidenced within that source.",
+      "result": "zero matching execution, image-load, or rundll32/regsvr32 events"
+    },
+    "time_window_utc": {
+      "start": "2021-10-19T16:32:42.005417200Z",
+      "end": "2021-10-19T16:32:42.448856000Z"
+    }
+  },
+  "main_alert_selection": {
+    "selection_method": "A LOLBin/curl download of a DLL from an external URL to a staging path is a common T1105 detection trigger.",
+    "selection_reason": "34354060 is the first curl download; the following downloads and file-creates establish the staging, while the absence of execution is the point.",
+    "event_record_id": "34354060",
+    "process_guid": "{8B6011A9-F32A-616E-053B-01000000F101}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "host",
+      "time_window",
+      "Image==curl.exe",
+      "TargetFilename==allthethingsx64.dll",
+      "external_url"
+    ],
+    "included_event_record_ids": [
+      "34354060",
+      "34354105",
+      "34354107",
+      "34354151",
+      "34354153",
+      "34354196",
+      "34354198",
+      "34354241"
+    ],
+    "event_groups": [
+      {
+        "group": "downloads",
+        "event_record_ids": [
+          "34354060",
+          "34354107",
+          "34354153",
+          "34354198"
+        ],
+        "description": "Four curl downloads of AllTheThingsx64.dll to Public\\Music, ProgramData, and Temp."
+      },
+      {
+        "group": "payload_on_disk",
+        "event_record_ids": [
+          "34354105",
+          "34354151",
+          "34354196",
+          "34354241"
+        ],
+        "description": "The four allthethingsx64.dll file-creates."
+      }
+    ]
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "34354060",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: curl.exe -k https://github.com/.../AllTheThingsx64.dll -o c:\\users\\public\\music\\allthethingsx64.dll — an insecure external download of a DLL to a Public path, via cmd.exe"
+    },
+    "EV-001": {
+      "event_record_id": "34354105",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "file-create: allthethingsx64.dll written to C:\\Users\\Public\\Music (the payload lands on disk)"
+    },
+    "EV-002": {
+      "event_record_id": "34354107",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "second download: curl --output c:\\users\\public\\music\\allthethingsx64.dll"
+    },
+    "EV-003": {
+      "event_record_id": "34354151",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "file-create: allthethingsx64.dll (Public\\Music) from the second download"
+    },
+    "EV-004": {
+      "event_record_id": "34354153",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "third download: curl -o c:\\programdata\\allthethingsx64.dll"
+    },
+    "EV-005": {
+      "event_record_id": "34354196",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "file-create: allthethingsx64.dll written to C:\\ProgramData"
+    },
+    "EV-006": {
+      "event_record_id": "34354198",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "fourth download: curl -o C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\allthethingsx64.dll"
+    },
+    "EV-007": {
+      "event_record_id": "34354241",
+      "event_type": "file_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "file-create: allthethingsx64.dll written to the user Temp directory"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "missing_intent",
+      "event_record_id": "",
+      "note": "RESEARCHER-PRIVATE: MISSING / over-triage-prone. A DLL was staged to disk, but execution or loading is not evidenced within the short retained source and its malicious nature is unconfirmed."
+    },
+    {
+      "topic": "no_execution",
+      "event_record_id": "",
+      "note": "Verified within the retained 0.46-second source: no EID1 process with Image=allthethingsx64.dll, no EID7 image-load of it, and no rundll32/regsvr32 invocation. No claim is made about activity after the source ends."
+    },
+    {
+      "topic": "benign_source_hint",
+      "event_record_id": "34354060",
+      "note": "The download URL is github.com/redcanaryco/atomic-red-team/.../T1218.010/bin/AllTheThingsx64.dll — a known red-team test repository. A secondary counter-hint reinforcing that the payload's malice is unconfirmed."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "ingress_missing_exemplar",
+      "over_triage_down_rank_test",
+      "staging_without_execution_rule_dev"
+    ],
+    "eligible_for_final_heldout_metrics": false
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-05",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

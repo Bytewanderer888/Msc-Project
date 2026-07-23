@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "Multiple `certutil.exe` commands were executed by the Administrator user, including attempts to export private keys (A0, EV-001, EV-004) and list certificate stores (EV-003). This behavior is highly indicative of credential access or privilege escalation attempts, specifically targeting certificates, which can be used for authentication or code signing.",
+  "recommended_action": "isolate"
+}

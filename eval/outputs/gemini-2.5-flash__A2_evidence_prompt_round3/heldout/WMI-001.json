@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "DER-001"
+  ],
+  "rationale": "The creation of a WMI event consumer (A0), filter (EV-001), and binding (EV-002) with a highly obfuscated PowerShell command (DER-001) is indicative of persistence. The PowerShell command attempts to download and execute content from a suspicious IP address (192.168.0.4:443) after disabling SSL certificate validation, which is a common tactic for adversaries.",
+  "recommended_action": "isolate"
+}

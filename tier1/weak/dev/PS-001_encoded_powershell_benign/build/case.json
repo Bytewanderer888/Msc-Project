@@ -1,0 +1,160 @@
+{
+  "case_id": "PS-001",
+  "split": "dev",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1059.001/powershell_execution_policy/windows-sysmon.log",
+  "staged_export": "extracted/ps001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "93",
+    "EV": [
+      "60",
+      "73",
+      "87",
+      "88",
+      "89",
+      "107",
+      "108",
+      "109",
+      "110",
+      "126",
+      "127",
+      "128",
+      "154"
+    ]
+  },
+  "roles": {
+    "93": "triggering alert: powershell.exe executed with -EncodedCommand (execution-policy bypass)",
+    "60": "cmd.exe /C launched PowerShell (spawned by a remote WinRS session)",
+    "73": "parent powershell.exe (outer encoded layer)",
+    "87": "benign PSScriptPolicyTest artifact (runtime policy check)",
+    "88": "COUNTER: lsass.exe accessed powershell.exe (lsass is SOURCE, not target)",
+    "89": "COUNTER: lsass.exe accessed powershell.exe (lsass is SOURCE, not target)",
+    "107": "benign PSScriptPolicyTest artifact (runtime policy check)",
+    "108": "COUNTER: lsass.exe accessed the alert powershell (lsass is SOURCE)",
+    "109": "COUNTER: lsass.exe accessed the alert powershell (lsass is SOURCE)",
+    "110": "chcp.com child (code-page set by the wrapper)",
+    "126": "compiler input/output 40sjawwp.dll written by powershell",
+    "127": "compiler input 40sjawwp.cmdline written by powershell",
+    "128": "csc.exe compiler launched by the alert powershell",
+    "154": "csc.exe wrote 40sjawwp.dll (compiled output)"
+  },
+  "derivations": [
+    {
+      "id": "DER-001",
+      "from": "A0",
+      "field": "command_line",
+      "method": "base64_utf16le",
+      "as": "decoded_command",
+      "note": "Base64 (UTF-16LE) decode of the -EncodedCommand argument"
+    }
+  ],
+  "metadata": {
+    "case_name": "encoded_powershell_benign",
+    "security_proposition": "The encoded PowerShell chain performed malicious credential dumping or another identifiable malicious payload action.",
+    "case_directory": "PS-001_encoded_powershell_benign",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "ps001_execpolicy_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "PowerShell execution (encoded)",
+      "candidate_attack_mapping": "T1059.001",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = WEAK. The package contains a real encoded PowerShell execution chain and compiler artifacts, but the command supplied to the decoded STDIN wrapper is unavailable, so the meaning and outcome of the present activity remain ambiguous. The reversed LSASS access direction contradicts a credential-dumping interpretation. Calibration role = over-triage-prone (down-rank) + counter-evidence handling."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "The powershell-operational and security logs in this folder are DIFFERENT hosts than the Sysmon capture (win-dc-235). Tier-1 single-sensor."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "ps001_execpolicy_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_alert_process_tree",
+      "primary_host": "win-dc-235.attackrange.local",
+      "primary_user": "ATTACKRANGE\\Administrator",
+      "boundary_definition": [
+        "A0 = the executing encoded powershell (record 93).",
+        "EV = its process-tree lineage, the compiler artifacts, and the four lsass->powershell EID10 access events.",
+        "EXCLUDED: benign OS handle-opens (csrss/conhost/svchost EID10).",
+        "The activity is weak because suspicious execution and compilation are already visible, while their meaning remains ambiguous; STDIN is not treated as a named missing confirmation in an otherwise explicit precursor-to-outcome chain."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "powershell.exe with -EncodedCommand and ExecutionPolicy bypass is the T1059.001 detection.",
+      "selection_reason": "The executing (inner) encoded powershell is the focal event; its decoded command reveals a stdin wrapper."
+    },
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window",
+      "EID10 TargetProcessGuid==A0"
+    ],
+    "event_groups": [
+      {
+        "group": "process_tree",
+        "event_record_ids": [
+          "60",
+          "73",
+          "93",
+          "110",
+          "128"
+        ],
+        "description": "cmd -> powershell -> powershell(A0) -> chcp/csc lineage."
+      },
+      {
+        "group": "counter_evidence_lsass_direction",
+        "event_record_ids": [
+          "88",
+          "89",
+          "108",
+          "109"
+        ],
+        "description": "lsass.exe is the SOURCE accessing powershell (NOT powershell dumping lsass)."
+      },
+      {
+        "group": "artifacts",
+        "event_record_ids": [
+          "87",
+          "107",
+          "126",
+          "127",
+          "154"
+        ],
+        "description": "PSScriptPolicyTest files + csc compiler inputs/outputs."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "noise_exclusion",
+        "event_record_id": "",
+        "note": "~24 benign EID10 handle-opens by csrss/conhost/svchost excluded; OS plumbing, not security-relevant."
+      },
+      {
+        "topic": "direction_trap",
+        "event_record_id": "108,109",
+        "note": "lsass->powershell direction is the counter-evidence; a 'PowerShell accessed LSASS' claim is CONTRADICTED."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "powershell_weak_and_counter_exemplar",
+        "sufficiency_downgrade_test",
+        "counter_evidence_direction_test"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

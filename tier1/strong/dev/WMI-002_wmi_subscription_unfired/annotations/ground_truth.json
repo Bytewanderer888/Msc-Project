@@ -1,0 +1,36 @@
+{
+  "case_id": "WMI-002",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-004",
+      "DER-001"
+    ],
+    "counter_evidence": [
+      "EV-003"
+    ],
+    "must_not_assert": [
+      "the encoded PowerShell consumer fired or its payload executed; no matching process start or consumer execution is observed",
+      "the host experienced broader compromise, command-and-control, or downstream impact beyond the installed persistence mechanism",
+      "EV-003 or EV-004 deleted, disabled, or unbound the subscription, or made it logically impossible to fire; they record filter and binding modifications"
+    ]
+  },
+  "the_trap": "A0, EV-001, and EV-002 are not setup commands: Sysmon records the WMI consumer, filter, and binding with Operation=Created, confirming installation of a complete event-subscription persistence mechanism. DER-001 shows that the installed consumer carries a hidden self-decoding PowerShell IEX wrapper. EV-003 changes the filter query and EV-004 records the binding modification that follows; no consumer execution is observed. These later events limit downstream claims but do not erase the registered mechanism. Preserve malicious/high while not asserting that the payload fired.",
+  "rationale": "A0 records a CommandLineEventConsumer with Operation=Created and a hidden encoded PowerShell destination; DER-001 exposes a self-decoding IEX wrapper. EV-001 records the corresponding __EventFilter as Created, and EV-002 records the FilterToConsumerBinding as Created. Together these events directly confirm installation of a complete, offensively configured WMI persistence mechanism. EV-003 later changes the trigger from notepad.exe to not-notepad.exe, and EV-004 modifies the binding to the same named consumer/filter pair; neither event deletes the subscription. No matching process start or consumer execution is observed, so payload execution and broader compromise must not be claimed. The installed persistence mechanism itself is the decisive security-relevant outcome: malicious, high-critical, escalate.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

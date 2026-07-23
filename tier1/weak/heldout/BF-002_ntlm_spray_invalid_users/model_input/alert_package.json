@@ -1,0 +1,1378 @@
+{
+  "schema_version": "1.0",
+  "case_id": "BF-002",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "user-01"
+    ],
+    "time_window_utc": {
+      "start": "2022-09-08T19:03:49.876638000Z",
+      "end": "2022-09-08T19:03:50.057872900Z"
+    },
+    "event_count": 50,
+    "event_types_present": [
+      "failed_logon"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Security-Auditing"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2022-09-08T19:03:49.876638000Z",
+    "event_type": "failed_logon",
+    "source_event": {
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "channel": "Security",
+      "event_code": 4625,
+      "event_record_id": "335396"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "target_user_name": "VFRKKMDG",
+      "target_domain_name": "corp.local",
+      "logon_type": "2",
+      "ip_address": "-",
+      "ip_port": "-",
+      "workstation_name": "host-01",
+      "status": "0xc000006d",
+      "sub_status": "0xc0000064",
+      "failure_reason": "%%2313",
+      "logon_process": "Advapi  ",
+      "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+      "subject_user_name": "user-01",
+      "process_name": "C:\\Tools\\[x]\\[x].exe"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2022-09-08T19:03:49.878271900Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335397"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "AACECLCL",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2022-09-08T19:03:49.882291000Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335398"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "RAFNYQZG",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2022-09-08T19:03:49.884504100Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335399"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "LDKTTUTL",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2022-09-08T19:03:49.885965100Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335400"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "LMAMHCHF",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2022-09-08T19:03:49.888363300Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335401"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "OGACGGCM",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-006",
+      "event_time_utc": "2022-09-08T19:03:49.895395800Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335402"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "VHOTLYTE",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-007",
+      "event_time_utc": "2022-09-08T19:03:49.896984200Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335403"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "FKZGCKNF",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-008",
+      "event_time_utc": "2022-09-08T19:03:49.898388700Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335404"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "HRTQLQDO",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-009",
+      "event_time_utc": "2022-09-08T19:03:49.899684700Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335405"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "SZYRQWAE",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-010",
+      "event_time_utc": "2022-09-08T19:03:49.901131000Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335406"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "BXXLGZZN",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-011",
+      "event_time_utc": "2022-09-08T19:03:49.903194300Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335407"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "SVGXDBDE",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-012",
+      "event_time_utc": "2022-09-08T19:03:49.907835900Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335408"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "TUVONMBF",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-013",
+      "event_time_utc": "2022-09-08T19:03:49.909349400Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335409"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "DZBMABNJ",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-014",
+      "event_time_utc": "2022-09-08T19:03:49.910854700Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335410"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "KUFEMBYH",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-015",
+      "event_time_utc": "2022-09-08T19:03:49.912352200Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335411"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "RFXPKGKR",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-016",
+      "event_time_utc": "2022-09-08T19:03:49.916310600Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335412"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "VTYWBLRP",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-017",
+      "event_time_utc": "2022-09-08T19:03:49.917805300Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335413"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "VSHGYNNQ",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-018",
+      "event_time_utc": "2022-09-08T19:03:49.919686600Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335414"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "IWNJWZRS",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-019",
+      "event_time_utc": "2022-09-08T19:03:49.932812700Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335415"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "VNXHOMVX",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-020",
+      "event_time_utc": "2022-09-08T19:03:49.935747900Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335416"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "PJRGDQIY",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-021",
+      "event_time_utc": "2022-09-08T19:03:49.939141100Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335417"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "CPIUTSJD",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-022",
+      "event_time_utc": "2022-09-08T19:03:49.942956900Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335418"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "SGGNTBUW",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-023",
+      "event_time_utc": "2022-09-08T19:03:49.944570000Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335419"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "BGANNKAJ",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-024",
+      "event_time_utc": "2022-09-08T19:03:49.948484100Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335420"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "XKROWGMR",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-025",
+      "event_time_utc": "2022-09-08T19:03:49.950459700Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335421"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "OOGGQXYD",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-026",
+      "event_time_utc": "2022-09-08T19:03:49.959008100Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335422"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "EUOHFHDN",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-027",
+      "event_time_utc": "2022-09-08T19:03:49.961324400Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335423"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "OVEXQUKS",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-028",
+      "event_time_utc": "2022-09-08T19:03:49.965633900Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335424"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "PZXIAUHM",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-029",
+      "event_time_utc": "2022-09-08T19:03:49.968992100Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335425"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "TOYEUOFE",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-030",
+      "event_time_utc": "2022-09-08T19:03:49.976256900Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335426"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "HXJTVSDP",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-031",
+      "event_time_utc": "2022-09-08T19:03:49.978960200Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335427"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "HDABBPBT",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-032",
+      "event_time_utc": "2022-09-08T19:03:49.980531500Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335428"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "EORRAPCJ",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-033",
+      "event_time_utc": "2022-09-08T19:03:49.982380900Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335429"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "NCNRJZTA",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-034",
+      "event_time_utc": "2022-09-08T19:03:49.988057600Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335430"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "PAQTLQXW",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-035",
+      "event_time_utc": "2022-09-08T19:03:49.992038600Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335431"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "VHBXUFKE",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-036",
+      "event_time_utc": "2022-09-08T19:03:49.993797000Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335432"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "MEAFWNDR",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-037",
+      "event_time_utc": "2022-09-08T19:03:49.995337500Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335433"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "UZGSFMGI",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-038",
+      "event_time_utc": "2022-09-08T19:03:49.998078200Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335434"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "JZLBZIIN",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-039",
+      "event_time_utc": "2022-09-08T19:03:50.004089500Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335435"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "RVWSOEPH",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-040",
+      "event_time_utc": "2022-09-08T19:03:50.006742500Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335436"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "SJEEYNDC",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-041",
+      "event_time_utc": "2022-09-08T19:03:50.008967500Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335437"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "WYYLKERJ",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-042",
+      "event_time_utc": "2022-09-08T19:03:50.014405800Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335438"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "BTNUUJFE",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-043",
+      "event_time_utc": "2022-09-08T19:03:50.019877300Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335439"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "WMOBRKDP",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-044",
+      "event_time_utc": "2022-09-08T19:03:50.023369100Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335440"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "KZAVHCJV",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-045",
+      "event_time_utc": "2022-09-08T19:03:50.028181600Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335441"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "WIEAJWCM",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-046",
+      "event_time_utc": "2022-09-08T19:03:50.035077300Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335442"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "EMRURUMJ",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-047",
+      "event_time_utc": "2022-09-08T19:03:50.042953900Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335443"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "DAHLZCLL",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-048",
+      "event_time_utc": "2022-09-08T19:03:50.046189400Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335444"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "VJBLEVCZ",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    },
+    {
+      "evidence_id": "EV-049",
+      "event_time_utc": "2022-09-08T19:03:50.057872900Z",
+      "event_type": "failed_logon",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4625,
+        "event_record_id": "335445"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "target_user_name": "KSYLEFUA",
+        "target_domain_name": "corp.local",
+        "logon_type": "2",
+        "ip_address": "-",
+        "ip_port": "-",
+        "workstation_name": "host-01",
+        "status": "0xc000006d",
+        "sub_status": "0xc0000064",
+        "failure_reason": "%%2313",
+        "logon_process": "Advapi  ",
+        "auth_package": "MICROSOFT_AUTHENTICATION_PACKAGE_V1_0",
+        "subject_user_name": "user-01",
+        "process_name": "C:\\Tools\\[x]\\[x].exe"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

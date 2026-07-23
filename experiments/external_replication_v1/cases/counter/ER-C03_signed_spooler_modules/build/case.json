@@ -1,0 +1,23 @@
+{
+  "case_id": "ER-C03",
+  "builder": "experiments/external_replication_v1/build_windows_cases.py",
+  "source_file": "data_sources/windows_apt_2025/combined.csv",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "source_record_id": "8mQoAJMBUiBtdjxWSF42",
+      "csv_record_number": 33489,
+      "record_sha256": "e6f88603f320ecaa59a6ec38f00a6209e5aa95e0bb3b81f2d1260045dab4b79f"
+    },
+    {
+      "evidence_id": "EV-001",
+      "source_record_id": "82QoAJMBUiBtdjxWSF42",
+      "csv_record_number": 33490,
+      "record_sha256": "94cd4c0271493813040016fb070b6084706b1743982cfc899ca5b3e00c9e167d"
+    }
+  ],
+  "literal_redactions": [
+    "computer -> host-01",
+    "SYSTEM identity retained"
+  ]
+}

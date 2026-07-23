@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002"
+  ],
+  "rationale": "Multiple new local users were created via 'net user /add' (A0, EV-001) and one was added to the 'administrators' group (EV-002). While the accounts were subsequently deleted (EV-003, EV-004, EV-005), the creation of privileged accounts indicates malicious intent, even if cleaned up. The parent process for all these actions is PowerShell, executing an encoded command.",
+  "recommended_action": "escalate"
+}

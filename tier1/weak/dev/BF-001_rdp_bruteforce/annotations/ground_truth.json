@@ -1,0 +1,51 @@
+{
+  "case_id": "BF-001",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004",
+      "EV-005",
+      "EV-006",
+      "EV-007",
+      "EV-008",
+      "EV-009",
+      "EV-010",
+      "EV-011",
+      "EV-012",
+      "EV-013",
+      "EV-014",
+      "EV-015",
+      "EV-016",
+      "EV-017",
+      "EV-018",
+      "EV-019",
+      "EV-020",
+      "EV-021",
+      "EV-022"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "authentication succeeded or the host was compromised (no 4624/4625 auth event exists in this network-only capture)",
+      "any account was logged into"
+    ]
+  },
+  "the_trap": "23 inbound RDP (3389) connections from one external IP over ~5.5 min is a brute-force indicator, but Sysmon network telemetry shows no authentication outcome; do not assert a confirmed compromise.",
+  "rationale": "A0 + the burst (EV-001..022) are 23 inbound RDP connections from a single external IP (23.93.242.200) to the DC. That is a brute-force indicator, but there is no auth event (4624/4625) and no follow-on activity, so compromise is unconfirmed: suspicious.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

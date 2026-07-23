@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LGN-002",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01"
+    ],
+    "users": [
+      "host-01\\user-01"
+    ],
+    "time_window_utc": {
+      "start": "2020-10-20T02:47:08.745Z",
+      "end": "2020-10-20T02:47:08.761Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "process_create",
+      "registry_value_set"
+    ],
+    "sourcetypes_present": [
+      "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-10-20T02:47:08.761Z",
+    "event_type": "registry_value_set",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 13,
+      "event_record_id": "98"
+    },
+    "computer": "host-01",
+    "attributes": {
+      "process_guid": "{39e4a257-4fac-5f8e-0208-000000000700}",
+      "image": "C:\\windows\\system32\\reg.exe",
+      "target_object": "HKU\\S-1-5-21-3940915590-64593676-1414006259-500\\Environment\\UserInitMprLogonScript",
+      "details": "C:\\Users\\user-01\\AppData\\Local\\Temp\\art.bat",
+      "registry_event": "SetValue"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-10-20T02:47:08.745Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "79"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "process_guid": "{39e4a257-4fac-5f8e-0208-000000000700}",
+        "process_id": "8684",
+        "image": "C:\\Windows\\System32\\reg.exe",
+        "original_file_name": "reg.exe",
+        "command_line": "REG.exe  ADD HKCU\\Environment /v UserInitMprLogonScript /t REG_SZ /d C:\\Users\\user-01\\AppData\\Local\\Temp\\art.bat /f",
+        "current_directory": "C:\\Users\\user-01\\",
+        "user": "host-01\\user-01",
+        "integrity_level": "High",
+        "hashes": "SHA1=EB3B03616EEE42F16D0703F64DE23E7E34FE8524,MD5=601BDDF7691C5AF626A5719F1D7E35F1,SHA256=4ED2A27860FA154415F65452FF1F94BD6AF762982E2F3470030C504DC3C8A354,IMPHASH=BE482BE427FE212CFEF2CDA0E61F19AC",
+        "parent_process_guid": "{39e4a257-4eb6-5f8e-0008-000000000700}",
+        "parent_process_id": "8836",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\windows\\system32\\cmd.exe\" "
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

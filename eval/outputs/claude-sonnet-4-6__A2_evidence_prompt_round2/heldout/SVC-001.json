@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.92,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "A0 shows the legitimate Fax service being hijacked via 'sc config' to replace its binPath with a PowerShell command, a classic service-based persistence/execution technique. EV-001 and EV-002 confirm a second service ('[x]_CMD') was created and started pointing to an unknown binary at C:\\[x]\\[x]\\[id]\\bin\\[x].exe; EV-003 shows PowerShell independently registering yet another service ('[x]_PowerShell') pointing to the same binary. EV-004 confirms that binary was successfully launched as NT AUTHORITY\\SYSTEM via services.exe, meaning privilege escalation to SYSTEM was achieved. EV-005 shows the Fax service binPath was subsequently restored to its legitimate value (fxssvc.exe), indicating deliberate cleanup to reduce forensic footprint \u2014 a strong indicator of intentional malicious tradecraft rather than accidental misconfiguration. The entire sequence (service hijack, new service creation, SYSTEM-level execution, cleanup) is consistent with a privilege escalation and persistence attack, likely part of a red-team or adversary simulation framework given the [x]/[id] placeholder naming, but the SYSTEM-level execution of an unknown binary is confirmed and constitutes a high-severity incident.",
+  "recommended_action": "isolate"
+}

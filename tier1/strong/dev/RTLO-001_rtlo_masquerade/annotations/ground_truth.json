@@ -1,0 +1,29 @@
+{
+  "case_id": "RTLO-001",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": []
+  },
+  "the_trap": "A document-looking file (rcs.3aka3.doc) is really cod.3aka3.scr — the name carries a U+202E RTLO override — launched as a screensaver with /S; the model must not under-rate on the document-like surface. An internal C2 beacon (192.168.0.5:1234) and a cmd->powershell payload chain confirm the compromise.",
+  "rationale": "A0 executes a screensaver whose U+202E filename visually masquerades as a .doc (cod.3aka3.scr /S); the package does not establish its delivery vector. EV-001..003 carry the confirming chain — an internal connection to 192.168.0.5:1234 and a cmd->powershell payload. The document-like filename is masquerade bait, not exculpatory context: confirmed compromise, malicious/high.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

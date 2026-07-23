@@ -1,0 +1,218 @@
+{
+  "schema_version": "1.0",
+  "case_id": "SMB-002",
+  "case_name": "routine_domain_smb",
+  "security_proposition": "The machine-account SMB and RPC burst is attacker-driven reconnaissance or lateral movement rather than routine domain-controller activity.",
+  "case_directory": "SMB-002_routine_domain_smb",
+  "split": "dev",
+  "status": "audited_dev_2026-07-16",
+  "attack_category": {
+    "category": "Routine domain SMB (benign, resembles AD enumeration)",
+    "candidate_attack_mapping": "T1021.002",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = COUNTER. A host repeatedly accesses IPC$\\lsarpc plus SYSVOL\\Policies gpt.ini over SMB (5145). The IPC$\\lsarpc access pattern is the SAME one AD-enumeration tools (SharpHound/BloodHound, via LSAR) produce, so a naive 'SMB/AD enumeration' detection flags it. BUT the subject is the domain controller's OWN machine account (WIN-DC-TESTUSER-4$) performing routine LSA RPC and Group Policy (gpt.ini) processing — standard domain-controller infrastructure activity, not reconnaissance. The machine-account subject + SYSVOL/GPO targets are the benign counter-evidence. Calibration role = over-triage-prone (down-rank): a model must NOT flag routine machine-account domain SMB as AD enumeration / lateral movement. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1021.002/atomic_red_team/windows-security-xml.log",
+    "original_filename": "windows-security-xml.log",
+    "stored_filename": "smb002_routine_security.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "0b840eb0315fcbfd330af2dcd30bf616c67c816ba8a7d12d23135c24f28b1014",
+    "sources": [
+      {
+        "sensor": "security",
+        "path": "datasets/attack_techniques/T1021.002/atomic_red_team/windows-security-xml.log",
+        "sha256": "0b840eb0315fcbfd330af2dcd30bf616c67c816ba8a7d12d23135c24f28b1014"
+      }
+    ],
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Security (Microsoft-Windows-Security-Auditing 5145)"
+      ],
+      "why_single_source": "Single sensor (Security 5145 share-object-access), scoped to host win-dc-486's own SMB activity. The log's other host (win-host-576, a PsExec attack) is excluded via the per-source computer filter. Uses the sources[] format only to host-scope a 2-host log (record ids collide across hosts); it is a Tier-1 single-sensor case, not fusion."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "sources": [
+        "smb002_routine_security"
+      ],
+      "sourcetype": "XmlWinEventLog"
+    }
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/smb002_events.json",
+    "related_events": "extracted/smb002_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "scope_type": "routine_domain_smb_counter",
+    "primary_host": "win-dc-testuser-46070-486.attackrange.local",
+    "primary_user": "ATTACKRANGE\\WIN-DC-TESTUSER-4$ (DC machine account)",
+    "boundary_definition": [
+      "A0 = an IPC$\\lsarpc access (309958) — the alarming, enumeration-resembling event.",
+      "EV = more IPC$\\lsarpc accesses and SYSVOL gpt.ini (GPO) reads, all by the same machine account.",
+      "Scoped to win-dc-486; the log's other host (win-host-576, PsExec) is excluded.",
+      "The benign counter-evidence is intrinsic: the subject is the DC's machine account and the targets are lsarpc (LSA RPC) + SYSVOL Group Policy — routine domain operations."
+    ],
+    "time_window_utc": {
+      "start": "2022-04-13T19:46:54.963916000Z",
+      "end": "2022-04-13T19:47:51.610114800Z"
+    }
+  },
+  "main_alert_selection": {
+    "selection_method": "IPC$\\lsarpc (LSAR) named-pipe access over SMB is a common 'AD enumeration' detection trigger.",
+    "selection_reason": "It resembles SharpHound/BloodHound LSAR enumeration; the machine-account subject + GPO context are the benign counter.",
+    "event_record_id": "security:309958",
+    "process_guid": "",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "host",
+      "SubjectUserName==machine_account",
+      "share(IPC$/SYSVOL)",
+      "target(lsarpc/gpt.ini)"
+    ],
+    "included_event_record_ids": [
+      "security:309958",
+      "security:310058",
+      "security:310068",
+      "security:310069",
+      "security:310079",
+      "security:310080",
+      "security:310081",
+      "security:310082"
+    ],
+    "event_groups": [
+      {
+        "group": "ipc_lsarpc",
+        "event_record_ids": [
+          "security:309958",
+          "security:310079",
+          "security:310080",
+          "security:310081",
+          "security:310082"
+        ],
+        "description": "IPC$\\lsarpc accesses by the DC machine account (LSA RPC, resembles AD enumeration)."
+      },
+      {
+        "group": "sysvol_gpo",
+        "event_record_ids": [
+          "security:310058",
+          "security:310068",
+          "security:310069"
+        ],
+        "description": "SYSVOL root + Policies gpt.ini reads (routine Group Policy processing)."
+      }
+    ]
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "security:309958",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "triggering alert: machine-account IPC$ lsarpc access that can resemble directory reconnaissance"
+    },
+    "EV-001": {
+      "event_record_id": "security:310058",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "the same machine account reads the SYSVOL root, consistent with Group Policy processing"
+    },
+    "EV-002": {
+      "event_record_id": "security:310068",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "machine-account read of the Default Domain Policy gpt.ini"
+    },
+    "EV-003": {
+      "event_record_id": "security:310069",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "machine-account read of the Default Domain Controllers Policy gpt.ini"
+    },
+    "EV-004": {
+      "event_record_id": "security:310079",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "repeated machine-account IPC$ lsarpc access"
+    },
+    "EV-005": {
+      "event_record_id": "security:310080",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "repeated machine-account IPC$ lsarpc access"
+    },
+    "EV-006": {
+      "event_record_id": "security:310081",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "repeated machine-account IPC$ lsarpc access"
+    },
+    "EV-007": {
+      "event_record_id": "security:310082",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "repeated machine-account IPC$ lsarpc access"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "counter_intent",
+      "event_record_id": "",
+      "note": "RESEARCHER-PRIVATE: COUNTER / over-triage-prone. IPC$\\lsarpc access resembles AD enumeration, but the machine-account subject + SYSVOL GPO context make it routine domain infrastructure activity. The model must not over-flag."
+    },
+    {
+      "topic": "false_positive_category",
+      "event_record_id": "security:309958",
+      "note": "This is a real SOC false-positive class: detections keyed on IPC$\\lsarpc/samr fire on legitimate machine-account LSA RPC and GPO traffic."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "smb_counter_exemplar",
+      "over_triage_down_rank_test",
+      "benign_domain_smb_rule_dev"
+    ],
+    "eligible_for_final_heldout_metrics": false
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-05",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

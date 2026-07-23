@@ -1,0 +1,22 @@
+{
+  "case_id": "ER-M04",
+  "builder": "experiments/external_replication_v1/build_cam_missing_cases.py",
+  "source_archive": "data_sources/cam_lds/manifestations_raw.zip",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "archive_member": "manifestations_raw/steps/3_ssh_healthcheck-31/linuxshare/logs/log/audit/audit.log",
+      "line_number": 2,
+      "record_sha256": "0af7d5f39e59344463654986757a7df6d18dc3f3fbadae452cf9ef5a9ec7749c"
+    },
+    {
+      "evidence_id": "EV-001",
+      "archive_member": "manifestations_raw/steps/3_ssh_healthcheck-31/linuxshare/logs/log/audit/audit.log",
+      "line_number": 7,
+      "record_sha256": "d179c3c761f76153cf200d59d7c0cbe73b9d42eb0d060e00aa9971795c347d62"
+    }
+  ],
+  "literal_redactions": [
+    "host linuxshare -> file-server-01"
+  ]
+}

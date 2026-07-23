@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.88,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "The activity represents a clear certificate theft operation: A0 and EV-001 show certutil.exe exporting private keys to PFX files (Computer.pfx, test.pfx) using the -privatekey -exportpfx flags, EV-002 shows DC certificate store enumeration via -dcinfo, EV-003 enumerates the personal certificate store (-Store MY), and EV-004 exports a specific certificate by thumbprint to C:\\cert.pfx (-exportPFX My 74ae941ce26523ae422d501e631decd0). This sequence \u2014 enumerate, identify, export \u2014 is consistent with credential/certificate harvesting (e.g., ADCS abuse or golden certificate attacks), all executed from a persistent cmd.exe session (PID 3532) under the Administrator account at high integrity. The staging of the PFX to C:\\ root further suggests preparation for exfiltration.",
+  "recommended_action": "isolate"
+}

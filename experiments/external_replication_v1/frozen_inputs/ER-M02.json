@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-M02",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "workstation-01.corp.local"
+    ],
+    "users": [
+      "user-01"
+    ],
+    "time_window_utc": {
+      "start": "2025-12-10T10:04:34Z",
+      "end": "2025-12-10T10:04:34.224Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "crontab_edit_started",
+      "process_execution"
+    ],
+    "sourcetypes_present": [
+      "linux_syslog",
+      "linux_audit"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2025-12-10T10:04:34Z",
+    "event_type": "crontab_edit_started",
+    "source_event": {
+      "provider": "Linux syslog",
+      "channel": "/var/log/syslog",
+      "event_code": 0,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "workstation-01.corp.local",
+    "attributes": {
+      "user": "user-01",
+      "operation": "BEGIN EDIT",
+      "program": "crontab"
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2025-12-10T10:04:34.224Z",
+      "event_type": "process_execution",
+      "source_event": {
+        "provider": "Linux Audit subsystem",
+        "channel": "/var/log/audit/audit.log",
+        "event_code": 59,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "workstation-01.corp.local",
+      "attributes": {
+        "user": "user-01",
+        "image": "/usr/bin/crontab",
+        "command_line": "crontab -e",
+        "parent_chain": "office_app -> python3 -> dash -> python3 -> bash -> crontab",
+        "terminal": "pts1",
+        "status": "process execution success"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

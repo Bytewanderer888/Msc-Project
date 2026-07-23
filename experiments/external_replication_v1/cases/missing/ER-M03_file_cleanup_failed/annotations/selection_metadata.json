@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-M03",
+  "case_name": "file_cleanup_failed",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "The observed cleanup command removed its selected script from the host.",
+  "attack_category": {
+    "category": "Indicator Removal: File Deletion",
+    "candidate_attack_mapping": "T1070.004",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "CAM-LDS",
+    "scenario": "cam-s1-cron-sshkey",
+    "capture_cluster": "cam-s1-cron-sshkey",
+    "telemetry_depth": "single_source",
+    "sensors": [
+      "Linux audit"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "attacker-side AttackMate commands, output, and ATT&CK metadata",
+      "source scenario and variant names",
+      "condition, verdict, severity, action, and ground truth",
+      "tool-specific filename linpeas.sh -> [x].sh",
+      "host videoserver -> server-01"
+    ],
+    "deterministic_derivations": []
+  },
+  "operational_response_family": "analyst_escalation",
+  "nearest_frozen_case": null,
+  "differentiation": "No frozen case centers on a Linux unlink result that explicitly disproves successful completion of the observed cleanup command."
+}

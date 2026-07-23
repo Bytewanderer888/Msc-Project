@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0",
+  "case_id": "GPO-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "host-01$",
+      "user-02$"
+    ],
+    "time_window_utc": {
+      "start": "2020-05-01T22:56:47Z",
+      "end": "2020-05-01T23:01:43Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "network_share_object_access"
+    ],
+    "sourcetypes_present": [
+      "XmlWinEventLog:Security"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-05-01T23:01:43Z",
+    "event_type": "network_share_object_access",
+    "source_event": {
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "channel": "Security",
+      "event_code": 5145,
+      "event_record_id": "151026"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "share_name": "\\\\*\\SYSVOL",
+      "share_local_path": "\\??\\F:\\SYSVOL\\sysvol",
+      "relative_target": "corp.local\\Policies",
+      "subject_user_name": "user-02$",
+      "subject_domain_name": "corp",
+      "ip_address": "10.0.1.4",
+      "ip_port": "59878",
+      "access_mask": "0x100081",
+      "object_type": "File"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-05-01T22:56:47Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "146551"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\SYSVOL",
+        "share_local_path": "\\??\\F:\\SYSVOL\\sysvol",
+        "relative_target": "corp.local\\Policies\\{31B2F340-016D-11D2-945F-00C04FB984F9}\\gpt.ini",
+        "subject_user_name": "host-01$",
+        "subject_domain_name": "corp",
+        "ip_address": "fe80::e40c:95b6:b0a7:6429",
+        "ip_port": "57092",
+        "access_mask": "0x120089",
+        "object_type": "File"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2020-05-01T22:56:47Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "146552"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\SYSVOL",
+        "share_local_path": "\\??\\F:\\SYSVOL\\sysvol",
+        "relative_target": "corp.local\\Policies\\{6AC1786C-016F-11D2-945F-00C04fB984F9}\\gpt.ini",
+        "subject_user_name": "host-01$",
+        "subject_domain_name": "corp",
+        "ip_address": "fe80::e40c:95b6:b0a7:6429",
+        "ip_port": "57092",
+        "access_mask": "0x120089",
+        "object_type": "File"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2020-05-01T23:01:43Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "151027"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\SYSVOL",
+        "share_local_path": "\\??\\F:\\SYSVOL\\sysvol",
+        "relative_target": "corp.local",
+        "subject_user_name": "user-02$",
+        "subject_domain_name": "corp",
+        "ip_address": "10.0.1.4",
+        "ip_port": "59878",
+        "access_mask": "0x100081",
+        "object_type": "File"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

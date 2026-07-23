@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "The alert (A0) shows 'reg.exe' modifying the 'UserInitMprLogonScript' registry key to execute 'art.bat' from a temporary directory. This is a known persistence mechanism. The correlated process creation event (EV-001) confirms 'reg.exe' was executed with the exact command to set this malicious logon script.",
+  "recommended_action": "isolate"
+}

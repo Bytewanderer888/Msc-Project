@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "ER-S02",
+  "rule_id": "SAFESOC-TRG-ER-S02",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "source_description": "external archive (ait_ads.zip: harrison_wazuh.json)",
+  "raw_source_event_count": 583754,
+  "complete_scope_event_count": 583754,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "harrison_wazuh.json:line:570693",
+  "expected_record_key": "harrison_wazuh.json:line:570693",
+  "selected_raw_sha256": "718e6a87f521f21c8a95e8b78cb5808903e9e90abf79acdf3fcc093096240bb0",
+  "pass": true
+}

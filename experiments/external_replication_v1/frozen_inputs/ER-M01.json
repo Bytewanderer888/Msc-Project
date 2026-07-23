@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-M01",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "gateway-01.corp.local"
+    ],
+    "users": [
+      "root"
+    ],
+    "time_window_utc": {
+      "start": "2025-12-15T11:09:49.444Z",
+      "end": "2025-12-15T11:10:06Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "service_editor_artifact_removed",
+      "service_manager_reload"
+    ],
+    "sourcetypes_present": [
+      "linux_audit",
+      "linux_auth"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2025-12-15T11:10:06Z",
+    "event_type": "service_manager_reload",
+    "source_event": {
+      "provider": "Linux authentication log",
+      "channel": "/var/log/auth.log",
+      "event_code": 0,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "gateway-01.corp.local",
+    "attributes": {
+      "user": "root",
+      "command_line": "sudo systemctl daemon-reload",
+      "working_directory": "/usr/bin",
+      "terminal": "pts/1"
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2025-12-15T11:09:49.444Z",
+      "event_type": "service_editor_artifact_removed",
+      "source_event": {
+        "provider": "Linux Audit subsystem",
+        "channel": "/var/log/audit/audit.log",
+        "event_code": 87,
+        "event_record_id": "SRC-EV-001"
+      },
+      "computer": "gateway-01.corp.local",
+      "attributes": {
+        "target_filename": "/etc/systemd/system/.[x].service.swp",
+        "operation": "unlink",
+        "status": "success=yes",
+        "file_role": "editor swap artifact"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

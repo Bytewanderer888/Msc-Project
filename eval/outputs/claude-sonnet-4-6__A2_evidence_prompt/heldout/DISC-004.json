@@ -1,0 +1,10 @@
+{
+  "verdict": "suspicious",
+  "severity": "low",
+  "confidence": 0.45,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "A0 shows reg.exe querying the Internet Explorer version key under HKLM, a classic reconnaissance technique used by malware and post-exploitation frameworks to fingerprint the host environment. However, this is a single, isolated event with no corroborating evidence (no network connections, no follow-on process creation, no lateral movement indicators), and the query itself is entirely read-only and non-destructive. The parent process is a plain cmd.exe with no arguments, which could reflect a user or script manually running the command. The elevated integrity level (High) is mildly notable but not conclusive without additional context. Confidence is capped low due to the absence of correlated evidence items.",
+  "recommended_action": "monitor"
+}

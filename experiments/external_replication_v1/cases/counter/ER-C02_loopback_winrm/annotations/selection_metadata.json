@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-C02",
+  "case_name": "loopback_winrm",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "The WinRM-port connection represents remote lateral movement from another host.",
+  "attack_category": {
+    "category": "Windows Remote Management false-positive surface",
+    "candidate_attack_mapping": "T1021.006",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "Windows-APT Dataset 2025",
+    "scenario": "not authoritatively linkable at event level",
+    "capture_cluster": "wapt-DESKTOP-QGB4EQH-2024-12-01T11:07Z",
+    "telemetry_depth": "single_source",
+    "sensors": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "all _source.rule fields, including detector description, severity, and ATT&CK mapping",
+      "Sysmon RuleName and system.message copies that contain ATT&CK labels",
+      "Wazuh product and manager identity",
+      "source agent names, IP addresses, and local account names",
+      "condition, verdict, severity, action, and upstream scenario identity"
+    ],
+    "deterministic_derivations": []
+  },
+  "operational_response_family": "none",
+  "nearest_frozen_case": null,
+  "differentiation": "The frozen strong WinRM case is cross-host execution; this matched counter case contains only a local loopback transaction."
+}

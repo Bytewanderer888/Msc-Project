@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-C04",
+  "case_name": "ait_package_update",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "The outbound HTTP burst represents attacker-directed payload transfer rather than routine operating-system repository metadata retrieval.",
+  "attack_category": {
+    "category": "Ingress Tool Transfer benign twin",
+    "candidate_attack_mapping": "T1105",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "AIT Alert Data Set",
+    "scenario": "russellmitchell normal window",
+    "capture_cluster": "ait-russellmitchell-normal",
+    "telemetry_depth": "single_source",
+    "sensors": [
+      "network HTTP telemetry"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "AIT scenario and attack-phase labels",
+      "Wazuh rule level and description",
+      "IDS signature, category, severity, and action",
+      "NAT-side duplicate records",
+      "condition, verdict, severity, action, ATT&CK mapping"
+    ],
+    "deterministic_derivations": []
+  },
+  "operational_response_family": "none",
+  "nearest_frozen_case": null,
+  "differentiation": "No frozen counter case uses Linux package-manager traffic or repository metadata as affirmative benign context."
+}

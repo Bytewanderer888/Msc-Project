@@ -1,0 +1,10 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.7,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "The alert A0 shows cscript.exe initiating an outbound network connection to an external IP on port 443. While cscript.exe is a legitimate Windows binary, it is not commonly observed making outbound network connections, especially to external destinations, which makes this activity suspicious. Without further evidence of the script executed or the nature of the external host, a definitive malicious verdict cannot be made.",
+  "recommended_action": "investigate"
+}

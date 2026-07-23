@@ -1,0 +1,36 @@
+{
+  "case_id": "OD-001",
+  "evidence_condition": "strong",
+  "calibration_role": "preserve",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004",
+      "EV-005"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that shadow copies were successfully deleted (A0 shows the vssadmin command invocation, not its success status)",
+      "that the BCD recovery settings were successfully changed (EV-002 and EV-003 show bcdedit invocations without result or state-confirmation events)",
+      "that the System event log was successfully cleared (EV-004 shows the wevtutil invocation; only Security event 1102 in EV-001 confirms a Security-log clear)",
+      "that EV-001 was caused by the specific wevtutil process in EV-005 (the events are temporally consistent, but the package does not directly link them)"
+    ]
+  },
+  "the_trap": "A destructive and anti-forensics command sequence is invoked by corp\\Administrator at High integrity from C:\\Temp\\: vssadmin.exe delete shadows /all /quiet (A0), two bcdedit commands targeting boot-recovery settings (EV-002/EV-003), and wevtutil.exe cl System and cl Security (EV-004/EV-005). These process events establish invocation and destructive intent, but not successful VSS deletion, BCD modification, or System-log clearing. Separately, Security event 1102 (EV-001) directly confirms that the Security log was cleared in the same time window, although it is not linked to a specific process event. The confirmed Security-log clear plus the coordinated privileged command chain support high/critical severity without overstating the other outcomes.",
+  "rationale": "A0 shows vssadmin delete shadows /all /quiet invoked; EV-002/EV-003 show two bcdedit commands targeting boot-recovery settings; and EV-004/EV-005 show wevtutil cl System and cl Security invoked by corp\\Administrator at High integrity from C:\\Temp\\. These process-creation events confirm the destructive and anti-forensics commands were launched, but they do not provide success status for shadow-copy deletion, BCD modification, or System-log clearing. EV-001 is a Security event 1102 record that independently confirms the Security log was cleared in the same window; the package does not directly attribute it to EV-005 or show which records were lost. The confirmed Security-log clear, reinforced by the coordinated privileged command chain, supports malicious/critical and preserve/hold-high while avoiding claims of unobserved outcomes.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

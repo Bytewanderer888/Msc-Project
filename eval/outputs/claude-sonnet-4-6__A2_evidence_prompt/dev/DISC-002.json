@@ -1,0 +1,13 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.85,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "All four events show WMIC.exe invocations (DNSHostName, Domain, OS Caption, OS Version) spawned by the Amazon SSM Agent worker process (PID 616) running as NT AUTHORITY\\SYSTEM, which is consistent with routine AWS Systems Manager inventory/health-check operations that query basic host identity and OS metadata. The WMIC binary hashes are consistent across all events and match the legitimate system binary. No lateral movement, credential access, network connections, suspicious child processes, or payload delivery is evidenced; the queries are read-only system enumeration typical of managed-instance polling. While WMIC-based discovery can be a TTPs indicator, the exclusive parent being a known AWS management agent with no anomalous follow-on activity makes a malicious interpretation unsupported by the available evidence.",
+  "recommended_action": "close_benign"
+}

@@ -1,0 +1,10 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.8,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "The main alert (A0) indicates that the endpoint monitoring agent disconnected. This is a critical event as it suggests a potential attempt to evade detection or a system malfunction, which could precede or accompany malicious activity. Without further evidence, the intent is unclear, but the impact on visibility is significant.",
+  "recommended_action": "investigate"
+}

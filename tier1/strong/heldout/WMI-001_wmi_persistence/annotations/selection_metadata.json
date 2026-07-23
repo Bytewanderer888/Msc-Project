@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "case_id": "WMI-001",
+  "case_name": "WMI event-subscription persistence masquerading as WindowsParentalControlMigration",
+  "security_proposition": "A complete WMI event-subscription persistence mechanism with an offensively meaningful consumer command was installed.",
+  "case_directory": "WMI-001_wmi_persistence",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "WMI event-subscription persistence",
+    "candidate_attack_mapping": "T1546.003",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = STRONG. Native WMI telemetry records the filter, offensively meaningful command-line consumer, and binding as created. Installation of the complete mechanism is decisive even without a later firing event. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "OTRF Security-Datasets (mordor)",
+    "original_repository_path": "datasets/compound/apt29/day2/apt29_evals_day2_manual.zip",
+    "original_filename": "apt29_evals_day2_manual.zip",
+    "stored_filename": "",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "377f8cba5db95a453a3ee8bd19f493efafc23724541482a4da99da28ee4665f9",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "",
+    "related_events": "",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "build/case.json",
+    "related_events_query": "build/case.json",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "UTICA.dmevals.local",
+    "time_window_utc": {
+      "start": "2020-05-02T08:00:07.755Z",
+      "end": "2020-05-02T08:00:07.833Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "790795",
+    "process_guid": "",
+    "query_file": "build/case.json"
+  },
+  "related_event_selection": {
+    "query_file": "build/case.json",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "790795",
+      "790794",
+      "790982"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "790795",
+      "event_type": "wmi_event_consumer",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: a command-line WMI event consumer with an encoded PowerShell destination is created"
+    },
+    "EV-001": {
+      "event_record_id": "790794",
+      "event_type": "wmi_event_filter",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the matching WMI event filter is created"
+    },
+    "EV-002": {
+      "event_record_id": "790982",
+      "event_type": "wmi_filter_to_consumer_binding",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the filter-to-consumer binding completes the installed WMI subscription mechanism"
+    }
+  },
+  "curation_notes": [
+    "Subtle-strong (up-rank): a WMI __EventFilter / CommandLineEventConsumer / FilterToConsumerBinding trio named 'WindowsParentalControlMigration' reads like a legitimate Windows feature or a normal system-management subscription, which invites under-triage.",
+    "Confirmed malice: the consumer runs a hidden base64 PowerShell payload (DER-001) triggered on user logon (Win32_LoggedOnUser filter). Classic WMI event-subscription persistence (T1546.003); correct verdict malicious/high."
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "wmi_strong_heldout",
+      "cross_corpus_generalisation",
+      "bidirectional_up_rank_test"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

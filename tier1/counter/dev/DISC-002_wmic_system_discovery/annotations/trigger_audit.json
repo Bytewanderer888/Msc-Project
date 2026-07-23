@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "DISC-002",
+  "rule_id": "SAFESOC-TRG-DISC-002",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "source_description": "raw log (wmic-cmdline-sysmon.log)",
+  "raw_source_event_count": 32,
+  "complete_scope_event_count": 12,
+  "predicate_match_count": 3,
+  "qualifying_group_count": 0,
+  "selection_strategy": "latest_match",
+  "selected_record_key": "164519",
+  "expected_record_key": "164519",
+  "selected_raw_sha256": "3d5b4ebb9b0f52b14a85e56e412d13b9af11a2b14d309016f92bd3b39e245a83",
+  "pass": true
+}

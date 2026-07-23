@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "The 'certutil.exe' process (A0) was used to download an executable file 'qSwUwejx.exe' from a non-standard IP address (10.0.2.13:8080) to a temporary directory. This download was immediately followed by the creation of the file (EV-001). The parent command line also indicates an attempt to execute the downloaded file, which is a common technique for initial access or payload delivery.",
+  "recommended_action": "isolate"
+}

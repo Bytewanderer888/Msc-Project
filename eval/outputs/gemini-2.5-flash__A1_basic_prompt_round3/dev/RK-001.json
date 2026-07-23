@@ -1,0 +1,12 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.8,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-003"
+  ],
+  "rationale": "The alert (A0) shows a registry run key being set by reg.exe, which is suspicious. Evidence EV-001 shows cmd.exe being spawned by PowerShell to add the registry run key, and EV-003 shows a subsequent deletion of the same key, also via PowerShell and cmd.exe. This behavior, while cleaned up, indicates an attempt to establish persistence, which is highly suspicious.",
+  "recommended_action": "investigate"
+}

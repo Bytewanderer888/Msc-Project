@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1546.003/wmi_event_subscription/windows-sysmon.log",
+      "sha256": "1ce6602b7639621a9c5f6ccc2d2ba679fb5d196c84129c13f533b40a7acfe4df"
+    }
+  ],
+  "primary_host": "win-host-14.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "the WMI subscription events are all on this host's windows-sysmon.log; single-sensor Tier-1."
+  }
+}

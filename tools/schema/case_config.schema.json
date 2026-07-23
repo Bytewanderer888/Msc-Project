@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SafeSOC canonical case configuration",
+  "description": "Common build contract for all 41 cases. Corpus-specific source representations are the only permitted top-level variants.",
+  "type": "object",
+  "required": [
+    "case_id",
+    "split",
+    "sourcetypes_present",
+    "selection",
+    "roles",
+    "derivations",
+    "metadata"
+  ],
+  "properties": {
+    "case_id": {"type": "string", "pattern": "^[A-Z]+-[0-9]{3}$"},
+    "split": {"enum": ["dev", "heldout"]},
+    "source_log": {"type": "string", "minLength": 1},
+    "mordor_log": {"type": "string", "minLength": 1},
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["sensor", "source_log"],
+        "properties": {
+          "sensor": {"type": "string", "minLength": 1},
+          "source_log": {"type": "string", "minLength": 1},
+          "computer": {"type": "string"},
+          "splunk_source": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "computer": {"type": "string"},
+    "staged_export": {"type": "string"},
+    "sourcetypes_present": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
+    "selection": {
+      "type": "object",
+      "required": ["A0", "EV"],
+      "properties": {
+        "A0": {"type": "string", "minLength": 1},
+        "EV": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      },
+      "additionalProperties": false
+    },
+    "roles": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "derivations": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "model_visible_attribute_exclusions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {"type": "string"}
+      }
+    },
+    "model_visible_literal_redactions": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "case_name",
+        "security_proposition",
+        "case_directory",
+        "status",
+        "dataset",
+        "created_date",
+        "attack_category",
+        "tier",
+        "case_scope",
+        "curation_notes",
+        "experimental_role",
+        "review_status",
+        "review_required"
+      ],
+      "properties": {
+        "case_name": {"type": "string", "minLength": 1},
+        "security_proposition": {"type": "string", "minLength": 1},
+        "case_directory": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "pattern": "^audited_(dev|heldout)_\\d{4}-\\d{2}-\\d{2}$"},
+        "dataset": {"type": "string", "minLength": 1},
+        "stored_filename": {"type": "string"},
+        "created_date": {"type": "string", "format": "date"},
+        "attack_category": {
+          "type": "object",
+          "required": ["category", "candidate_attack_mapping", "model_visible", "note"],
+          "properties": {
+            "category": {"type": "string", "minLength": 1},
+            "candidate_attack_mapping": {"type": "string", "minLength": 1},
+            "model_visible": {"const": false},
+            "note": {"type": "string", "minLength": 1}
+          },
+          "additionalProperties": false
+        },
+        "tier": {
+          "type": "object",
+          "required": ["tier", "sensors"],
+          "properties": {
+            "tier": {"enum": [1, 2]},
+            "sensors": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+            "why_single_source": {"type": "string"},
+            "why_multi_source": {"type": "string"}
+          },
+          "additionalProperties": true
+        },
+        "splunk": {"type": "object"},
+        "case_scope": {"type": "object"},
+        "main_alert_selection": {"type": "object"},
+        "correlation_keys": {"type": "array"},
+        "event_groups": {"type": "array"},
+        "curation_notes": {"type": "array", "minItems": 1},
+        "experimental_role": {
+          "type": "object",
+          "required": ["used_for", "eligible_for_final_heldout_metrics"],
+          "properties": {
+            "used_for": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+            "eligible_for_final_heldout_metrics": {"type": "boolean"}
+          },
+          "additionalProperties": false
+        },
+        "review_status": {"const": "reviewed_for_benchmark_v1.1"},
+        "review_required": {
+          "type": "object",
+          "required": ["ground_truth"],
+          "properties": {
+            "ground_truth": {"const": "Ground truth reviewed and frozen under benchmark rubric v1.1."}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {"required": ["source_log"], "not": {"anyOf": [{"required": ["mordor_log"]}, {"required": ["sources"]}]}},
+    {"required": ["mordor_log"], "not": {"anyOf": [{"required": ["source_log"]}, {"required": ["sources"]}]}},
+    {"required": ["sources"], "not": {"anyOf": [{"required": ["source_log"]}, {"required": ["mordor_log"]}]}}
+  ],
+  "additionalProperties": false
+}

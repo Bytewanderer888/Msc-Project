@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1087.001/AD_discovery/windows-sysmon.log",
+      "sha256": "c244d0b1fbb70fe5e76181fa490c46d8dea3716996243b2209de496fb5111eb5"
+    }
+  ],
+  "primary_host": "win-host-987.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "host filter = win-host-987 (multi-host log)."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SafeSOC source provenance",
+  "description": "Canonical retained-source provenance contract shared by all 41 cases.",
+  "type": "object",
+  "required": ["dataset", "sources", "primary_host", "tier"],
+  "properties": {
+    "dataset": {"type": "string", "minLength": 1},
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["sensor", "source_log", "sha256"],
+        "properties": {
+          "sensor": {"type": "string", "minLength": 1},
+          "source_log": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "primary_host": {"type": "string", "minLength": 1},
+    "tier": {
+      "type": "object",
+      "required": ["tier", "sensors"],
+      "properties": {
+        "tier": {"enum": [1, 2]},
+        "sensors": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "why_single_source": {"type": "string"},
+        "why_multi_source": {"type": "string"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

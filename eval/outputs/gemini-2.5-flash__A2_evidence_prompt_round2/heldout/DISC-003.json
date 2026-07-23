@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.7,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "The user 'corp\\user-01' executed multiple PowerShell commands via cmd.exe to enumerate local users (A0, EV-001) and user accounts via WMI (EV-002, EV-003). While these commands are legitimate, their sequential execution by a standard user within a short timeframe is suspicious for reconnaissance, potentially indicating pre-attack activity.",
+  "recommended_action": "investigate"
+}

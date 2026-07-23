@@ -1,0 +1,37 @@
+{
+  "case_id": "PS-004",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004",
+      "EV-005",
+      "EV-006",
+      "EV-007",
+      "EV-008"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that the collected files were ingested into BloodHound (the package shows SharpHound collection outputs, not import into the BloodHound application)",
+      "that SharpHound ran to completion without errors (the expected JSON and ZIP output set is observed, but no exit status is present)"
+    ]
+  },
+  "the_trap": "A weak model may under-rate this as 'a dual-use tool wrote some JSON files to C:\\\\Temp'. A0 shows powershell.exe invoked to import c:\\\\temp\\\\SharpHound.ps1, EV-001 shows c:\\\\temp\\\\sharphound.exe --CollectionMethod all, and EV-002..EV-008 show that same SharpHound process (guid {D419E45B-DEF0-60B8-814E-...}, pid 1084) producing the expected Active Directory collection outputs — groups, gpos, users, ous, domains, and computers JSON files plus BloodHound.zip. These artifacts directly evidence broad SharpHound collection, although the package provides neither a process exit status nor evidence that the files were later ingested into BloodHound. The model must not reduce this to incidental Temp file writes. The host identity is not present in the model-visible package, so severity must not rest on an assumed domain-controller role.",
+  "rationale": "A0 shows powershell.exe invoked to import c:\\\\temp\\\\SharpHound.ps1; EV-001 shows c:\\\\temp\\\\sharphound.exe --CollectionMethod all running as corp\\\\Administrator at High integrity. EV-002..EV-008 are attributed to the same SharpHound process and record creation of the expected JSON output categories (groups, gpos, users, ous, domains, and computers) together with BloodHound.zip. This output set directly supports broad Active Directory collection by SharpHound and is a strong malicious signal on the visible evidence alone. It does not establish later ingestion into BloodHound or a clean process completion status. Corpus provenance corroborates the annotation but is not its sole basis. Malicious/high, escalate; up-rank from the benign-looking 'files in Temp' surface.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

@@ -1,0 +1,268 @@
+{
+  "record_schema": "safesoc.context_reveal_pairs.v1",
+  "status": "controlled_extension_complete_not_part_of_frozen_benchmark",
+  "design_scope": "Weak-to-Counter context-reveal pairs; no outcome evidence is manipulated.",
+  "primary_endpoint": "Both versions enter their predeclared target bands and the Counter decision is no more aggressive than Weak.",
+  "secondary_endpoints": [
+    "Counter rationale explicitly uses the revealed benign context",
+    "Confidence change is exploratory only"
+  ],
+  "important_scope_note": "These are source-derived context ablations, not four-condition variants of the Outcome scenarios.",
+  "intervention_subtypes_fixed_before_run": {
+    "CC1": "parent-provenance field reveal",
+    "CC2": "benign command and service-parent reveal",
+    "CC3": "actor-provenance plus same-session GPO-context reveal",
+    "CC4": "benign command-semantics plus deterministic-derivation reveal"
+  },
+  "selection_rule": "All four retained pairs and their Weak/Counter target bands were defined before their saved model outputs were scored.",
+  "package_count": 8,
+  "pair_count": 4,
+  "pairs": [
+    {
+      "pair_id": "CC1",
+      "pair_type": "benign_context_reveal",
+      "source_case": "DISC-002",
+      "source_package": "/Users/lalala/Desktop/SafeSOC/tier1/counter/dev/DISC-002_wmic_system_discovery/model_input/alert_package.json",
+      "source_sha256": "cffb5a5a113df8ecb1909e92b96c4c5d6f55d743133a7ab57ebbc0147953969c",
+      "security_proposition": "The rapid WMIC inventory burst represents adversary discovery rather than routine system management.",
+      "sole_manipulated_factor": "Reveal that every unchanged WMIC query was spawned by the Amazon SSM management agent.",
+      "operation": "remove_parent_provenance",
+      "required_context_terms": [
+        "SSM"
+      ],
+      "construct_note": "Same four events and commands in both versions; only parent provenance is hidden in Weak.",
+      "versions": [
+        {
+          "role": "weak",
+          "neutral_case_id": "QC-418",
+          "path": "packages/QC-418.json",
+          "expected_condition": "weak",
+          "expected": {
+            "verdict": [
+              "suspicious"
+            ],
+            "severity": [
+              "low",
+              "medium"
+            ],
+            "action": [
+              "monitor",
+              "investigate"
+            ]
+          },
+          "sha256": "dde6a5610bfce01651ef3429075b88d3b6e8d0b4015a73abd2e85a09bbe6dd18",
+          "utf8_bytes": 4545,
+          "event_count": 4
+        },
+        {
+          "role": "counter",
+          "neutral_case_id": "QC-763",
+          "path": "packages/QC-763.json",
+          "expected_condition": "counter",
+          "expected": {
+            "verdict": [
+              "benign"
+            ],
+            "severity": [
+              "informational",
+              "low"
+            ],
+            "action": [
+              "close_benign",
+              "monitor"
+            ]
+          },
+          "sha256": "ac6c07f859ee7bd2416154fe39d8ad17be8cb50919828eafb18730286ee1a5dd",
+          "utf8_bytes": 5657,
+          "event_count": 4
+        }
+      ]
+    },
+    {
+      "pair_id": "CC2",
+      "pair_type": "benign_context_reveal",
+      "source_case": "RDL-001",
+      "source_package": "/Users/lalala/Desktop/SafeSOC/tier1/counter/dev/RDL-001_webdav_rundll32_legit/model_input/alert_package.json",
+      "source_sha256": "8f1174766e0a65f2cfd86f95a982e63d4299642e71b994b37769a7f91f0b4265",
+      "security_proposition": "The rundll32 process using an external HTTPS URL represents malicious LOLBin execution.",
+      "sole_manipulated_factor": "Reveal the System32 davclnt.dll DavSetCookie command, WebClient service parent, and Microsoft OneDrive destination.",
+      "operation": "reveal_webdav_provenance",
+      "required_context_terms": [
+        "davclnt",
+        "WebClient",
+        "d.docs.live.net"
+      ],
+      "construct_note": "One source event in both versions; Weak preserves rundll32 plus an external HTTPS surface while benign-specific command and parent details are redacted.",
+      "versions": [
+        {
+          "role": "weak",
+          "neutral_case_id": "QC-205",
+          "path": "packages/QC-205.json",
+          "expected_condition": "weak",
+          "expected": {
+            "verdict": [
+              "suspicious"
+            ],
+            "severity": [
+              "low",
+              "medium"
+            ],
+            "action": [
+              "monitor",
+              "investigate"
+            ]
+          },
+          "sha256": "f25ea2455857b3e9a47082acb21a7bac127b74c3a0a0936897a1e4458cc5db23",
+          "utf8_bytes": 1636,
+          "event_count": 1
+        },
+        {
+          "role": "counter",
+          "neutral_case_id": "QC-891",
+          "path": "packages/QC-891.json",
+          "expected_condition": "counter",
+          "expected": {
+            "verdict": [
+              "benign"
+            ],
+            "severity": [
+              "informational",
+              "low"
+            ],
+            "action": [
+              "close_benign",
+              "monitor"
+            ]
+          },
+          "sha256": "89348abe826627e0e7b78976f0439549237321fba4edcca00c9f729e0b0fe242",
+          "utf8_bytes": 1921,
+          "event_count": 1
+        }
+      ]
+    },
+    {
+      "pair_id": "CC3",
+      "pair_type": "benign_context_reveal",
+      "source_case": "SMB-002",
+      "source_package": "/Users/lalala/Desktop/SafeSOC/tier1/counter/dev/SMB-002_routine_domain_smb/model_input/alert_package.json",
+      "source_sha256": "724972a721e3dae9f209707a9ec936d9520c719230314cd7f29cf10621c837a8",
+      "security_proposition": "The repeated IPC$ lsarpc accesses represent adversary-driven domain reconnaissance.",
+      "sole_manipulated_factor": "Reveal the domain-machine-account provenance and same-session default Group Policy reads.",
+      "operation": "reveal_machine_gpo_context",
+      "required_context_terms": [
+        "SYSVOL",
+        "gpt.ini",
+        "machine account"
+      ],
+      "construct_note": "Weak retains all five IPC$/lsarpc observations but with actor/network provenance withheld; Counter restores provenance and the three GPO reads.",
+      "versions": [
+        {
+          "role": "weak",
+          "neutral_case_id": "QC-674",
+          "path": "packages/QC-674.json",
+          "expected_condition": "weak",
+          "expected": {
+            "verdict": [
+              "suspicious"
+            ],
+            "severity": [
+              "low",
+              "medium"
+            ],
+            "action": [
+              "monitor",
+              "investigate"
+            ]
+          },
+          "sha256": "701a29d5cfd874591b2620254b5fee34da8d0aafd8e6afa069ce7e41aac13524",
+          "utf8_bytes": 3335,
+          "event_count": 5
+        },
+        {
+          "role": "counter",
+          "neutral_case_id": "QC-132",
+          "path": "packages/QC-132.json",
+          "expected_condition": "counter",
+          "expected": {
+            "verdict": [
+              "benign"
+            ],
+            "severity": [
+              "informational",
+              "low"
+            ],
+            "action": [
+              "close_benign",
+              "monitor"
+            ]
+          },
+          "sha256": "8d0a3e05beae001994caad30f25a7d8352dec52bed772db980a48d4bfd4f4993",
+          "utf8_bytes": 6624,
+          "event_count": 8
+        }
+      ]
+    },
+    {
+      "pair_id": "CC4",
+      "pair_type": "benign_context_reveal",
+      "source_case": "PS-003",
+      "source_package": "/Users/lalala/Desktop/SafeSOC/tier1/counter/heldout/PS-003_obfuscated_powershell/model_input/alert_package.json",
+      "source_sha256": "e0c0882ab944a90c3ede31aaa3b3c289e33c0f6e8e80e584090bc0551dc9d035",
+      "security_proposition": "The obfuscated PowerShell expression piped to ieX executes malicious code.",
+      "sole_manipulated_factor": "Reveal the source-backed expression and deterministic reconstruction showing only Write-Host 'Hello, World!'.",
+      "operation": "reveal_benign_command_semantics",
+      "required_context_terms": [
+        "DER-001",
+        "Hello, World"
+      ],
+      "construct_note": "One process event in both versions; Weak preserves an obfuscated ieX surface while payload fragments are redacted, and Counter restores the original source text plus DER-001.",
+      "versions": [
+        {
+          "role": "weak",
+          "neutral_case_id": "QC-957",
+          "path": "packages/QC-957.json",
+          "expected_condition": "weak",
+          "expected": {
+            "verdict": [
+              "suspicious"
+            ],
+            "severity": [
+              "low",
+              "medium"
+            ],
+            "action": [
+              "monitor",
+              "investigate"
+            ]
+          },
+          "sha256": "eadd3c3d758b0dae1324e0c20c97ee3f1b13278581276423773a76ed7ccb988b",
+          "utf8_bytes": 1884,
+          "event_count": 1
+        },
+        {
+          "role": "counter",
+          "neutral_case_id": "QC-346",
+          "path": "packages/QC-346.json",
+          "expected_condition": "counter",
+          "expected": {
+            "verdict": [
+              "benign"
+            ],
+            "severity": [
+              "informational",
+              "low"
+            ],
+            "action": [
+              "close_benign",
+              "monitor"
+            ]
+          },
+          "sha256": "9ec859bdbb5f3dba3bb5ba1106ba59aff67bb97d0507c866216dedb53841b44e",
+          "utf8_bytes": 2312,
+          "event_count": 1
+        }
+      ]
+    }
+  ],
+  "frozen_benchmark_modified": false
+}

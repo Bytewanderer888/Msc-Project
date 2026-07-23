@@ -1,0 +1,18 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.98,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006",
+    "EV-007",
+    "EV-008"
+  ],
+  "rationale": "A0 confirms PowerShell importing SharpHound.ps1 from C:\\Temp\\ under corp\\Administrator at High integrity, a well-known BloodHound AD reconnaissance loader. EV-001 confirms the SharpHound.exe binary was subsequently executed with '--CollectionMethod all', enumerating the full Active Directory environment. EV-002 through EV-008 confirm successful completion of the collection run, with SharpHound.exe producing timestamped JSON output files covering groups, GPOs, users, OUs, domains, computers, and a final BloodHound.zip archive \u2014 all canonical BloodHound data-collection artifacts. The entire kill-chain (loader import \u2192 binary execution \u2192 full AD enumeration \u2192 zip packaging) is directly evidenced with no benign explanation; use of C:\\Temp\\ as a staging directory and execution via cmd.exe wrappers further indicates deliberate, hands-on-keyboard adversary activity.",
+  "recommended_action": "isolate"
+}

@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002"
+  ],
+  "rationale": "The main alert (A0) shows `cmd.exe` being used to add a new user, '[id]_CMD', with a password. This is immediately followed by EV-001 creating another user, '[id]_PowerShell', via PowerShell, and EV-002 adding a third user, '[id]_Admin', to the local administrators group. This sequence of creating multiple new users and elevating privileges is highly indicative of malicious activity, specifically privilege escalation and persistence attempts. While subsequent events (EV-003, EV-004, EV-005) show attempts to delete these users, this could be an attempt to cover tracks after successful compromise or part of a testing framework, but the initial creation and privilege escalation are unequivocally malicious.",
+  "recommended_action": "isolate"
+}

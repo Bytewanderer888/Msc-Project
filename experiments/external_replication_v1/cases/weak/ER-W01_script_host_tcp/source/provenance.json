@@ -1,0 +1,20 @@
+{
+  "case_id": "ER-W01",
+  "status": "candidate_built_pending_qa",
+  "source_corpus": "Windows-APT Dataset 2025",
+  "doi": "10.17632/b8fmtzvpy8.3",
+  "source_file": {
+    "path": "data_sources/windows_apt_2025/combined.csv",
+    "sha256": "0f7eaa4027482c81cae56a5b759e7058e9e9df225ae060933c7015f6f16e8465",
+    "record_format": "CSV with one logical record parsed by csv.DictReader"
+  },
+  "selected_records": [
+    {
+      "evidence_id": "A0",
+      "csv_record_number": 6200,
+      "source_record_id": "QKEIgZMBrrvr6pEbBHVQ",
+      "record_sha256": "f7be55412159035aee285ceb1d7cd2c7dc64981e10d0f0261bbdfdcf6bf25cdf"
+    }
+  ],
+  "integrity_note": "Record hashes cover canonical JSON serialisation of the complete CSV row, including empty columns. csv_record_number counts the header as record 1."
+}

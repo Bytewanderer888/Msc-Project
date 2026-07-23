@@ -1,0 +1,138 @@
+{
+  "summary": {
+    "complete_pairs": 4,
+    "total_pairs": 4,
+    "primary_endpoint_met": 0,
+    "correct_downward_movement": 1,
+    "context_mentioned": 4,
+    "no_response": 2,
+    "reversed_or_mixed": 1,
+    "result_counts": {
+      "no_response": 2,
+      "reversed_or_mixed_response": 1,
+      "counter_correct_weak_miscall": 1
+    }
+  },
+  "pairs": [
+    {
+      "pair_id": "CC1",
+      "source_case": "DISC-002",
+      "complete": true,
+      "result": "no_response",
+      "weak_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "counter_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "weak_target_correct": false,
+      "counter_target_correct": true,
+      "primary_endpoint_met": false,
+      "decision_changed": false,
+      "correct_downward_movement": false,
+      "decision_deltas": {
+        "verdict": 0,
+        "severity": 0,
+        "action": 0
+      },
+      "context_mentioned_in_counter": true,
+      "confidence_delta_counter_minus_weak": 0.0
+    },
+    {
+      "pair_id": "CC2",
+      "source_case": "RDL-001",
+      "complete": true,
+      "result": "no_response",
+      "weak_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.7,
+        "recommended_action": "investigate"
+      },
+      "counter_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.8,
+        "recommended_action": "investigate"
+      },
+      "weak_target_correct": true,
+      "counter_target_correct": false,
+      "primary_endpoint_met": false,
+      "decision_changed": false,
+      "correct_downward_movement": false,
+      "decision_deltas": {
+        "verdict": 0,
+        "severity": 0,
+        "action": 0
+      },
+      "context_mentioned_in_counter": true,
+      "confidence_delta_counter_minus_weak": 0.1
+    },
+    {
+      "pair_id": "CC3",
+      "source_case": "SMB-002",
+      "complete": true,
+      "result": "reversed_or_mixed_response",
+      "weak_output": {
+        "verdict": "suspicious",
+        "severity": "low",
+        "confidence": 0.6,
+        "recommended_action": "investigate"
+      },
+      "counter_output": {
+        "verdict": "suspicious",
+        "severity": "medium",
+        "confidence": 0.7,
+        "recommended_action": "investigate"
+      },
+      "weak_target_correct": true,
+      "counter_target_correct": false,
+      "primary_endpoint_met": false,
+      "decision_changed": true,
+      "correct_downward_movement": false,
+      "decision_deltas": {
+        "verdict": 0,
+        "severity": 1,
+        "action": 0
+      },
+      "context_mentioned_in_counter": true,
+      "confidence_delta_counter_minus_weak": 0.1
+    },
+    {
+      "pair_id": "CC4",
+      "source_case": "PS-003",
+      "complete": true,
+      "result": "counter_correct_weak_miscall",
+      "weak_output": {
+        "verdict": "suspicious",
+        "severity": "high",
+        "confidence": 0.8,
+        "recommended_action": "investigate"
+      },
+      "counter_output": {
+        "verdict": "benign",
+        "severity": "informational",
+        "confidence": 0.9,
+        "recommended_action": "close_benign"
+      },
+      "weak_target_correct": false,
+      "counter_target_correct": true,
+      "primary_endpoint_met": false,
+      "decision_changed": true,
+      "correct_downward_movement": true,
+      "decision_deltas": {
+        "verdict": -1,
+        "severity": -3,
+        "action": -2
+      },
+      "context_mentioned_in_counter": true,
+      "confidence_delta_counter_minus_weak": 0.1
+    }
+  ]
+}

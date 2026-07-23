@@ -1,0 +1,204 @@
+{
+  "record_schema": "safesoc.dev_model_input_freeze.v1",
+  "generated_utc": "2026-07-16T06:23:07Z",
+  "split": "dev",
+  "case_count": 21,
+  "status": "pre_rerun_input_freeze",
+  "packages": [
+    {
+      "case_id": "DISC-002",
+      "path": "tier1/counter/dev/DISC-002_wmic_system_discovery/model_input/alert_package.json",
+      "sha256": "cffb5a5a113df8ecb1909e92b96c4c5d6f55d743133a7ab57ebbc0147953969c",
+      "bytes": 5658,
+      "event_count": 4
+    },
+    {
+      "case_id": "RDL-001",
+      "path": "tier1/counter/dev/RDL-001_webdav_rundll32_legit/model_input/alert_package.json",
+      "sha256": "8f1174766e0a65f2cfd86f95a982e63d4299642e71b994b37769a7f91f0b4265",
+      "bytes": 3303,
+      "event_count": 2
+    },
+    {
+      "case_id": "SMB-002",
+      "path": "tier1/counter/dev/SMB-002_routine_domain_smb/model_input/alert_package.json",
+      "sha256": "724972a721e3dae9f209707a9ec936d9520c719230314cd7f29cf10621c837a8",
+      "bytes": 6645,
+      "event_count": 8
+    },
+    {
+      "case_id": "ACCT-001",
+      "path": "tier1/missing/dev/ACCT-001_create_local_account/model_input/alert_package.json",
+      "sha256": "9d10ed248922cac2a3cccb0b3f94a27c55b535044f80bb7317d55dc19bc95d22",
+      "bytes": 11681,
+      "event_count": 6
+    },
+    {
+      "case_id": "ING-001",
+      "path": "tier1/missing/dev/ING-001_curl_dll_staging/model_input/alert_package.json",
+      "sha256": "47e1ccef825ac30e28edde85aa1a9b6290e4b50ea600a951c37dd965cde661bb",
+      "bytes": 11344,
+      "event_count": 8
+    },
+    {
+      "case_id": "LGN-002",
+      "path": "tier1/missing/dev/LGN-002_logon_script_unfired/model_input/alert_package.json",
+      "sha256": "b91f37cdcc7b47fc5b4ae7463a99ddab31dac976d57671d46cf223bf2c2075e7",
+      "bytes": 2649,
+      "event_count": 2
+    },
+    {
+      "case_id": "RK-001",
+      "path": "tier1/missing/dev/RK-001_runkey_persistence/model_input/alert_package.json",
+      "sha256": "86db7908ebde2283bf07b3c7f527146af3a1b376e1f8ca7c0175e086dd094f92",
+      "bytes": 8680,
+      "event_count": 6
+    },
+    {
+      "case_id": "ST-002",
+      "path": "tier1/missing/dev/ST-002_masquerade_schtasks/model_input/alert_package.json",
+      "sha256": "a3c0da41e11c43fe916c213eedeab8c3b12ce81a2a5745d7b1ca98366338c8b4",
+      "bytes": 3236,
+      "event_count": 2
+    },
+    {
+      "case_id": "INJ-001",
+      "path": "tier1/strong/dev/INJ-001_sliver_notepad_injection/model_input/alert_package.json",
+      "sha256": "cbdd733cabb1d487d92a2d5462d001a1f4dc8a8fb53b969efc2f7a8f3de9b4be",
+      "bytes": 6905,
+      "event_count": 6
+    },
+    {
+      "case_id": "LS-001",
+      "path": "tier1/strong/dev/LS-001_lsass_creddump/model_input/alert_package.json",
+      "sha256": "a320ba96000b6a779b93ff61a6e50b9fb86eb0cd3eee21c4a616a9fcade6d41a",
+      "bytes": 5915,
+      "event_count": 4
+    },
+    {
+      "case_id": "RTLO-001",
+      "path": "tier1/strong/dev/RTLO-001_rtlo_masquerade/model_input/alert_package.json",
+      "sha256": "1a1abb88fc82f6b483e8e8971f32214a051a8923640fa362a4237b7090b3addc",
+      "bytes": 5188,
+      "event_count": 4
+    },
+    {
+      "case_id": "UAC-001",
+      "path": "tier1/strong/dev/UAC-001_sdclt_uac_bypass/model_input/alert_package.json",
+      "sha256": "90473111ce73afdcc17e05ac3a024b623490a6f8e7452b001c93ba9d371e1ba6",
+      "bytes": 7502,
+      "event_count": 6
+    },
+    {
+      "case_id": "WMI-002",
+      "path": "tier1/strong/dev/WMI-002_wmi_subscription_unfired/model_input/alert_package.json",
+      "sha256": "9b84d8512153ee9fc3e51e749348e625e16dc8cce3e73d9d43cb9c21496dac50",
+      "bytes": 14324,
+      "event_count": 5
+    },
+    {
+      "case_id": "BF-001",
+      "path": "tier1/weak/dev/BF-001_rdp_bruteforce/model_input/alert_package.json",
+      "sha256": "4770b749c61205bd8126bae4021bc055f8c72fcb672c278ff988c6b4167c5a62",
+      "bytes": 20484,
+      "event_count": 23
+    },
+    {
+      "case_id": "CERT-001",
+      "path": "tier1/weak/dev/CERT-001_certutil_privatekey_export/model_input/alert_package.json",
+      "sha256": "a2e03b9f01949744243482891056970cb23c40b8784614fe6855c71a63b27d63",
+      "bytes": 6682,
+      "event_count": 5
+    },
+    {
+      "case_id": "FW-001",
+      "path": "tier1/weak/dev/FW-001_firewall_rule_add/model_input/alert_package.json",
+      "sha256": "9c7e10d9e4116ad57d8a27030194248ff502afe24cea540849df65e480341566",
+      "bytes": 5429,
+      "event_count": 5
+    },
+    {
+      "case_id": "LS-002",
+      "path": "tier1/weak/dev/LS-002_createdump/model_input/alert_package.json",
+      "sha256": "8d4034c04196bc864689504b7aad619c8da0771f6484afdb4aeb662b0b536844",
+      "bytes": 7227,
+      "event_count": 5
+    },
+    {
+      "case_id": "PS-001",
+      "path": "tier1/weak/dev/PS-001_encoded_powershell_benign/model_input/alert_package.json",
+      "sha256": "fdde848e1b8494472432a7417dd161864168410393f332908dcf9896f6529f33",
+      "bytes": 31916,
+      "event_count": 14
+    },
+    {
+      "case_id": "PS-002",
+      "path": "tier1/weak/dev/PS-002_hidden_powershell_cradle/model_input/alert_package.json",
+      "sha256": "37891a8ea8a08cd9519c436f9a001270cbc6dda38b867f7d59547ab5d55d6b40",
+      "bytes": 4609,
+      "event_count": 4
+    },
+    {
+      "case_id": "ST-003",
+      "path": "tier1/weak/dev/ST-003_legit_vendor_tasks/model_input/alert_package.json",
+      "sha256": "bd75d86a914e9c9a77e1f5b0551543b938abab127c7e572255377877a19d2fee",
+      "bytes": 3807,
+      "event_count": 4
+    },
+    {
+      "case_id": "AMQ-001",
+      "path": "tier2/strong/dev/AMQ-001_activemq_rce_foothold/model_input/alert_package.json",
+      "sha256": "aa5cebd43ef584bb539d5704439e209b0e09c9f93e812c5f9eed344e52aff5b0",
+      "bytes": 15356,
+      "event_count": 13
+    }
+  ],
+  "prompts": {
+    "A1_basic": {
+      "path": "eval/triage_prompt_basic.md",
+      "file_sha256": "ea5155032f0e9ff3b9cf801c1b69ddb7e8583cb80f1d9fe0e86fe9121ce4cc17",
+      "system_prompt_sha256": "5bd9c1f5c20969763e6352f18015b9bfa71d4b73be87b88562b7879bcb08e002",
+      "system_prompt_bytes": 1227
+    },
+    "A2_evidence": {
+      "path": "eval/gemini_triage_prompt.md",
+      "file_sha256": "e58b0b525ab3d2d305a398b6ca2851e61342f8b165e7c05bd8d79bc838f9cfb0",
+      "system_prompt_sha256": "2b1412fa1609d9a3353c4b3bdc46b5bff4d90efa939c9475fbf2744461086696",
+      "system_prompt_bytes": 1966
+    }
+  },
+  "request_template_sha256": "9114bacaefc8c02c0b96ed2583b44ae90989f0964c72dfb5c2faaa119490cd0b",
+  "request_config": {
+    "provider": "gemini",
+    "requested_model": "gemini-2.5-flash",
+    "api_version": "v1beta",
+    "temperature": 0.0,
+    "max_output_tokens": 2048,
+    "thinking": "off",
+    "thinking_budget": 0,
+    "response_mime_type": "application/json",
+    "top_p": null,
+    "seed": null
+  },
+  "request_inputs_digest": "1f7b331056e586eb31a58a1446199eaa6767a7c10610c12484f65259b049e71d",
+  "offline_contract": {
+    "output_schema_sha256": "16adab27ba912f003deda641be765c89d8ad38633ac4bd0d04a79d9fd202ff22",
+    "package_schema_sha256": "53eda7192ae8cc04990ee236cd6883cbd2eb2c6ebd68ea777e5501231ec4b1c2",
+    "runner_sha256": "f283ef0a73b8ae1562e20fcaac5fc5a33624545011354f0c77230a7d8e5ed36d"
+  },
+  "offline_contract_digest": "1d8df3d9b28122894a24939dbf172bd7e43114c4968e111f35b7add9b3d4ff88",
+  "rerun_policy": {
+    "requires_api_review": [
+      "canonical alert_package bytes change",
+      "effective A1 or A2 system prompt changes",
+      "request template or Gemini request configuration changes",
+      "requested model changes"
+    ],
+    "does_not_require_api_rerun": [
+      "ground-truth wording or labels",
+      "rubric or validator logic",
+      "A3/A4 scoring and reports",
+      "retrieval documentation or staged export when package SHA-256 is unchanged"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "security",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1021.002/atomic_red_team/windows-security-xml.log",
+      "sha256": "0b840eb0315fcbfd330af2dcd30bf616c67c816ba8a7d12d23135c24f28b1014"
+    }
+  ],
+  "primary_host": "win-dc-testuser-46070-486.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Security (Microsoft-Windows-Security-Auditing 5145)"
+    ],
+    "why_single_source": "Single sensor (Security 5145 share-object-access), scoped to host win-dc-486's own SMB activity. The log's other host (win-host-576, a PsExec attack) is excluded via the per-source computer filter. Uses the sources[] format only to host-scope a 2-host log (record ids collide across hosts); it is a Tier-1 single-sensor case, not fusion."
+  }
+}

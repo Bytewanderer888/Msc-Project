@@ -1,0 +1,41 @@
+{
+  "case_id": "ST-001",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004"
+    ],
+    "counter_evidence": [
+      "EV-005",
+      "EV-006",
+      "EV-007",
+      "EV-008",
+      "EV-009"
+    ],
+    "must_not_assert": [
+      "that every requested task registration or deletion succeeded (Sysmon process creation proves only that the commands were launched)",
+      "that a configured task action executed (no task-scheduler-attributed action process is present in the retained Sysmon source)",
+      "that confirmed malware persistence or host compromise exists",
+      "that calc.exe or the bare cmd.exe actions are proven malicious or benign payloads"
+    ]
+  },
+  "the_trap": "Five task-creation invocations request onstart, onlogon, once, daily, and PowerShell-registered tasks, including an onstart task requested under SYSTEM. Five matching cleanup invocations follow seconds later. These are alarming persistence commands, but Sysmon proves only that the commands ran, and no task-scheduler-attributed action execution is present. The trap is to turn requested configuration into confirmed malware persistence or payload execution.",
+  "rationale": "A0 and EV-001 through EV-004 show five task-creation invocations in one burst. EV-005 through EV-009 show matching deletion or unregistration invocations seconds later. Sysmon process-create telemetry does not establish that every requested registration or deletion succeeded, and no taskeng/taskhost/svchost-attributed execution of a configured task action is present in the retained source. The precursor is visible, while its named firing confirmation is not evidenced: suspicious missing evidence, investigate.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-M01",
+  "case_name": "systemd_pre_activation",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "The observed service-management preparation activated a new systemd persistence service.",
+  "attack_category": {
+    "category": "Create or Modify System Process: Systemd Service",
+    "candidate_attack_mapping": "T1543.002",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "CAM-LDS",
+    "scenario": "cam-s4-systemd",
+    "capture_cluster": "cam-s4-systemd",
+    "telemetry_depth": "multi_source",
+    "sensors": [
+      "Linux audit",
+      "Linux auth"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "attacker-side AttackMate commands, output, and ATT&CK metadata",
+      "source scenario and variant names",
+      "condition, verdict, severity, action, and ground truth",
+      "service filename auditf -> [x]",
+      "host inetfw -> gateway-01"
+    ],
+    "deterministic_derivations": []
+  },
+  "operational_response_family": "endpoint_isolation",
+  "nearest_frozen_case": null,
+  "differentiation": "Unlike the frozen service-execution cases, this point-in-time package stops at service-file editing residue and daemon reload, before activation."
+}

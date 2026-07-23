@@ -1,0 +1,32 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.7,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006",
+    "EV-007",
+    "EV-008",
+    "EV-009",
+    "EV-010",
+    "EV-011",
+    "EV-012",
+    "EV-013",
+    "EV-014",
+    "EV-015",
+    "EV-016",
+    "EV-017",
+    "EV-018",
+    "EV-019",
+    "EV-020",
+    "EV-021",
+    "EV-022"
+  ],
+  "rationale": "Multiple network connections from an external IP (23.93.242.200) to the internal host-01.corp.local on RDP port 3389 are observed (A0, EV-001-EV-022). The connections are not initiated by the internal host and are handled by svchost.exe, which is legitimate for RDP. However, the high volume of connections from a single external IP to RDP suggests a potential brute-force or reconnaissance attempt.",
+  "recommended_action": "investigate"
+}

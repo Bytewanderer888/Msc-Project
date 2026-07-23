@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ST-003",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01"
+    ],
+    "users": [],
+    "time_window_utc": {
+      "start": "2023-01-24T21:58:01.396924600Z",
+      "end": "2023-01-24T22:03:40.715492700Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "scheduled_task_created"
+    ],
+    "sourcetypes_present": [
+      "Security (Microsoft-Windows-Security-Auditing)"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2023-01-24T22:03:40.715492700Z",
+    "event_type": "scheduled_task_created",
+    "source_event": {
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "channel": "Security",
+      "event_code": 4698,
+      "event_record_id": "353006"
+    },
+    "computer": "host-01",
+    "attributes": {
+      "task_name": "\\npcapwatchdog",
+      "subject_user": "WORKGROUP\\host-01-$",
+      "action_command": "C:\\Program Files\\Npcap\\CheckStatus.bat",
+      "run_as": "NT AUTHORITY\\SYSTEM",
+      "run_level": "LeastPrivilege",
+      "triggers": "BootTrigger"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2023-01-24T21:58:01.396924600Z",
+      "event_type": "scheduled_task_created",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4698,
+        "event_record_id": "341746"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "task_name": "\\Mozilla\\Firefox Default Browser Agent 308046B0AF4A39CB",
+        "subject_user": "host-01-\\Administrator",
+        "action_command": "C:\\Program Files\\Mozilla Firefox\\default-browser-agent.exe",
+        "action_arguments": "do-task \"308046B0AF4A39CB\"",
+        "run_as": "host-01-\\Administrator",
+        "run_level": "LeastPrivilege",
+        "author": "Mozilla",
+        "triggers": "CalendarTrigger"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2023-01-24T22:01:36.052988300Z",
+      "event_type": "scheduled_task_created",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4698,
+        "event_record_id": "349689"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "task_name": "\\aurora-agent-signature-update",
+        "subject_user": "host-01-\\Administrator",
+        "action_command": "C:\\Program Files\\Aurora-Agent\\aurora-agent-util.exe",
+        "action_arguments": "update --restart-service --agent-name aurora-agent --license-path \"C:\\\\Program Files\\\\Aurora-Agent\"",
+        "run_as": "S-1-5-18",
+        "run_level": "HighestAvailable",
+        "author": "Nextron Systems",
+        "triggers": "CalendarTrigger,LogonTrigger"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2023-01-24T22:01:36.071236300Z",
+      "event_type": "scheduled_task_created",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4698,
+        "event_record_id": "349690"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "task_name": "\\aurora-agent-program-update",
+        "subject_user": "host-01-\\Administrator",
+        "action_command": "C:\\Program Files\\Aurora-Agent\\aurora-agent-util.exe",
+        "action_arguments": "upgrade --restart-service --agent-name aurora-agent --license-path \"C:\\\\Program Files\\\\Aurora-Agent\"",
+        "run_as": "S-1-5-18",
+        "run_level": "HighestAvailable",
+        "author": "Nextron Systems",
+        "triggers": "CalendarTrigger"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

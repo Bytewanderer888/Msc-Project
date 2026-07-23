@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0",
+  "case_id": "RK-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2020-11-27T08:47:42.301334500Z",
+      "end": "2020-11-27T08:47:46.229911500Z"
+    },
+    "event_count": 6,
+    "event_types_present": [
+      "process_create",
+      "registry_object_change",
+      "registry_value_set"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-11-27T08:47:42.310441600Z",
+    "event_type": "registry_value_set",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 13,
+      "event_record_id": "4430"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{3368E97D-BD2E-5FC0-E900-000000009101}",
+      "image": "C:\\Windows\\system32\\reg.exe",
+      "target_object": "HKU\\S-1-5-21-3050610357-2573237788-2544563163-500\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\[x]",
+      "details": "C:\\Path\\[x].exe",
+      "registry_event": "SetValue"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-11-27T08:47:42.301334500Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4403"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{3368E97D-BD2E-5FC0-E800-000000009101}",
+        "process_id": "640",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"REG ADD \"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\" /V \"[x]\" /t REG_SZ /F /D \"C:\\Path\\[x].exe\"\" ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{3368E97D-BD2D-5FC0-E300-000000009101}",
+        "parent_process_id": "4484",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"powershell.exe\" -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABJAG0AcABvAHIAdAAtAE0AbwBkAHUAbABlACAAIgBDADoAXABbAHgAXQBcAGkAbgB2AG8AawBlAC0AWwB4AF0AXABJAG4AdgBvAGsAZQAtAFsAeABdAC4AcABzAGQAMQAiACAALQBGAG8AcgBjAGUACgBJAG4AdgBvAGsAZQAtAFsAeABdAFQAZQBzAHQAIAAiAFsAaQBkAF0AIgAgAC0AQwBvAG4AZgBpAHIAbQA6ACQAZgBhAGwAcwBlACAALQBUAGkAbQBlAG8AdQB0AFMAZQBjAG8AbgBkAHMAIAAzADAAMAAgAC0ARQB4AGUAYwB1AHQAaQBvAG4ATABvAGcAUABhAHQAaAAgAEMAOgBcAFsAeABdAFwAYQB0AGMAXwBlAHgAZQBjAHUAdABpAG8AbgAuAGMAcwB2AA=="
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2020-11-27T08:47:42.307488000Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4417"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{3368E97D-BD2E-5FC0-E900-000000009101}",
+        "process_id": "1116",
+        "image": "C:\\Windows\\System32\\reg.exe",
+        "original_file_name": "reg.exe",
+        "command_line": "REG  ADD \"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\" /V \"[x]\" /t REG_SZ /F /D \"C:\\Path\\[x].exe\" ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=59A22FA6CF85026BB6BC69A1ADD75C50,SHA256=9E28034CE3AEEA6951F790F8997DF44CFBF80BEFF9FB17413DBA317016A716AD,IMPHASH=EE7EB7FA7D163340753B7223ADA14352",
+        "parent_process_guid": "{3368E97D-BD2E-5FC0-E800-000000009101}",
+        "parent_process_id": "640",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"REG ADD \"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\" /V \"[x]\" /t REG_SZ /F /D \"C:\\Path\\[x].exe\"\" "
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2020-11-27T08:47:46.219253600Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4820"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{3368E97D-BD32-5FC0-0501-000000009101}",
+        "process_id": "876",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"REG DELETE \"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\" /V \"[x]\" /f >nul 2>&1\" ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F4F684066175B77E0C3A000549D2922C,SHA256=935C1861DF1F4018D698E8B65ABFA02D7E9037D8F68CA3C2065B6CA165D44AD2,IMPHASH=3062ED732D4B25D1C64F084DAC97D37A",
+        "parent_process_guid": "{3368E97D-BD31-5FC0-0001-000000009101}",
+        "parent_process_id": "3900",
+        "parent_image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "parent_command_line": "\"powershell.exe\" -noninteractive -encodedcommand WwBDAG8AbgBzAG8AbABlAF0AOgA6AEkAbgBwAHUAdABFAG4AYwBvAGQAaQBuAGcAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFQAZQB4AHQALgBVAFQARgA4AEUAbgBjAG8AZABpAG4AZwAgACQAZgBhAGwAcwBlADsAIABJAG0AcABvAHIAdAAtAE0AbwBkAHUAbABlACAAIgBDADoAXABbAHgAXQBcAGkAbgB2AG8AawBlAC0AWwB4AF0AXABJAG4AdgBvAGsAZQAtAFsAeABdAC4AcABzAGQAMQAiACAALQBGAG8AcgBjAGUACgBJAG4AdgBvAGsAZQAtAFsAeABdAFQAZQBzAHQAIAAiAFsAaQBkAF0AIgAgAC0AQwBsAGUAYQBuAHUAcAA="
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2020-11-27T08:47:46.225542300Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4834"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{3368E97D-BD32-5FC0-0601-000000009101}",
+        "process_id": "2676",
+        "image": "C:\\Windows\\System32\\reg.exe",
+        "original_file_name": "reg.exe",
+        "command_line": "REG  DELETE \"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\" /V \"[x]\" /f  ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=59A22FA6CF85026BB6BC69A1ADD75C50,SHA256=9E28034CE3AEEA6951F790F8997DF44CFBF80BEFF9FB17413DBA317016A716AD,IMPHASH=EE7EB7FA7D163340753B7223ADA14352",
+        "parent_process_guid": "{3368E97D-BD32-5FC0-0501-000000009101}",
+        "parent_process_id": "876",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"REG DELETE \"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\" /V \"[x]\" /f >nul 2>&1\" "
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2020-11-27T08:47:46.229911500Z",
+      "event_type": "registry_object_change",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 12,
+        "event_record_id": "4847"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{3368E97D-BD32-5FC0-0601-000000009101}",
+        "process_id": "2676",
+        "image": "C:\\Windows\\system32\\reg.exe",
+        "target_object": "HKU\\S-1-5-21-3050610357-2573237788-2544563163-500\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\[x]",
+        "registry_event": "DeleteValue"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

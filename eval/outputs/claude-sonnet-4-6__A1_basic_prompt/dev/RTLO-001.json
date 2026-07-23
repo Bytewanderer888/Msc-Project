@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.97,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "A0 shows execution of a file using a Right-to-Left Override (RTLO/U+202E) Unicode trick: the filename visually renders as 'rcs.3aka3.doc' but is actually a screensaver executable (.scr), a classic masquerading technique to deceive users into running malware. EV-001 shows this same process immediately initiating an outbound TCP connection to 192.168.0.5:1234 (a non-standard port with no hostname resolution), strongly indicating C2 callback. EV-002 and EV-003 reveal a classic execution chain where the malicious .scr spawns cmd.exe, which in turn spawns powershell.exe from the ProgramData working directory, consistent with post-exploitation staging. The combination of RTLO masquerading, immediate C2 connectivity, and cmd\u2192PowerShell process chain constitutes a high-confidence malicious intrusion.",
+  "recommended_action": "isolate"
+}

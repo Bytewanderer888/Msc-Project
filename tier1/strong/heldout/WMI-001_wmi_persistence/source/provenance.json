@@ -1,0 +1,17 @@
+{
+  "dataset": "OTRF Security-Datasets (mordor)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "datasets/compound/apt29/day2/apt29_evals_day2_manual.zip",
+      "sha256": "377f8cba5db95a453a3ee8bd19f493efafc23724541482a4da99da28ee4665f9"
+    }
+  ],
+  "primary_host": "UTICA.dmevals.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "sysmon"
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "case_id": "RDL-001",
+  "split": "dev",
+  "mordor_log": "datasets/compound/apt29/day2/apt29_evals_day2_manual.zip",
+  "computer": "UTICA",
+  "sourcetypes_present": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "944437",
+    "EV": [
+      "944543"
+    ]
+  },
+  "roles": {
+    "944437": "triggering alert: signed rundll32 invokes davclnt DavSetCookie for a Microsoft OneDrive WebDAV endpoint",
+    "944543": "a second identical rundll32/davclnt invocation provides the repeated routine-access context"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "Legitimate WebDAV: rundll32 davclnt.dll DavSetCookie to OneDrive (rundll32-LOLBIN false positive)",
+    "security_proposition": "The rundll32 DavSetCookie activity is malicious LOLBin execution or command-and-control rather than routine WebDAV client activity.",
+    "case_directory": "RDL-001_webdav_rundll32_legit",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "OTRF Security-Datasets (mordor)",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Routine WebDAV access via rundll32 and davclnt",
+      "candidate_attack_mapping": "T1218.011",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = COUNTER. The signed rundll32/davclnt command is repeated with the same Microsoft OneDrive WebDAV endpoint and no offensive follow-on. The routine endpoint and repeated identical activity are decisive benign context. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "case_scope": {
+      "primary_host": "UTICA.dmevals.local"
+    },
+    "curation_notes": [
+      "Counter (down_rank): rundll32.exe carrying an external HTTPS URL trips rundll32 / LOLBIN detections, inviting over-triage as C2.",
+      "Decisive counter-evidence (benign): the command loads C:\\windows\\system32\\davclnt.dll (the Windows WebDAV client), is invoked by the WebClient service (parent 'svchost -k LocalService -s WebClient'), and targets Microsoft OneDrive (d.docs.live.net) via DavSetCookie. Routine WebDAV cookie set; correct verdict benign. The package does not contain signature verification, so none is claimed.",
+      "Matched-surface benign twin of RUN-001 (malicious rundll32 loading a disguised .lock DLL out to C2): same rundll32 shape, opposite verdict — the validator must weigh the counter-evidence (system path + WebClient parent + Microsoft destination)."
+    ],
+    "experimental_role": {
+      "used_for": [
+        "counter_evidence_exemplar",
+        "cross_corpus_generalisation",
+        "signed_binary_benign_twin"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

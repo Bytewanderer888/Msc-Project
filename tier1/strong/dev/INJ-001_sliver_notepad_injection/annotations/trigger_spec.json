@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "case_id": "INJ-001",
+  "rule_id": "SAFESOC-TRG-INJ-001",
+  "analytic_family_id": "AF-ACCESS",
+  "analytic_pattern_id": "ACCESS-02",
+  "title": "Remote thread creation with an unbacked start address",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "full_source",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source; no event-level answer selector is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 8
+      },
+      {
+        "field": "attributes.start_module",
+        "op": "eq",
+        "value": "-"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "15275583"
+  },
+  "rationale": "A Sysmon remote-thread event whose start address is not mapped to a module is a process-injection analytic."
+}

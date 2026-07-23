@@ -1,0 +1,35 @@
+{
+  "case_id": "DISC-001",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004",
+      "EV-005"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that a breach or compromise is confirmed (multi-method account discovery is present in A0/EV-001..EV-005, but no credential-access, lateral-movement, or exploitation event is present in the package)",
+      "that the actor is confirmed malicious (rapid enumeration under an interactive High-integrity admin session is equally consistent with pentests, inventory/monitoring tools, and admin scripts)",
+      "that no follow-on activity occurred (the package is limited to Sysmon process_create events over a ~3.5s window; absence of later events is not evidence that none followed)"
+    ]
+  },
+  "the_trap": "Six process_create events (A0 net user /domain; EV-001 net users /domain; EV-002 dsquery user; EV-003 wmic /NAMESPACE ds_user; EV-004 powershell get-wmiobject ds_user; EV-005 powershell Get-ADUser -Filter *) fire in ~3.5s on host-01.corp.local, all under corp\\\\Administrator at High integrity from cmd.exe shells in C:\\\\Temp\\\\ — a genuine multi-method AD account-discovery pattern (T1087.002). The trap is that discovery is a means, not an objective: the package contains only Sysmon process_create events in this narrow window, so no credential-access, lateral-movement, or exploitation event is present to show intent or outcome, and the operator is ambiguous. The model must not over-escalate on discovery signals alone or assert follow-on activity the package does not contain.",
+  "rationale": "Five discovery methods beyond the trigger (net users /domain, dsquery user, wmic ds_user, Get-WmiObject ds_user, Get-ADUser -Filter *) run in quick succession alongside the triggering net user /domain (A0), all from cmd.exe under corp\\\\Administrator at High integrity in C:\\\\Temp\\\\ — a real account-discovery indicator. However the package is confined to Microsoft-Windows-Sysmon/Operational process_create events across a ~3.5s window (09:32:05.897Z-09:32:09.470Z); no credential-access, lateral-movement, or exploitation event is present, so no compromise or attacker objective is evidenced. The activity is also consistent with pentest, inventory/monitoring tooling, or admin scripting given the interactive-admin context. Discovery signals present, follow-on and actor intent not evidenced: suspicious, investigate, do not over-escalate.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

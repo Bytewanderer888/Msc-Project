@@ -1,0 +1,30 @@
+{
+  "case_id": "RDL-001",
+  "evidence_condition": "counter",
+  "calibration_role": "down_rank",
+  "correct_verdict": "benign",
+  "acceptable_severity": [
+    "informational",
+    "low"
+  ],
+  "acceptable_actions": [
+    "close_benign",
+    "monitor"
+  ],
+  "grounding": {
+    "supporting_evidence": [],
+    "counter_evidence": [
+      "A0",
+      "EV-001"
+    ],
+    "must_not_assert": [
+      "malicious rundll32 LOLBIN execution or C2 (the command uses C:\\windows\\system32\\davclnt.dll, the WebDAV client, invoked by the WebClient service and targeting Microsoft OneDrive)",
+      "the package verified the digital signature of davclnt.dll; no signature field is present"
+    ]
+  },
+  "the_trap": "rundll32.exe carrying an external HTTPS URL trips rundll32 / LOLBIN detection, but the command uses the Windows WebDAV client davclnt.dll from System32, is invoked by the WebClient service (svchost -k LocalService -s WebClient), and targets Microsoft OneDrive (d.docs.live.net) via DavSetCookie — routine WebDAV, not C2. Matched-surface benign twin of RUN-001.",
+  "rationale": "A0 is rundll32.exe with an external HTTPS URL — a classic LOLBIN pattern — but the counter-evidence is decisive: it invokes the Windows WebDAV client davclnt.dll from System32, the parent is the WebClient service, and the destination is Microsoft OneDrive via DavSetCookie (A0, EV-001). This is a routine WebDAV cookie set: benign. No signature-verification claim is needed or made.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

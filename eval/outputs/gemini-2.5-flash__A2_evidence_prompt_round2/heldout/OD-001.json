@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "The activity shows a sequence of highly suspicious actions executed by the Administrator user. This includes deleting volume shadow copies (A0), clearing the security event log (EV-001, EV-005), disabling boot status policy and recovery (EV-002, EV-003), and clearing the system event log (EV-004). These actions are commonly associated with ransomware or other destructive malware to hinder recovery and remove forensic evidence.",
+  "recommended_action": "isolate"
+}

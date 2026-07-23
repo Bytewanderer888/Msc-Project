@@ -1,0 +1,25 @@
+{
+  "record_schema": "safesoc.expected_run_matrix.v1",
+  "recorded_utc": "2026-07-15",
+  "updated_utc": "2026-07-20",
+  "runs": [
+    {"label": "Gemini A1 dev round 1", "model_tag": "gemini-2.5-flash__A1_basic_prompt", "split": "dev"},
+    {"label": "Gemini A1 dev round 2", "model_tag": "gemini-2.5-flash__A1_basic_prompt_round2", "split": "dev"},
+    {"label": "Gemini A1 dev round 3", "model_tag": "gemini-2.5-flash__A1_basic_prompt_round3", "split": "dev"},
+    {"label": "Gemini A2 dev round 1", "model_tag": "gemini-2.5-flash__A2_evidence_prompt", "split": "dev"},
+    {"label": "Gemini A2 dev round 2", "model_tag": "gemini-2.5-flash__A2_evidence_prompt_round2", "split": "dev"},
+    {"label": "Gemini A2 dev round 3", "model_tag": "gemini-2.5-flash__A2_evidence_prompt_round3", "split": "dev"},
+    {"label": "Gemini A2 held-out round 1", "model_tag": "gemini-2.5-flash__A2_evidence_prompt", "split": "heldout"},
+    {"label": "Gemini A2 held-out round 2", "model_tag": "gemini-2.5-flash__A2_evidence_prompt_round2", "split": "heldout"},
+    {"label": "Gemini A2 held-out round 3", "model_tag": "gemini-2.5-flash__A2_evidence_prompt_round3", "split": "heldout"},
+    {"label": "Claude A1 dev round 1", "model_tag": "claude-sonnet-4-6__A1_basic_prompt", "split": "dev"},
+    {"label": "Claude A2 dev round 1", "model_tag": "claude-sonnet-4-6__A2_evidence_prompt", "split": "dev"},
+    {"label": "Claude A2 dev round 2", "model_tag": "claude-sonnet-4-6__A2_evidence_prompt_round2", "split": "dev"},
+    {"label": "Claude A2 dev round 3", "model_tag": "claude-sonnet-4-6__A2_evidence_prompt_round3", "split": "dev"},
+    {"label": "Claude A2 held-out round 1", "model_tag": "claude-sonnet-4-6__A2_evidence_prompt", "split": "heldout"},
+    {"label": "Claude A2 held-out round 2", "model_tag": "claude-sonnet-4-6__A2_evidence_prompt_round2", "split": "heldout"},
+    {"label": "Claude A2 held-out round 3", "model_tag": "claude-sonnet-4-6__A2_evidence_prompt_round3", "split": "heldout"}
+  ],
+  "deferred_rule": "Add Claude A2 held-out round 1 after corrected dev stability is known; add rounds 2-3 only if exact A2 dev agreement is below 20/21.",
+  "deferred_rule_resolution": "Claude A2 dev exact decision-tuple agreement was 19/21 across rounds 1-3, so held-out rounds 1-3 are required."
+}

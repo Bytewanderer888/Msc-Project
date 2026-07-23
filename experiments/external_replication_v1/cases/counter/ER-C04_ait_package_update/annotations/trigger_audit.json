@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "ER-C04",
+  "rule_id": "SAFESOC-TRG-ER-C04",
+  "analytic_family_id": "AF-WEB",
+  "analytic_pattern_id": "WEB-01",
+  "source_description": "external archive (ait_ads.zip: russellmitchell_wazuh.json)",
+  "raw_source_event_count": 41488,
+  "complete_scope_event_count": 41488,
+  "predicate_match_count": 144,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "russellmitchell_wazuh.json:line:16",
+  "expected_record_key": "russellmitchell_wazuh.json:line:16",
+  "selected_raw_sha256": "fe8e59b3655d55812998dd9d371b85bb6f569e32415b1d74896ba56f8d10bea5",
+  "pass": true
+}

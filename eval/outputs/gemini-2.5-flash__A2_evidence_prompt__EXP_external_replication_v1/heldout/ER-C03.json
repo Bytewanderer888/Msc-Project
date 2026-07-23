@@ -1,0 +1,11 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "Both A0 and EV-001 show 'spoolsv.exe' loading legitimate, signed Microsoft DLLs ('PrintConfig.dll' and 'mxdwdrv.dll') from expected 'spool\\drivers' directories. This activity is consistent with normal printer spooler operations.",
+  "recommended_action": "close_benign"
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "case_id": "EVL-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01"
+    ],
+    "users": [
+      "host-01\\user-01"
+    ],
+    "time_window_utc": {
+      "start": "2022-08-04T15:21:07.983Z",
+      "end": "2022-08-04T15:21:16.119Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "process_create",
+      "registry_value_set"
+    ],
+    "sourcetypes_present": [
+      "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2022-08-04T15:21:16.119Z",
+    "event_type": "registry_value_set",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 13,
+      "event_record_id": "6256"
+    },
+    "computer": "host-01",
+    "attributes": {
+      "process_guid": "{625b42a0-e3e3-62eb-4807-000000000900}",
+      "image": "C:\\Windows\\system32\\reg.exe",
+      "target_object": "HKLM\\System\\CurrentControlSet\\Services\\EventLog\\Start",
+      "details": "DWORD (0x00000004)",
+      "registry_event": "SetValue"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2022-08-04T15:21:07.983Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "5897"
+      },
+      "computer": "host-01",
+      "attributes": {
+        "process_guid": "{625b42a0-e3e3-62eb-4807-000000000900}",
+        "process_id": "2652",
+        "image": "C:\\Windows\\System32\\reg.exe",
+        "original_file_name": "reg.exe",
+        "command_line": "REG  ADD HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog /t REG_DWORD /v Start /d 4",
+        "current_directory": "C:\\Users\\IT01-user-01\\Downloads\\",
+        "user": "host-01\\user-01",
+        "integrity_level": "High",
+        "hashes": "SHA1=077A4479A2CF23D3709324F21F4D19DC0EF041C8,MD5=05CF3CE225B05B669E3118092F4C8EAB,SHA256=B211C25BF0B10A82B47E9D8DA12155AAD95CFF14CEBDA7C4ACB35A94B433DDFB,IMPHASH=BE482BE427FE212CFEF2CDA0E61F19AC",
+        "parent_process_guid": "{625b42a0-e3d6-62eb-4607-000000000900}",
+        "parent_process_id": "7728",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "C:\\Windows\\system32\\cmd.exe"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

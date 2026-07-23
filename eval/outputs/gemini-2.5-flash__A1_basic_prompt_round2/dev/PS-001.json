@@ -1,0 +1,19 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-006",
+    "EV-010",
+    "EV-011",
+    "EV-012",
+    "EV-013",
+    "DER-001"
+  ],
+  "rationale": "The main alert (A0) shows PowerShell executing an encoded command. The decoded command (DER-001) reveals a multi-stage payload that attempts to compile a DLL (EV-010, EV-011, EV-012, EV-013) and then execute it. This behavior, originating from a winrshost.exe parent (EV-001), is highly indicative of a malicious remote code execution attempt.",
+  "recommended_action": "isolate"
+}

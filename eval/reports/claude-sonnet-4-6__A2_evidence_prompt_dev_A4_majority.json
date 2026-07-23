@@ -1,0 +1,1021 @@
+{
+  "cases": [
+    {
+      "case_id": "ACCT-001",
+      "condition": "missing",
+      "flagged_by_majority": [
+        "C2"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "AMQ-001",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "BF-001",
+      "condition": "weak",
+      "flagged_by_majority": [
+        "C2"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 2,
+          "round_passes": [
+            true,
+            true,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "CERT-001",
+      "condition": "weak",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "DISC-002",
+      "condition": "counter",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "FW-001",
+      "condition": "weak",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "ING-001",
+      "condition": "missing",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "INJ-001",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "LGN-002",
+      "condition": "missing",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "LS-001",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "LS-002",
+      "condition": "weak",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "PS-001",
+      "condition": "weak",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "PS-002",
+      "condition": "weak",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "RDL-001",
+      "condition": "counter",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "RK-001",
+      "condition": "missing",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "RTLO-001",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "SMB-002",
+      "condition": "counter",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "ST-002",
+      "condition": "missing",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "ST-003",
+      "condition": "weak",
+      "flagged_by_majority": [
+        "C2",
+        "C4"
+      ],
+      "joint_majority_pass": false,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": false,
+          "pass_n": 0,
+          "round_passes": [
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "UAC-001",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "WMI-002",
+      "condition": "strong",
+      "flagged_by_majority": [],
+      "joint_majority_pass": true,
+      "majority_checks": {
+        "C1": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C2": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C3": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        },
+        "C4": {
+          "majority_pass": true,
+          "pass_n": 3,
+          "round_passes": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    }
+  ],
+  "generated_utc": "2026-07-20T14:09:57Z",
+  "record_schema": "safesoc.validator-majority.v1",
+  "rounds": [
+    {
+      "all_checks_pass_n": 10,
+      "check_failure_counts": {
+        "C1": 0,
+        "C2": 11,
+        "C3": 0,
+        "C4": 9
+      },
+      "model": "claude-sonnet-4-6__A2_evidence_prompt",
+      "round": 1,
+      "source": "eval/reports/claude-sonnet-4-6__A2_evidence_prompt_dev_A4.json"
+    },
+    {
+      "all_checks_pass_n": 10,
+      "check_failure_counts": {
+        "C1": 0,
+        "C2": 11,
+        "C3": 0,
+        "C4": 9
+      },
+      "model": "claude-sonnet-4-6__A2_evidence_prompt_round2",
+      "round": 2,
+      "source": "eval/reports/claude-sonnet-4-6__A2_evidence_prompt_round2_dev_A4.json"
+    },
+    {
+      "all_checks_pass_n": 10,
+      "check_failure_counts": {
+        "C1": 0,
+        "C2": 11,
+        "C3": 0,
+        "C4": 10
+      },
+      "model": "claude-sonnet-4-6__A2_evidence_prompt_round3",
+      "round": 3,
+      "source": "eval/reports/claude-sonnet-4-6__A2_evidence_prompt_round3_dev_A4.json"
+    }
+  ],
+  "split": "dev",
+  "summary": {
+    "majority_check_failure_counts": {
+      "C1": 0,
+      "C2": 11,
+      "C3": 0,
+      "C4": 9
+    },
+    "majority_flagged_n": 11,
+    "majority_joint_pass_n": 10,
+    "n": 21,
+    "per_round_all_checks_pass_n": [
+      10,
+      10,
+      10
+    ],
+    "per_round_mean": 10.0,
+    "per_round_range": [
+      10,
+      10
+    ]
+  }
+}

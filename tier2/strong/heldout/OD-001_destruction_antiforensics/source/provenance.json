@@ -1,0 +1,24 @@
+{
+  "dataset": "Splunk Attack Data (malware/olympic_destroyer)",
+  "sources": [
+    {
+      "sensor": "sysmon",
+      "source_log": "attack_data-master/datasets/malware/olympic_destroyer/sysmon.log",
+      "sha256": "fbaca21ff9c39e47586cf3755aa5013cbe044cc00164fb7b7fb47a592c3d6111"
+    },
+    {
+      "sensor": "security",
+      "source_log": "attack_data-master/datasets/malware/olympic_destroyer/security.log",
+      "sha256": "fce8826d78219156d831de26c7390d8a7bf7bced9c7633a598b93732609dae73"
+    }
+  ],
+  "primary_host": "win-dc-tcontreras-attack-range-173.attackrange.local",
+  "tier": {
+    "tier": 2,
+    "sensors": [
+      "Sysmon",
+      "Security"
+    ],
+    "why_single_source": "GENUINE MULTI-SENSOR FUSION: Sysmon (EID 1) carries the destructive commands; Security carries the 1102 log-clear event that Sysmon cannot see (and whose 4688 process audits were wiped by that very clear). Same host (win-dc-173), same 10:56 window. The Security log is stanza format, converted to XML by the engine."
+  }
+}

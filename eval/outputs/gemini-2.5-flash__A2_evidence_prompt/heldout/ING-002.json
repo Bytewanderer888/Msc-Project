@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.8,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "Multiple legitimate Windows utilities (certutil.exe and bitsadmin.exe) were used in close succession by the Administrator user to download a file from GitHub to a temporary directory (A0, EV-001, EV-002). This behavior is often associated with initial access or execution phases of an attack, but the content of the downloaded file is not available to confirm malicious intent. The use of cmd.exe as an intermediary (EV-003) further suggests a scripted or automated action.",
+  "recommended_action": "investigate"
+}

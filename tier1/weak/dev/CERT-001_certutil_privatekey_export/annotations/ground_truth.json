@@ -1,0 +1,33 @@
+{
+  "case_id": "CERT-001",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "confirmed private-key theft or credential exfiltration (certutil is a legitimate Microsoft administration utility and no network or file event shows the exported PFX leaving the host or being used)",
+      "the package verified certutil's digital signature; no signature field is present"
+    ]
+  },
+  "the_trap": "certutil.exe exports certificate PRIVATE KEYS to PFX (-privatekey -exportpfx) and enumerates the cert store — a genuine T1552.004 indicator — but certutil is a legitimate administration utility, certificate backup can be legitimate, and no exfiltration or use of the exported PFX is captured; the model must not assert confirmed private-key theft or signature verification.",
+  "rationale": "A0 exports the machine ('Computer') certificate's private key to a PFX; EV-001..004 are a second private-key export, cert-store enumeration (-Store MY), a thumbprint export, and -dcinfo. Exporting a private key is a real credential-access indicator, but certutil is a legitimate Microsoft administration utility, certificate export/backup can be a normal task, and the confirming outcome (the PFX being exfiltrated or used) is absent: suspicious, investigate. The package contains no digital-signature verification.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

@@ -1,0 +1,18 @@
+{
+  "case_id": "ER-W01",
+  "builder": "experiments/external_replication_v1/build_windows_cases.py",
+  "source_file": "data_sources/windows_apt_2025/combined.csv",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "source_record_id": "QKEIgZMBrrvr6pEbBHVQ",
+      "csv_record_number": 6200,
+      "record_sha256": "f7be55412159035aee285ceb1d7cd2c7dc64981e10d0f0261bbdfdcf6bf25cdf"
+    }
+  ],
+  "literal_redactions": [
+    "computer/source address -> host-01",
+    "local user -> user-01",
+    "external address and hostname -> external-01"
+  ]
+}

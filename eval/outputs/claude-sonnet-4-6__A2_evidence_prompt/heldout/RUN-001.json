@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.87,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002"
+  ],
+  "rationale": "EV-001 shows certutil.exe (a known LOLBin for downloading/decoding payloads) creating a file named 'kxwn.lock' in the user's AppData\\Roaming\\Microsoft directory \u2014 an atypical file extension and location for certutil output, strongly suggesting it was used to drop a payload. A0 then shows rundll32.exe executing that same file ('kxwn.lock') with an exported function 'VoidFunc' approximately 19 minutes later, which is a classic technique for executing a DLL disguised with a non-DLL extension. EV-002 confirms that the same rundll32.exe process (matching process_guid) immediately initiated an outbound TCP connection to 192.168.0.4:443, consistent with C2 callback behavior. The chain of certutil drop \u2192 rundll32 execution of a disguised DLL \u2192 outbound network connection constitutes a high-confidence malicious execution chain; the only uncertainty is the absence of certutil's own command line (which would confirm download vs. decode) and the nature of the destination host.",
+  "recommended_action": "isolate"
+}

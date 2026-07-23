@@ -1,0 +1,11 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.65,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "Both A0 and EV-001 show rundll32.exe invoking davclnt.dll's DavSetCookie export targeting d.docs.live.net (Microsoft OneDrive/Live), a known technique (WebDAV forced authentication / UNC path coercion) used to capture Net-NTLMv2 hashes or redirect traffic to attacker-controlled infrastructure. The parent process is svchost.exe hosting the WebClient service, which is consistent with a WebDAV-triggered coercion scenario rather than direct user execution. Running at High integrity level and firing twice within milliseconds for the same URL/path is anomalous and warrants investigation. While davclnt.dll and the WebClient service are legitimate Windows components, this specific invocation pattern is frequently observed in credential-theft and lateral-movement pre-staging attacks.",
+  "recommended_action": "investigate"
+}

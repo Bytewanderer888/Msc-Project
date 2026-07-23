@@ -1,0 +1,37 @@
+{
+  "case_id": "ER-M03",
+  "security_proposition": "The observed cleanup command removed its selected script from the host.",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "operational_response": {
+    "family": "analyst_escalation",
+    "note": "Investigate the session and surrounding activity; no deletion-based containment claim is justified."
+  },
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that the target script existed at command time",
+      "that any file was deleted by this command",
+      "that log or forensic evidence was erased",
+      "that the command established successful defense evasion"
+    ]
+  },
+  "the_trap": "The command is cleanup-shaped, but the immediately correlated unlinkat result is success=no with ENOENT. Invocation must not be rewritten as deletion.",
+  "rationale": "A0 records root invoking rm against a script target. EV-001 is the correlated unlinkat result from the same process and reports success=no, exit -2 (ENOENT). The cleanup attempt is observable, but target removal did not occur.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

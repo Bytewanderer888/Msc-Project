@@ -1,0 +1,13 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.88,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "All observed activity originates from a machine account (user-01$) accessing IPC$/lsarpc and SYSVOL shares on host-01.corp.local, which is consistent with standard Windows domain Group Policy refresh behavior. The SYSVOL accesses in EV-001 through EV-003 target the two well-known default GPO GUIDs ({31B2F340...} and {6AC1786C...}) reading gpt.ini files \u2014 a textbook GP client enumeration pattern. The repeated lsarpc accesses via IPC$ (A0, EV-004 through EV-007) reflect normal LSARPC/NETLOGON RPC calls made during domain authentication and policy processing. No anomalous share targets, lateral movement indicators, or unusual access masks are present.",
+  "recommended_action": "close_benign"
+}

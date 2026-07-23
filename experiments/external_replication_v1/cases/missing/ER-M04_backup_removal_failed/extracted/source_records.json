@@ -1,0 +1,16 @@
+[
+  {
+    "evidence_id": "A0",
+    "archive_member": "manifestations_raw/steps/3_ssh_healthcheck-31/linuxshare/logs/log/audit/audit.log",
+    "line_number": 2,
+    "record_sha256": "0af7d5f39e59344463654986757a7df6d18dc3f3fbadae452cf9ef5a9ec7749c",
+    "raw_record": "type=EXECVE msg=audit(1765464266.708:11257): argc=3 a0=\"rm\" a1=\"-rf\" a2=\"/var/backups/*\""
+  },
+  {
+    "evidence_id": "EV-001",
+    "archive_member": "manifestations_raw/steps/3_ssh_healthcheck-31/linuxshare/logs/log/audit/audit.log",
+    "line_number": 7,
+    "record_sha256": "d179c3c761f76153cf200d59d7c0cbe73b9d42eb0d060e00aa9971795c347d62",
+    "raw_record": "type=SYSCALL msg=audit(1765464266.712:11258): arch=c000003e syscall=263 success=no exit=-2 a0=ffffff9c a1=55b480e2dbf0 a2=0 a3=7fd1f45f3f60 items=1 ppid=2122 pid=2216 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts0 ses=10 comm=\"rm\" exe=\"/usr/bin/rm\" subj=unconfined key=\"T1070_Indicator_Removal_on_Host\"\u001dARCH=x86_64 SYSCALL=unlinkat AUID=\"root\" UID=\"root\" GID=\"root\" EUID=\"root\" SUID=\"root\" FSUID=\"root\" EGID=\"root\" SGID=\"root\" FSGID=\"root\""
+  }
+]

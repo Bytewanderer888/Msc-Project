@@ -1,0 +1,75 @@
+{
+  "case_id": "DISC-002",
+  "split": "dev",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1057/process_commandline_discovery/wmic-cmdline-sysmon.log",
+  "staged_export": "extracted/disc002_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "164519",
+    "EV": [
+      "164518",
+      "164517",
+      "164516"
+    ]
+  },
+  "roles": {
+    "164519": "triggering alert: wmic OS get Version /format:list — OS-info query (surface: T1057/T1082)",
+    "164518": "wmic OS get Caption",
+    "164517": "wmic computersystem get Domain",
+    "164516": "wmic computersystem get DNSHostName"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "wmic_system_discovery_ssm_inventory",
+    "security_proposition": "The SSM-parent WMIC query burst is attacker-driven system discovery rather than routine inventory.",
+    "case_directory": "DISC-002_wmic_system_discovery",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "disc002_wmic_sysmon.log",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Routine AWS SSM inventory (wmic OS/computersystem info) — benign",
+      "candidate_attack_mapping": "T1057/T1082 (surface only)",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = COUNTER. Four wmic OS/computersystem queries (Version, Caption, DNSHostName, Domain) run as SYSTEM superficially resemble host discovery, BUT every one is spawned by C:\\Program Files\\Amazon\\SSM\\ssm-agent-worker.exe (the AWS Systems Manager agent) in a ~0.35s burst with no follow-on — the standard SSM inventory collection. The parent + the exact query set are decisive benign context. Over-triage-prone (down-rank): the model must not flag routine SSM inventory as active reconnaissance. Legit-system-actor benign twin of SMB-002. Do not leak."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "single host ar-win-2 (12 EID1 events)."
+    },
+    "case_scope": {
+      "primary_host": "ar-win-2.attackrange.local",
+      "boundary_definition": [
+        "A0 = the wmic OS Version query; EV = 3 more wmic OS/computersystem queries.",
+        "All four are spawned by the AWS SSM agent (ssm-agent-worker.exe) as SYSTEM within ~0.35s; no follow-on — routine inventory, not an actor."
+      ]
+    },
+    "curation_notes": [
+      {
+        "topic": "counter_benign",
+        "note": "COUNTER / over-triage-prone: routine SSM inventory (OS version/caption, hostname, domain) that superficially resembles discovery. Decisive benign context = the ssm-agent-worker.exe parent + the standard inventory query set. The model must not over-read it as active recon."
+      },
+      {
+        "topic": "annotation_history",
+        "note": "2026-07-07: weak -> COUNTER after the dev confirmation pass. On re-examining the package, all four wmic queries are spawned by the AWS SSM agent (ssm-agent-worker.exe) in a sub-second burst — its standard inventory set — which is decisive benign context, directly comparable to SMB-002. The original weak/suspicious label was too harsh."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "counter_benign_exemplar",
+        "legit_system_actor_false_positive",
+        "matched_pair_vs_SMB-002"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

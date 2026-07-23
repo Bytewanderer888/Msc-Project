@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "case_id": "DISC-004",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01"
+    ],
+    "users": [
+      "host-01\\user-01"
+    ],
+    "time_window_utc": {
+      "start": "2020-10-22T03:28:11.220Z",
+      "end": "2020-10-22T03:28:11.220Z"
+    },
+    "event_count": 1,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-10-22T03:28:11.220Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "31"
+    },
+    "computer": "host-01",
+    "attributes": {
+      "process_guid": "{39e4a257-fc4b-5f90-9411-000000000700}",
+      "process_id": "2200",
+      "image": "C:\\Windows\\System32\\reg.exe",
+      "original_file_name": "reg.exe",
+      "command_line": "reg  query \"HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Internet Explorer\" /v svcVersion",
+      "current_directory": "C:\\Users\\user-01\\",
+      "user": "host-01\\user-01",
+      "integrity_level": "High",
+      "hashes": "SHA1=EB3B03616EEE42F16D0703F64DE23E7E34FE8524,MD5=601BDDF7691C5AF626A5719F1D7E35F1,SHA256=4ED2A27860FA154415F65452FF1F94BD6AF762982E2F3470030C504DC3C8A354,IMPHASH=BE482BE427FE212CFEF2CDA0E61F19AC",
+      "parent_process_guid": "{39e4a257-fc2f-5f90-9211-000000000700}",
+      "parent_process_id": "10308",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"C:\\windows\\system32\\cmd.exe\" "
+    }
+  },
+  "evidence_items": [],
+  "deterministic_derivations": []
+}

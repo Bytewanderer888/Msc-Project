@@ -1,0 +1,31 @@
+{
+  "case_id": "EVL-001",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that Windows event logging was disabled or that defense evasion succeeded (A0 shows EventLog\\Start set to DWORD 0x00000004 = Disabled start type, but no reboot, service-stop, or log-clearing event is present, so the actual disabling outcome is not evidenced)",
+      "that the EventLog service remained active or that no logs were lost (no service-state or log-clearing event is present; the outcome is not evidenced in either direction)",
+      "that evidence was destroyed or the host went dark"
+    ]
+  },
+  "the_trap": "A single reg.exe write (A0) sets HKLM\\System\\CurrentControlSet\\Services\\EventLog\\Start = DWORD 0x00000004 (the value Windows uses for a Disabled service start type), spawned by EV-001's reg.exe command line 'REG ADD ...\\Services\\EventLog /v Start /d 4' at High integrity from a cmd.exe parent under C:\\Users\\IT01-user-01\\Downloads\\. This looks like successful Event-Log tampering / defense evasion, but the package evidences only the registry-configuration action: it contains no reboot event, no Event Log service stop/state-change event, and no log-clearing event, so the actual disabling outcome is not evidenced. The model must not conclude 'evasion succeeded -> High' — nor may it assert the opposite (that the service kept running and no logs were lost), which is equally unevidenced.",
+  "rationale": "The only activity in the package is a single reg.exe registry write: EV-001 (process_create) records the command 'REG ADD HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog /t REG_DWORD /v Start /d 4' at High integrity with parent cmd.exe, and A0 (registry_value_set, event_code 13) confirms HKLM\\System\\CurrentControlSet\\Services\\EventLog\\Start was set to DWORD 0x00000004. Setting a service Start value to 4 (Disabled) on the EventLog service is a recognized log-tampering / defense-evasion technique, so genuine tampering intent is evidenced. However, the confirming outcome is absent: no reboot, service-stop, or log-clearing event is present, and deterministic_derivations is empty, so the actual disabling outcome — whether logging was affected or any logs were lost — is not evidenced. Tampering intent is shown but the result is unconfirmed: suspicious, not confirmed.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

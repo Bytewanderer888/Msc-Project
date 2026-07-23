@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ST-003",
+  "rule_id": "SAFESOC-TRG-ST-003",
+  "analytic_family_id": "AF-PERS",
+  "analytic_pattern_id": "PERS-01",
+  "title": "Scheduled task created to run a program as SYSTEM",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events for the pre-declared endpoint asset in the multi-host Security log.",
+    "filter_predicate": {
+      "field": "computer",
+      "op": "ieq",
+      "value": "win-host-mhaag-attack-range-569"
+    }
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 4698
+      },
+      {
+        "field": "attributes.run_as",
+        "op": "icontains",
+        "value": "SYSTEM"
+      },
+      {
+        "any": [
+          {
+            "field": "attributes.action_command",
+            "op": "iendswith",
+            "value": ".bat"
+          },
+          {
+            "field": "attributes.action_command",
+            "op": "iendswith",
+            "value": ".cmd"
+          },
+          {
+            "field": "attributes.action_command",
+            "op": "iendswith",
+            "value": ".exe"
+          }
+        ]
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "353006"
+  },
+  "rationale": "A newly registered task executing a program or script as SYSTEM is a plausible scheduled-task alert surface; provenance is contextual evidence."
+}

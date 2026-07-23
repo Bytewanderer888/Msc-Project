@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.97,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "All five events show createdump.exe being invoked repeatedly to dump LSASS memory (PID 632 in A0, and by filename 'dotnet-lsass.dmp' in all events) \u2014 a well-documented credential-harvesting technique (LSASS memory dumping via createdump.exe, analogous to Mimikatz/ProcDump abuse). The working directory in A0 and EV-001 is 'Doge-AMSI-patch-main', explicitly referencing an AMSI bypass/patch tool, confirming deliberate defense evasion prior to credential theft. The activity is initiated from PowerShell (both legacy and PS7) running as Administrator at High integrity, and the pattern of multiple repeated dump attempts over ~19 minutes indicates persistent, scripted credential harvesting rather than accidental execution.",
+  "recommended_action": "isolate"
+}

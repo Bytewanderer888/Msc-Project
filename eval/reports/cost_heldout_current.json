@@ -1,0 +1,221 @@
+{
+  "generated_utc": "2026-07-21T12:18:36Z",
+  "pricing_snapshot": {
+    "accessed_utc": "2026-07-15",
+    "currency": "USD",
+    "models": {
+      "claude-sonnet-4-6": {
+        "batch": {
+          "input": 1.5,
+          "output": 7.5
+        },
+        "standard": {
+          "input": 3.0,
+          "output": 15.0
+        },
+        "study_billing": "standard_realtime"
+      },
+      "gemini-2.5-flash": {
+        "free_tier": {
+          "input": 0.0,
+          "output": 0.0
+        },
+        "standard": {
+          "input": 0.3,
+          "output": 2.5
+        },
+        "study_billing": "free_tier"
+      }
+    },
+    "notes": [
+      "Actual study spend and paid-tier list-equivalent cost are reported separately.",
+      "No prompt caching, tools, long-context surcharge, or inference geography multiplier was used.",
+      "Prices are a dated snapshot and must not be silently replaced with later prices in the thesis."
+    ],
+    "sources": {
+      "anthropic": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "google": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    "unit": "per_1_million_tokens"
+  },
+  "record_schema": "safesoc.cost_report.v1",
+  "rows": [
+    {
+      "canonical": {
+        "actual_cost": 0.32327100000000003,
+        "calls": 20,
+        "input": 75297,
+        "list_cost": 0.32327100000000003,
+        "modes": {
+          "realtime": 20
+        },
+        "output": 6492
+      },
+      "complete": true,
+      "current_outputs": 20,
+      "incurred": {
+        "actual_cost": 0.3232709999999999,
+        "calls": 20,
+        "input": 75297,
+        "list_cost": 0.3232709999999999,
+        "modes": {
+          "realtime": 20
+        },
+        "output": 6492
+      },
+      "missing_usage_cases": [],
+      "model": "claude-sonnet-4-6",
+      "split": "heldout",
+      "tag": "claude-sonnet-4-6__A2_evidence_prompt"
+    },
+    {
+      "canonical": {
+        "actual_cost": 0.3247860000000001,
+        "calls": 20,
+        "input": 75297,
+        "list_cost": 0.3247860000000001,
+        "modes": {
+          "realtime": 20
+        },
+        "output": 6593
+      },
+      "complete": true,
+      "current_outputs": 20,
+      "incurred": {
+        "actual_cost": 0.3247859999999999,
+        "calls": 20,
+        "input": 75297,
+        "list_cost": 0.3247859999999999,
+        "modes": {
+          "realtime": 20
+        },
+        "output": 6593
+      },
+      "missing_usage_cases": [],
+      "model": "claude-sonnet-4-6",
+      "split": "heldout",
+      "tag": "claude-sonnet-4-6__A2_evidence_prompt_round2"
+    },
+    {
+      "canonical": {
+        "actual_cost": 0.324081,
+        "calls": 20,
+        "input": 75297,
+        "list_cost": 0.324081,
+        "modes": {
+          "realtime": 20
+        },
+        "output": 6546
+      },
+      "complete": true,
+      "current_outputs": 20,
+      "incurred": {
+        "actual_cost": 0.32408099999999995,
+        "calls": 20,
+        "input": 75297,
+        "list_cost": 0.32408099999999995,
+        "modes": {
+          "realtime": 20
+        },
+        "output": 6546
+      },
+      "missing_usage_cases": [],
+      "model": "claude-sonnet-4-6",
+      "split": "heldout",
+      "tag": "claude-sonnet-4-6__A2_evidence_prompt_round3"
+    },
+    {
+      "canonical": {
+        "actual_cost": 0.0,
+        "calls": 20,
+        "input": 80629,
+        "list_cost": 0.035006199999999994,
+        "modes": {
+          "realtime": 20
+        },
+        "output": 4327
+      },
+      "complete": true,
+      "current_outputs": 20,
+      "incurred": {
+        "actual_cost": 0.0,
+        "calls": 26,
+        "input": 117511,
+        "list_cost": 0.05023330000000001,
+        "modes": {
+          "realtime": 26
+        },
+        "output": 5992
+      },
+      "missing_usage_cases": [],
+      "model": "gemini-2.5-flash",
+      "split": "heldout",
+      "tag": "gemini-2.5-flash__A2_evidence_prompt"
+    },
+    {
+      "canonical": {
+        "actual_cost": 0.0,
+        "calls": 20,
+        "input": 80604,
+        "list_cost": 0.0348312,
+        "modes": {
+          "realtime": 20
+        },
+        "output": 4260
+      },
+      "complete": true,
+      "current_outputs": 20,
+      "incurred": {
+        "actual_cost": 0.0,
+        "calls": 20,
+        "input": 80604,
+        "list_cost": 0.03483120000000001,
+        "modes": {
+          "realtime": 20
+        },
+        "output": 4260
+      },
+      "missing_usage_cases": [],
+      "model": "gemini-2.5-flash",
+      "split": "heldout",
+      "tag": "gemini-2.5-flash__A2_evidence_prompt_round2"
+    },
+    {
+      "canonical": {
+        "actual_cost": 0.0,
+        "calls": 20,
+        "input": 80604,
+        "list_cost": 0.0350462,
+        "modes": {
+          "realtime": 20
+        },
+        "output": 4346
+      },
+      "complete": true,
+      "current_outputs": 20,
+      "incurred": {
+        "actual_cost": 0.0,
+        "calls": 20,
+        "input": 80604,
+        "list_cost": 0.03504619999999999,
+        "modes": {
+          "realtime": 20
+        },
+        "output": 4346
+      },
+      "missing_usage_cases": [],
+      "model": "gemini-2.5-flash",
+      "split": "heldout",
+      "tag": "gemini-2.5-flash__A2_evidence_prompt_round3"
+    }
+  ],
+  "scope": "all_usage_logs",
+  "split": "heldout",
+  "total_incurred": {
+    "actual_cost_usd": 0.9721379999999997,
+    "calls": 126,
+    "input_tokens": 504610,
+    "output_tokens": 34229,
+    "paid_list_equivalent_usd": 1.0922486999999999
+  }
+}

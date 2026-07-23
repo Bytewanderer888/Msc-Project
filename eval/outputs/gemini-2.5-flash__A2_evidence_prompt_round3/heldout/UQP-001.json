@@ -1,0 +1,14 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.8,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "An administrator account created and started a new service named 'Example Service' (A0, EV-002) from a suspicious path 'C:\\Program Files\\windows_service.exe' (A0). The service was then executed by 'NT AUTHORITY\\SYSTEM' (EV-003). The service and its associated files were subsequently deleted (EV-004), which is often an attempt to remove traces of activity. The parent command line (EV-001) shows multiple file copies and service operations in a single command, which is unusual for legitimate activity.",
+  "recommended_action": "investigate"
+}

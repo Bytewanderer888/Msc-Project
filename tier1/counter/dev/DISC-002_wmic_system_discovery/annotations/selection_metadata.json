@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "case_id": "DISC-002",
+  "case_name": "wmic_system_discovery_ssm_inventory",
+  "security_proposition": "The SSM-parent WMIC query burst is attacker-driven system discovery rather than routine inventory.",
+  "case_directory": "DISC-002_wmic_system_discovery",
+  "split": "dev",
+  "status": "audited_dev_2026-07-16",
+  "attack_category": {
+    "category": "Routine AWS SSM inventory (wmic OS/computersystem info) — benign",
+    "candidate_attack_mapping": "T1057/T1082 (surface only)",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = COUNTER. Four wmic OS/computersystem queries (Version, Caption, DNSHostName, Domain) run as SYSTEM superficially resemble host discovery, BUT every one is spawned by C:\\Program Files\\Amazon\\SSM\\ssm-agent-worker.exe (the AWS Systems Manager agent) in a ~0.35s burst with no follow-on — the standard SSM inventory collection. The parent + the exact query set are decisive benign context. Over-triage-prone (down-rank): the model must not flag routine SSM inventory as active reconnaissance. Legit-system-actor benign twin of SMB-002. Do not leak."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1057/process_commandline_discovery/wmic-cmdline-sysmon.log",
+    "original_filename": "wmic-cmdline-sysmon.log",
+    "stored_filename": "disc002_wmic_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "5b7b4161a782df302abf11d6485e7b64489ec080aea94d05ed8ca0a6edd89f13",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "single host ar-win-2 (12 EID1 events)."
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/disc002_events.json",
+    "related_events": "extracted/disc002_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "ar-win-2.attackrange.local",
+    "boundary_definition": [
+      "A0 = the wmic OS Version query; EV = 3 more wmic OS/computersystem queries.",
+      "All four are spawned by the AWS SSM agent (ssm-agent-worker.exe) as SYSTEM within ~0.35s; no follow-on — routine inventory, not an actor."
+    ],
+    "time_window_utc": {
+      "start": "2023-12-14T15:21:59.982368100Z",
+      "end": "2023-12-14T15:22:00.329156500Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "164519",
+    "process_guid": "{C429ADC8-1D98-657B-EE03-000000003403}",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "164519",
+      "164518",
+      "164517",
+      "164516"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "164519",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: wmic OS get Version /format:list — OS-info query (surface: T1057/T1082)"
+    },
+    "EV-001": {
+      "event_record_id": "164516",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "wmic computersystem get DNSHostName"
+    },
+    "EV-002": {
+      "event_record_id": "164517",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "wmic computersystem get Domain"
+    },
+    "EV-003": {
+      "event_record_id": "164518",
+      "event_type": "process_create",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "wmic OS get Caption"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "counter_benign",
+      "note": "COUNTER / over-triage-prone: routine SSM inventory (OS version/caption, hostname, domain) that superficially resembles discovery. Decisive benign context = the ssm-agent-worker.exe parent + the standard inventory query set. The model must not over-read it as active recon."
+    },
+    {
+      "topic": "annotation_history",
+      "note": "2026-07-07: weak -> COUNTER after the dev confirmation pass. On re-examining the package, all four wmic queries are spawned by the AWS SSM agent (ssm-agent-worker.exe) in a sub-second burst — its standard inventory set — which is decisive benign context, directly comparable to SMB-002. The original weak/suspicious label was too harsh."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "counter_benign_exemplar",
+      "legit_system_actor_false_positive",
+      "matched_pair_vs_SMB-002"
+    ],
+    "eligible_for_final_heldout_metrics": false
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

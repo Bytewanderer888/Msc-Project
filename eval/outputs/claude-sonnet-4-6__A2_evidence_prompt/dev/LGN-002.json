@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.92,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "EV-001 shows reg.exe executed at High integrity to set HKCU\\Environment\\UserInitMprLogonScript to a batch file in the user's Temp directory (C:\\Users\\user-01\\AppData\\Local\\Temp\\art.bat), and A0 confirms the registry write succeeded. UserInitMprLogonScript is a well-known persistence mechanism that executes the specified script at every user logon. Placing the payload in %TEMP% with the name 'art.bat' (consistent with Atomic Red Team test artifacts) strongly indicates deliberate persistence establishment. The parent process (cmd.exe with a bare command line) provides no legitimate administrative context to explain this action, and no evidence of cleanup or reversal is present.",
+  "recommended_action": "escalate"
+}

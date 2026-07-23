@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "GPO-001",
+  "rule_id": "SAFESOC-TRG-GPO-001",
+  "analytic_family_id": "AF-NET",
+  "analytic_pattern_id": "NET-02",
+  "source_description": "mordor (apt29_evals_day1_manual.zip)",
+  "raw_source_event_count": 23935,
+  "complete_scope_event_count": 23935,
+  "predicate_match_count": 3,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "151026",
+  "expected_record_key": "151026",
+  "selected_raw_sha256": "053a30717a60d8a35f577e97dbf9b80769dfa2119955edf7856924263c3ea802",
+  "pass": true
+}

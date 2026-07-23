@@ -1,0 +1,324 @@
+{
+  "record_schema": "safesoc.outcome_confirmation_pairs.v1",
+  "status": "controlled_extension_complete_not_part_of_frozen_benchmark",
+  "design_scope": "Outcome confirmation only; context/counter pairs are excluded.",
+  "analysis_sets": {
+    "primary": {
+      "pair_ids": [
+        "OC1",
+        "OC2",
+        "OC5",
+        "OC6"
+      ],
+      "rationale": "Source-derived pairs with a defensible under-supported base and decisive execution/outcome evidence added."
+    }
+  },
+  "selection_rule": "The four retained pairs and their expected bands were defined before their saved model outputs were scored.",
+  "primary_endpoint": "Both versions enter their predeclared condition-specific verdict, severity, and action bands.",
+  "secondary_endpoints": [
+    "Non-reversed directional movement in verdict/severity/action",
+    "Explicit use of the added outcome evidence in the Strong rationale",
+    "Confidence change (exploratory only)"
+  ],
+  "exclusions_before_model_run": [
+    "PS-004: the SharpHound invocation may remain independently Strong after artifact removal",
+    "WMI-002 derivation ablation: changes decoded presentation rather than an outcome",
+    "DISC-002 and SMB-002: benign-context interventions belong to a separate construct"
+  ],
+  "package_count": 8,
+  "pair_count": 4,
+  "pairs": [
+    {
+      "pair_id": "OC1",
+      "pair_type": "outcome_confirmation",
+      "source_case": "SVC-001",
+      "source_package": "/Users/lalala/Desktop/SafeSOC/tier1/strong/heldout/SVC-001_service_persistence/model_input/alert_package.json",
+      "source_sha256": "3bf1596b92428b1bcdcf94312bdbf84522187e4dceea1f5be4b262358106eaf4",
+      "security_proposition": "The newly configured service binary executed through the Service Control Manager.",
+      "sole_manipulated_factor": "Add the Sysmon ProcessCreate showing the configured non-system binary launched by services.exe as SYSTEM.",
+      "base_source_event_ids": [
+        "EV-001",
+        "EV-002"
+      ],
+      "outcome_source_event_ids": [
+        "EV-004"
+      ],
+      "boundary_note": null,
+      "versions": [
+        {
+          "role": "base",
+          "neutral_case_id": "QE-284",
+          "path": "packages/QE-284.json",
+          "expected_condition": "missing",
+          "expected": {
+            "verdict": [
+              "suspicious"
+            ],
+            "severity": [
+              "low",
+              "medium"
+            ],
+            "action": [
+              "monitor",
+              "investigate"
+            ]
+          },
+          "sha256": "857b35eca847f597de224b64d95ce59577450cfeaeef295d5319bced30d1fcd0",
+          "utf8_bytes": 3210,
+          "event_count": 2,
+          "source_to_visible_evidence_id": {
+            "EV-001": "A0",
+            "EV-002": "EV-001"
+          }
+        },
+        {
+          "role": "strong",
+          "neutral_case_id": "QE-731",
+          "path": "packages/QE-731.json",
+          "expected_condition": "strong",
+          "expected": {
+            "verdict": [
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "critical"
+            ],
+            "action": [
+              "escalate",
+              "isolate"
+            ]
+          },
+          "sha256": "5d8cfa5a87f747a175e36529167f71c7204aa0e84325bd67551110dde172c37d",
+          "utf8_bytes": 4444,
+          "event_count": 3,
+          "source_to_visible_evidence_id": {
+            "EV-001": "A0",
+            "EV-002": "EV-001",
+            "EV-004": "EV-002"
+          }
+        }
+      ],
+      "event_count_delta": 1
+    },
+    {
+      "pair_id": "OC2",
+      "pair_type": "outcome_confirmation",
+      "source_case": "UQP-001",
+      "source_package": "/Users/lalala/Desktop/SafeSOC/tier1/strong/heldout/UQP-001_unquoted_path_service/model_input/alert_package.json",
+      "source_sha256": "cfb3646bf66436b1a9e1ae227c67f0974380f4633334d10dad9c1dc1c389b2bc",
+      "security_proposition": "The unquoted service path caused the interception binary to execute.",
+      "sole_manipulated_factor": "Add the Sysmon ProcessCreate showing C:\\program.exe launched by services.exe as SYSTEM.",
+      "base_source_event_ids": [
+        "A0",
+        "EV-002"
+      ],
+      "outcome_source_event_ids": [
+        "EV-003"
+      ],
+      "boundary_note": null,
+      "versions": [
+        {
+          "role": "base",
+          "neutral_case_id": "QE-845",
+          "path": "packages/QE-845.json",
+          "expected_condition": "missing",
+          "expected": {
+            "verdict": [
+              "suspicious"
+            ],
+            "severity": [
+              "low",
+              "medium"
+            ],
+            "action": [
+              "monitor",
+              "investigate"
+            ]
+          },
+          "sha256": "7b95bb6fa6a75f477c7d7d0dc0b3500f872d783af15d3075289e6985ff50ea68",
+          "utf8_bytes": 3783,
+          "event_count": 2,
+          "source_to_visible_evidence_id": {
+            "A0": "A0",
+            "EV-002": "EV-001"
+          }
+        },
+        {
+          "role": "strong",
+          "neutral_case_id": "QE-196",
+          "path": "packages/QE-196.json",
+          "expected_condition": "strong",
+          "expected": {
+            "verdict": [
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "critical"
+            ],
+            "action": [
+              "escalate",
+              "isolate"
+            ]
+          },
+          "sha256": "9a8fed63ac8e847d8bd9a52943dd5d43f09d858b15fec3f41f87eab3e5e712de",
+          "utf8_bytes": 5024,
+          "event_count": 3,
+          "source_to_visible_evidence_id": {
+            "A0": "A0",
+            "EV-002": "EV-001",
+            "EV-003": "EV-002"
+          }
+        }
+      ],
+      "event_count_delta": 1
+    },
+    {
+      "pair_id": "OC5",
+      "pair_type": "outcome_confirmation",
+      "source_case": "RUN-001",
+      "source_package": "/Users/lalala/Desktop/SafeSOC/tier1/strong/heldout/RUN-001_rundll32_lock_dll/model_input/alert_package.json",
+      "source_sha256": "8048699e77984c3b343ca9312f5fd2360839fcebdb401c0399d1f3e6f3cfd0de",
+      "security_proposition": "The suspicious file created by certutil was executed as a DLL.",
+      "sole_manipulated_factor": "Add the Sysmon ProcessCreate showing rundll32 loading the same .lock file through its VoidFunc export.",
+      "base_source_event_ids": [
+        "EV-001"
+      ],
+      "outcome_source_event_ids": [
+        "A0"
+      ],
+      "boundary_note": "The base is Weak, not Missing: certutil file creation is an ambiguous signal without an explicit execution attempt in the visible event.",
+      "versions": [
+        {
+          "role": "base",
+          "neutral_case_id": "QE-154",
+          "path": "packages/QE-154.json",
+          "expected_condition": "weak",
+          "expected": {
+            "verdict": [
+              "suspicious"
+            ],
+            "severity": [
+              "low",
+              "medium"
+            ],
+            "action": [
+              "monitor",
+              "investigate"
+            ]
+          },
+          "sha256": "082a9bce9d657e3ff1c65f7afb981bca880ac6d5df2c91fbb62c0a32959ca121",
+          "utf8_bytes": 1240,
+          "event_count": 1,
+          "source_to_visible_evidence_id": {
+            "EV-001": "A0"
+          }
+        },
+        {
+          "role": "strong",
+          "neutral_case_id": "QE-827",
+          "path": "packages/QE-827.json",
+          "expected_condition": "strong",
+          "expected": {
+            "verdict": [
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "critical"
+            ],
+            "action": [
+              "escalate",
+              "isolate"
+            ]
+          },
+          "sha256": "21b6ddefbaf44b5c0df553a64ea49ae16c406e69eecb4536afbd39d55a4c7932",
+          "utf8_bytes": 2597,
+          "event_count": 2,
+          "source_to_visible_evidence_id": {
+            "EV-001": "A0",
+            "A0": "EV-001"
+          }
+        }
+      ],
+      "event_count_delta": 1
+    },
+    {
+      "pair_id": "OC6",
+      "pair_type": "outcome_confirmation",
+      "source_case": "AMQ-001",
+      "source_package": "/Users/lalala/Desktop/SafeSOC/tier2/strong/dev/AMQ-001_activemq_rce_foothold/model_input/alert_package.json",
+      "source_sha256": "aa5cebd43ef584bb539d5704439e209b0e09c9f93e812c5f9eed344e52aff5b0",
+      "security_proposition": "The downloaded executable ran and produced follow-on network activity.",
+      "sole_manipulated_factor": "Add Sysmon confirmation that the staged executable ran and initiated the recorded TCP connection.",
+      "base_source_event_ids": [
+        "EV-003",
+        "EV-004"
+      ],
+      "outcome_source_event_ids": [
+        "EV-006",
+        "EV-007"
+      ],
+      "boundary_note": "Two corroborating records instantiate one predeclared outcome: payload execution with follow-on activity.",
+      "versions": [
+        {
+          "role": "base",
+          "neutral_case_id": "QE-695",
+          "path": "packages/QE-695.json",
+          "expected_condition": "missing",
+          "expected": {
+            "verdict": [
+              "suspicious"
+            ],
+            "severity": [
+              "low",
+              "medium"
+            ],
+            "action": [
+              "monitor",
+              "investigate"
+            ]
+          },
+          "sha256": "59c2825c0d665fd7884cccf12a97ce61d539b6f4d7cec27119890a4531ab967d",
+          "utf8_bytes": 2776,
+          "event_count": 2,
+          "source_to_visible_evidence_id": {
+            "EV-003": "A0",
+            "EV-004": "EV-001"
+          }
+        },
+        {
+          "role": "strong",
+          "neutral_case_id": "QE-246",
+          "path": "packages/QE-246.json",
+          "expected_condition": "strong",
+          "expected": {
+            "verdict": [
+              "malicious"
+            ],
+            "severity": [
+              "high",
+              "critical"
+            ],
+            "action": [
+              "escalate",
+              "isolate"
+            ]
+          },
+          "sha256": "42d208f21c65853878a6996c3d9c2258927599b1dd88427ecfa0d4b412f0d6d0",
+          "utf8_bytes": 5127,
+          "event_count": 4,
+          "source_to_visible_evidence_id": {
+            "EV-003": "A0",
+            "EV-004": "EV-001",
+            "EV-006": "EV-002",
+            "EV-007": "EV-003"
+          }
+        }
+      ],
+      "event_count_delta": 2
+    }
+  ],
+  "frozen_benchmark_modified": false
+}

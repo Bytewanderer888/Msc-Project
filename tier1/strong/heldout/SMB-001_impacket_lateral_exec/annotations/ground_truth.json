@@ -1,0 +1,35 @@
+{
+  "case_id": "SMB-001",
+  "evidence_condition": "strong",
+  "calibration_role": "preserve",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "EV-004",
+      "EV-005",
+      "EV-006"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that cross-host lateral movement was confirmed (the observed SMB paths use 127.0.0.1 and the package identifies no separate source host)",
+      "that the execution originated from a remote host or identifies the initiating operator"
+    ]
+  },
+  "the_trap": "The payload is the legitimate Windows calculator image (EV-002: C:\\\\Windows\\\\System32\\\\calc.exe spawned by A0's cmd), inviting a downgrade to 'harmless demo'. However, two corroborating Impacket-style execution patterns are present on host-01: a wmiexec-style pattern (A0/EV-001/EV-003: WmiPrvSE.exe-spawned cmd.exe /Q /c commands with output redirected to \\\\\\\\127.0.0.1\\\\ADMIN$\\\\__<timestamp>) and an smbexec-style pattern (EV-004: services.exe sets the BTOBTO service ImagePath to a %COMSPEC% command redirecting to \\\\\\\\127.0.0.1\\\\C$\\\\__output; EV-005/EV-006 show the resulting SYSTEM-integrity command chain writing, running, and deleting C:\\\\Windows\\\\rIIBPrqF.bat). The package confirms these mechanisms and SYSTEM-level execution on the observed host, but its loopback paths do not establish a cross-host hop.",
+  "rationale": "Two independent Impacket-style WMI and service execution patterns are evidenced on host-01.corp.local. A0, EV-001, and EV-003 show WmiPrvSE.exe-spawned cmd.exe /Q /c commands redirecting output to \\\\\\\\127.0.0.1\\\\ADMIN$\\\\__<timestamp>. EV-004 shows services.exe setting the ImagePath of the newly named BTOBTO service to a %COMSPEC% command redirecting to \\\\\\\\127.0.0.1\\\\C$\\\\__output, while EV-005/EV-006 show the resulting SYSTEM-integrity command chain writing, running, and deleting C:\\\\Windows\\\\rIIBPrqF.bat. These artifacts confirm Impacket-style execution and SYSTEM-level code execution on the observed host; calc.exe is only the demonstration payload. Because the SMB paths are loopback and no separate source host is identified, the package does not prove cross-host lateral movement. Malicious, high; preserve despite the benign-looking payload.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

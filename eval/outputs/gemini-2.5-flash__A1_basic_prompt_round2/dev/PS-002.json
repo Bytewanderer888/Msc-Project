@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-003"
+  ],
+  "rationale": "The main alert (A0) shows PowerShell downloading a file from a suspicious shortened URL ('http://bit.ly/L3g1tCrad1e') using `Net.WebClient.DownloadFile`. Evidence EV-003 confirms the creation of 'Default_File_Path.ps1' by this PowerShell process, indicating successful download of potentially malicious content. The use of a hidden window style further suggests an attempt to conceal the activity.",
+  "recommended_action": "isolate"
+}

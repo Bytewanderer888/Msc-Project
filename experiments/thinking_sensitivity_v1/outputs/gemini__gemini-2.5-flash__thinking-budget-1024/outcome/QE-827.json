@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "The `certutil.exe` process created a file named `kxwn.lock` in a user's AppData\\Roaming directory (A0). Shortly after, `rundll32.exe` was used to load and execute a function from this same `kxwn.lock` file (EV-001). This sequence of events strongly indicates the download or creation of a malicious payload followed by its execution, a common technique for malware.",
+  "recommended_action": "escalate"
+}

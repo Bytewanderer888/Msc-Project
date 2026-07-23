@@ -1,0 +1,15 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.8,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "Multiple commands (net user /domain, net users /domain, dsquery user, wmic ds_user, powershell get-wmiobject ds_user, powershell Get-ADUser) were executed in quick succession by the Administrator user from C:\\Temp. This pattern of enumeration using various built-in tools is highly suspicious for reconnaissance, although no direct malicious outcome is observed.",
+  "recommended_action": "investigate"
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "SMB-001",
+  "rule_id": "SAFESOC-TRG-SMB-001",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "source_description": "raw log (wmiexec_windows-sysmon.log)",
+  "raw_source_event_count": 10,
+  "complete_scope_event_count": 10,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "117769",
+  "expected_record_key": "117769",
+  "selected_raw_sha256": "fd58c960de0e1bdfe09c99aa11fb903f25f7eefc204c0d4c06d2e15cd43dff05",
+  "pass": true
+}

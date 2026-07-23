@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "Multiple instances of 'createdump.exe' are executed by PowerShell processes (A0, EV-001, EV-002, EV-003, EV-004) to dump the 'lsass.dmp' file. This activity is indicative of credential dumping, a common post-exploitation technique. The repeated attempts and the target file 'dotnet-lsass.dmp' strongly suggest malicious intent.",
+  "recommended_action": "escalate"
+}

@@ -1,0 +1,41 @@
+{
+  "record_schema": "safesoc.thinking_sensitivity.protocol.v1",
+  "status": "specified before treatment calls",
+  "recorded_date": "2026-07-20",
+  "research_question": "Does a fixed non-zero reasoning budget improve Gemini 2.5 Flash evidence sensitivity on the frozen matched-pair packages?",
+  "control": {
+    "model": "gemini-2.5-flash",
+    "prompt_arm": "A2_evidence",
+    "temperature": 0.0,
+    "max_output_tokens": 2048,
+    "thinking_budget": 0
+  },
+  "treatment": {
+    "model": "gemini-2.5-flash",
+    "prompt_arm": "A2_evidence",
+    "temperature": 0.0,
+    "max_output_tokens": 2048,
+    "thinking_budget": 1024
+  },
+  "units": {
+    "outcome_pairs": 4,
+    "context_pairs": 4,
+    "packages": 16
+  },
+  "primary_endpoint": "pair-level target-band endpoint using the existing predeclared expected bands",
+  "secondary_endpoints": [
+    "intended directional movement",
+    "decision-tuple change relative to thinking-off control"
+  ],
+  "exploratory_endpoints": [
+    "thought tokens",
+    "response tokens",
+    "confidence",
+    "request latency"
+  ],
+  "non_claims": [
+    "The result does not estimate the effect of every possible thinking budget.",
+    "The result does not alter the frozen 41-case benchmark outcome.",
+    "The 16 package outputs are paired versions from eight scenarios, not 16 independent scenarios."
+  ]
+}

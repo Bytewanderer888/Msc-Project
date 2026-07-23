@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.88,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "A PowerShell process using a base64-encoded command (EV-001 parent) spawned cmd.exe to add a persistence entry under HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run pointing to C:\\Path\\[x].exe (A0, EV-002), establishing run-key persistence. Seconds later, a second encoded PowerShell command (EV-003 parent, decoded suffix '-Cleanup') spawned cmd.exe to silently delete the same registry value (EV-004, EV-005), a classic indicator of post-execution cleanup to evade detection. The full chain \u2014 encoded PowerShell \u2192 cmd \u2192 reg.exe add \u2192 encoded PowerShell cleanup \u2192 cmd \u2192 reg.exe delete, all running from the Temp directory at High integrity \u2014 is consistent with a staged malware or C2 implant performing persistence installation followed by artifact removal.",
+  "recommended_action": "isolate"
+}

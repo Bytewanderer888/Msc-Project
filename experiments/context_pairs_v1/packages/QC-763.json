@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0",
+  "case_id": "QC-763",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "NT AUTHORITY\\SYSTEM"
+    ],
+    "time_window_utc": {
+      "start": "2023-12-14T15:21:59.982368100Z",
+      "end": "2023-12-14T15:22:00.329156500Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2023-12-14T15:22:00.329156500Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "164519"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{C429ADC8-1D98-657B-EE03-000000003403}",
+      "process_id": "4976",
+      "image": "C:\\Windows\\System32\\wbem\\WMIC.exe",
+      "original_file_name": "wmic.exe",
+      "command_line": "wmic OS get Version /format:list",
+      "current_directory": "C:\\Windows\\system32\\",
+      "user": "NT AUTHORITY\\SYSTEM",
+      "integrity_level": "System",
+      "hashes": "MD5=2CEE7F1AD77D8817E0F043E5E5ED1C83,SHA256=6679EA8FBEB539B5852CE8838420471FED0600F5050F3370DBB355DAC76BF072,IMPHASH=1B1A3F43BF37B5BFE60751F2EE2F326E",
+      "parent_process_guid": "{C429ADC8-004A-657B-8F00-000000003403}",
+      "parent_process_id": "616",
+      "parent_image": "C:\\Program Files\\Amazon\\SSM\\ssm-agent-worker.exe",
+      "parent_command_line": "\"C:\\Program Files\\Amazon\\SSM\\ssm-agent-worker.exe\""
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2023-12-14T15:21:59.982368100Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "164516"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{C429ADC8-1D97-657B-EA03-000000003403}",
+        "process_id": "4132",
+        "image": "C:\\Windows\\System32\\wbem\\WMIC.exe",
+        "original_file_name": "wmic.exe",
+        "command_line": "C:\\Windows\\System32\\wbem\\wmic.exe computersystem get DNSHostName /value",
+        "current_directory": "C:\\Windows\\system32\\",
+        "user": "NT AUTHORITY\\SYSTEM",
+        "integrity_level": "System",
+        "hashes": "MD5=2CEE7F1AD77D8817E0F043E5E5ED1C83,SHA256=6679EA8FBEB539B5852CE8838420471FED0600F5050F3370DBB355DAC76BF072,IMPHASH=1B1A3F43BF37B5BFE60751F2EE2F326E",
+        "parent_process_guid": "{C429ADC8-004A-657B-8F00-000000003403}",
+        "parent_process_id": "616",
+        "parent_image": "C:\\Program Files\\Amazon\\SSM\\ssm-agent-worker.exe",
+        "parent_command_line": "\"C:\\Program Files\\Amazon\\SSM\\ssm-agent-worker.exe\""
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2023-12-14T15:22:00.162445000Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "164517"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{C429ADC8-1D98-657B-EC03-000000003403}",
+        "process_id": "4268",
+        "image": "C:\\Windows\\System32\\wbem\\WMIC.exe",
+        "original_file_name": "wmic.exe",
+        "command_line": "C:\\Windows\\System32\\wbem\\wmic.exe computersystem get Domain /value",
+        "current_directory": "C:\\Windows\\system32\\",
+        "user": "NT AUTHORITY\\SYSTEM",
+        "integrity_level": "System",
+        "hashes": "MD5=2CEE7F1AD77D8817E0F043E5E5ED1C83,SHA256=6679EA8FBEB539B5852CE8838420471FED0600F5050F3370DBB355DAC76BF072,IMPHASH=1B1A3F43BF37B5BFE60751F2EE2F326E",
+        "parent_process_guid": "{C429ADC8-004A-657B-8F00-000000003403}",
+        "parent_process_id": "616",
+        "parent_image": "C:\\Program Files\\Amazon\\SSM\\ssm-agent-worker.exe",
+        "parent_command_line": "\"C:\\Program Files\\Amazon\\SSM\\ssm-agent-worker.exe\""
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2023-12-14T15:22:00.242762500Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "164518"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{C429ADC8-1D98-657B-ED03-000000003403}",
+        "process_id": "5032",
+        "image": "C:\\Windows\\System32\\wbem\\WMIC.exe",
+        "original_file_name": "wmic.exe",
+        "command_line": "wmic OS get Caption /format:list",
+        "current_directory": "C:\\Windows\\system32\\",
+        "user": "NT AUTHORITY\\SYSTEM",
+        "integrity_level": "System",
+        "hashes": "MD5=2CEE7F1AD77D8817E0F043E5E5ED1C83,SHA256=6679EA8FBEB539B5852CE8838420471FED0600F5050F3370DBB355DAC76BF072,IMPHASH=1B1A3F43BF37B5BFE60751F2EE2F326E",
+        "parent_process_guid": "{C429ADC8-004A-657B-8F00-000000003403}",
+        "parent_process_id": "616",
+        "parent_image": "C:\\Program Files\\Amazon\\SSM\\ssm-agent-worker.exe",
+        "parent_command_line": "\"C:\\Program Files\\Amazon\\SSM\\ssm-agent-worker.exe\""
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

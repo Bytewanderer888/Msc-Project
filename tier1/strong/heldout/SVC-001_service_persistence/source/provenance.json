@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1543.003/atomic_red_team/windows-sysmon.log",
+      "sha256": "2e6ea9e053a84f4d32b37f462a40a39f1a90c2049adaf684b0660ee6e9f32d7a"
+    }
+  ],
+  "primary_host": "win-dc-61.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "windows-sysmon.log is host win-dc-61, Sysmon only (EID 1 process-create). The cmd.exe /c wrappers and unrelated host baseline are excluded. Single host, single sensor, verified."
+  }
+}

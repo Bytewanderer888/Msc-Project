@@ -1,0 +1,34 @@
+{
+  "case_id": "PS-003",
+  "evidence_condition": "counter",
+  "calibration_role": "down_rank",
+  "correct_verdict": "benign",
+  "acceptable_severity": [
+    "informational",
+    "low"
+  ],
+  "acceptable_actions": [
+    "close_benign",
+    "monitor"
+  ],
+  "grounding": {
+    "supporting_evidence": [],
+    "counter_evidence": [
+      "A0",
+      "EV-002",
+      "EV-003",
+      "EV-004",
+      "DER-001"
+    ],
+    "must_not_assert": [
+      "that the obfuscated PowerShell executed a malicious payload (A0.command_line reconstructs via DER-001 to the harmless \"Write-Host 'Hello, World!'\"; although A0's trailing \"| ieX\" did execute that expression on the host, all it does is print a string to the console — no malicious action is evidenced)",
+      "that DER-001 itself executed code (DER-001 is a deterministic text reconstruction of A0.command_line whose derivation_method states the PowerShell expression was not executed by the derivation; the execution occurred in the live A0 process via ieX, not in the derivation)",
+      "that LSASS was accessed for credential theft (EV-003/EV-004 have source_image=lsass.exe and target_image=powershell.exe with granted_access 0x1000 and 0x1478 — lsass.exe -> powershell.exe, the reversed direction, not PowerShell reading LSASS memory)"
+    ]
+  },
+  "the_trap": "Heavy string-concatenation/character-substitution obfuscation (A0.command_line: ('Wri'+'te-Host '+...).RePlAcE('aAg',[char]39) piped to ieX) plus two LSASS-handle events (EV-003, EV-004) read as credential-dumping malware. But DER-001 reconstructs the obfuscated command to the harmless \"Write-Host 'Hello, World!'\", and because A0's command ends in \"| ieX\" that reconstructed expression WAS executed on the host — it just prints a string to the console, doing nothing malicious. The LSASS events run lsass.exe -> powershell.exe (source_image=lsass.exe, target_image=powershell.exe in EV-003/EV-004), i.e. LSASS holding handles to PowerShell with granted_access 0x1000 and 0x1478 — the reversed direction from PowerShell reading LSASS, not credential theft. Correct verdict benign. Distinct from PS-001 (Base64 payload ABSENT = missing); here the payload is PRESENT, executed, and is benign = counter.",
+  "rationale": "The alarming surface — obfuscated PowerShell plus LSASS access — is fully explained as benign by decisive counter-evidence. A0.command_line concatenates single-quoted fragments and applies .RePlAcE('aAg',[char]39), then pipes the result to ieX (Invoke-Expression); DER-001 reconstructs that text to \"Write-Host 'Hello, World!'\". Note the scope carefully: DER-001 is an offline text reconstruction that did not itself run anything (per its derivation_method), but the trailing \"| ieX\" in A0 means the live A0 process did execute the reconstructed expression — which merely writes 'Hello, World!' to the console and performs no malicious action. The EV-002 file_create of __PSScriptPolicyTest_*.rsp.ps1 in the user Temp path is the routine PowerShell ScriptBlock policy-test artifact (created by the same powershell.exe, pid 3196), not attacker-dropped content. EV-003 and EV-004 show LSASS access in the reversed direction: source_image=C:\\Windows\\system32\\lsass.exe holding handles to target_image=powershell.exe (granted_access 0x1000 and 0x1478), i.e. lsass.exe -> powershell.exe, not PowerShell reading LSASS memory, so no credential-dump inference is supported. Executed-but-benign payload plus reversed-direction LSASS handles: benign.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

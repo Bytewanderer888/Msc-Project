@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "case_id": "WMI-001",
+  "rule_id": "SAFESOC-TRG-WMI-001",
+  "analytic_family_id": "AF-PERS",
+  "analytic_pattern_id": "PERS-03",
+  "title": "WMI command-line consumer contains hidden encoded PowerShell",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source after any pre-existing host and sensor scope is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 20
+      },
+      {
+        "field": "attributes.destination",
+        "op": "icontains",
+        "value": "powershell"
+      },
+      {
+        "field": "attributes.destination",
+        "op": "regex",
+        "value": "(?i)-(?:e|enc|encodedcommand)\\s+[A-Za-z0-9+/=]{20,}"
+      },
+      {
+        "field": "attributes.destination",
+        "op": "regex",
+        "value": "(?i)-(?:w|windowstyle)\\s+hidden"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "790795"
+  },
+  "rationale": "A WMI command-line consumer embedding hidden encoded PowerShell is a direct persistence-mechanism alert surface."
+}

@@ -1,0 +1,58 @@
+case_id,analytic_family_id,analytic_family,analytic_pattern_id,analytic_pattern
+ACCT-001,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+AMQ-001,AF-PROC,Process and command execution,PROC-03,Execution-chain relationship
+BF-001,AF-AUTH,Authentication and session anomaly,AUTH-01,Inbound connection burst
+BF-002,AF-AUTH,Authentication and session anomaly,AUTH-02,Failed-authentication spray
+CERT-001,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+COL-001,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+CRED-001,AF-REG,Registry and policy modification,REG-01,Registry persistence value
+DISC-001,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+DISC-002,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+DISC-003,AF-PROC,Process and command execution,PROC-02,Script-interpreter behaviour
+DISC-004,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+ER-C01,AF-MOD,Module loading,MOD-01,Process module-load pattern
+ER-C02,AF-NET,Network and remote-resource activity,NET-01,Endpoint network connection
+ER-C03,AF-MOD,Module loading,MOD-01,Process module-load pattern
+ER-C04,AF-WEB,Web and HTTP request activity,WEB-01,HTTP request pattern
+ER-M01,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+ER-M02,AF-PERS,Persistence object creation,PERS-01,Scheduled-job definition
+ER-M03,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+ER-M04,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+ER-S01,AF-WEB,Web and HTTP request activity,WEB-02,Web endpoint command parameter
+ER-S02,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+ER-S03,AF-ACCESS,Cross-process and sensitive-process access,ACCESS-03,Runtime instrumentation attachment
+ER-S04,AF-PROC,Process and command execution,PROC-03,Execution-chain relationship
+ER-W01,AF-NET,Network and remote-resource activity,NET-01,Endpoint network connection
+ER-W02,AF-STATE,System and monitoring state,STATE-01,Host state anomaly
+ER-W03,AF-STATE,System and monitoring state,STATE-02,Monitoring health change
+ER-W04,AF-WEB,Web and HTTP request activity,WEB-01,HTTP request pattern
+EVL-001,AF-REG,Registry and policy modification,REG-02,Security-control registry change
+FW-001,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+GPO-001,AF-NET,Network and remote-resource activity,NET-02,Remote resource access
+ING-001,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+ING-002,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+INJ-001,AF-ACCESS,Cross-process and sensitive-process access,ACCESS-02,Cross-process thread injection
+LGN-002,AF-REG,Registry and policy modification,REG-01,Registry persistence value
+LOGON-001,AF-REG,Registry and policy modification,REG-01,Registry persistence value
+LS-001,AF-ACCESS,Cross-process and sensitive-process access,ACCESS-01,Sensitive-process handle access
+LS-002,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+LS-003,AF-ACCESS,Cross-process and sensitive-process access,ACCESS-01,Sensitive-process handle access
+OD-001,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+PS-001,AF-PROC,Process and command execution,PROC-02,Script-interpreter behaviour
+PS-002,AF-PROC,Process and command execution,PROC-02,Script-interpreter behaviour
+PS-003,AF-PROC,Process and command execution,PROC-02,Script-interpreter behaviour
+PS-004,AF-PROC,Process and command execution,PROC-02,Script-interpreter behaviour
+RDL-001,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+RK-001,AF-REG,Registry and policy modification,REG-01,Registry persistence value
+RTLO-001,AF-PROC,Process and command execution,PROC-04,Executable name or path anomaly
+RUN-001,AF-PROC,Process and command execution,PROC-04,Executable name or path anomaly
+SMB-001,AF-PROC,Process and command execution,PROC-01,Command-line behaviour match
+SMB-002,AF-NET,Network and remote-resource activity,NET-02,Remote resource access
+ST-001,AF-PERS,Persistence object creation,PERS-01,Scheduled-job definition
+ST-002,AF-PERS,Persistence object creation,PERS-01,Scheduled-job definition
+ST-003,AF-PERS,Persistence object creation,PERS-01,Scheduled-job definition
+SVC-001,AF-PERS,Persistence object creation,PERS-02,Service configuration
+UAC-001,AF-PROC,Process and command execution,PROC-03,Execution-chain relationship
+UQP-001,AF-PERS,Persistence object creation,PERS-02,Service configuration
+WMI-001,AF-PERS,Persistence object creation,PERS-03,WMI subscription object
+WMI-002,AF-PERS,Persistence object creation,PERS-03,WMI subscription object

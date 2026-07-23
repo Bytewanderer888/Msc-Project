@@ -1,0 +1,13 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.85,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "All four events show WMIC.exe being invoked by the Amazon SSM Agent worker process (PID 616) to collect basic system inventory: DNS hostname (EV-001), domain membership (EV-002), OS caption (EV-003), and OS version (A0). This is a well-known, legitimate behavior of the AWS Systems Manager agent performing instance inventory or health checks. The parent process is a signed AWS management binary, all WMIC hashes are consistent across events, execution occurs under SYSTEM integrity as expected for SSM, and the queries are read-only, non-destructive enumeration with no lateral movement, persistence, or exfiltration indicators present. No anomalous child processes, network connections, or file writes are evidenced.",
+  "recommended_action": "close_benign"
+}

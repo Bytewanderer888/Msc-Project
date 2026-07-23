@@ -1,0 +1,39 @@
+{
+  "case_id": "ER-W04",
+  "security_proposition": "The scan-like HTTP probes represent hostile reconnaissance rather than an unconfirmed or authorised scanner.",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "operational_response": {
+    "family": "analyst_escalation",
+    "note": "Investigate the source and scan authorisation; no autonomous containment is justified by this package alone."
+  },
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that the scanner was unauthorised or attacker-controlled",
+      "that an exploit succeeded or a protected resource was accessed",
+      "that the two HTTP 404 responses establish compromise",
+      "that activity outside the selected one-second window belongs to this case"
+    ]
+  },
+  "the_trap": "The Nmap user agent and repeated probe paths establish scan-like behaviour, but they do not establish hostile ownership, authorisation status, or a successful outcome.",
+  "rationale": "A0 and EV-002 record two Nmap-scripted requests from the same client to the same web server within one second. EV-001 and EV-003 independently observe the matching HTTP transactions in network telemetry. Both requests returned 404. The activity is a real reconnaissance indicator, but the package does not establish whether the scanner was authorised or whether any exploit or access succeeded.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "case_id": "RTLO-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\user-01"
+    ],
+    "time_window_utc": {
+      "start": "2020-05-02T02:55:56.157Z",
+      "end": "2020-05-02T02:56:14.894Z"
+    },
+    "event_count": 4,
+    "event_types_present": [
+      "network_connection",
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2020-05-02T02:55:56.157Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "346422"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{47ab858c-e13c-5eac-a903-000000000400}",
+      "process_id": "8524",
+      "image": "C:\\ProgramData\\victim\\‮cod.3aka3.scr",
+      "original_file_name": "-",
+      "command_line": "\"C:\\ProgramData\\victim\\‮cod.3aka3.scr\" /S",
+      "current_directory": "C:\\ProgramData\\victim\\",
+      "user": "corp\\user-01",
+      "integrity_level": "Medium",
+      "hashes": "SHA1=4B7FA56A4E85F88B98D11A6E018698AE3FBA5E62,MD5=9D1C5EF38E6073661C74660B3A71A76E,SHA256=0DF38A55D940F498478EB03683C94D4584236E100125B526A67650BA54DF4AE4,IMPHASH=F00447512A354E59D39D2818AABA4A17",
+      "parent_process_guid": "{47ab858c-dac4-5eac-f202-000000000400}",
+      "parent_process_id": "4440",
+      "parent_image": "C:\\Windows\\explorer.exe",
+      "parent_command_line": "C:\\windows\\Explorer.EXE"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-05-02T02:55:59.631Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "346533"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{47ab858c-e13c-5eac-a903-000000000400}",
+        "process_id": "8524",
+        "image": "C:\\ProgramData\\victim\\‮cod.3aka3.scr",
+        "user": "corp\\user-01",
+        "protocol": "tcp",
+        "initiated": "true",
+        "source_ip": "10.0.1.4",
+        "source_port": "59835",
+        "destination_ip": "192.168.0.5",
+        "destination_hostname": "-",
+        "destination_port": "1234"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2020-05-02T02:56:04.510Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "346562"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{47ab858c-e144-5eac-ab03-000000000400}",
+        "process_id": "2772",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "\"C:\\windows\\system32\\cmd.exe\"",
+        "current_directory": "C:\\ProgramData\\victim\\",
+        "user": "corp\\user-01",
+        "integrity_level": "Medium",
+        "hashes": "SHA1=8DCA9749CD48D286950E7A9FA1088C937CBCCAD4,MD5=D7AB69FAD18D4A643D84A271DFC0DBDF,SHA256=FF79D3C4A0B7EB191783C323AB8363EBD1FD10BE58D8BCC96B07067743CA81D5,IMPHASH=272245E2988E1E430500B852C4FB5E18",
+        "parent_process_guid": "{47ab858c-e13c-5eac-a903-000000000400}",
+        "parent_process_id": "8524",
+        "parent_image": "C:\\ProgramData\\victim\\‮cod.3aka3.scr",
+        "parent_command_line": "\"C:\\ProgramData\\victim\\‮cod.3aka3.scr\" /S"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2020-05-02T02:56:14.894Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "346599"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{47ab858c-e14e-5eac-ac03-000000000400}",
+        "process_id": "5944",
+        "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "original_file_name": "PowerShell.EXE",
+        "command_line": "powershell",
+        "current_directory": "C:\\ProgramData\\victim\\",
+        "user": "corp\\user-01",
+        "integrity_level": "Medium",
+        "hashes": "SHA1=36C5D12033B2EAF251BAE61C00690FFB17FDDC87,MD5=CDA48FC75952AD12D99E526D0B6BF70A,SHA256=908B64B1971A979C7E3E8CE4621945CBA84854CB98D76367B791A6E22B5F6D53,IMPHASH=A7CEFACDDA74B13CD330390769752481",
+        "parent_process_guid": "{47ab858c-e144-5eac-ab03-000000000400}",
+        "parent_process_id": "2772",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\windows\\system32\\cmd.exe\""
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

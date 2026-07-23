@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.95,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "All five events show createdump.exe (a legitimate .NET Core diagnostic tool) being invoked repeatedly with the explicit output path 'dotnet-lsass.dmp' and, in A0, with PID 632 as the target \u2014 PID 632 is a well-known default PID for LSASS on many Windows systems, strongly indicating deliberate LSASS memory dumping for credential harvesting. The working directory in A0 and EV-001 is 'Doge-AMSI-patch-main', a publicly known AMSI-bypass toolkit, confirming the operator was actively circumventing Windows Antimalware Scan Interface before dumping credentials. The activity is persistent across ~19 minutes with multiple invocations from both Windows PowerShell and PowerShell 7 (pwsh.exe), indicating iterative, deliberate credential-access attempts rather than accidental execution. No evidence of a legitimate administrative or diagnostic justification for targeting LSASS with this toolset is present.",
+  "recommended_action": "isolate"
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-W03",
+  "rule_id": "SAFESOC-TRG-ER-W03",
+  "analytic_family_id": "AF-STATE",
+  "analytic_pattern_id": "STATE-02",
+  "title": "Endpoint monitoring agent disconnect notification",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events for asset DESKTOP-DS4FBF4 in the corpus-native SIEM partition wazuh-alerts-4.x-2024.12.01; no timestamp or record identifier is used.",
+    "filter_predicate": {
+      "all": [
+        {
+          "field": "computer",
+          "op": "ieq",
+          "value": "DESKTOP-DS4FBF4"
+        },
+        {
+          "field": "attributes.source_partition",
+          "op": "eq",
+          "value": "wazuh-alerts-4.x-2024.12.01"
+        }
+      ]
+    }
+  },
+  "event_predicate": {
+    "field": "attributes.full_log",
+    "op": "regex",
+    "value": "(?i)Agent disconnected:"
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "ei2Lg5MBenunWll4wRw3"
+  },
+  "rationale": "A monitoring-agent disconnect is a direct observability-loss alert without by itself proving deliberate tampering."
+}

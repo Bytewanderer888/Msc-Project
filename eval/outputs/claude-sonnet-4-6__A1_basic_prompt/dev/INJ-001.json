@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.97,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "A suspicious executable named 'ILL_UNBLINKING.exe' residing in the Downloads directory (A0, EV-001) repeatedly spawns notepad.exe instances (EV-001, EV-002, EV-004) and immediately injects remote threads into each one (A0, EV-003, EV-005) \u2014 a classic process injection pattern used to hide shellcode execution inside a trusted host process. The start_module and start_function fields are unresolved ('-') across all three injection events, indicating the injected thread entry points fall within dynamically allocated memory rather than any known module, consistent with shellcode injection. The pattern repeats three times within ~3 minutes, suggesting automated or iterative injection attempts, possibly for persistence or payload staging.",
+  "recommended_action": "isolate"
+}

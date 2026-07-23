@@ -1,0 +1,119 @@
+{
+  "case_id": "ST-002",
+  "split": "dev",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1053.005/schtasks/windows-sysmon.log",
+  "staged_export": "extracted/st002_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "1624574",
+    "EV": [
+      "1624587"
+    ]
+  },
+  "roles": {
+    "1624574": "triggering alert: schtasks /Create invocation for 'SoundIentifier' (masquerade — typosquats SoundIdentifier) with an action that would use wmic to execute C:\\Users\\Public\\Disk101.ini:59e9c935",
+    "1624587": "schtasks /Create invocation for 'Disk Diag' (benign-sounding) with an action that would run explorer.exe on C:\\Users\\Public\\Weber0.js every 6 minutes"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "masquerade_schtasks",
+    "security_proposition": "At least one configured scheduled-task action executed within the retained Sysmon source.",
+    "case_directory": "ST-002_masquerade_schtasks",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "st002_masquerade_schtasks_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "Scheduled Task persistence (disguised)",
+      "candidate_attack_mapping": "T1053.005",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = MISSING. Two schtasks /Create processes carry highly suspicious actions (wmic against an NTFS Alternate Data Stream and a recurring Public-path .js), but the package contains only Sysmon EID 1 process creation. Registration status is indeterminate because Security 4698 is outside this Sysmon-only scope; the missing confirmation is the Sysmon-observable task-action or payload execution, which is absent from the retained host window. Calibration role = over-triage-prone (down-rank): suspicious / low-medium / investigate. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "schtasks/windows-sysmon.log is host win-dc-974 (single). The folder's windows-security.log is the same host but a different sensor (Security 4698); this case uses the Sysmon capture only. Tier-1 single-sensor."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "st002_masquerade_schtasks_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_alert_disguised_persistence",
+      "primary_host": "win-dc-974.attackrange.local",
+      "primary_user": "ATTACKRANGE\\Administrator",
+      "boundary_definition": [
+        "A0 = the 'SoundIentifier' schtasks /Create invocation (ADS-via-wmic action, 19:40:00).",
+        "EV = the 'Disk Diag' schtasks /Create invocation (recurring Public-path .js action, 19:40:01). Both commands are launched back-to-back by an already-running cmd.exe.",
+        "This is a Sysmon-only case: Security 4698 registration telemetry is outside scope and is not treated as missing evidence.",
+        "No payload file or ProcessCreate event attributable to either proposed task action is observed in the retained host window.",
+        "Scoped to the two suspicious task-creation attempts; the broader win-dc-974 intrusion is excluded."
+      ],
+      "absence_audit": {
+        "confirmation": "Sysmon-observable execution of either proposed task action or payload",
+        "sensor": "Microsoft-Windows-Sysmon/Operational",
+        "host": "win-dc-974.attackrange.local",
+        "source_window_utc": {
+          "start": "2021-03-01T19:38:43.046069000Z",
+          "end": "2021-03-01T19:40:24.793917600Z"
+        },
+        "result": "No taskeng/taskhost-attributed action, wmic execution of Disk101.ini:59e9c935, explorer execution of Weber0.js, or payload-file event is present. Security 4698 is not used because it is not observable in the scoped Sysmon source."
+      }
+    },
+    "main_alert_selection": {
+      "selection_method": "select schtasks /Create process events whose proposed /TR actions reference an NTFS Alternate Data Stream via wmic or a recurring JavaScript file in a Public path.",
+      "selection_reason": "The command lines are strong persistence indicators, while the absence of Sysmon-observable task-action execution tests whether the model overstates an attempted configuration as a completed outcome. Registration status is left indeterminate because Security 4698 is outside the sensor scope."
+    },
+    "correlation_keys": [
+      "host",
+      "user",
+      "time_window",
+      "Image==schtasks.exe",
+      "ParentProcessGuid"
+    ],
+    "event_groups": [
+      {
+        "group": "disguised_tasks",
+        "event_record_ids": [
+          "1624574",
+          "1624587"
+        ],
+        "description": "two benign-named task-creation invocations with suspicious ADS/JS actions; Sysmon-observable task-action execution is absent, while registration status is outside scope."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "missing_outcome",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: MISSING / over-triage-prone. The ADS-via-wmic and Public/.js command lines are suspicious, but Sysmon EID 1 proves only that schtasks was launched. Security 4698 registration evidence is outside scope; no Sysmon-observable task-action or payload execution is present."
+      },
+      {
+        "topic": "ads_technique",
+        "event_record_id": "1624574",
+        "note": "The colon in C:\\Users\\Public\\Disk101.ini:59e9c935 denotes an NTFS Alternate Data Stream path. The command proposes execution through wmic, but the package does not verify the stream's content or show that the action ran."
+      },
+      {
+        "topic": "command_not_result",
+        "event_record_id": "",
+        "note": "No Sysmon-observable payload file or task-action execution is captured. Registration status is indeterminate rather than treated as absent. The package supports suspicious intent and an attempted persistence configuration, not successful persistence or compromise."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "missing_persistence_outcome_exemplar",
+        "suspicious_task_creation_attempt",
+        "over_triage_down_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0",
+  "case_id": "GPO-001",
+  "case_name": "Machine-account SYSVOL access = routine Group Policy processing (SMB-enumeration false positive)",
+  "security_proposition": "The observed machine-account SYSVOL reads are adversary-driven SMB reconnaissance or lateral activity rather than routine Group Policy processing.",
+  "case_directory": "GPO-001_sysvol_gpo_processing",
+  "split": "heldout",
+  "status": "audited_heldout_2026-07-16",
+  "attack_category": {
+    "category": "Routine machine-account SYSVOL Group Policy processing",
+    "candidate_attack_mapping": "T1021.002 (surface only)",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = COUNTER. Machine-account read access to the two default Group Policy objects can resemble SMB reconnaissance, but the subjects, targets, and read-only pattern establish routine Group Policy processing. Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "OTRF Security-Datasets (mordor)",
+    "original_repository_path": "datasets/compound/apt29/day1/apt29_evals_day1_manual.zip",
+    "original_filename": "apt29_evals_day1_manual.zip",
+    "stored_filename": "",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "98a073140860560d70080ace9142961be4f64b4862bae892d62d0f254d0fdbe5",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "security"
+      ]
+    },
+    "splunk": {}
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "",
+    "related_events": "",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "build/case.json",
+    "related_events_query": "build/case.json",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "primary_host": "NEWYORK.dmevals.local",
+    "time_window_utc": {
+      "start": "2020-05-01T22:56:47Z",
+      "end": "2020-05-01T23:01:43Z"
+    }
+  },
+  "main_alert_selection": {
+    "event_record_id": "151026",
+    "process_guid": "",
+    "query_file": "build/case.json"
+  },
+  "related_event_selection": {
+    "query_file": "build/case.json",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "included_event_record_ids": [
+      "151026",
+      "146551",
+      "146552",
+      "151027"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "151026",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "triggering alert: machine-account read access to the SYSVOL Policies path"
+    },
+    "EV-001": {
+      "event_record_id": "146551",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "machine-account read of the Default Domain Policy gpt.ini"
+    },
+    "EV-002": {
+      "event_record_id": "146552",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "machine-account read of the Default Domain Controllers Policy gpt.ini"
+    },
+    "EV-003": {
+      "event_record_id": "151027",
+      "event_type": "network_share_object_access",
+      "source": "Security",
+      "role_note": "same-session machine-account read of the domain SYSVOL path"
+    }
+  },
+  "curation_notes": [
+    "Counter (down_rank): machine accounts reaching the domain controller's \\\\*\\SYSVOL share look like SMB enumeration / AD reconnaissance and trip lateral-movement detections.",
+    "Decisive counter-evidence (benign): the subjects are MACHINE accounts (NEWYORK$, SCRANTON$) and the targets are the well-known default GPOs under SYSVOL\\...\\Policies ({31B2F340-016D-11D2-945F-00C04FB984F9} = Default Domain Policy, {6AC1786C-016F-11D2-945F-00C04fB984F9} = Default Domain Controllers Policy) plus gpt.ini. This is routine Group Policy processing; correct verdict benign.",
+    "Cross-corpus twin of SMB-002 (attack_data machine-account SMB counter) — same benign-but-alarming surface from an independent corpus."
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "counter_evidence_heldout",
+      "cross_corpus_generalisation",
+      "routine_gpo_false_positive"
+    ],
+    "eligible_for_final_heldout_metrics": true
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

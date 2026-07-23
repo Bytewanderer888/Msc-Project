@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-C01",
+  "rule_id": "SAFESOC-TRG-ER-C01",
+  "analytic_family_id": "AF-MOD",
+  "analytic_pattern_id": "MOD-01",
+  "title": "DISM host loads a library from its temporary servicing directory",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events for asset DESKTOP-QGB4EQH in the corpus-native SIEM partition wazuh-alerts-4.x-2024.12.01; no timestamp or record identifier is used.",
+    "filter_predicate": {
+      "all": [
+        {
+          "field": "computer",
+          "op": "ieq",
+          "value": "DESKTOP-QGB4EQH"
+        },
+        {
+          "field": "attributes.source_partition",
+          "op": "eq",
+          "value": "wazuh-alerts-4.x-2024.12.01"
+        }
+      ]
+    }
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 7
+      },
+      {
+        "field": "attributes.image",
+        "op": "regex",
+        "value": "(?i)\\\\Temp\\\\[^\\\\]+\\\\DismHost\\.exe$"
+      },
+      {
+        "field": "attributes.image_loaded",
+        "op": "regex",
+        "value": "(?i)\\\\Temp\\\\[^\\\\]+\\\\[^\\\\]+\\.dll$"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "y6E3gZMBrrvr6pEbZnYV"
+  },
+  "rationale": "A DISM helper loading a DLL from a temporary servicing directory is the alert surface; signature and vendor fields remain contextual evidence."
+}

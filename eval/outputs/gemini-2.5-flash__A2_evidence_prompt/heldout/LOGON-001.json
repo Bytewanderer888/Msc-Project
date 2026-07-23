@@ -1,0 +1,11 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001"
+  ],
+  "rationale": "The 'reg.exe' process (EV-001) was used to add a registry value 'UserInitMprLogonScript' under HKCU\\Environment, setting its data to 'C:\\Windows\\System32\\calc.exe' (A0). This registry key is a known persistence mechanism, allowing an attacker to execute a program upon user logon. While 'calc.exe' is benign, its use here demonstrates a successful attempt to establish persistence.",
+  "recommended_action": "escalate"
+}

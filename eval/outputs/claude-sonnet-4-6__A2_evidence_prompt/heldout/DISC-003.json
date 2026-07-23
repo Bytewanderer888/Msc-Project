@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.65,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "Within a ~9-second window, a parent cmd.exe (PID 1208, EV-001/EV-002) spawned two separate cmd\u2192powershell chains executing local user enumeration commands: 'Get-LocalUser' (A0, EV-001) and 'Get-WmiObject Win32_UserAccount' (EV-002, EV-003). The rapid, sequential, programmatic-style invocation of two distinct user-enumeration techniques via cmd /c wrappers is consistent with automated post-exploitation discovery activity (T1087.001). However, all processes run at Medium integrity under corp\\user-01 with legitimate system binaries, no obfuscation, no encoded payloads, and no evidence of lateral movement, persistence, or data exfiltration. The grandparent cmd.exe (PID 1208) context is unknown \u2014 it could be a script, pentest tool, or interactive session \u2014 and absence of that context caps confidence. The pattern warrants investigation to determine what spawned PID 1208 and whether this is authorized activity.",
+  "recommended_action": "investigate"
+}

@@ -1,0 +1,14 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.55,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "A PowerShell process (EV-001 parent) spawned cmd.exe which copied a binary to two locations (C:\\Program Files\\windows_service.exe and C:\\program.exe \u2014 the latter being a classic unquoted service path hijack staging location), created a new auto-start service, and immediately started it (A0, EV-002); the service binary ran as NT AUTHORITY\\SYSTEM via services.exe (EV-003), confirming privilege escalation to SYSTEM. The entire sequence was then cleaned up within ~4 seconds \u2014 stopping and deleting the service, removing both binaries and a C:\\Time.log file (EV-004) \u2014 which is consistent with a post-exploitation persistence/privilege-escalation test or red-team exercise, but the self-cleanup and 'Example Service'/'WindowsServiceExample.exe' naming also fit a controlled lab or penetration test scenario. Key uncertainties: the originating PowerShell process and its parent are not in scope, the binary hashes are not correlated against threat intelligence here, and the cleanup removes the payload before deeper forensic confirmation; these factors prevent a definitive malicious verdict but the pattern (copy\u2192install service\u2192run as SYSTEM\u2192cleanup from Temp directory) is a well-known attacker TTP warranting investigation.",
+  "recommended_action": "investigate"
+}

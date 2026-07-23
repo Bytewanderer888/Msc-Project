@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0",
+  "case_id": "OD-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator",
+      "administrator"
+    ],
+    "time_window_utc": {
+      "start": "2022-02-23T10:56:41.815258900Z",
+      "end": "2022-02-23T10:56:42.665314400Z"
+    },
+    "event_count": 6,
+    "event_types_present": [
+      "process_create",
+      "security_log_cleared"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational",
+      "Microsoft-Windows-Security-Auditing"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2022-02-23T10:56:41.815258900Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "sysmon:290147"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{C8EA50B7-12E9-6216-5205-000000003802}",
+      "process_id": "7044",
+      "image": "C:\\Windows\\System32\\vssadmin.exe",
+      "original_file_name": "VSSADMIN.EXE",
+      "command_line": "c:\\Windows\\system32\\vssadmin.exe  delete shadows /all /quiet",
+      "current_directory": "C:\\Temp\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=2964D232005BD840B38F9DB4F95DC7DB,SHA256=4FE71EB779B57354E5600DC31E3DC1875ADC8A06663654AEC83F11109751E8FC,IMPHASH=974DD2AFBD6D9BAE89608D1B181CCCF8",
+      "parent_process_guid": "{C8EA50B7-12E9-6216-4F05-000000003802}",
+      "parent_process_id": "6960",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "C:\\Windows\\system32\\cmd.exe /c c:\\Windows\\system32\\vssadmin.exe delete shadows /all /quiet"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2022-02-23T10:56:42.000000000Z",
+      "event_type": "security_log_cleared",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 1102,
+        "event_record_id": "security:324614"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "subject_user_name": "administrator",
+        "subject_domain_name": "corp"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2022-02-23T10:56:42.487979600Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "sysmon:290231"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{C8EA50B7-12EA-6216-5C05-000000003802}",
+        "process_id": "4176",
+        "image": "C:\\Windows\\System32\\bcdedit.exe",
+        "original_file_name": "bcdedit.exe",
+        "command_line": "bcdedit.exe  /set {default} bootstatuspolicy ignoreallfailures ",
+        "current_directory": "C:\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=5639B10AF2E2A56F54A63A7BF1553EED,SHA256=999C9F92E914F69E278FD684E5DB5AECD16A01C324DF2FF351BCF041E3B4019A,IMPHASH=640CFCF7F00029D52EF0C4D45E2E87A6",
+        "parent_process_guid": "{C8EA50B7-12EA-6216-5A05-000000003802}",
+        "parent_process_id": "5172",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "C:\\Windows\\system32\\cmd.exe /c bcdedit.exe /set {default} bootstatuspolicy ignoreallfailures & bcdedit /set {default} recoveryenabled no"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2022-02-23T10:56:42.501863300Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "sysmon:290240"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{C8EA50B7-12EA-6216-5D05-000000003802}",
+        "process_id": "5956",
+        "image": "C:\\Windows\\System32\\bcdedit.exe",
+        "original_file_name": "bcdedit.exe",
+        "command_line": "bcdedit  /set {default} recoveryenabled no",
+        "current_directory": "C:\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=5639B10AF2E2A56F54A63A7BF1553EED,SHA256=999C9F92E914F69E278FD684E5DB5AECD16A01C324DF2FF351BCF041E3B4019A,IMPHASH=640CFCF7F00029D52EF0C4D45E2E87A6",
+        "parent_process_guid": "{C8EA50B7-12EA-6216-5A05-000000003802}",
+        "parent_process_id": "5172",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "C:\\Windows\\system32\\cmd.exe /c bcdedit.exe /set {default} bootstatuspolicy ignoreallfailures & bcdedit /set {default} recoveryenabled no"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2022-02-23T10:56:42.562894500Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "sysmon:290266"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{C8EA50B7-12EA-6216-6005-000000003802}",
+        "process_id": "6308",
+        "image": "C:\\Windows\\System32\\wevtutil.exe",
+        "original_file_name": "wevtutil.exe",
+        "command_line": "wevtutil.exe  cl System",
+        "current_directory": "C:\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=91803E340A7E7AFDF95A8031F6EF3F3E,SHA256=DCFD99FE08A5D46C52E810FE2F9CC15AC82008975C0A731A11773B11ADE0F3CC,IMPHASH=51FFA3B7FBD1EF82ECE0730B54406E64",
+        "parent_process_guid": "{C8EA50B7-12EA-6216-5E05-000000003802}",
+        "parent_process_id": "6688",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "C:\\Windows\\system32\\cmd.exe /c wevtutil.exe cl System"
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2022-02-23T10:56:42.665314400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "sysmon:290300"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{C8EA50B7-12EA-6216-6405-000000003802}",
+        "process_id": "6244",
+        "image": "C:\\Windows\\System32\\wevtutil.exe",
+        "original_file_name": "wevtutil.exe",
+        "command_line": "wevtutil.exe  cl Security",
+        "current_directory": "C:\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=91803E340A7E7AFDF95A8031F6EF3F3E,SHA256=DCFD99FE08A5D46C52E810FE2F9CC15AC82008975C0A731A11773B11ADE0F3CC,IMPHASH=51FFA3B7FBD1EF82ECE0730B54406E64",
+        "parent_process_guid": "{C8EA50B7-12EA-6216-6105-000000003802}",
+        "parent_process_id": "4408",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "C:\\Windows\\system32\\cmd.exe /c wevtutil.exe cl Security"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

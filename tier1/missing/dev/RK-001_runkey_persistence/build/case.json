@@ -1,0 +1,91 @@
+{
+  "case_id": "RK-001",
+  "split": "dev",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1547.001/atomic_red_team/windows-sysmon.log",
+  "staged_export": "extracted/rk001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "4430",
+    "EV": [
+      "4403",
+      "4417",
+      "4820",
+      "4834",
+      "4847"
+    ]
+  },
+  "roles": {
+    "4430": "triggering alert: registry Run-key SET — HKU\\...\\CurrentVersion\\Run\\'Atomic Red Team' = C:\\Path\\AtomicRedTeam.exe (T1547.001 persistence)",
+    "4403": "cmd.exe (spawned by PowerShell) issuing the REG ADD to the Run key",
+    "4417": "reg.exe performing the actual REG ADD that writes the Run-key value",
+    "4820": "cmd.exe issuing the matching REG DELETE cleanup command seconds later",
+    "4834": "reg.exe performing the matching REG DELETE cleanup operation",
+    "4847": "Sysmon EID12 DeleteValue confirming removal of the same Run-key value"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "runkey_set_target_never_executes",
+    "security_proposition": "The executable configured in the Run-key value executed within the retained Sysmon source.",
+    "case_directory": "RK-001_runkey_persistence",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "rk001_runkey_sysmon.log",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Registry Run-key persistence (target not observed executing)",
+      "candidate_attack_mapping": "T1547.001",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = MISSING. Native Sysmon telemetry confirms that a Run-key value pointing to C:\\Path\\AtomicRedTeam.exe was set and then deleted seconds later. No process creation for that target is present in the retained Sysmon source. The setup is visible, but the named confirmation — execution of the configured target — is not evidenced. Role = over-triage-prone (down-rank): the model must not conclude 'payload executed' or durable active persistence. Do not leak."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "single host win-dc-942 (6,287 events)."
+    },
+    "case_scope": {
+      "primary_host": "win-dc-942.attackrange.local",
+      "boundary_definition": [
+        "A0 = the EID13 Run-key value-set; EV-001/EV-002 are the cmd.exe and reg.exe creation chain.",
+        "EV-003/EV-004 are the matching cleanup command chain; EV-005 is the native Sysmon DeleteValue confirmation.",
+        "No Sysmon ProcessCreate for C:\\Path\\AtomicRedTeam.exe is present in the retained source."
+      ],
+      "absence_audit": {
+        "confirmation": "Sysmon ProcessCreate with Image C:\\Path\\AtomicRedTeam.exe",
+        "sensor": "Microsoft-Windows-Sysmon/Operational",
+        "host": "win-dc-942.attackrange.local",
+        "raw_source": "_splunk_ingest/rk001_runkey_sysmon.log",
+        "source_window_utc": {
+          "start": "2020-11-27T08:45:27.694Z",
+          "end": "2020-11-27T08:50:35.059Z"
+        },
+        "result": "zero matching target-process creations; the same value is deleted by records 4820, 4834, and 4847 approximately four seconds after it is set"
+      }
+    },
+    "curation_notes": [
+      {
+        "topic": "missing_outcome",
+        "note": "MISSING / over-triage-prone: the Run-key state is set and then removed, while execution of its configured target is not evidenced in the retained Sysmon source."
+      },
+      {
+        "topic": "lifecycle_completion",
+        "event_record_id": "4820,4834,4847",
+        "note": "The matching cleanup command and native DeleteValue event are included so the package does not manufacture missing by omitting same-lifecycle evidence."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "missing_persistence_exemplar",
+        "over_triage_down_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

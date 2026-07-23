@@ -1,0 +1,259 @@
+{
+  "cases": [
+    {
+      "case": "DISC-002",
+      "case_directory": "tier1/counter/dev/DISC-002_wmic_system_discovery",
+      "output": "[DISC-002] VERIFY (raw log (wmic-cmdline-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "RDL-001",
+      "case_directory": "tier1/counter/dev/RDL-001_webdav_rundll32_legit",
+      "output": "[RDL-001] VERIFY (mordor (apt29_evals_day2_manual.zip)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "SMB-002",
+      "case_directory": "tier1/counter/dev/SMB-002_routine_domain_smb",
+      "output": "[SMB-002] VERIFY (raw logs [security]): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "GPO-001",
+      "case_directory": "tier1/counter/heldout/GPO-001_sysvol_gpo_processing",
+      "output": "[GPO-001] VERIFY (mordor (apt29_evals_day1_manual.zip)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "PS-003",
+      "case_directory": "tier1/counter/heldout/PS-003_obfuscated_powershell",
+      "output": "[PS-003] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "ACCT-001",
+      "case_directory": "tier1/missing/dev/ACCT-001_create_local_account",
+      "output": "[ACCT-001] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "ING-001",
+      "case_directory": "tier1/missing/dev/ING-001_curl_dll_staging",
+      "output": "[ING-001] VERIFY (raw log (windows-sysmon_curl.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "LGN-002",
+      "case_directory": "tier1/missing/dev/LGN-002_logon_script_unfired",
+      "output": "[LGN-002] VERIFY (mordor (cmd_userinitmprlogonscript_batch.zip)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "RK-001",
+      "case_directory": "tier1/missing/dev/RK-001_runkey_persistence",
+      "output": "[RK-001] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "ST-002",
+      "case_directory": "tier1/missing/dev/ST-002_masquerade_schtasks",
+      "output": "[ST-002] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "EVL-001",
+      "case_directory": "tier1/missing/heldout/EVL-001_disable_eventlog",
+      "output": "[EVL-001] VERIFY (mordor (cmd_disable_eventlog_service_startuptype_modification_via_registry.zip)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "ING-002",
+      "case_directory": "tier1/missing/heldout/ING-002_bitsadmin_download",
+      "output": "[ING-002] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "LOGON-001",
+      "case_directory": "tier1/missing/heldout/LOGON-001_logon_script",
+      "output": "[LOGON-001] VERIFY (raw log (sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "ST-001",
+      "case_directory": "tier1/missing/heldout/ST-001_atomic_schtasks_persistence",
+      "output": "[ST-001] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "INJ-001",
+      "case_directory": "tier1/strong/dev/INJ-001_sliver_notepad_injection",
+      "output": "[INJ-001] VERIFY (raw log (notepad_windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "LS-001",
+      "case_directory": "tier1/strong/dev/LS-001_lsass_creddump",
+      "output": "[LS-001] VERIFY (raw log (windows-sysmon_creddump.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "RTLO-001",
+      "case_directory": "tier1/strong/dev/RTLO-001_rtlo_masquerade",
+      "output": "[RTLO-001] VERIFY (mordor (apt29_evals_day1_manual.zip)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "UAC-001",
+      "case_directory": "tier1/strong/dev/UAC-001_sdclt_uac_bypass",
+      "output": "[UAC-001] VERIFY (mordor (apt29_evals_day1_manual.zip)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "WMI-002",
+      "case_directory": "tier1/strong/dev/WMI-002_wmi_subscription_unfired",
+      "output": "[WMI-002] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "LS-003",
+      "case_directory": "tier1/strong/heldout/LS-003_taskmgr_lsass_dump",
+      "output": "[LS-003] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "PS-004",
+      "case_directory": "tier1/strong/heldout/PS-004_sharphound_ad_recon",
+      "output": "[PS-004] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "RUN-001",
+      "case_directory": "tier1/strong/heldout/RUN-001_rundll32_lock_dll",
+      "output": "[RUN-001] VERIFY (mordor (apt29_evals_day2_manual.zip)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "SMB-001",
+      "case_directory": "tier1/strong/heldout/SMB-001_impacket_lateral_exec",
+      "output": "[SMB-001] VERIFY (raw log (wmiexec_windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "SVC-001",
+      "case_directory": "tier1/strong/heldout/SVC-001_service_persistence",
+      "output": "[SVC-001] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "UQP-001",
+      "case_directory": "tier1/strong/heldout/UQP-001_unquoted_path_service",
+      "output": "[UQP-001] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "WMI-001",
+      "case_directory": "tier1/strong/heldout/WMI-001_wmi_persistence",
+      "output": "[WMI-001] VERIFY (mordor (apt29_evals_day2_manual.zip)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "BF-001",
+      "case_directory": "tier1/weak/dev/BF-001_rdp_bruteforce",
+      "output": "[BF-001] VERIFY (raw log (sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "CERT-001",
+      "case_directory": "tier1/weak/dev/CERT-001_certutil_privatekey_export",
+      "output": "[CERT-001] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "FW-001",
+      "case_directory": "tier1/weak/dev/FW-001_firewall_rule_add",
+      "output": "[FW-001] VERIFY (mordor (cmd_netsh_fw_mod_open_ports.zip)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "LS-002",
+      "case_directory": "tier1/weak/dev/LS-002_createdump",
+      "output": "[LS-002] VERIFY (raw log (createdump_windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "PS-001",
+      "case_directory": "tier1/weak/dev/PS-001_encoded_powershell_benign",
+      "output": "[PS-001] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "PS-002",
+      "case_directory": "tier1/weak/dev/PS-002_hidden_powershell_cradle",
+      "output": "[PS-002] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "ST-003",
+      "case_directory": "tier1/weak/dev/ST-003_legit_vendor_tasks",
+      "output": "[ST-003] VERIFY (raw log (4698_windows-security.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "BF-002",
+      "case_directory": "tier1/weak/heldout/BF-002_ntlm_spray_invalid_users",
+      "output": "[BF-002] VERIFY (raw log (windows-security.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "COL-001",
+      "case_directory": "tier1/weak/heldout/COL-001_archive_collection",
+      "output": "[COL-001] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "CRED-001",
+      "case_directory": "tier1/weak/heldout/CRED-001_autologon_registry",
+      "output": "[CRED-001] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "DISC-001",
+      "case_directory": "tier1/weak/heldout/DISC-001_ad_account_discovery",
+      "output": "[DISC-001] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "DISC-003",
+      "case_directory": "tier1/weak/heldout/DISC-003_local_account_discovery",
+      "output": "[DISC-003] VERIFY (raw log (windows-sysmon.log)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "DISC-004",
+      "case_directory": "tier1/weak/heldout/DISC-004_ie_version_discovery",
+      "output": "[DISC-004] VERIFY (mordor (cmd_discover_iexplorer_version_registry.zip)): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "AMQ-001",
+      "case_directory": "tier2/strong/dev/AMQ-001_activemq_rce_foothold",
+      "output": "[AMQ-001] VERIFY (raw logs [sysmon,security]): MATCH \u2705",
+      "passed": true
+    },
+    {
+      "case": "OD-001",
+      "case_directory": "tier2/strong/heldout/OD-001_destruction_antiforensics",
+      "output": "[OD-001] VERIFY (raw logs [sysmon,security]): MATCH \u2705",
+      "passed": true
+    }
+  ],
+  "external_attack_data_disabled": true,
+  "generated_utc": "2026-07-22T12:48:02Z",
+  "otrf_root": "data_sources/otrf_selected_raw",
+  "record_schema": "safesoc.package_rebuild_verification.v1",
+  "summary": {
+    "cases": 41,
+    "failed": 0,
+    "passed": 41
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.7,
+  "key_evidence": [
+    "A0",
+    "EV-003"
+  ],
+  "rationale": "The user 'user-02$' accessed the SYSVOL share from IP 10.0.1.4, specifically targeting the 'corp.local\\Policies' directory (A0) and the root 'corp.local' (EV-003). This activity is suspicious as it involves a non-machine account accessing sensitive Group Policy related paths on the SYSVOL share, which could indicate reconnaissance or an attempt to modify policies. The access mask '0x100081' includes ReadData and ReadAttributes, which are not inherently malicious but warrant further investigation given the target.",
+  "recommended_action": "investigate"
+}

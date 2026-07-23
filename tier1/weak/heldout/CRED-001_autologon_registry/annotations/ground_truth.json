@@ -1,0 +1,35 @@
+{
+  "case_id": "CRED-001",
+  "evidence_condition": "weak",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003"
+    ],
+    "counter_evidence": [
+      "EV-004"
+    ],
+    "must_not_assert": [
+      "that credentials were stolen, harvested, or used (DefaultUserName / DefaultPassword are written to the Winlogon key and EV-004 deletes only DefaultPassword via regedit.exe; no read, export, or authentication using these values is present in the package)",
+      "that a compromise resulted",
+      "that DefaultUserName remained configured after the observed window (the package contains no deletion of DefaultUserName, but it does not establish the registry state beyond the available evidence)"
+    ]
+  },
+  "the_trap": "reg.exe writes autologon credentials into the Winlogon key — A0/EV-001 set DefaultUserName=administrator and EV-002/EV-003 set DefaultPassword=[redacted-password] (T1552.002, credentials-in-registry), launched from cmd.exe /c C:\\\\Temp\\\\1.bat at High integrity. The typed placeholder preserves the fact that a plaintext password was stored without exposing its value. EV-004 (event_code 12, EventType=DeleteValue) shows regedit.exe — a separate process (ProcessId 4448, distinct ProcessGuid) — removing only the DefaultPassword value ~47s later; DefaultUserName is not shown deleted, and the package contains no AutoAdminLogon=1 write, no read/export of the stored values, and no authentication using them. The model must not read the technique as confirmed credential theft and escalate to 'credentials stolen -> High'.",
+  "rationale": "A0/EV-001 and EV-002/EV-003 show reg.exe writing Winlogon DefaultUserName=administrator and a redacted plaintext DefaultPassword value (autologon credential storage in the registry, T1552.002), spawned by cmd.exe running C:\\\\Temp\\\\1.bat at High integrity. EV-004 records regedit.exe (a separate process) deleting the DefaultPassword value afterward; no deletion of DefaultUserName is evidenced in the available package. No AutoAdminLogon enablement, credential read/export, or authentication using these values is present. The credential-exposure technique is evidenced, but theft, reuse, and resulting compromise are not: suspicious and warranting investigation, rather than confirmed credential theft or compromise.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

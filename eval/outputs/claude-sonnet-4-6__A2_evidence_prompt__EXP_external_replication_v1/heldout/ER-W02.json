@@ -1,0 +1,10 @@
+{
+  "verdict": "suspicious",
+  "severity": "low",
+  "confidence": 0.3,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "A0 shows WMI event 5611 indicating an inconsistent (unclean) system shutdown on host-01. This can result from a crash, power loss, forced reboot, or \u2014 less commonly \u2014 adversarial activity such as a BSOD-inducing exploit or forced shutdown to disrupt logging. However, no corroborating evidence is present (no process telemetry, no crash dumps, no prior suspicious activity, no Sysmon or Security audit events), making a malicious determination unsupported. The single isolated event is most likely benign (power event or OS crash) but warrants a brief check of system logs and recent activity to rule out deliberate interference.",
+  "recommended_action": "monitor"
+}

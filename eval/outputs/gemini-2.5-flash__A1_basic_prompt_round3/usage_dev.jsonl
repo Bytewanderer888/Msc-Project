@@ -1,0 +1,11 @@
+{"case": "ACCT-001", "input_tokens": 6042, "output_tokens": 240, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "WMI-002", "input_tokens": 7988, "output_tokens": 189, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "LS-002", "input_tokens": 3464, "output_tokens": 188, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "ST-003", "input_tokens": 1745, "output_tokens": 194, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "WMI-002", "input_tokens": 8006, "output_tokens": 222, "model": "gemini-2.5-flash", "billing_mode": "realtime"}
+{"case": "RK-001", "input_tokens": 4322, "output_tokens": 169, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-16T09:12:50Z", "invocation_id": "20260716T091247Z-98a4a13a"}
+{"case": "RTLO-001", "input_tokens": 2706, "output_tokens": 192, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-16T09:13:02Z", "invocation_id": "20260716T091247Z-98a4a13a"}
+{"case": "UAC-001", "input_tokens": 3707, "output_tokens": 203, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-16T09:13:12Z", "invocation_id": "20260716T091247Z-98a4a13a"}
+{"case": "WMI-002", "input_tokens": 8242, "output_tokens": 231, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-16T09:13:20Z", "invocation_id": "20260716T091247Z-98a4a13a"}
+{"case": "FW-001", "input_tokens": 2754, "output_tokens": 191, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-16T09:13:29Z", "invocation_id": "20260716T091247Z-98a4a13a"}
+{"case": "AMQ-001", "input_tokens": 6845, "output_tokens": 259, "model": "gemini-2.5-flash", "billing_mode": "realtime", "completed_utc": "2026-07-16T09:13:46Z", "invocation_id": "20260716T091247Z-98a4a13a"}

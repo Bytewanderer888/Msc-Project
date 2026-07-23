@@ -1,0 +1,4 @@
+profile,target,n,oracle_positive_n,tp,fp,fn,tn,recall,precision,specificity,f1,deferral_n,deferral_rate,false_negative_cases,false_positive_cases
+integrity_only,a4_any,21,13,0,0,13,8,0.0,,1.0,,0,0.0,ACCT-001|CERT-001|FW-001|ING-001|LGN-002|LS-002|PS-001|PS-002|RK-001|SMB-002|ST-002|ST-003|UAC-001,
+consequence_gate,a4_any,21,13,7,7,6,1,0.5385,0.5,0.125,0.5185,14,0.6667,ACCT-001|CERT-001|LGN-002|LS-002|SMB-002|UAC-001,AMQ-001|DISC-002|INJ-001|LS-001|RDL-001|RTLO-001|WMI-002
+safety_first,a4_any,21,13,12,7,1,1,0.9231,0.6316,0.125,0.75,19,0.9048,SMB-002,AMQ-001|DISC-002|INJ-001|LS-001|RDL-001|RTLO-001|WMI-002

@@ -1,0 +1,37 @@
+{
+  "case_id": "ER-S02",
+  "status": "candidate_built_pending_qa",
+  "source_corpus": "AIT Alert Data Set",
+  "doi": "10.5281/zenodo.8263181",
+  "source_archive": {
+    "path": "data_sources/ait_ads/ait_ads.zip",
+    "sha256": "9f0595c4ebe56ac9223763881f55369dd4f249a8108064e4ae108eb3309aeeb9"
+  },
+  "selected_records": [
+    {
+      "evidence_id": "A0",
+      "archive_member": "harrison_wazuh.json",
+      "line_number": 570693,
+      "record_sha256": "718e6a87f521f21c8a95e8b78cb5808903e9e90abf79acdf3fcc093096240bb0"
+    },
+    {
+      "evidence_id": "EV-001",
+      "archive_member": "harrison_wazuh.json",
+      "line_number": 570673,
+      "record_sha256": "41995a5e1613b5060088aee9ebfa52a20c30a0ae2e4d2b81b1c721504add19b4"
+    },
+    {
+      "evidence_id": "EV-002",
+      "archive_member": "harrison_aminer.json",
+      "line_number": 10109,
+      "record_sha256": "4896e109620d79aa8e1ce67584cfb063937ae2f3305cbc24aa1147826939d499"
+    },
+    {
+      "evidence_id": "EV-003",
+      "archive_member": "harrison_aminer.json",
+      "line_number": 10113,
+      "record_sha256": "6a535f6fdacf83512f9f7f5983c33ed5c832e29804ce80d65a5d8412a0dfd9ae"
+    }
+  ],
+  "integrity_note": "Record hashes cover the exact UTF-8 JSONL record without its line terminator. The archive hash is pinned in data_sources/ait_ads/SOURCE_MANIFEST.json."
+}

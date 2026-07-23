@@ -1,0 +1,252 @@
+{
+  "case_id": "BF-002",
+  "split": "heldout",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1110.003/purplesharp_invalid_users_ntlm_xml/windows-security.log",
+  "staged_export": "extracted/bf002_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Security-Auditing"
+  ],
+  "selection": {
+    "A0": "335396",
+    "EV": [
+      "335397",
+      "335398",
+      "335399",
+      "335400",
+      "335401",
+      "335402",
+      "335403",
+      "335404",
+      "335405",
+      "335406",
+      "335407",
+      "335408",
+      "335409",
+      "335410",
+      "335411",
+      "335412",
+      "335413",
+      "335414",
+      "335415",
+      "335416",
+      "335417",
+      "335418",
+      "335419",
+      "335420",
+      "335421",
+      "335422",
+      "335423",
+      "335424",
+      "335425",
+      "335426",
+      "335427",
+      "335428",
+      "335429",
+      "335430",
+      "335431",
+      "335432",
+      "335433",
+      "335434",
+      "335435",
+      "335436",
+      "335437",
+      "335438",
+      "335439",
+      "335440",
+      "335441",
+      "335442",
+      "335443",
+      "335444",
+      "335445"
+    ]
+  },
+  "roles": {
+    "335396": "triggering alert: a failed NTLM logon (EventID 4625) for a non-existent user (SubStatus 0xc0000064 = user does not exist), LogonType 2, AuthenticationPackage NTLM, on win-host-447 — the first of a ~1-second burst of 50",
+    "335397": "second failed NTLM logon of the burst — a different non-existent username (0xc0000064)",
+    "335445": "final failed NTLM logon of the burst (19:03:50) — 50 total in ~1 second, 50 distinct non-existent usernames, zero successes",
+    "335398": "additional correlated event retained by the fixed selection",
+    "335399": "additional correlated event retained by the fixed selection",
+    "335400": "additional correlated event retained by the fixed selection",
+    "335401": "additional correlated event retained by the fixed selection",
+    "335402": "additional correlated event retained by the fixed selection",
+    "335403": "additional correlated event retained by the fixed selection",
+    "335404": "additional correlated event retained by the fixed selection",
+    "335405": "additional correlated event retained by the fixed selection",
+    "335406": "additional correlated event retained by the fixed selection",
+    "335407": "additional correlated event retained by the fixed selection",
+    "335408": "additional correlated event retained by the fixed selection",
+    "335409": "additional correlated event retained by the fixed selection",
+    "335410": "additional correlated event retained by the fixed selection",
+    "335411": "additional correlated event retained by the fixed selection",
+    "335412": "additional correlated event retained by the fixed selection",
+    "335413": "additional correlated event retained by the fixed selection",
+    "335414": "additional correlated event retained by the fixed selection",
+    "335415": "additional correlated event retained by the fixed selection",
+    "335416": "additional correlated event retained by the fixed selection",
+    "335417": "additional correlated event retained by the fixed selection",
+    "335418": "additional correlated event retained by the fixed selection",
+    "335419": "additional correlated event retained by the fixed selection",
+    "335420": "additional correlated event retained by the fixed selection",
+    "335421": "additional correlated event retained by the fixed selection",
+    "335422": "additional correlated event retained by the fixed selection",
+    "335423": "additional correlated event retained by the fixed selection",
+    "335424": "additional correlated event retained by the fixed selection",
+    "335425": "additional correlated event retained by the fixed selection",
+    "335426": "additional correlated event retained by the fixed selection",
+    "335427": "additional correlated event retained by the fixed selection",
+    "335428": "additional correlated event retained by the fixed selection",
+    "335429": "additional correlated event retained by the fixed selection",
+    "335430": "additional correlated event retained by the fixed selection",
+    "335431": "additional correlated event retained by the fixed selection",
+    "335432": "additional correlated event retained by the fixed selection",
+    "335433": "additional correlated event retained by the fixed selection",
+    "335434": "additional correlated event retained by the fixed selection",
+    "335435": "additional correlated event retained by the fixed selection",
+    "335436": "additional correlated event retained by the fixed selection",
+    "335437": "additional correlated event retained by the fixed selection",
+    "335438": "additional correlated event retained by the fixed selection",
+    "335439": "additional correlated event retained by the fixed selection",
+    "335440": "additional correlated event retained by the fixed selection",
+    "335441": "additional correlated event retained by the fixed selection",
+    "335442": "additional correlated event retained by the fixed selection",
+    "335443": "additional correlated event retained by the fixed selection",
+    "335444": "additional correlated event retained by the fixed selection"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "ntlm_spray_invalid_users",
+    "security_proposition": "The rapid multi-username NTLM failure burst is adversary-driven credential spraying.",
+    "case_directory": "BF-002_ntlm_spray_invalid_users",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "bf002_ntlm_spray_security.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "Brute Force (password spray / username enumeration — failed, no compromise)",
+      "candidate_attack_mapping": "T1110.003",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = WEAK. A burst of 50 failed NTLM logons (EventID 4625) in ~1 second, across 50 DISTINCT non-existent usernames, every one returning SubStatus 0xc0000064 (user does not exist), on win-host-447. This is a genuine automated brute-force / spray INDICATOR — but the evidence is INSUFFICIENT to confirm any compromise or impact: there is NO 4624 success anywhere, and not one valid account was even found (all attempts hit non-existent users). Calibration role = over-triage-prone (down-rank): a model must NOT escalate to 'confirmed credential-access breach / High' on the raw failure count; the correct read is a low-impact failed spray attempt. NOTE: PurpleSharp-simulated (hence LogonType 2 / local source) — the evidence PATTERN (failed auth burst, no success) is what the case tests, not the simulation artifacts. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Security (Microsoft-Windows-Security-Auditing 4625)"
+      ],
+      "why_single_source": "All 50 failed-logon (4625) records are on the single host win-host-447; single sensor (Security auth). The case is scoped to that host's 4625 records; any other host/event in the file is excluded."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "bf002_ntlm_spray_security",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "failed_password_spray_no_compromise",
+      "primary_host": "win-host-mvelazco-02713-447.attackrange.local",
+      "primary_user": "50 distinct non-existent target accounts (SubStatus 0xc0000064)",
+      "boundary_definition": [
+        "A0 = the first failed NTLM logon (4625) of the burst (335396, 19:03:49).",
+        "EV = the remaining 49 failed NTLM logons (each a different non-existent username), 335397-335445, all within ~1 second.",
+        "Scoped to win-host-447's 4625 records (all 50). The paired 4776 (NTLM credential-validation) records and any other-host events are excluded to keep the case to the failed-logon evidence.",
+        "ABSENT by design: any 4624 success (checked, none) — the outcome that would confirm compromise is not present; and no valid account was hit (all 0xc0000064)."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "A burst of failed logons (EventID 4625) is the canonical brute-force / password-spray detection trigger.",
+      "selection_reason": "A0 is the first failed NTLM logon; the following 49 (distinct non-existent users, ~1 second) establish the automated-spray pattern."
+    },
+    "correlation_keys": [
+      "host",
+      "EventID==4625",
+      "SubStatus==0xc0000064",
+      "time_window",
+      "AuthenticationPackageName==NTLM"
+    ],
+    "event_groups": [
+      {
+        "group": "failed_spray_burst",
+        "event_record_ids": [
+          "335396",
+          "335397",
+          "335398",
+          "335399",
+          "335400",
+          "335401",
+          "335402",
+          "335403",
+          "335404",
+          "335405",
+          "335406",
+          "335407",
+          "335408",
+          "335409",
+          "335410",
+          "335411",
+          "335412",
+          "335413",
+          "335414",
+          "335415",
+          "335416",
+          "335417",
+          "335418",
+          "335419",
+          "335420",
+          "335421",
+          "335422",
+          "335423",
+          "335424",
+          "335425",
+          "335426",
+          "335427",
+          "335428",
+          "335429",
+          "335430",
+          "335431",
+          "335432",
+          "335433",
+          "335434",
+          "335435",
+          "335436",
+          "335437",
+          "335438",
+          "335439",
+          "335440",
+          "335441",
+          "335442",
+          "335443",
+          "335444",
+          "335445"
+        ],
+        "description": "50 failed NTLM logons in ~1 second, 50 distinct non-existent usernames, all SubStatus 0xc0000064, no success."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "weak_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: WEAK / over-triage-prone. A failed-logon burst is a real spray indicator, but with no success and no valid account hit, the evidence cannot confirm compromise or meaningful impact. The model must not over-escalate."
+      },
+      {
+        "topic": "no_success_all_invalid",
+        "event_record_id": "",
+        "note": "The decisive facts: (1) zero 4624 successes; (2) all 50 attempts return 0xc0000064 (user does not exist) — the attacker's userlist was entirely wrong. Low impact; insufficient to confirm compromise."
+      },
+      {
+        "topic": "simulation_caveat",
+        "event_record_id": "335396",
+        "note": "PurpleSharp-simulated, so LogonType=2 and a local/self source (IpAddress='-') rather than a remote type-3 spray. This is a data-provenance caveat; the evidence-sufficiency judgment (failed burst, no compromise) is unaffected."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "bruteforce_weak_exemplar",
+        "over_triage_down_rank_test",
+        "failed_spray_no_compromise_rule_heldout"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

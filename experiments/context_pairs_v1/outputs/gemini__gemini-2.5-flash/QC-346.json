@@ -1,0 +1,11 @@
+{
+  "verdict": "benign",
+  "severity": "informational",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "DER-001"
+  ],
+  "rationale": "The PowerShell command line (A0) uses obfuscation techniques (string concatenation and .Replace) to execute 'Write-Host 'Hello, World!'' (DER-001). While obfuscation can be suspicious, the deobfuscated command is a simple, benign output to the console, indicating no malicious intent or action.",
+  "recommended_action": "close_benign"
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-S02",
+  "rule_id": "SAFESOC-TRG-ER-S02",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "title": "Sudo executes a protected credential-file read as root",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "source_defined_step",
+    "complete_legal_scope": true,
+    "description": "Every record in the corpus-provided log member or scenario step containing the alert stream.",
+    "source_units": [
+      "harrison_wazuh.json"
+    ]
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "attributes.record.data.dstuser",
+        "op": "ieq",
+        "value": "root"
+      },
+      {
+        "field": "attributes.record.data.command",
+        "op": "regex",
+        "value": "(?i)^/bin/cat\\s+/etc/shadow$"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "harrison_wazuh.json:line:570693"
+  },
+  "rationale": "A non-root subject using sudo to read /etc/shadow as root is a direct privilege and credential-access alert surface."
+}

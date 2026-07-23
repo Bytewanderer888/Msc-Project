@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.97,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "DER-001"
+  ],
+  "rationale": "A0 shows a WMI CommandLineEventConsumer was created by Administrator invoking PowerShell with -nop -w hidden and a large base64-encoded payload; DER-001 decodes this to a GZip-compressed in-memory payload executed via IEX \u2014 a classic fileless malware delivery pattern consistent with Cobalt Strike or Metasploit stageless shellcode loaders. EV-001 establishes a WMI event filter triggering on Win32_ProcessStartTrace (notepad.exe), and EV-002 binds the filter to the consumer, completing a full WMI persistence subscription (T1546.003). EV-003 and EV-004 show the filter was subsequently modified (trigger changed to 'not-notepad.exe') approximately 6.5 hours later, indicating active attacker interaction and refinement of the persistence mechanism. The combination of WMI subscription-based persistence, hidden PowerShell execution, in-memory decompression/execution, and post-installation modification under the Administrator account constitutes a high-confidence malicious intrusion.",
+  "recommended_action": "isolate"
+}

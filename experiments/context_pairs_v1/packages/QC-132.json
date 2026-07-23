@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0",
+  "case_id": "QC-132",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\user-01$"
+    ],
+    "time_window_utc": {
+      "start": "2022-04-13T19:46:54.963916000Z",
+      "end": "2022-04-13T19:47:51.610114800Z"
+    },
+    "event_count": 8,
+    "event_types_present": [
+      "network_share_object_access"
+    ],
+    "sourcetypes_present": [
+      "Security"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2022-04-13T19:46:54.963916000Z",
+    "event_type": "network_share_object_access",
+    "source_event": {
+      "provider": "Microsoft-Windows-Security-Auditing",
+      "channel": "Security",
+      "event_code": 5145,
+      "event_record_id": "security:309958"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "share_name": "\\\\*\\IPC$",
+      "relative_target": "lsarpc",
+      "subject_user_name": "user-01$",
+      "subject_domain_name": "corp",
+      "ip_address": "fe80::655e:8688:355e:91f1",
+      "ip_port": "49677",
+      "access_mask": "0x12019f",
+      "object_type": "File"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2022-04-13T19:47:42.229530300Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "security:310058"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\SYSVOL",
+        "share_local_path": "\\??\\C:\\Windows\\SYSVOL\\sysvol",
+        "relative_target": "\\",
+        "subject_user_name": "user-01$",
+        "subject_domain_name": "corp",
+        "ip_address": "fe80::655e:8688:355e:91f1",
+        "ip_port": "49721",
+        "access_mask": "0x100081",
+        "object_type": "File"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2022-04-13T19:47:42.336265100Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "security:310068"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\SYSVOL",
+        "share_local_path": "\\??\\C:\\Windows\\SYSVOL\\sysvol",
+        "relative_target": "corp.local\\Policies\\{31B2F340-016D-11D2-945F-00C04FB984F9}\\gpt.ini",
+        "subject_user_name": "user-01$",
+        "subject_domain_name": "corp",
+        "ip_address": "fe80::655e:8688:355e:91f1",
+        "ip_port": "49721",
+        "access_mask": "0x120089",
+        "object_type": "File"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2022-04-13T19:47:42.337397200Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "security:310069"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\SYSVOL",
+        "share_local_path": "\\??\\C:\\Windows\\SYSVOL\\sysvol",
+        "relative_target": "corp.local\\Policies\\{6AC1786C-016F-11D2-945F-00C04fB984F9}\\gpt.ini",
+        "subject_user_name": "user-01$",
+        "subject_domain_name": "corp",
+        "ip_address": "fe80::655e:8688:355e:91f1",
+        "ip_port": "49721",
+        "access_mask": "0x120089",
+        "object_type": "File"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2022-04-13T19:47:51.581699200Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "security:310079"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\IPC$",
+        "relative_target": "lsarpc",
+        "subject_user_name": "user-01$",
+        "subject_domain_name": "corp",
+        "ip_address": "fe80::655e:8688:355e:91f1",
+        "ip_port": "49726",
+        "access_mask": "0x12019f",
+        "object_type": "File"
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2022-04-13T19:47:51.592295500Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "security:310080"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\IPC$",
+        "relative_target": "lsarpc",
+        "subject_user_name": "user-01$",
+        "subject_domain_name": "corp",
+        "ip_address": "fe80::655e:8688:355e:91f1",
+        "ip_port": "49726",
+        "access_mask": "0x12019f",
+        "object_type": "File"
+      }
+    },
+    {
+      "evidence_id": "EV-006",
+      "event_time_utc": "2022-04-13T19:47:51.602092300Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "security:310081"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\IPC$",
+        "relative_target": "lsarpc",
+        "subject_user_name": "user-01$",
+        "subject_domain_name": "corp",
+        "ip_address": "fe80::655e:8688:355e:91f1",
+        "ip_port": "49726",
+        "access_mask": "0x12019f",
+        "object_type": "File"
+      }
+    },
+    {
+      "evidence_id": "EV-007",
+      "event_time_utc": "2022-04-13T19:47:51.610114800Z",
+      "event_type": "network_share_object_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 5145,
+        "event_record_id": "security:310082"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "share_name": "\\\\*\\IPC$",
+        "relative_target": "lsarpc",
+        "subject_user_name": "user-01$",
+        "subject_domain_name": "corp",
+        "ip_address": "fe80::655e:8688:355e:91f1",
+        "ip_port": "49726",
+        "access_mask": "0x12019f",
+        "object_type": "File"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

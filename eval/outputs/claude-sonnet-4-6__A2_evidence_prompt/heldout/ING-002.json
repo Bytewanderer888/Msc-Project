@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.82,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "Two separate Living-off-the-Land binaries (certutil and bitsadmin) were used sequentially to download the same file from a raw GitHub URL into the user's Temp directory (EV-001, EV-002, A0), a classic dual-tool redundancy pattern used by attackers to ensure payload delivery if one method is blocked. Both executions ran under corp\\Administrator at High integrity level, spawned from cmd.exe, with the bitsadmin chain ultimately parented to an interactive PowerShell session (EV-003), suggesting script-driven orchestration. The downloaded file is named 'LICENSE.txt', which could be a benign file or a payload disguised with an innocuous extension \u2014 no execution of the downloaded file is evidenced in this package, which caps confidence below critical. The combination of LOLBin abuse, Temp-directory staging, GitHub raw-content delivery, and redundant download attempts is strongly indicative of a download-stager phase of an attack, even if the final payload execution is not yet confirmed.",
+  "recommended_action": "investigate"
+}

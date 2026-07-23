@@ -1,0 +1,31 @@
+{
+  "case_id": "RUN-001",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that certutil downloaded kxwn.lock from the network (EV-001 confirms that certutil created the file, but no network acquisition source is shown)",
+      "that the connection to 192.168.0.4:443 is confirmed command-and-control rather than a callback consistent with C2"
+    ]
+  },
+  "the_trap": "rundll32.exe (a signed Windows binary at C:\\Windows\\System32\\rundll32.exe, spawned from explorer.exe) invites under-triage as routine system activity. Its command line loads C:\\Users\\user-01\\AppData\\Roaming\\Microsoft\\kxwn.lock,VoidFunc: a DLL masqueraded with a .lock extension in a user AppData path, created earlier by certutil.exe (EV-001) and invoked through the VoidFunc export. The same rundll32 process (process_guid {8320f18b-2bcf-5ead-d200-000000000500}) then makes an outbound TCP connection to 192.168.0.4:443 (EV-002), consistent with a callback but not by itself proof of C2. EV-001 does not show how certutil obtained the file. Masquerade + LOLBIN DLL execution + outbound connection support the strong classification.",
+  "rationale": "A0 shows rundll32.exe loading kxwn.lock through the non-standard VoidFunc export from C:\\Users\\user-01\\AppData\\Roaming\\Microsoft\\. EV-001 confirms that certutil.exe created this DLL-like file with a .lock extension, but it does not establish that certutil downloaded it from the network. The same rundll32 process then makes an outbound TCP connection to 192.168.0.4:443 (EV-002), a private RFC1918 destination with no resolved hostname, consistent with an outbound callback rather than confirmed C2. The verdict rests on the masqueraded DLL execution, corroborated by the network connection: malicious, high; up-rank despite the signed rundll32 surface.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

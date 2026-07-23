@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "case_id": "SMB-001",
+  "rule_id": "SAFESOC-TRG-SMB-001",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "title": "WMI-spawned shell redirects output to ADMIN share",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "full_source",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source; no event-level answer selector is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 1
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\cmd.exe"
+      },
+      {
+        "field": "attributes.parent_image",
+        "op": "iendswith",
+        "value": "\\WmiPrvSE.exe"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\\\\\\\127\\.0\\.0\\.1\\\\ADMIN\\$"
+      },
+      {
+        "not": {
+          "field": "attributes.command_line",
+          "op": "regex",
+          "value": "(?i)/c\\s+cd(?:\\s|$)"
+        }
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "117769"
+  },
+  "rationale": "A WMI provider spawning a shell that redirects command output through ADMIN$ is a reproducible remote-execution pattern."
+}

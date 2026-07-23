@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "The activity shows a sequence of highly suspicious actions executed by the Administrator user. The deletion of shadow copies (A0), clearing of security logs (EV-001, EV-005), clearing of system logs (EV-004), and disabling of boot recovery options (EV-002, EV-003) are common tactics used by ransomware or other destructive malware to hinder recovery and forensic analysis. The rapid execution of these commands within a short timeframe further indicates malicious intent.",
+  "recommended_action": "isolate"
+}

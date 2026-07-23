@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "case_id": "CERT-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2021-02-09T22:38:48.157120400Z",
+      "end": "2021-02-09T23:30:11.619796400Z"
+    },
+    "event_count": 5,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2021-02-09T22:38:48.157120400Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "14386"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{6F8181CE-0EF8-6023-A905-00000000A301}",
+      "process_id": "5480",
+      "image": "C:\\Windows\\System32\\certutil.exe",
+      "original_file_name": "CertUtil.exe",
+      "command_line": "certutil.exe  -privatekey -exportpfx \"Computer\" Computer.pfx",
+      "current_directory": "C:\\Users\\Administrator\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=BF7CEA72AE186A10239F830F93492A73,SHA256=A50DFE408565C2BB011D013AC43E616B2A595B1D06EB9B083F519672732498DA,IMPHASH=442218E88D4D6AA0BE3165DD7B20A4C4",
+      "parent_process_guid": "{6F8181CE-087B-6023-D404-00000000A301}",
+      "parent_process_id": "3532",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" "
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2021-02-09T22:42:05.032637400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "14673"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{6F8181CE-0FBD-6023-C105-00000000A301}",
+        "process_id": "6416",
+        "image": "C:\\Windows\\System32\\certutil.exe",
+        "original_file_name": "CertUtil.exe",
+        "command_line": "certutil.exe  -privatekey -exportpfx \"1234\" test.pfx",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=BF7CEA72AE186A10239F830F93492A73,SHA256=A50DFE408565C2BB011D013AC43E616B2A595B1D06EB9B083F519672732498DA,IMPHASH=442218E88D4D6AA0BE3165DD7B20A4C4",
+        "parent_process_guid": "{6F8181CE-087B-6023-D404-00000000A301}",
+        "parent_process_id": "3532",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2021-02-09T22:43:03.127971700Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "14745"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{6F8181CE-0FF7-6023-C905-00000000A301}",
+        "process_id": "1100",
+        "image": "C:\\Windows\\System32\\certutil.exe",
+        "original_file_name": "CertUtil.exe",
+        "command_line": "certutil  -dcinfo",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=BF7CEA72AE186A10239F830F93492A73,SHA256=A50DFE408565C2BB011D013AC43E616B2A595B1D06EB9B083F519672732498DA,IMPHASH=442218E88D4D6AA0BE3165DD7B20A4C4",
+        "parent_process_guid": "{6F8181CE-087B-6023-D404-00000000A301}",
+        "parent_process_id": "3532",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2021-02-09T23:28:15.192535000Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "20445"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{6F8181CE-1A8F-6023-8407-00000000A301}",
+        "process_id": "5224",
+        "image": "C:\\Windows\\System32\\certutil.exe",
+        "original_file_name": "CertUtil.exe",
+        "command_line": "certutil  -Store MY",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=BF7CEA72AE186A10239F830F93492A73,SHA256=A50DFE408565C2BB011D013AC43E616B2A595B1D06EB9B083F519672732498DA,IMPHASH=442218E88D4D6AA0BE3165DD7B20A4C4",
+        "parent_process_guid": "{6F8181CE-087B-6023-D404-00000000A301}",
+        "parent_process_id": "3532",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2021-02-09T23:30:11.619796400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "20623"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{6F8181CE-1B03-6023-9307-00000000A301}",
+        "process_id": "5332",
+        "image": "C:\\Windows\\System32\\certutil.exe",
+        "original_file_name": "CertUtil.exe",
+        "command_line": "certutil  -exportPFX My 74ae941ce26523ae422d501e631decd0 C:\\cert.pfx",
+        "current_directory": "C:\\Users\\Administrator\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=BF7CEA72AE186A10239F830F93492A73,SHA256=A50DFE408565C2BB011D013AC43E616B2A595B1D06EB9B083F519672732498DA,IMPHASH=442218E88D4D6AA0BE3165DD7B20A4C4",
+        "parent_process_guid": "{6F8181CE-087B-6023-D404-00000000A301}",
+        "parent_process_id": "3532",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" "
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

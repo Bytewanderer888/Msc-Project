@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ST-002",
+  "rule_id": "SAFESOC-TRG-ST-002",
+  "analytic_family_id": "AF-PERS",
+  "analytic_pattern_id": "PERS-01",
+  "title": "Scheduled task action references an alternate data stream",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "full_source",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source; no event-level answer selector is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 1
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\schtasks.exe"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\s/Create\\s"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\s/TR\\s"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)[A-Z]:\\\\[^\\\"\\r\\n]+:[^\\\"\\s]+"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "1624574"
+  },
+  "rationale": "A scheduled-task action that invokes content from an NTFS alternate data stream is a stable persistence alert surface."
+}

@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.65,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "Within a 9-second window, a parent cmd.exe (PID 1208, EV-001/EV-002) spawned two separate cmd.exe child processes, each of which immediately invoked PowerShell to enumerate local user accounts \u2014 first via Get-LocalUser (A0, EV-001) and then via Get-WmiObject Win32_UserAccount (EV-002, EV-003). The sequential, scripted pattern of dual local-user enumeration commands issued programmatically through cmd /c is consistent with post-exploitation discovery activity (e.g., an implant or script probing account inventory). However, all processes run at Medium integrity under corp\\user-01 with legitimate, signed system binaries, no obfuscation or encoded payloads are present, and the parent cmd.exe (PID 1208) context is not fully explained by the available evidence \u2014 a legitimate administrative script or IT tool cannot be ruled out. The absence of any network, file-write, or credential-access events caps confidence that this is malicious rather than authorized reconnaissance or a sysadmin script.",
+  "recommended_action": "investigate"
+}

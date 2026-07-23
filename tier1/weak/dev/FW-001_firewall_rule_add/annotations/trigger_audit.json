@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "FW-001",
+  "rule_id": "SAFESOC-TRG-FW-001",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "source_description": "mordor (cmd_netsh_fw_mod_open_ports.zip)",
+  "raw_source_event_count": 2366,
+  "complete_scope_event_count": 2366,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "1732",
+  "expected_record_key": "1732",
+  "selected_raw_sha256": "ea81d0ee0437917e3736ac2f32760083a7e2bbfc0d408d77c688124f9ba44ad1",
+  "pass": true
+}

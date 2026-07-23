@@ -1,0 +1,35 @@
+{
+  "case_id": "ER-W04",
+  "builder": "experiments/external_replication_v1/build_ait_cases.py",
+  "source_archive": "data_sources/ait_ads/ait_ads.zip",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "member": "santos_wazuh.json",
+      "line_number": 108066,
+      "record_sha256": "df6e6413f570017c4d5459a48cd9538e6d45ed48d9fbef636f2c253f60ec3702"
+    },
+    {
+      "evidence_id": "EV-001",
+      "member": "santos_wazuh.json",
+      "line_number": 108106,
+      "record_sha256": "ad1e3353078e55dd40dbfe580129de8c311d37e20052967901970b8d4b652816"
+    },
+    {
+      "evidence_id": "EV-002",
+      "member": "santos_wazuh.json",
+      "line_number": 108067,
+      "record_sha256": "3a35d19c18a2b844903bbf366daf399665638cd7061220dc17ee58ab4af2bf1c"
+    },
+    {
+      "evidence_id": "EV-003",
+      "member": "santos_wazuh.json",
+      "line_number": 108117,
+      "record_sha256": "7aa8eab849c60c668d980515178b52f66f563ba063d827a326715604768639d9"
+    }
+  ],
+  "literal_redactions": [
+    "source address -> client-01",
+    "destination host/domain -> web-01.corp.local"
+  ]
+}

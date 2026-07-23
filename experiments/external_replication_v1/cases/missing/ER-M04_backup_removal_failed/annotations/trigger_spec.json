@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-M04",
+  "rule_id": "SAFESOC-TRG-ER-M04",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "title": "Recursive removal command targets the backup directory",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "source_defined_step",
+    "complete_legal_scope": true,
+    "description": "Every record in the corpus-provided log member or scenario step containing the alert stream.",
+    "source_units": [
+      "manifestations_raw/steps/3_ssh_healthcheck-31/linuxshare/logs/log/audit/audit.log"
+    ]
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "attributes.raw_text",
+        "op": "icontains",
+        "value": "type=EXECVE"
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "regex",
+        "value": "\\ba0=\\\"rm\\\""
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "regex",
+        "value": "\\ba1=\\\"-rf\\\""
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "icontains",
+        "value": "a2=\"/var/backups/*\""
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "manifestations_raw/steps/3_ssh_healthcheck-31/linuxshare/logs/log/audit/audit.log:line:2"
+  },
+  "rationale": "A recursive removal command aimed at backups is a destructive-impact alert surface; success must be established from the audited outcome."
+}

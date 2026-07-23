@@ -1,0 +1,40 @@
+{
+  "case_id": "ER-S02",
+  "security_proposition": "A session originating from the web-service account successfully executed root commands through su and sudo.",
+  "evidence_condition": "strong",
+  "calibration_role": "up_rank",
+  "correct_verdict": "malicious",
+  "acceptable_severity": [
+    "high",
+    "critical"
+  ],
+  "acceptable_actions": [
+    "escalate",
+    "isolate"
+  ],
+  "operational_response": {
+    "family": "credential_control",
+    "note": "Escalate for root/user credential reset and contain the server under human approval; this metadata does not expand the model action enum."
+  },
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002",
+      "EV-003",
+      "DER-001"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "that /etc/shadow contents were exfiltrated or retained",
+      "that the package identifies the initial web compromise mechanism",
+      "that unrelated DNS or mail activity elsewhere in the AIT scenario belongs to this host chain",
+      "that activity after the selected 19-second window is established"
+    ]
+  },
+  "the_trap": "The records are ordinary Linux authentication and audit formats rather than a branded attack alert. The decision must follow the service-account-to-user transition, successful root session, and successful root command rather than detector prose.",
+  "rationale": "EV-001 records the web-service account opening an su session as user-01. A0 then records that user invoking /bin/cat /etc/shadow as root through sudo. EV-002 independently records the same command in Linux Audit with res=success, and DER-001 decodes its command field. EV-003 records a successful root sudo session for the same process. This is decisive privileged command execution from a web-service-originated chain, while not proving exfiltration of the file contents.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

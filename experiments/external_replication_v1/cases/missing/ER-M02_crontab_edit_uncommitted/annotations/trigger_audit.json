@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "ER-M02",
+  "rule_id": "SAFESOC-TRG-ER-M02",
+  "analytic_family_id": "AF-PERS",
+  "analytic_pattern_id": "PERS-01",
+  "source_description": "external archive (manifestations_raw.zip: manifestations_raw/steps/6_macro_cron-20/client/logs/log/syslog)",
+  "raw_source_event_count": 1,
+  "complete_scope_event_count": 1,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "manifestations_raw/steps/6_macro_cron-20/client/logs/log/syslog:line:1",
+  "expected_record_key": "manifestations_raw/steps/6_macro_cron-20/client/logs/log/syslog:line:1",
+  "selected_raw_sha256": "9b2917ed28334cebe1ecf61cb34e2994da04299e5bb97b3c4d80db9a59985370",
+  "pass": true
+}

@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "DER-001"
+  ],
+  "rationale": "The main alert A0 shows the creation of a WMI CommandLineEventConsumer with a highly obfuscated PowerShell command (DER-001). This consumer is bound to a WMI event filter (EV-001, EV-002) that triggers on 'notepad.exe' process start. The use of obfuscated PowerShell via WMI persistence is a common technique for adversaries, indicating malicious intent. The subsequent modification of the filter (EV-003) and binding (EV-004) to 'not-notepad.exe' suggests an attempt to evade detection or modify the trigger condition, further supporting malicious activity.",
+  "recommended_action": "escalate"
+}

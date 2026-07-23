@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "ER-W01",
+  "rule_id": "SAFESOC-TRG-ER-W01",
+  "analytic_family_id": "AF-NET",
+  "analytic_pattern_id": "NET-01",
+  "source_description": "external CSV (combined.csv)",
+  "raw_source_event_count": 102011,
+  "complete_scope_event_count": 1895,
+  "predicate_match_count": 2,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "QKEIgZMBrrvr6pEbBHVQ",
+  "expected_record_key": "QKEIgZMBrrvr6pEbBHVQ",
+  "selected_raw_sha256": "f7be55412159035aee285ceb1d7cd2c7dc64981e10d0f0261bbdfdcf6bf25cdf",
+  "pass": true
+}

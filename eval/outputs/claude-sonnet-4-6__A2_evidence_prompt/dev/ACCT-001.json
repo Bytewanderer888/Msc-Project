@@ -1,0 +1,15 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.78,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "A PowerShell process (PID 4408) running a base64-encoded command spawned multiple child processes that created local user accounts \u2014 including one added to the local Administrators group (EV-002: 'net user /add [id]_Admin ... & net localgroup administrators [id]_Admin /add') \u2014 and then deleted those same accounts within seconds (EV-003, EV-004, EV-005). The create-then-delete pattern is consistent with automated security testing or red-team tooling (the encoded parent references a module loaded from C:\\[x]\\invoke-[x]\\Invoke-[x].psd1 and logs to atc_execution.csv), which partially mitigates the severity; however, the obfuscated encoded command, execution from Temp directory, use of -noninteractive -encodedcommand, and transient privileged account creation are all high-risk indicators that warrant investigation regardless of whether this is authorized testing. No evidence confirms the accounts were used for lateral movement or persistence before deletion, but the activity cannot be confirmed as authorized without out-of-band validation.",
+  "recommended_action": "investigate"
+}

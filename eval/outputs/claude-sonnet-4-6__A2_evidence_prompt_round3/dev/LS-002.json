@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.95,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "All five events show createdump.exe being invoked repeatedly with the explicit output path 'dotnet-lsass.dmp', targeting PID 632 (A0) or without a PID (EV-001 through EV-004), which is a well-documented LSASS credential-dumping technique abusing the legitimate .NET runtime dump utility. The working directory in A0 and EV-001 is 'Doge-AMSI-patch-main', a publicly known AMSI-bypass toolkit, confirming the operator was actively circumventing Windows Antimalware Scan Interface before attempting credential access. The activity is performed under the Administrator account at High integrity level across multiple PowerShell parent processes over ~19 minutes, indicating deliberate, repeated credential harvesting attempts rather than an accidental or automated system action. No benign explanation accounts for the combination of an AMSI-patch staging directory, a dump filename explicitly referencing lsass, and four separate dump invocations.",
+  "recommended_action": "isolate"
+}

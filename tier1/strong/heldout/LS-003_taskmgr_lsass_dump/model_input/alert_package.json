@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LS-003",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2021-02-03T21:34:49.728193800Z",
+      "end": "2021-02-03T21:34:57.927792400Z"
+    },
+    "event_count": 5,
+    "event_types_present": [
+      "file_create",
+      "process_access",
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2021-02-03T21:34:57.927792400Z",
+    "event_type": "process_access",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 10,
+      "event_record_id": "205113"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "source_process_guid": "{29E67E80-16F9-601B-3D38-00000000A301}",
+      "source_process_id": "4400",
+      "source_image": "C:\\Windows\\system32\\taskmgr.exe",
+      "target_process_guid": "{29E67E80-7CBD-6019-0B00-00000000A301}",
+      "target_process_id": "856",
+      "target_image": "C:\\Windows\\system32\\lsass.exe",
+      "granted_access": "0x1fffff",
+      "call_trace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a5a94|C:\\Windows\\SYSTEM32\\ntdll.dll+6cd1a|C:\\Windows\\System32\\KERNEL32.DLL+1cff8|C:\\Windows\\System32\\KERNEL32.DLL+25a87|C:\\Windows\\system32\\dbgcore.DLL+15a38|C:\\Windows\\system32\\dbgcore.DLL+e3f5|C:\\Windows\\system32\\dbgcore.DLL+b027|C:\\Windows\\system32\\dbgcore.DLL+5db1|C:\\Windows\\system32\\dbgcore.DLL+67d3|C:\\Windows\\system32\\taskmgr.exe+83bcb|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+51791"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2021-02-03T21:34:49.728193800Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "204798"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{29E67E80-16F9-601B-3D38-00000000A301}",
+        "process_id": "4400",
+        "image": "C:\\Windows\\System32\\Taskmgr.exe",
+        "original_file_name": "Taskmgr.exe",
+        "command_line": "\"C:\\Windows\\system32\\taskmgr.exe\" /4",
+        "current_directory": "C:\\Windows\\system32\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F4429ADA273FF82A9D1EC804018A0039,SHA256=1BB6FBFFBDB585DE220DB58BAAB9327E5FF03E53AE88CBCAFF777A7819044615,IMPHASH=65D7A86C4F0360F63A506C4247D3E410",
+        "parent_process_guid": "{29E67E80-84F7-6019-4105-00000000A301}",
+        "parent_process_id": "3600",
+        "parent_image": "C:\\Windows\\explorer.exe",
+        "parent_command_line": "C:\\Windows\\Explorer.EXE /NOUACCHECK"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2021-02-03T21:34:49.773257300Z",
+      "event_type": "process_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 10,
+        "event_record_id": "204847"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "source_process_guid": "{29E67E80-16F9-601B-3D38-00000000A301}",
+        "source_process_id": "4400",
+        "source_image": "C:\\Windows\\system32\\taskmgr.exe",
+        "target_process_guid": "{29E67E80-7CBD-6019-0B00-00000000A301}",
+        "target_process_id": "856",
+        "target_image": "C:\\Windows\\system32\\lsass.exe",
+        "granted_access": "0x1400",
+        "call_trace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a5a94|C:\\Windows\\System32\\KERNELBASE.dll+221bd|C:\\Windows\\system32\\taskmgr.exe+b3bc|C:\\Windows\\system32\\taskmgr.exe+b2b8|C:\\Windows\\system32\\taskmgr.exe+19d0d|C:\\Windows\\system32\\taskmgr.exe+1cc42|C:\\Windows\\system32\\taskmgr.exe+14fa9|C:\\Windows\\system32\\taskmgr.exe+2cdd3|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+51791"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2021-02-03T21:34:49.786484900Z",
+      "event_type": "process_access",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 10,
+        "event_record_id": "204850"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "source_process_guid": "{29E67E80-16F9-601B-3D38-00000000A301}",
+        "source_process_id": "4400",
+        "source_image": "C:\\Windows\\system32\\taskmgr.exe",
+        "target_process_guid": "{29E67E80-7CBD-6019-0B00-00000000A301}",
+        "target_process_id": "856",
+        "target_image": "C:\\Windows\\system32\\lsass.exe",
+        "granted_access": "0x1410",
+        "call_trace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a5a94|C:\\Windows\\System32\\KERNELBASE.dll+221bd|C:\\Windows\\system32\\taskmgr.exe+b3bc|C:\\Windows\\system32\\taskmgr.exe+19544|C:\\Windows\\system32\\taskmgr.exe+1a290|C:\\Windows\\system32\\taskmgr.exe+19e20|C:\\Windows\\system32\\taskmgr.exe+1cc42|C:\\Windows\\system32\\taskmgr.exe+14fa9|C:\\Windows\\system32\\taskmgr.exe+2cdd3|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+51791"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2021-02-03T21:34:57.924440800Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "205112"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{29E67E80-16F9-601B-3D38-00000000A301}",
+        "process_id": "4400",
+        "image": "C:\\Windows\\system32\\taskmgr.exe",
+        "target_filename": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\lsass (2).DMP",
+        "creation_utc_time": "2021-02-03 21:34:57.910"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

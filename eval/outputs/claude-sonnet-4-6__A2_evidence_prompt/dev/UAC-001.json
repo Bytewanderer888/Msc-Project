@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.95,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005"
+  ],
+  "rationale": "This package documents a classic sdclt.exe UAC bypass chain. EV-001 and EV-002 show PowerShell writing a malicious command and an empty DelegateExecute value to HKU\\...\\Folder\\shell\\open\\command \u2014 the well-known registry hijack that causes sdclt.exe to auto-elevate and execute the attacker-controlled payload. A0 confirms sdclt.exe was then launched (integrity_level: High) from cmd.exe, and EV-003 shows it spawned control.exe with /name Microsoft.BackupAndRestoreCenter, which in turn (EV-004) spawned PowerShell at High integrity running a steganographic payload loader that reads pixel data from monkey.png and IEX-executes the decoded content \u2014 a confirmed in-memory code execution technique. EV-005 shows the registry key was subsequently deleted, indicating deliberate cleanup. The full UAC bypass \u2192 elevated PowerShell \u2192 steganography-based payload execution chain is confirmed across all evidence items; no benign explanation accounts for this sequence.",
+  "recommended_action": "isolate"
+}

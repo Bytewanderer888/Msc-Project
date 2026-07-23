@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-003",
+    "EV-005",
+    "EV-007"
+  ],
+  "rationale": "Multiple curl.exe processes, initiated by cmd.exe, downloaded a DLL from GitHub to various suspicious locations including Public\\Music, ProgramData, and Temp directories (A0, EV-001, EV-003, EV-005, EV-007). This pattern of downloading an executable from a public repository to multiple system-wide and user-accessible directories is highly indicative of malware staging or persistence attempts.",
+  "recommended_action": "isolate"
+}

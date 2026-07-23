@@ -1,0 +1,31 @@
+{
+  "case_id": "ST-002",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001"
+    ],
+    "counter_evidence": [],
+    "must_not_assert": [
+      "either scheduled task was successfully registered; Sysmon EID 1 proves only that schtasks was invoked, while Security 4698 registration telemetry is outside this case's sensor scope",
+      "the ADS or JavaScript payload exists or executed; no payload-file, task-firing, or child-process event is present",
+      "persistence succeeded or the host was compromised"
+    ]
+  },
+  "the_trap": "A0 and EV-001 contain highly suspicious schtasks /Create command lines: one proposes wmic execution from an NTFS Alternate Data Stream path and the other a recurring JavaScript action from a Public path. The trap is to treat these process-create events as proof that their actions executed. The scoped Sysmon source contains no payload-file event or ProcessCreate attributable to either proposed task action. Registration status is indeterminate because Security 4698 is outside this Sysmon-only case and is not used as missing evidence.",
+  "rationale": "A0 and EV-001 show two schtasks /Create processes launched with suspicious proposed actions: wmic process creation against C:\\Users\\Public\\Disk101.ini:59e9c935 and recurring explorer.exe execution of C:\\Users\\Public\\Weber0.js. These command lines are real persistence indicators, but Sysmon EID 1 proves only that schtasks was invoked. The scoped Sysmon source contains no payload-file event or ProcessCreate attributable to either proposed action. Security 4698 registration status is outside the selected sensor and is therefore left indeterminate rather than treated as absent. The named, sensor-observable confirmation is task-action execution, and it is missing: suspicious, low-medium, investigate rather than confirmed compromise.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

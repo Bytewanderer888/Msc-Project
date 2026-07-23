@@ -1,0 +1,16 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.93,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006"
+  ],
+  "rationale": "The evidence pattern is consistent with Impacket's wmiexec/smbexec lateral movement tooling. EV-001 and A0 show WmiPrvSE.exe spawning cmd.exe with the characteristic '/Q /c <command> 1> \\\\127.0.0.1\\ADMIN$\\__<timestamp>' output-redirection pattern used by wmiexec to retrieve command output over SMB ADMIN$, and EV-002 confirms calc.exe was actually executed as a child of that cmd.exe at High integrity under corp\\Administrator. EV-003 through EV-006 show a second execution chain: a new timestamped ADMIN$ session (EV-003), followed by services.exe writing a registry ImagePath for a service named 'BTOBTO' (EV-004) containing a bat-file drop-execute-delete pattern (rIIBPrqF.bat) redirecting output to C$\\__output \u2014 the hallmark of Impacket smbexec \u2014 and then services.exe spawning cmd.exe at SYSTEM integrity to execute that bat file (EV-005, EV-006). Two distinct remote execution techniques (WMI-based and service-based) are confirmed active on the host within the same ~100-second window, both leveraging loopback SMB admin shares for output retrieval, indicating an attacker with Administrator credentials is actively executing commands on this host.",
+  "recommended_action": "isolate"
+}

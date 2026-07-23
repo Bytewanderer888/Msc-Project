@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.95,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "DER-001"
+  ],
+  "rationale": "A complete WMI persistence triad was established by Administrator on host-01: an event filter (EV-001) triggers on notepad.exe process start, a CommandLineEventConsumer (A0) executes a heavily obfuscated PowerShell payload (-nop -w hidden -encodedcommand), and a filter-to-consumer binding (EV-002) links them \u2014 all created within milliseconds of each other. DER-001 confirms the decoded payload decompresses a gzip blob via IEX, a classic in-memory execution pattern strongly associated with post-exploitation frameworks (e.g., Metasploit/Cobalt Strike stagers). EV-003 and EV-004 show the filter was subsequently modified ~6.5 hours later to trigger on 'not-notepad.exe', suggesting active operator interaction and possible evasion tuning. No benign explanation accounts for hidden, encoded, gzip-decompressing IEX payloads delivered via WMI subscriptions; the absence of any cleanup/deletion events means the subscription remains active.",
+  "recommended_action": "isolate"
+}

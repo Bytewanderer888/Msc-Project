@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-003",
+    "EV-005",
+    "EV-007"
+  ],
+  "rationale": "Multiple curl.exe processes, spawned by cmd.exe, downloaded the same DLL file from GitHub to various suspicious locations including C:\\Users\\Public\\Music, C:\\ProgramData, and %Temp% (A0, EV-001, EV-003, EV-005, EV-007). This behavior indicates an attempt to establish persistence and evade detection by placing a potentially malicious payload in multiple common directories.",
+  "recommended_action": "isolate"
+}

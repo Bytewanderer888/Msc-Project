@@ -1,0 +1,17 @@
+{
+  "dataset": "OTRF Security-Datasets (mordor / atomic)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "datasets/atomic/windows/persistence/host/cmd_userinitmprlogonscript_batch.zip",
+      "sha256": "53a01d6976b7567a2464628d850c51cc48b1a91a932cd2b0e110a510bcedf858"
+    }
+  ],
+  "primary_host": "WORKSTATION5",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "sysmon"
+    ]
+  }
+}

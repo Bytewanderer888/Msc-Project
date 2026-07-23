@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-W04",
+  "case_name": "ait_scan_activity",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "The scan-like HTTP probes represent hostile reconnaissance rather than an unconfirmed or authorised scanner.",
+  "attack_category": {
+    "category": "Network Service Discovery",
+    "candidate_attack_mapping": "T1046",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "AIT Alert Data Set",
+    "scenario": "santos",
+    "capture_cluster": "ait-santos",
+    "telemetry_depth": "multi_source",
+    "sensors": [
+      "Apache access log",
+      "network HTTP telemetry"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "AIT attack-phase label and scenario identity",
+      "Wazuh rule groups, level, and description",
+      "network IDS signature, category, severity, and action",
+      "duplicated fast.log and mirrored flow records",
+      "condition, verdict, severity, action, ATT&CK mapping"
+    ],
+    "deterministic_derivations": []
+  },
+  "operational_response_family": "analyst_escalation",
+  "nearest_frozen_case": null,
+  "differentiation": "No frozen case contains Linux web-service scan telemetry corroborated by host and network sensors."
+}

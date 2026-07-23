@@ -1,0 +1,14 @@
+{
+  "verdict": "suspicious",
+  "severity": "low",
+  "confidence": 0.6,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "Multiple network share object access events (A0, EV-001, EV-002, EV-003, EV-004) to the IPC$ share targeting 'lsarpc' with an access mask of '0x12019f' occurred in a short time frame. While IPC$ access is common, repeated access to lsarpc could indicate reconnaissance or an attempt to interact with the Local Security Authority (LSA) Remote Protocol, which is often associated with credential dumping or privilege escalation attempts. However, without source IP/user information or further process details, a definitive malicious verdict cannot be made.",
+  "recommended_action": "investigate"
+}

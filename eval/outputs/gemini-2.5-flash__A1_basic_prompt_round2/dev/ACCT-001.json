@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002"
+  ],
+  "rationale": "The main alert (A0) shows `cmd.exe` being used to add a new user. This is immediately followed by `powershell.exe` creating another local user (EV-001) and `cmd.exe` adding a third user to the local administrators group (EV-002). While cleanup commands are observed (EV-003, EV-004, EV-005), the creation of multiple new users, including one with administrative privileges, indicates unauthorized account manipulation, a common tactic for persistence and privilege escalation.",
+  "recommended_action": "isolate"
+}

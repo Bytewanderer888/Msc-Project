@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1003.001/atomic_red_team/windows-sysmon_creddump.log",
+      "sha256": "a37b69dce32eaff6b5c1fdb4bb9cbea6dec78a4fbd22cd41362ab0e377f075ef"
+    }
+  ],
+  "primary_host": "win-dc-137.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "Verified: every log in T1003.001/atomic_red_team is a DIFFERENT host (creddump=win-dc-137, security=win-dc-811, procdump-security=win-host-117, createdump-sysmon=win-host-622, main-sysmon=win-dc-262/807). No same-host fusion. Tier-1 single-sensor."
+  }
+}

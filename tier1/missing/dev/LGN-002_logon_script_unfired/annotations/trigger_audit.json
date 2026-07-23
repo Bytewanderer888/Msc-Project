@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "LGN-002",
+  "rule_id": "SAFESOC-TRG-LGN-002",
+  "analytic_family_id": "AF-REG",
+  "analytic_pattern_id": "REG-01",
+  "source_description": "mordor (cmd_userinitmprlogonscript_batch.zip)",
+  "raw_source_event_count": 122,
+  "complete_scope_event_count": 122,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "98",
+  "expected_record_key": "98",
+  "selected_raw_sha256": "e67f5633b3efd391ddd958d8017f55e386471548506cf47620313dd8dc97b2b5",
+  "pass": true
+}

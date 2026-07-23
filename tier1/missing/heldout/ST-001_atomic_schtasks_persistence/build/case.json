@@ -1,0 +1,156 @@
+{
+  "case_id": "ST-001",
+  "split": "heldout",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1053.005/atomic_red_team/windows-sysmon.log",
+  "staged_export": "extracted/st001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "4456",
+    "EV": [
+      "4439",
+      "4487",
+      "4518",
+      "4534",
+      "4770",
+      "4786",
+      "4816",
+      "4846",
+      "4859"
+    ]
+  },
+  "roles": {
+    "4456": "triggering alert: schtasks created a STARTUP persistence task ('T1053_005_OnStartup') running as NT AUTHORITY\\SYSTEM — action is cmd.exe /c calc.exe",
+    "4439": "schtasks created a LOGON persistence task ('T1053_005_OnLogon') — action cmd.exe /c calc.exe",
+    "4487": "schtasks created a one-time task ('spawn') running bare cmd.exe (no payload specified)",
+    "4518": "schtasks /create invocation requests a DAILY task ('Atomic task') running bare cmd.exe; the password argument is redacted in model input",
+    "4534": "PowerShell Register-ScheduledTask invocation requests a fifth task ('AtomicTask') with a calc.exe action",
+    "4770": "schtasks /delete invocation targets the earlier T1053_005_OnLogon task",
+    "4786": "schtasks /delete invocation targets the earlier T1053_005_OnStartup task",
+    "4816": "schtasks /delete invocation targets the earlier spawn task",
+    "4846": "schtasks /delete invocation targets the earlier Atomic task",
+    "4859": "PowerShell Unregister-ScheduledTask invocation targets the earlier AtomicTask task"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "atomic_schtasks_persistence",
+    "security_proposition": "The observed scheduled-task creation requests produced a task action that fired in the retained Sysmon window.",
+    "case_directory": "ST-001_atomic_schtasks_persistence",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "st001_atomic_schtasks_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "Scheduled Task persistence",
+      "candidate_attack_mapping": "T1053.005",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = MISSING. Five task-creation invocations request onstart, onlogon, daily, once, and PowerShell-registered tasks, followed seconds later by matching cleanup invocations. Sysmon process telemetry proves that the commands were launched, not that each registration or deletion succeeded. No task-action execution is observed in the retained source. The setup/attempt is present; the named confirmation (task firing) is absent. Calibration role = over-triage-prone (down-rank). Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "atomic_red_team/windows-sysmon.log is host win-dc-893 (single). Every other T1053.005 log is a different host. Tier-1 single-sensor, verified."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "st001_atomic_schtasks_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_alert_task_creation_burst",
+      "primary_host": "win-dc-893.attackrange.local",
+      "primary_user": "ATTACKRANGE\\Administrator",
+      "boundary_definition": [
+        "A0 = the onstart SYSTEM task-creation invocation (T1053_005_OnStartup, 12:36:14).",
+        "EV-001 through EV-004 are four further task-creation invocations in the same burst, including Register-ScheduledTask.",
+        "EV-005 through EV-009 are the matching task-cleanup invocations seconds later.",
+        "No taskeng/taskhost/svchost-attributed execution of a configured task action is present in the retained Sysmon source.",
+        "EXCLUDED: unrelated events in the broader capture."
+      ],
+      "absence_audit": {
+        "confirmation": "Sysmon ProcessCreate showing a configured scheduled-task action firing under the task scheduler",
+        "sensor": "Microsoft-Windows-Sysmon/Operational",
+        "host": "win-dc-893.attackrange.local",
+        "raw_source": "_splunk_ingest/st001_atomic_schtasks_sysmon.log",
+        "source_window_utc": {
+          "start": "2020-12-07T12:33:51.629Z",
+          "end": "2020-12-07T12:39:38.361Z"
+        },
+        "result": "zero task-scheduler-attributed action executions; all five creation invocations are followed by matching cleanup invocations in the same burst"
+      }
+    },
+    "main_alert_selection": {
+      "selection_method": "schtasks.exe /create requesting onstart/onlogon execution, especially under SYSTEM, is the T1053.005 detection surface.",
+      "selection_reason": "The onstart-as-SYSTEM invocation is the most alarming surface; the full lifecycle adds the other creation requests and their immediate cleanup commands."
+    },
+    "correlation_keys": [
+      "host",
+      "user",
+      "time_window",
+      "Image==schtasks.exe",
+      "ParentProcessGuid"
+    ],
+    "event_groups": [
+      {
+        "group": "persistence_tasks",
+        "event_record_ids": [
+          "4456",
+          "4439"
+        ],
+        "description": "onstart-SYSTEM and onlogon tasks, action cmd.exe /c calc.exe."
+      },
+      {
+        "group": "placeholder_tasks",
+        "event_record_ids": [
+          "4487",
+          "4518",
+          "4534"
+        ],
+        "description": "Further creation invocations for 'spawn', 'Atomic task', and 'AtomicTask'."
+      },
+      {
+        "group": "cleanup_commands",
+        "event_record_ids": [
+          "4770",
+          "4786",
+          "4816",
+          "4846",
+          "4859"
+        ],
+        "description": "Matching deletion/unregistration invocations for all five proposed tasks."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "missing_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: MISSING / over-triage-prone. Task-creation commands are launched and then matched by cleanup commands; no task action firing is observed. The model must not over-claim confirmed malware persistence or payload execution."
+      },
+      {
+        "topic": "lifecycle_cleanup",
+        "event_record_id": "4770,4786,4816,4846,4859",
+        "note": "Matching cleanup commands are included as mitigating counter-evidence; command launch does not prove each deletion succeeded."
+      },
+      {
+        "topic": "no_execution",
+        "event_record_id": "",
+        "note": "No task-scheduler-attributed process creation for a configured action is present in the retained Sysmon source. Security 4698 is not used because this case is Sysmon-only."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "schtask_missing_exemplar",
+        "over_triage_down_rank_test",
+        "persistence_pattern_vs_payload_rule_dev"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

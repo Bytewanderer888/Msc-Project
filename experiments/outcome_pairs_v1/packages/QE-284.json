@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "package_type": "neutral_security_event_package",
+  "case_id": "QE-284",
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2020-12-07T12:14:52.218324100Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "4522"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{D14C3FAC-1CBC-5FCE-F100-000000009101}",
+      "process_id": "4868",
+      "image": "C:\\Windows\\System32\\sc.exe",
+      "original_file_name": "sc.exe",
+      "command_line": "sc.exe  create [x]_CMD binPath= C:\\[x]\\[x]\\[id]\\bin\\[x].exe ",
+      "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+      "user": "corp\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=BD31EB150F6547D18329E5F00801D1CD,SHA256=8A775B86CE1A057E290CCD26C59C96070684468A3119790743A346CD54F4DFDF,IMPHASH=A68324ADB4F5664AF8A79E04062F4A92",
+      "parent_process_guid": "{D14C3FAC-1CBC-5FCE-F000-000000009101}",
+      "parent_process_id": "668",
+      "parent_image": "C:\\Windows\\System32\\cmd.exe",
+      "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"sc.exe create [x]_CMD binPath= C:\\[x]\\[x]\\[id]\\bin\\[x].exe & sc.exe start [x]_CMD\" "
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-12-07T12:14:52.227622700Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "4537"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{D14C3FAC-1CBC-5FCE-F200-000000009101}",
+        "process_id": "1284",
+        "image": "C:\\Windows\\System32\\sc.exe",
+        "original_file_name": "sc.exe",
+        "command_line": "sc.exe  start [x]_CMD ",
+        "current_directory": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=BD31EB150F6547D18329E5F00801D1CD,SHA256=8A775B86CE1A057E290CCD26C59C96070684468A3119790743A346CD54F4DFDF,IMPHASH=A68324ADB4F5664AF8A79E04062F4A92",
+        "parent_process_guid": "{D14C3FAC-1CBC-5FCE-F000-000000009101}",
+        "parent_process_id": "668",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "\"C:\\Windows\\system32\\cmd.exe\" /c \"sc.exe create [x]_CMD binPath= C:\\[x]\\[x]\\[id]\\bin\\[x].exe & sc.exe start [x]_CMD\" "
+      }
+    }
+  ],
+  "deterministic_derivations": [],
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2020-12-07T12:14:52.218324100Z",
+      "end": "2020-12-07T12:14:52.227622700Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-003",
+    "EV-006",
+    "EV-007",
+    "EV-011",
+    "EV-012"
+  ],
+  "rationale": "The initial alert (A0) shows `cmd.exe` being spawned by `java.exe` to download and execute an unknown executable (`qSwUwejx.exe`) using `certutil.exe` (EV-003, EV-006). This executable then establishes a network connection to a suspicious IP (10.0.2.13) on port 4444 (EV-007), indicative of a reverse shell. Subsequently, `cmd.exe` is spawned by the downloaded executable (EV-009), which then downloads AnyDesk.exe (EV-011, EV-012), a legitimate remote access tool often abused by attackers.",
+  "recommended_action": "isolate"
+}

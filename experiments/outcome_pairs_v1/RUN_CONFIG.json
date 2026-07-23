@@ -1,0 +1,25 @@
+{
+  "record_schema": "safesoc.outcome_pairs.run_config.v1",
+  "model": "gemini-2.5-flash",
+  "prompt_arm": "A2_evidence",
+  "prompt_path": "eval/gemini_triage_prompt.md",
+  "prompt_file_sha256": "e58b0b525ab3d2d305a398b6ca2851e61342f8b165e7c05bd8d79bc838f9cfb0",
+  "loaded_prompt_sha256": "2b1412fa1609d9a3353c4b3bdc46b5bff4d90efa939c9475fbf2744461086696",
+  "temperature": 0.0,
+  "max_output_tokens": 2048,
+  "thinking": "off",
+  "primary_run": {
+    "runner": "provenance/run_safesoc_outcome_pairs_v1.original.py",
+    "runner_sha256": "aa2b398010ff6f165cbbc8c4b9fe0584ccef05db147c4f5ad748b669bf31865e",
+    "selected_pair_ids": [
+      "OC1",
+      "OC2",
+      "OC5",
+      "OC6"
+    ],
+    "completed_package_count": 8,
+    "completed_utc_start": "2026-07-18T23:29:22Z",
+    "completed_utc_end": "2026-07-18T23:30:46Z",
+    "configuration_verified": true
+  }
+}

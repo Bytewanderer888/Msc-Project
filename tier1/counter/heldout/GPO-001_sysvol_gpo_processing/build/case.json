@@ -1,0 +1,64 @@
+{
+  "case_id": "GPO-001",
+  "split": "heldout",
+  "mordor_log": "datasets/compound/apt29/day1/apt29_evals_day1_manual.zip",
+  "computer": "NEWYORK",
+  "sourcetypes_present": [
+    "XmlWinEventLog:Security"
+  ],
+  "selection": {
+    "A0": "151026",
+    "EV": [
+      "146551",
+      "146552",
+      "151027"
+    ]
+  },
+  "roles": {
+    "151026": "triggering alert: machine-account read access to the SYSVOL Policies path",
+    "146551": "machine-account read of the Default Domain Policy gpt.ini",
+    "146552": "machine-account read of the Default Domain Controllers Policy gpt.ini",
+    "151027": "same-session machine-account read of the domain SYSVOL path"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "Machine-account SYSVOL access = routine Group Policy processing (SMB-enumeration false positive)",
+    "security_proposition": "The observed machine-account SYSVOL reads are adversary-driven SMB reconnaissance or lateral activity rather than routine Group Policy processing.",
+    "case_directory": "GPO-001_sysvol_gpo_processing",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "OTRF Security-Datasets (mordor)",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Routine machine-account SYSVOL Group Policy processing",
+      "candidate_attack_mapping": "T1021.002 (surface only)",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = COUNTER. Machine-account read access to the two default Group Policy objects can resemble SMB reconnaissance, but the subjects, targets, and read-only pattern establish routine Group Policy processing. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "security"
+      ]
+    },
+    "case_scope": {
+      "primary_host": "NEWYORK.dmevals.local"
+    },
+    "curation_notes": [
+      "Counter (down_rank): machine accounts reaching the domain controller's \\\\*\\SYSVOL share look like SMB enumeration / AD reconnaissance and trip lateral-movement detections.",
+      "Decisive counter-evidence (benign): the subjects are MACHINE accounts (NEWYORK$, SCRANTON$) and the targets are the well-known default GPOs under SYSVOL\\...\\Policies ({31B2F340-016D-11D2-945F-00C04FB984F9} = Default Domain Policy, {6AC1786C-016F-11D2-945F-00C04fB984F9} = Default Domain Controllers Policy) plus gpt.ini. This is routine Group Policy processing; correct verdict benign.",
+      "Cross-corpus twin of SMB-002 (attack_data machine-account SMB counter) — same benign-but-alarming surface from an independent corpus."
+    ],
+    "experimental_role": {
+      "used_for": [
+        "counter_evidence_heldout",
+        "cross_corpus_generalisation",
+        "routine_gpo_false_positive"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

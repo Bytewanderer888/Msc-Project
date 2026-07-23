@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "case_id": "SMB-002",
+  "rule_id": "SAFESOC-TRG-SMB-002",
+  "analytic_family_id": "AF-NET",
+  "analytic_pattern_id": "NET-02",
+  "title": "SMB access to the LSARPC named pipe",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source after any pre-existing host and sensor scope is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 5145
+      },
+      {
+        "field": "attributes.share_name",
+        "op": "iendswith",
+        "value": "\\IPC$"
+      },
+      {
+        "field": "attributes.relative_target",
+        "op": "ieq",
+        "value": "lsarpc"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "security:309958"
+  },
+  "rationale": "Access to the LSARPC named pipe over IPC$ is a reproducible directory-enumeration alert surface; routine machine context is evaluated separately."
+}

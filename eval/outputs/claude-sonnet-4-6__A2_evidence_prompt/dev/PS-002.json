@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.92,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "A0 shows PowerShell launched with '-WindowStyle hidden' executing a DownloadFile call to a bit.ly-shortened URL ('http://bit.ly/L3g1tCrad1e') \u2014 a classic obfuscated cradle pattern used to stage payloads while evading casual inspection. EV-003 confirms the download succeeded: the target file 'Default_File_Path.ps1' was written to the Administrator's home directory by the same PowerShell process (PID 1668). EV-001 establishes the parent chain: an interactive cmd.exe spawned from Explorer under the high-integrity corp\\Administrator context, indicating either direct console access or a prior interactive session \u2014 not a scheduled task or remote management baseline. EV-002 is a routine PSScriptPolicyTest temp file created during PowerShell initialization and is not independently malicious, but confirms the same process. The combination of hidden-window flag, URL shortener obfuscation, confirmed file drop of a .ps1 payload, and high-integrity execution context constitutes confirmed malicious staging activity; the content and subsequent execution of the dropped script are not yet evidenced but the download itself is confirmed.",
+  "recommended_action": "isolate"
+}

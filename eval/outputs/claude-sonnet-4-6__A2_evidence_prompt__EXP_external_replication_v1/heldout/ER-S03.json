@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.93,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "A0 confirms that frida_server \u2014 a dynamic instrumentation/hooking tool located in /tmp (non-standard, ephemeral path) \u2014 successfully attached via ptrace to QGroundControl (a UAV ground control application) with root effective privileges, indicating privilege escalation and process injection into a safety-critical control process. Within ~61 seconds of that attachment, EV-001 shows a COMPONENT_ARM_DISARM command was accepted by vehicle-01, EV-002 confirms the vehicle transitioned to a disarmed state (motors cut), and EV-003 records a ground impact at ~19.4 m/s (~70 km/h), consistent with an in-flight disarm causing an uncontrolled crash. The temporal sequence \u2014 ptrace injection into QGroundControl followed immediately by an anomalous disarm command and physical impact \u2014 strongly indicates the frida_server was used to manipulate QGroundControl's MAVLink command pipeline to issue the disarm, resulting in a confirmed physical impact. No benign explanation accounts for a /tmp-resident frida_server attaching to a flight control application immediately preceding a fatal vehicle disarm event.",
+  "recommended_action": "isolate"
+}

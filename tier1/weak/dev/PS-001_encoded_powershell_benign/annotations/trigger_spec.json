@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "case_id": "PS-001",
+  "rule_id": "SAFESOC-TRG-PS-001",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-02",
+  "title": "Encoded PowerShell with execution-policy override",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "full_source",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source; no event-level answer selector is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 1
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\powershell.exe"
+      },
+      {
+        "field": "attributes.parent_image",
+        "op": "iendswith",
+        "value": "\\powershell.exe"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)-(?:e|enc|encodedcommand)\\s+[A-Za-z0-9+/=]{20,}"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)-ExecutionPolicy\\s+(?:Bypass|Unrestricted)"
+      },
+      {
+        "field": "derived.decoded_command",
+        "op": "icontains",
+        "value": "$input | Out-String"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "93"
+  },
+  "rationale": "Encoded PowerShell combined with an execution-policy override is a reproducible suspicious scripting alert."
+}

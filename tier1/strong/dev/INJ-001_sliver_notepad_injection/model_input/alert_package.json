@@ -1,0 +1,173 @@
+{
+  "schema_version": "1.0",
+  "case_id": "INJ-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2023-02-21T22:02:30.627782400Z",
+      "end": "2023-02-21T22:05:20.691621000Z"
+    },
+    "event_count": 6,
+    "event_types_present": [
+      "create_remote_thread",
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2023-02-21T22:02:30.635369500Z",
+    "event_type": "create_remote_thread",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 8,
+      "event_record_id": "15275583"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "source_process_guid": "{0F9A6540-3D66-63F5-5C09-00000000C102}",
+      "source_image": "C:\\Users\\Administrator\\Downloads\\ILL_UNBLINKING.exe",
+      "target_process_guid": "{0F9A6540-3F76-63F5-A609-00000000C102}",
+      "target_image": "C:\\Windows\\System32\\notepad.exe",
+      "start_address": "0x00000195319B0000",
+      "start_module": "-",
+      "start_function": "-"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2023-02-21T22:02:30.627782400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "15275575"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{0F9A6540-3F76-63F5-A609-00000000C102}",
+        "process_id": "6496",
+        "image": "C:\\Windows\\System32\\notepad.exe",
+        "original_file_name": "NOTEPAD.EXE",
+        "command_line": "c:\\windows\\system32\\notepad.exe \"\"",
+        "current_directory": "C:\\Users\\Administrator\\Downloads\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "Medium",
+        "hashes": "MD5=BA78FCF8CA9D806C6C047357E31748DE,SHA256=34A07759492E31AEC2A009505FE8DFB50242375C4308AD4657B2872F4F75A077,IMPHASH=968239BE2020F1C0DAFFDCDBD49E9C82",
+        "parent_process_guid": "{0F9A6540-3D66-63F5-5C09-00000000C102}",
+        "parent_process_id": "6596",
+        "parent_image": "C:\\Users\\Administrator\\Downloads\\ILL_UNBLINKING.exe",
+        "parent_command_line": "\"C:\\Users\\Administrator\\Downloads\\ILL_UNBLINKING.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2023-02-21T22:03:00.652965200Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "15275927"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{0F9A6540-3F94-63F5-A709-00000000C102}",
+        "process_id": "5480",
+        "image": "C:\\Windows\\System32\\notepad.exe",
+        "original_file_name": "NOTEPAD.EXE",
+        "command_line": "c:\\windows\\system32\\notepad.exe \"\"",
+        "current_directory": "C:\\Users\\Administrator\\Downloads\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "Medium",
+        "hashes": "MD5=BA78FCF8CA9D806C6C047357E31748DE,SHA256=34A07759492E31AEC2A009505FE8DFB50242375C4308AD4657B2872F4F75A077,IMPHASH=968239BE2020F1C0DAFFDCDBD49E9C82",
+        "parent_process_guid": "{0F9A6540-3D66-63F5-5C09-00000000C102}",
+        "parent_process_id": "6596",
+        "parent_image": "C:\\Users\\Administrator\\Downloads\\ILL_UNBLINKING.exe",
+        "parent_command_line": "\"C:\\Users\\Administrator\\Downloads\\ILL_UNBLINKING.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2023-02-21T22:03:00.655571800Z",
+      "event_type": "create_remote_thread",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 8,
+        "event_record_id": "15275935"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "source_process_guid": "{0F9A6540-3D66-63F5-5C09-00000000C102}",
+        "source_image": "C:\\Users\\Administrator\\Downloads\\ILL_UNBLINKING.exe",
+        "target_process_guid": "{0F9A6540-3F94-63F5-A709-00000000C102}",
+        "target_image": "C:\\Windows\\System32\\notepad.exe",
+        "start_address": "0x000002BB84710000",
+        "start_module": "-",
+        "start_function": "-"
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2023-02-21T22:05:20.686664400Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "15277465"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{0F9A6540-4020-63F5-B809-00000000C102}",
+        "process_id": "5940",
+        "image": "C:\\Windows\\System32\\notepad.exe",
+        "original_file_name": "NOTEPAD.EXE",
+        "command_line": "c:\\windows\\system32\\notepad.exe \"\"",
+        "current_directory": "C:\\Users\\Administrator\\Downloads\\",
+        "user": "corp\\Administrator",
+        "integrity_level": "Medium",
+        "hashes": "MD5=BA78FCF8CA9D806C6C047357E31748DE,SHA256=34A07759492E31AEC2A009505FE8DFB50242375C4308AD4657B2872F4F75A077,IMPHASH=968239BE2020F1C0DAFFDCDBD49E9C82",
+        "parent_process_guid": "{0F9A6540-3D66-63F5-5C09-00000000C102}",
+        "parent_process_id": "6596",
+        "parent_image": "C:\\Users\\Administrator\\Downloads\\ILL_UNBLINKING.exe",
+        "parent_command_line": "\"C:\\Users\\Administrator\\Downloads\\ILL_UNBLINKING.exe\" "
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2023-02-21T22:05:20.691621000Z",
+      "event_type": "create_remote_thread",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 8,
+        "event_record_id": "15277473"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "source_process_guid": "{0F9A6540-3D66-63F5-5C09-00000000C102}",
+        "source_image": "C:\\Users\\Administrator\\Downloads\\ILL_UNBLINKING.exe",
+        "target_process_guid": "{0F9A6540-4020-63F5-B809-00000000C102}",
+        "target_image": "C:\\Windows\\System32\\notepad.exe",
+        "start_address": "0x0000017DACD70000",
+        "start_module": "-",
+        "start_function": "-"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

@@ -1,0 +1,16 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.93,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006"
+  ],
+  "rationale": "The evidence pattern is consistent with Impacket's wmiexec/smbexec lateral movement tooling. EV-001 and A0 show WmiPrvSE.exe spawning cmd.exe with the characteristic '/Q /c <command> 1> \\\\127.0.0.1\\ADMIN$\\__<timestamp>' output-redirection pattern used by wmiexec to retrieve command output over SMB ADMIN$, and EV-002 confirms calc.exe was actually executed as a child of that cmd.exe at High integrity under corp\\Administrator. EV-004 and EV-005 then show a pivot to the smbexec execution method: services.exe writes a registry ImagePath for a service named 'BTOBTO' containing a bat-file drop-execute-delete chain redirecting output to \\\\127.0.0.1\\C$\\__output, and EV-005/EV-006 confirm services.exe spawned cmd.exe as NT AUTHORITY\\SYSTEM to execute that bat file \u2014 the hallmark smbexec service-creation technique. The combination of two distinct Impacket execution methods (wmiexec then smbexec), use of ADMIN$ and C$ shares for I/O, randomized bat filename, and escalation from Administrator to SYSTEM integrity constitutes confirmed malicious lateral-movement/remote-execution activity.",
+  "recommended_action": "isolate"
+}

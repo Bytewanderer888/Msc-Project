@@ -1,0 +1,44 @@
+{
+  "case_id": "ER-C01",
+  "status": "candidate_built_pending_qa",
+  "source_corpus": "Windows-APT Dataset 2025",
+  "doi": "10.17632/b8fmtzvpy8.3",
+  "source_file": {
+    "path": "data_sources/windows_apt_2025/combined.csv",
+    "sha256": "0f7eaa4027482c81cae56a5b759e7058e9e9df225ae060933c7015f6f16e8465",
+    "record_format": "CSV with one logical record parsed by csv.DictReader"
+  },
+  "selected_records": [
+    {
+      "evidence_id": "A0",
+      "csv_record_number": 383,
+      "source_record_id": "y6E3gZMBrrvr6pEbZnYV",
+      "record_sha256": "6eb30f098875fd99ecf17a634637df58568c5a723d29bb51531236a768c5b72a"
+    },
+    {
+      "evidence_id": "EV-001",
+      "csv_record_number": 3027,
+      "source_record_id": "zKE3gZMBrrvr6pEbZnYV",
+      "record_sha256": "c50e75c2f9d3fcff490aac4d80452340e17c1ed18f5e29ceb7dd061cdb5f6ce7"
+    },
+    {
+      "evidence_id": "EV-002",
+      "csv_record_number": 6258,
+      "source_record_id": "zaE3gZMBrrvr6pEbZnYV",
+      "record_sha256": "432948b9d33bb8b879faec64cdfd64c582330892590789e12252164825a9586d"
+    },
+    {
+      "evidence_id": "EV-003",
+      "csv_record_number": 6259,
+      "source_record_id": "zqE3gZMBrrvr6pEbZnYV",
+      "record_sha256": "86158c0da4b248ab91334b99284ea166e7119b91ae35e97e71964aaa94ab328f"
+    },
+    {
+      "evidence_id": "EV-004",
+      "csv_record_number": 3028,
+      "source_record_id": "z6E3gZMBrrvr6pEbZnYV",
+      "record_sha256": "d66d11153cab1af3ed0fb9d5c3ed2bdd3766b2111ddc02df84ec934870f067b5"
+    }
+  ],
+  "integrity_note": "Record hashes cover canonical JSON serialisation of the complete CSV row, including empty columns. csv_record_number counts the header as record 1."
+}

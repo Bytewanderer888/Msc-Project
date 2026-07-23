@@ -1,0 +1,13 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.93,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "The triggering process (A0) uses a Right-to-Left Override (RTLO/U+202E) character in its filename \u2014 'cod.3aka3.scr' visually renders as 'rcs.3aka3.doc', a classic filename-spoofing technique used to disguise executables as documents. The file resides in C:\\ProgramData\\victim\\ and was launched by explorer.exe (user double-clicked it), indicating social engineering delivery. Within seconds, the same process initiated an outbound TCP connection to 192.168.0.5:1234 (EV-001), a non-standard port strongly suggestive of C2 communication. The process then spawned cmd.exe (EV-002), which in turn spawned powershell.exe (EV-003), forming a classic malware execution chain (SCR \u2192 CMD \u2192 PowerShell) from a suspicious working directory \u2014 no legitimate screensaver or document would exhibit this behavior.",
+  "recommended_action": "isolate"
+}

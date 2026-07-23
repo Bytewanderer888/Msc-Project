@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "case_id": "GPO-001",
+  "rule_id": "SAFESOC-TRG-GPO-001",
+  "analytic_family_id": "AF-NET",
+  "analytic_pattern_id": "NET-02",
+  "title": "Remote access to Group Policy objects in SYSVOL",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source after any pre-existing host and sensor scope is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 5145
+      },
+      {
+        "field": "attributes.share_name",
+        "op": "iendswith",
+        "value": "\\SYSVOL"
+      },
+      {
+        "field": "attributes.relative_target",
+        "op": "regex",
+        "value": "(?i)(^|\\\\)Policies$"
+      },
+      {
+        "field": "attributes.access_mask",
+        "op": "ieq",
+        "value": "0x100081"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "151026"
+  },
+  "rationale": "Access to the Policies tree over SYSVOL is a reproducible GPO-access alert surface; routine context is assessed after triggering."
+}

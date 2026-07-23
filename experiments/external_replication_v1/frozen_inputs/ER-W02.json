@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-W02",
+  "package_type": "neutral_security_event_package",
+  "observed_context": {
+    "computers": [
+      "host-01"
+    ],
+    "users": [],
+    "time_window_utc": {
+      "start": "2024-12-22T09:00:30.4931885Z",
+      "end": "2024-12-22T09:00:30.4931885Z"
+    },
+    "event_count": 1,
+    "event_types_present": [
+      "system_state"
+    ],
+    "sourcetypes_present": [
+      "Application"
+    ]
+  },
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2024-12-22T09:00:30.4931885Z",
+    "event_type": "system_state",
+    "source_event": {
+      "provider": "Microsoft-Windows-WMI",
+      "channel": "Application",
+      "event_code": 5611,
+      "event_record_id": "SRC-A0"
+    },
+    "computer": "host-01",
+    "attributes": {
+      "message": "\"The Windows Management Instrumentation service has detected an inconsistent system shutdown.\""
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [],
+  "deterministic_derivations": []
+}

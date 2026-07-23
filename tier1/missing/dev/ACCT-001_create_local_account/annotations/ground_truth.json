@@ -1,0 +1,36 @@
+{
+  "case_id": "ACCT-001",
+  "evidence_condition": "missing",
+  "calibration_role": "down_rank",
+  "correct_verdict": "suspicious",
+  "acceptable_severity": [
+    "low",
+    "medium"
+  ],
+  "acceptable_actions": [
+    "monitor",
+    "investigate"
+  ],
+  "grounding": {
+    "supporting_evidence": [
+      "A0",
+      "EV-001",
+      "EV-002"
+    ],
+    "counter_evidence": [
+      "EV-003",
+      "EV-004",
+      "EV-005"
+    ],
+    "must_not_assert": [
+      "a persistent or usable backdoor account exists (creation commands are followed seconds later by cleanup commands targeting all three names, and Sysmon does not establish the resulting account state)",
+      "one of the requested accounts was later used (no Sysmon ProcessCreate attributed to any requested account name is present in the scoped source; authentication itself is outside this Sysmon-only case)",
+      "the creation or deletion operations succeeded (Sysmon EID1 proves only that the commands were launched)"
+    ]
+  },
+  "the_trap": "Three account-creation commands run, including one requesting a group addition. Cleanup commands targeting all three names follow seconds later, and the scoped Sysmon source contains no later process creation under those names. Do not turn command launch into confirmed backdoor persistence or successful account operations.",
+  "rationale": "A0/EV-001/EV-002 record three local-account-creation command launches, one with a requested group addition. EV-003/EV-004/EV-005 record cleanup command launches targeting all three account names seconds later. Sysmon EID1 does not establish whether the account operations succeeded, and no later Sysmon ProcessCreate is attributed to any requested account within the retained source. The precursor is visible, while observable later use is not evidenced: suspicious missing evidence.",
+  "annotated_by": "researcher (SafeSOC)",
+  "review_status": "reviewed_for_benchmark_v1.1",
+  "rubric_version": "1.1"
+}

@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1059.001/obfuscated_powershell/windows-sysmon.log",
+      "sha256": "70d3c6982eb05a2897b9e4adcba25da2a5f1fbfbf07eca373cf4ca0c063f56a3"
+    }
+  ],
+  "primary_host": "win-dc-397.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "The obfuscated_powershell folder contains ONLY windows-sysmon.log (single host win-dc-397) + a .yml manifest. Tier-1 single-sensor, verified this build."
+  }
+}

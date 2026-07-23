@@ -1,0 +1,16 @@
+{
+  "verdict": "malicious",
+  "severity": "critical",
+  "confidence": 0.95,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006"
+  ],
+  "rationale": "The evidence pattern is consistent with Impacket's wmiexec.py lateral movement tool: WmiPrvSE.exe spawning cmd.exe with output redirected to ADMIN$ share temp files (EV-001, A0, EV-003) is the hallmark of WMI-based remote command execution. EV-004 and EV-005 show a second execution method \u2014 services.exe writing a randomly-named batch file (rIIBPrqF.bat) to C:\\Windows\\ and executing it via cmd.exe at SYSTEM integrity, consistent with Impacket's smbexec.py technique, which creates a temporary service to run attacker-controlled commands. The combination of two distinct remote execution frameworks (WMI and SMB service abuse), use of ADMIN$ and C$ shares for I/O redirection, and escalation to NT AUTHORITY\\SYSTEM (EV-005, EV-006) confirms active lateral movement or remote code execution against this host. The execution of calc.exe (EV-002) under these conditions is likely a proof-of-concept or capability test by the attacker.",
+  "recommended_action": "isolate"
+}

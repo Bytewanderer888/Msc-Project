@@ -1,0 +1,135 @@
+{
+  "case_id": "SMB-001",
+  "split": "heldout",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1021.002/atomic_red_team/wmiexec_windows-sysmon.log",
+  "staged_export": "extracted/smb001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "117769",
+    "EV": [
+      "117767",
+      "117770",
+      "117779",
+      "117785",
+      "117786",
+      "117788"
+    ]
+  },
+  "roles": {
+    "117769": "triggering alert: WmiPrvSE.exe spawned cmd.exe /Q /c calc.exe with stdout redirected to \\\\127.0.0.1\\ADMIN$ — the Impacket wmiexec wmiexec-style command signature; user ATTACKRANGE\\Administrator",
+    "117767": "wmiexec wmiexec-style command handshake (session 1, 16:19:13): WmiPrvSE.exe -> cmd.exe /Q /c cd \\ 1> \\\\127.0.0.1\\ADMIN$\\__<ts>",
+    "117770": "the command-chain payload executes: calc.exe spawned by the wmiexec cmd.exe",
+    "117779": "wmiexec wmiexec-style command handshake for a second session (16:20:37): WmiPrvSE.exe -> cmd.exe /Q /c cd \\ 1> \\\\127.0.0.1\\ADMIN$",
+    "117785": "smbexec: a service 'BTOBTO' (Impacket smbexec default name) is registered with ImagePath %COMSPEC% /Q /c echo ... ^> \\\\127.0.0.1\\C$\\__output — smbexec-style service execution",
+    "117786": "smbexec service runs as NT AUTHORITY\\SYSTEM: services.exe -> cmd.exe writes C:\\Windows\\rIIBPrqF.bat and redirects output to the C$ share",
+    "117788": "the smbexec payload batch executes: cmd.exe /Q /c C:\\Windows\\rIIBPrqF.bat (SYSTEM)"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "impacket_lateral_exec",
+    "security_proposition": "The observed host executed Impacket-style WMI and service command chains with SYSTEM-level code execution.",
+    "case_directory": "SMB-001_impacket_lateral_exec",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "smb001_impacket_lateral_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "Impacket-style WMI and service execution on the observed host",
+      "candidate_attack_mapping": "T1021.002-style execution surface",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = STRONG. Two Impacket-style WMI and service command chains establish SYSTEM-level code execution on the observed host. The SMB paths are loopback and no distinct source host is identified, so cross-host lateral movement is not claimed. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "wmiexec_windows-sysmon.log is host ar-win-2 (single host), Sysmon only (EID 1 process-create + EID 13 registry). It is the SUPERSET capture — the sibling smbexec_windows-sysmon.log contains only records 117785/117786/117788, all present here. Single-sensor, verified."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "smb001_impacket_lateral_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_session_lateral_execution",
+      "primary_host": "ar-win-2.attackrange.local",
+      "primary_user": "ATTACKRANGE\\Administrator (WMI) / NT AUTHORITY\\SYSTEM (smbexec service)",
+      "boundary_definition": [
+        "A0 = the wmiexec remote-exec that runs a payload (calc.exe) with stdout redirected to ADMIN$ (117769, 16:19:15).",
+        "EV = the wmiexec shell handshakes (117767 session 1, 117779 session 2), the calc.exe payload child (117770), and the smbexec chain (BTOBTO service reg 117785 -> services.exe cmd 117786 -> bat 117788).",
+        "One 90-second session (16:19:13-16:20:56) on ar-win-2 by Administrator escalating to a SYSTEM service.",
+        "EXCLUDED: 117807 (a later cmd/ADMIN$ spawned by explorer.exe as user reed_potts — a separate interactive session), and redundant wmiexec cd-probes 117768/117780."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "WmiPrvSE.exe spawning cmd.exe (WMI remote execution) with output redirected to an admin share is a high-fidelity T1021.002 detection.",
+      "selection_reason": "117769 is the WMI-spawned command that runs an actual binary (calc.exe); its ADMIN$ output redirect is the wmiexec signature."
+    },
+    "correlation_keys": [
+      "host",
+      "user",
+      "time_window",
+      "ParentImage==WmiPrvSE.exe",
+      "admin_share_redirect(ADMIN$/C$)",
+      "service==BTOBTO"
+    ],
+    "event_groups": [
+      {
+        "group": "wmiexec_wmi",
+        "event_record_ids": [
+          "117769",
+          "117767",
+          "117779",
+          "117770"
+        ],
+        "description": "WmiPrvSE.exe-spawned cmd shells writing to ADMIN$ (Administrator), and the calc.exe payload."
+      },
+      {
+        "group": "smbexec_smb",
+        "event_record_ids": [
+          "117785",
+          "117786",
+          "117788"
+        ],
+        "description": "Impacket smbexec: BTOBTO SYSTEM service echoing command output to C$."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "strong_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: STRONG / preserve. Correlated WMI- and service-based Impacket-style execution patterns establish code execution on the observed host; loopback paths do not prove cross-host movement."
+      },
+      {
+        "topic": "preserve_bait_benign_payload",
+        "event_record_id": "117769,117770",
+        "note": "The payload is calc.exe, but the WMI-to-command execution pattern remains security-significant. The benign demonstration payload must not cause under-triage."
+      },
+      {
+        "topic": "impacket_signatures",
+        "event_record_id": "117769,117785",
+        "note": "The package contains wmiexec- and smbexec-style command patterns using loopback ADMIN$/C$ paths. These identify the execution mechanism but not a separate remote source host."
+      },
+      {
+        "topic": "single_source_superset",
+        "event_record_id": "",
+        "note": "The selected Sysmon file is the superset on one observed host; the sibling smbexec file is a strict subset."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "smb_strong_exemplar",
+        "preserve_hold_high_test",
+        "confirmed_lateral_movement_rule_dev"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

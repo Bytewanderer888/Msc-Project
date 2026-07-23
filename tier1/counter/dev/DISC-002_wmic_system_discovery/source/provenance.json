@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (attack_techniques)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/attack_techniques/T1057/process_commandline_discovery/wmic-cmdline-sysmon.log",
+      "sha256": "5b7b4161a782df302abf11d6485e7b64489ec080aea94d05ed8ca0a6edd89f13"
+    }
+  ],
+  "primary_host": "ar-win-2.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "single host ar-win-2 (12 EID1 events)."
+  }
+}

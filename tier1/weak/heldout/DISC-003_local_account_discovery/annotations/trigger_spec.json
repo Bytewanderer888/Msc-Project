@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "case_id": "DISC-003",
+  "rule_id": "SAFESOC-TRG-DISC-003",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-02",
+  "title": "Local-account enumeration with PowerShell",
+  "formalisation_timing": "retrospective_pre_extension_audit",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "queries/retrieval_spec.md (Q1/main-alert analytic); executable form formalised under alert-anchor policy v1.0"
+  },
+  "scope": {
+    "basis": "declared_asset_scope",
+    "complete_legal_scope": true,
+    "description": "All events in the configured raw source after any pre-existing host and sensor scope is applied."
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "event_code",
+        "op": "eq",
+        "value": 1
+      },
+      {
+        "field": "attributes.image",
+        "op": "iendswith",
+        "value": "\\powershell.exe"
+      },
+      {
+        "field": "attributes.command_line",
+        "op": "regex",
+        "value": "(?i)\\bGet-LocalUser\\b"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "30727372"
+  },
+  "rationale": "PowerShell invocation of Get-LocalUser is a direct local-account discovery alert surface."
+}

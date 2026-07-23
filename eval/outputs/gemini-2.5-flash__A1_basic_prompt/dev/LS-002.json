@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "Multiple instances of 'createdump.exe' are observed attempting to dump the 'lsass.dmp' process (A0, EV-001, EV-002, EV-003, EV-004). This activity is highly indicative of credential dumping, a common post-exploitation technique used by attackers to extract sensitive information like user credentials from memory. The repeated attempts and the target process (LSASS) strongly suggest malicious intent.",
+  "recommended_action": "isolate"
+}

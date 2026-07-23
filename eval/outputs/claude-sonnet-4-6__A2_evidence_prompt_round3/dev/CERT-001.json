@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.82,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "All five events show certutil.exe being used from an interactive cmd.exe session under corp\\Administrator at high integrity to enumerate and export private key material: A0 exports the Computer store certificate with private key to Computer.pfx, EV-001 exports a certificate with thumbprint '1234' to test.pfx, EV-002 queries DC certificate info (-dcinfo), EV-003 enumerates the personal certificate store (-Store MY), and EV-004 exports a specific certificate by thumbprint (74ae941ce26523ae422d501e631decd0) to C:\\cert.pfx \u2014 a root-level path suggesting staging for exfiltration. The sequential pattern of enumerate-then-export across ~50 minutes, targeting private keys and placing output in easily accessible locations, is consistent with credential/certificate theft (e.g., ADCS abuse or domain controller certificate harvesting). No evidence of the PFX files being deleted or the activity being part of a documented administrative task is present; however, absence of confirmed exfiltration or follow-on lateral movement caps confidence below critical.",
+  "recommended_action": "escalate"
+}

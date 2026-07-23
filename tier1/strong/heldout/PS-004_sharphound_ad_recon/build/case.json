@@ -1,0 +1,133 @@
+{
+  "case_id": "PS-004",
+  "split": "heldout",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1059.001/sharphound/windows-sysmon.log",
+  "staged_export": "extracted/ps004_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "648984",
+    "EV": [
+      "649806",
+      "649831",
+      "649842",
+      "649843",
+      "649844",
+      "649845",
+      "649846",
+      "649857"
+    ]
+  },
+  "roles": {
+    "648984": "triggering alert: powershell.exe imported the SharpHound collection module from c:\\temp (T1059.001 module load)",
+    "649806": "the SharpHound collector executed with --CollectionMethod all (broad AD collection)",
+    "649831": "collector exported AD group objects (groups.json)",
+    "649842": "collector exported all Group Policy objects (gpos.json)",
+    "649843": "collector exported AD user objects (users.json)",
+    "649844": "collector exported AD organizational units (ous.json)",
+    "649845": "collector exported domain objects (domains.json)",
+    "649846": "collector exported AD computer objects (computers.json)",
+    "649857": "collector wrote a BloodHound collection archive (.zip)"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "sharphound_ad_recon",
+    "security_proposition": "The observed SharpHound execution produced a substantial Active Directory collection artifact set.",
+    "case_directory": "PS-004_sharphound_ad_recon",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "ps004_sharphound_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "PowerShell execution / Active Directory reconnaissance",
+      "candidate_attack_mapping": "T1059.001",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = STRONG. SharpHound executes on a domain controller and produces the expected JSON and ZIP collection artifacts. The package does not contain an exit status, so it does not claim error-free completion. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "The folder ALSO holds a same-host (win-dc-233) PowerShell-Operational 4104 log, so a multi-source (Tier-2) build is possible. Built here as Tier-1 Sysmon: the process lineage + collection-output artifacts fully establish the strong/under-triage case. The 4104 script-block log is a documented future multi-source option (needs the classic-format parser)."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "ps004_sharphound_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_alert_recon_burst",
+      "primary_host": "win-dc-233.attackrange.local",
+      "primary_user": "ATTACKRANGE\\Administrator",
+      "boundary_definition": [
+        "A0 = the first powershell import-module SharpHound.ps1 (record 648984, 13:51:58).",
+        "EV = the sharphound.exe --CollectionMethod all execution (13:53:52) and its complete collection outputs (13:53:54): BloodHound.zip + per-object JSON for users/groups/computers/OUs/GPOs/domains.",
+        "Scoped to the first of two near-identical collection runs; repeated import-module invocations and the second run ('-c all') omitted as redundant.",
+        "EXCLUDED: SharpHound .bin cache and Splunk-forwarder powershell noise."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "A PowerShell process importing a script module named SharpHound from a writable temp path is the T1059.001 detection.",
+      "selection_reason": "The import-module is the alerting signal; the correlated collector run + output artifacts reveal the actual (under-rated) impact."
+    },
+    "correlation_keys": [
+      "ProcessGuid",
+      "ParentProcessGuid",
+      "host",
+      "time_window"
+    ],
+    "event_groups": [
+      {
+        "group": "execution",
+        "event_record_ids": [
+          "648984",
+          "649806"
+        ],
+        "description": "powershell module import -> sharphound.exe full collection."
+      },
+      {
+        "group": "collection_output",
+        "event_record_ids": [
+          "649857",
+          "649843",
+          "649831",
+          "649846",
+          "649844",
+          "649842",
+          "649845"
+        ],
+        "description": "BloodHound archive + per-object AD exports = complete AD collection."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "under_triage_intent",
+        "event_record_id": "",
+        "note": "RESEARCHER-PRIVATE: STRONG and under-triage-prone. SharpHound execution plus the attributed JSON/ZIP artifact set establishes substantial AD collection; an exit status is not present."
+      },
+      {
+        "topic": "no_der",
+        "event_record_id": "",
+        "note": "Plaintext commands -> no DER. Collection scope left as raw file_create facts for the model to interpret, not pre-summarised."
+      },
+      {
+        "topic": "multi_source_option",
+        "event_record_id": "",
+        "note": "A same-host (win-dc-233) PowerShell-4104 log exists in the folder; a Tier-2 multi-source variant is possible (would add the SharpHound.ps1 script-block content). Deferred (needs the classic-format parser)."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "powershell_strong_under_triage_exemplar",
+        "bidirectional_up_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

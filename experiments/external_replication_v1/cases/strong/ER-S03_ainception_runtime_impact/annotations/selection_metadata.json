@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-S03",
+  "case_name": "ainception_runtime_impact",
+  "split": "external_replication_heldout",
+  "status": "candidate_built_pending_qa",
+  "security_proposition": "A root-capable runtime instrumentation process attached to the flight-control application and was followed by an accepted mid-flight disarm and ground impact.",
+  "attack_category": {
+    "category": "Data Manipulation: Runtime Data Manipulation",
+    "candidate_attack_mapping": "T1565.003",
+    "model_visible": false
+  },
+  "source_provenance": {
+    "dataset": "AInception SL100",
+    "scenario": "continuous SL100 chain",
+    "capture_cluster": "sl100-chain",
+    "telemetry_depth": "multi_source",
+    "sensors": [
+      "Linux audit",
+      "vehicle flight telemetry"
+    ]
+  },
+  "model_input_controls": {
+    "excluded": [
+      "scenario/action labels and supplied attack timeline",
+      "source executable name containing the intended outcome",
+      "dataset malicious flags, ATT&CK mappings, and detector output",
+      "condition, verdict, severity, action, and calibration role"
+    ],
+    "deterministic_derivations": []
+  },
+  "operational_response_family": "network_blocking",
+  "nearest_frozen_case": null,
+  "differentiation": "No frozen case combines Linux runtime instrumentation with cyber-physical outcome telemetry."
+}

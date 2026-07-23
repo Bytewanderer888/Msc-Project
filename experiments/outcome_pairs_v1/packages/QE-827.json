@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "package_type": "neutral_security_event_package",
+  "case_id": "QE-827",
+  "main_alert": {
+    "evidence_id": "A0",
+    "event_time_utc": "2020-05-02T07:55:27.353Z",
+    "event_type": "file_create",
+    "source_event": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "event_code": 11,
+      "event_record_id": "773293"
+    },
+    "computer": "host-01.corp.local",
+    "attributes": {
+      "process_guid": "{8320f18b-276e-5ead-7605-000000000400}",
+      "process_id": "8780",
+      "image": "C:\\windows\\system32\\certutil.exe",
+      "target_filename": "C:\\Users\\user-01\\AppData\\Roaming\\Microsoft\\kxwn.lock",
+      "creation_utc_time": "2020-05-02 07:55:27.353"
+    },
+    "is_triggering_alert": true
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "EV-001",
+      "event_time_utc": "2020-05-02T08:14:07.617Z",
+      "event_type": "process_create",
+      "source_event": {
+        "provider": "Microsoft-Windows-Sysmon",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "event_code": 1,
+        "event_record_id": "1000064"
+      },
+      "computer": "host-01.corp.local",
+      "attributes": {
+        "process_guid": "{8320f18b-2bcf-5ead-d200-000000000500}",
+        "process_id": "8752",
+        "image": "C:\\Windows\\System32\\rundll32.exe",
+        "original_file_name": "RUNDLL32.EXE",
+        "command_line": "\"C:\\Windows\\System32\\rundll32.exe\" C:\\Users\\user-01\\AppData\\Roaming\\Microsoft\\kxwn.lock,VoidFunc",
+        "current_directory": "C:\\windows\\system32\\",
+        "user": "corp\\user-01",
+        "integrity_level": "Medium",
+        "hashes": "SHA1=7662A8D2F23C3474DEC6EF8E2B0365B0B86714EE,MD5=F68AF942FD7CCC0E7BAB1A2335D2AD26,SHA256=11064E9EDC605BD5B0C0A505538A0D5FD7DE53883AF342F091687CAE8628ACD0,IMPHASH=F27A7FC3A53E74F45BE370131953896A",
+        "parent_process_guid": "{8320f18b-2ba4-5ead-a300-000000000500}",
+        "parent_process_id": "6876",
+        "parent_image": "C:\\Windows\\explorer.exe",
+        "parent_command_line": "C:\\windows\\Explorer.EXE"
+      }
+    }
+  ],
+  "deterministic_derivations": [],
+  "observed_context": {
+    "computers": [
+      "host-01.corp.local"
+    ],
+    "users": [
+      "corp\\user-01"
+    ],
+    "time_window_utc": {
+      "start": "2020-05-02T07:55:27.353Z",
+      "end": "2020-05-02T08:14:07.617Z"
+    },
+    "event_count": 2,
+    "event_types_present": [
+      "file_create",
+      "process_create"
+    ],
+    "sourcetypes_present": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ]
+  }
+}

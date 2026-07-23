@@ -1,0 +1,70 @@
+{
+  "case_id": "FW-001",
+  "split": "dev",
+  "mordor_log": "datasets/atomic/windows/defense_evasion/host/cmd_netsh_fw_mod_open_ports.zip",
+  "computer": "WORKSTATION5",
+  "sourcetypes_present": [
+    "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "1732",
+    "EV": [
+      "1851",
+      "1853",
+      "2081",
+      "2206"
+    ]
+  },
+  "roles": {
+    "1732": "triggering alert: netsh advfirewall firewall add rule action=allow dir=in — opens an inbound firewall port",
+    "1851": "EID13: the FirewallRules registry entry created (v2.30|Action=Allow|Active=TRUE)",
+    "1853": "EID13: the SharedAccess firewall Epoch increments (the rule took effect)",
+    "2081": "netsh deletes the same named TCP/450 firewall rule about five seconds later",
+    "2206": "EID12: the matching FirewallRules registry value is deleted"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "firewall_inbound_rule_added",
+    "security_proposition": "The inbound firewall rule was created to enable unauthorized remote access.",
+    "case_directory": "FW-001_firewall_rule_add",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "OTRF Security-Datasets (mordor / atomic)",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Firewall modification (inbound rule added)",
+      "candidate_attack_mapping": "T1562.004",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: WEAK. An inbound-allow firewall rule is added via netsh — could enable remote access (attacker) or be legitimate admin configuration. No inbound connection exploits it and no follow-on activity confirms malice. Over-triage-prone (down-rank): the model must not conclude 'remote access established / breach'. Cross-corpus OTRF weak. Do not leak."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "sysmon"
+      ]
+    },
+    "case_scope": {
+      "primary_host": "WORKSTATION5",
+      "boundary_definition": [
+        "A0 = the netsh inbound-allow rule; EV = the rule registry entry, firewall epoch bump, deletion command, and matching registry deletion.",
+        "The same rule is removed about five seconds after creation; no inbound connection uses it and no other malicious activity follows — intent remains unconfirmed."
+      ]
+    },
+    "curation_notes": [
+      {
+        "topic": "weak_config",
+        "note": "WEAK / over-triage-prone: an ambiguous firewall change, removed about five seconds later, with no confirmed exploitation. Cleanup is mitigating context but does not by itself prove benign intent."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "weak_defense_evasion_exemplar",
+        "cross_corpus_weak"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

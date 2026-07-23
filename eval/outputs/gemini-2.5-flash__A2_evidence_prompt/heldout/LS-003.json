@@ -1,0 +1,12 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-004"
+  ],
+  "rationale": "Taskmgr.exe (EV-001) accessed lsass.exe with '0x1fffff' (all access) (A0), which is highly unusual for a legitimate Task Manager operation. This access was immediately followed by the creation of a dump file named 'lsass (2).DMP' in a temporary directory (EV-004), strongly suggesting an attempt to dump LSASS memory for credential harvesting.",
+  "recommended_action": "investigate"
+}

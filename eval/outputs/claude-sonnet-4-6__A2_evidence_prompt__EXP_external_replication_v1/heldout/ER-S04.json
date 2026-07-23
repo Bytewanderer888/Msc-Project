@@ -1,0 +1,13 @@
+{
+  "verdict": "suspicious",
+  "severity": "medium",
+  "confidence": 0.62,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003"
+  ],
+  "rationale": "A0 shows an unsigned/unverified executable ('remote-client.exe') run from the Downloads folder at High integrity by admin-01 on server-01. Within milliseconds, EV-001 records a WinRM (port 5985) connection from server-01 to workstation-01, and EV-002 shows wsmprovhost.exe (the WinRM host process) creating a PSScriptPolicyTest file on workstation-01, confirming a lateral-movement-style remote PowerShell session was established. EV-003 then shows powershell.exe on server-01 writing a '.vnc' file to C:\\Windows\\Temp, suggesting remote-client.exe may be orchestrating a VNC-style remote access session. The combination of an unverified binary in Downloads, high-integrity execution, immediate WinRM lateral movement, and a VNC output artifact is atypical and warrants investigation; however, no confirmed malicious payload, credential theft, or persistence mechanism is evidenced, and the activity could represent an authorized (but poorly governed) remote-admin tool.",
+  "recommended_action": "investigate"
+}

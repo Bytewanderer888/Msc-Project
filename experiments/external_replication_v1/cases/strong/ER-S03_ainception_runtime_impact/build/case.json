@@ -1,0 +1,39 @@
+{
+  "case_id": "ER-S03",
+  "builder": "experiments/external_replication_v1/build_ainception_cases.py",
+  "source_archive": "data_sources/ainception_sl100/SL100.zip",
+  "selectors": [
+    {
+      "evidence_id": "A0",
+      "member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/audit.log",
+      "byte_start": 5216359,
+      "byte_end": 5216917,
+      "audit_serial": "626718",
+      "record_sha256": "dfcbc11e93970b4775f5f54c310dc9333bda6c722df8b1fcdf8d32c677086752"
+    },
+    {
+      "evidence_id": "EV-001",
+      "member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/drone_flight_logs.log",
+      "line_number": 487,
+      "record_sha256": "7405230f2b2a25c5affcc25659c1f03774a9631f41e67921825bcb797bea5343"
+    },
+    {
+      "evidence_id": "EV-002",
+      "member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/drone_flight_logs.log",
+      "line_number": 491,
+      "record_sha256": "4f40fcd8b09a66007a983cc11c5b9c4b610f64bcf0514f16e752a9e6adc2dbfd"
+    },
+    {
+      "evidence_id": "EV-003",
+      "member": "SL100/sl100-raw-data/2nd Data Extraction_with_suricata_netflows/drone_flight_logs.log",
+      "line_number": 520,
+      "record_sha256": "cfbec6765a4824e618d532973e76b5e1144012b4addd1c8fb3be7d961410c7d8"
+    }
+  ],
+  "literal_redactions": [
+    "source attack executable -> omitted",
+    "temporary extraction directory -> /tmp/session-tool",
+    "host/user identifiers -> control-01, vehicle-01, user-01",
+    "SIM marker -> neutral ground-impact fields"
+  ]
+}

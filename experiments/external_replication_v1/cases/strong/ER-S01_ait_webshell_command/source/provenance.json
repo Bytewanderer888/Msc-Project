@@ -1,0 +1,19 @@
+{
+  "case_id": "ER-S01",
+  "status": "candidate_built_pending_qa",
+  "source_corpus": "AIT Alert Data Set",
+  "doi": "10.5281/zenodo.8263181",
+  "source_archive": {
+    "path": "data_sources/ait_ads/ait_ads.zip",
+    "sha256": "9f0595c4ebe56ac9223763881f55369dd4f249a8108064e4ae108eb3309aeeb9"
+  },
+  "selected_records": [
+    {
+      "evidence_id": "A0",
+      "archive_member": "russellmitchell_aminer.json",
+      "line_number": 3876,
+      "record_sha256": "c41eba080a86cada5882a7d11efc15262925949f2db56be096611494c9402cf2"
+    }
+  ],
+  "integrity_note": "Record hashes cover the exact UTF-8 JSONL record without its line terminator. The archive hash is pinned in data_sources/ait_ads/SOURCE_MANIFEST.json."
+}

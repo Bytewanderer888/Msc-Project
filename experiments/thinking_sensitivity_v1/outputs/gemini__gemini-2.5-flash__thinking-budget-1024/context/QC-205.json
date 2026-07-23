@@ -1,0 +1,10 @@
+{
+  "verdict": "suspicious",
+  "severity": "high",
+  "confidence": 0.8,
+  "key_evidence": [
+    "A0"
+  ],
+  "rationale": "The `main_alert` (A0) shows `rundll32.exe` being executed with a command line that attempts to load a module from a remote HTTPS URL. This is a highly unusual and common technique for malware to download and execute malicious code. While the execution of the remote code is not confirmed by additional evidence, the attempt itself is a strong indicator of suspicious activity.",
+  "recommended_action": "investigate"
+}

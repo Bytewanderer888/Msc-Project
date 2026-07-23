@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "EV-004",
+    "EV-005",
+    "EV-006"
+  ],
+  "rationale": "Evidence EV-004 shows a registry key for a new service 'BTOBTO' being created with a suspicious ImagePath that executes a batch file to redirect output to a remote share. This is immediately followed by EV-005 and EV-006, where services.exe spawns cmd.exe to execute this command line as NT AUTHORITY\\SYSTEM, indicating an attempt at privilege escalation and persistence. The initial calc.exe execution (A0, EV-001, EV-002, EV-003) appears to be a test or distraction.",
+  "recommended_action": "isolate"
+}

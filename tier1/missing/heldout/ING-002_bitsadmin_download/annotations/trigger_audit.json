@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "ING-002",
+  "rule_id": "SAFESOC-TRG-ING-002",
+  "analytic_family_id": "AF-PROC",
+  "analytic_pattern_id": "PROC-01",
+  "source_description": "raw log (windows-sysmon.log)",
+  "raw_source_event_count": 1758,
+  "complete_scope_event_count": 1758,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "5917230",
+  "expected_record_key": "5917230",
+  "selected_raw_sha256": "fb7d880c75c5f19d1d0556ffcc160c596a5592ee3a3289b7f51acb80ac9b3f83",
+  "pass": true
+}

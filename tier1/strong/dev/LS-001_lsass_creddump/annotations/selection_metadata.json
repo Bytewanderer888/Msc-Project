@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0",
+  "case_id": "LS-001",
+  "case_name": "lsass_creddump",
+  "security_proposition": "The named dumping processes performed offensive memory access against LSASS.",
+  "case_directory": "LS-001_lsass_creddump",
+  "split": "dev",
+  "status": "audited_dev_2026-07-16",
+  "attack_category": {
+    "category": "LSASS credential access",
+    "candidate_attack_mapping": "T1003.001",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = STRONG (named dumping tools mimikatz/comsvcs-rundll32/xordump access lsass with dump-capable GrantedAccess and comsvcs CallTrace; direction dumper->lsass, correct). Calibration role = PRESERVE (validator must NOT down-rank a genuine dump). Contrast: one benign svchost/lsm access (0x1400, no VM_READ). Do not leak to model."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1003.001/atomic_red_team/windows-sysmon_creddump.log",
+    "original_filename": "windows-sysmon_creddump.log",
+    "stored_filename": "ls001_creddump_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "a37b69dce32eaff6b5c1fdb4bb9cbea6dec78a4fbd22cd41362ab0e377f075ef",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "Verified: every log in T1003.001/atomic_red_team is a DIFFERENT host (creddump=win-dc-137, security=win-dc-811, procdump-security=win-host-117, createdump-sysmon=win-host-622, main-sysmon=win-dc-262/807). No same-host fusion. Tier-1 single-sensor."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "ls001_creddump_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    }
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/ls001_events.json",
+    "related_events": "extracted/ls001_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "scope_type": "single_alert_lsass_access_burst",
+    "primary_host": "win-dc-137.attackrange.local",
+    "primary_user": "unknown_eid10_only_capture",
+    "boundary_definition": [
+      "A0 = mimikatz.exe -> lsass (first genuine dump, 16:29:39).",
+      "EV = the comsvcs-rundll32 MiniDump and xordump full-access dumps, plus one benign svchost/lsm access (16:25) as a legitimate-accessor contrast.",
+      "This Sysmon capture is EID10 (process_access) ONLY — no process_create/file_create; the credential-reading ACCESS is itself the evidence.",
+      "EXCLUDED: duplicate EID10 accesses, the borderline wmiprvse/cimwin32 access, and repeated benign svchost accesses."
+    ],
+    "time_window_utc": {
+      "start": "2022-01-12T16:25:27.967136500Z",
+      "end": "2022-01-12T16:29:59.905423800Z"
+    }
+  },
+  "main_alert_selection": {
+    "selection_method": "A named credential-dumping tool (or dump-capable GrantedAccess + dumping CallTrace) accessing lsass.exe is the T1003.001 detection.",
+    "selection_reason": "mimikatz.exe reading lsass memory is the clearest triggering event; corroborated by comsvcs and xordump.",
+    "event_record_id": "40595850",
+    "process_guid": "",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "host",
+      "time_window",
+      "TargetImage==lsass.exe",
+      "GrantedAccess",
+      "CallTrace"
+    ],
+    "included_event_record_ids": [
+      "40595850",
+      "40591054",
+      "40597812",
+      "40604410"
+    ],
+    "event_groups": [
+      {
+        "group": "credential_dumps",
+        "event_record_ids": [
+          "40595850",
+          "40597812",
+          "40604410"
+        ],
+        "description": "mimikatz (0x1010), comsvcs-rundll32 (0x1410, comsvcs.dll), xordump (0x1fffff) -> lsass. Dump-capable access, correct direction."
+      },
+      {
+        "group": "benign_contrast",
+        "event_record_ids": [
+          "40591054"
+        ],
+        "description": "svchost -> lsass (0x1400, lsm.dll) — legitimate LSM access, no VM_READ."
+      }
+    ]
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "40595850",
+      "event_type": "process_access",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: mimikatz.exe accessed lsass.exe with read access (GrantedAccess 0x1010) — credential dumping"
+    },
+    "EV-001": {
+      "event_record_id": "40591054",
+      "event_type": "process_access",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "benign context: svchost.exe accessed lsass.exe (GrantedAccess 0x1400, lsm.dll CallTrace) — normal Local Session Manager access, no VM_READ"
+    },
+    "EV-002": {
+      "event_record_id": "40597812",
+      "event_type": "process_access",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "rundll32.exe accessed lsass.exe (GrantedAccess 0x1410) with comsvcs.dll on the CallTrace — the comsvcs MiniDump technique"
+    },
+    "EV-003": {
+      "event_record_id": "40604410",
+      "event_type": "process_access",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "xordump.exe accessed lsass.exe with full access (GrantedAccess 0x1fffff) — credential-dumping tool"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "strong_intent",
+      "event_record_id": "",
+      "note": "RESEARCHER-PRIVATE: STRONG / preserve. Multiple named dumping tools access LSASS with dump-capable masks and a comsvcs call trace in the correct source->target direction. This decisively establishes offensive credential-access behavior, although this EID10-only source does not show a dump file or recovered credentials."
+    },
+    {
+      "topic": "granted_access_semantics",
+      "event_record_id": "",
+      "note": "0x1010/0x1410/0x1fffff include PROCESS_VM_READ (can read lsass memory) = dump-capable; 0x1400 (svchost) lacks VM_READ = benign query. This case exercises the LSASS GrantedAccess rule."
+    },
+    {
+      "topic": "direction",
+      "event_record_id": "",
+      "note": "All accesses are SOURCE(tool)->TARGET(lsass) — the CORRECT credential-dumping direction (contrast PS-001's reversed lsass->powershell trap)."
+    },
+    {
+      "topic": "eid10_only",
+      "event_record_id": "",
+      "note": "EID10-only capture; no command line or dump file. The dump-capable memory-read access is the evidence. A richer full-telemetry dump exists on other hosts but would break single-source."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {}
+  },
+  "experimental_role": {
+    "used_for": [
+      "lsass_strong_exemplar",
+      "severity_preservation_test",
+      "granted_access_and_direction_rule_dev"
+    ],
+    "eligible_for_final_heldout_metrics": false
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-05",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

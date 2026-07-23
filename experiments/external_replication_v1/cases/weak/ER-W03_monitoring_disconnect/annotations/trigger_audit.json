@@ -1,0 +1,17 @@
+{
+  "schema": "safesoc.trigger_audit_result.v1",
+  "case_id": "ER-W03",
+  "rule_id": "SAFESOC-TRG-ER-W03",
+  "analytic_family_id": "AF-STATE",
+  "analytic_pattern_id": "STATE-02",
+  "source_description": "external CSV (combined.csv)",
+  "raw_source_event_count": 102011,
+  "complete_scope_event_count": 52,
+  "predicate_match_count": 1,
+  "qualifying_group_count": 0,
+  "selection_strategy": "earliest_match",
+  "selected_record_key": "ei2Lg5MBenunWll4wRw3",
+  "expected_record_key": "ei2Lg5MBenunWll4wRw3",
+  "selected_raw_sha256": "c3d318e66d08a6cb1aa571e51dc88056597ce390934312946df38a33131832bd",
+  "pass": true
+}

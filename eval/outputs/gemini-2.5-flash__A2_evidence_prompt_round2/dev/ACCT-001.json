@@ -1,0 +1,12 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002"
+  ],
+  "rationale": "Multiple new local users were created via 'net user /add' (A0, EV-002) and 'New-LocalUser' (EV-001) commands, with one user being added to the 'administrators' localgroup (EV-002). Although the accounts were subsequently deleted (EV-003, EV-004, EV-005), the creation of privileged accounts indicates an attempt at persistence or privilege escalation, which is a malicious activity.",
+  "recommended_action": "escalate"
+}

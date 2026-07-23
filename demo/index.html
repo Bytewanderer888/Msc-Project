@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SafeSOC — validation workbench</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><img class="brandlogo" src="assets/evidence-band-mark.svg" alt=""><b>SafeSOC</b><span class="sub">validation workbench</span></div>
+  <nav class="tabs" id="tabs">
+    <button class="tab" data-tab="workbench" aria-current="true">Workbench</button>
+    <button class="tab" data-tab="research">Research mode</button>
+    <button class="tab" data-tab="dashboard">Dashboard</button>
+  </nav>
+  <div class="spacer"></div>
+  <div class="presets" id="presetWrap">
+    <label class="sr-only" for="presetSel">Demonstration scenario</label>
+    <button class="ghost compact" id="presetLoad">Scenarios</button>
+    <select id="presetSel" hidden><option value="">Pick a scenario</option></select>
+  </div>
+  <button class="ghost" id="themeBtn" title="Toggle light/dark"
+    aria-label="Toggle light or dark theme"><span aria-hidden="true">◐</span></button>
+</header>
+
+<section class="scenariobar" id="scenarioBar" hidden aria-live="polite">
+  <span class="scenariokicker">Demonstration scenario</span>
+  <div class="scenariocopy">
+    <b id="scenarioTitle"></b>
+    <span id="scenarioTeaching"></span>
+  </div>
+  <div class="scenarioactions">
+    <button class="ghost compact" id="presentBtn">Present</button>
+    <button class="ghost compact" id="scenarioResearch">View A4</button>
+    <button class="ghost compact" id="scenarioDismiss" aria-label="Dismiss scenario context">✕</button>
+  </div>
+</section>
+
+<main class="shell">
+  <!-- ---------------- left: case selector ---------------- -->
+  <aside class="panel left" id="leftPanel">
+    <div class="phead">
+      <span class="eyebrow">Case queue</span>
+      <span class="count" id="caseCount"></span>
+    </div>
+    <div class="filters" id="filters"></div>
+    <input class="search" id="caseSearch" type="search" placeholder="Filter by id or name…" autocomplete="off">
+    <div class="caselist" id="caseList"></div>
+  </aside>
+
+  <!-- ---------------- centre: alert + evidence ---------------- -->
+  <section class="panel centre" id="centrePanel">
+    <div class="phead">
+      <span class="eyebrow">Alert package</span>
+      <span class="pkgmeta mono" id="pkgMeta"></span>
+    </div>
+    <div class="scroll" id="evidencePane">
+      <div class="empty">Select a case from the queue.</div>
+    </div>
+  </section>
+
+  <!-- ---------------- right: triage output + validation ---------------- -->
+  <section class="panel right" id="rightPanel">
+    <div class="phead">
+      <span class="eyebrow" id="rightHeading">LLM triage output</span>
+      <span class="replay" id="rightModeBadge" title="Saved output replayed from disk; no provider is called">replayed</span>
+    </div>
+    <div class="rightview" id="triageView">
+      <div class="modelbar" id="modelBar"></div>
+      <div class="scroll" id="outputPane">
+        <div class="empty">No output loaded.</div>
+      </div>
+      <div class="validatebar">
+        <div class="profilepick">
+          <label for="profileSel">Routing profile</label>
+          <select id="profileSel"></select>
+        </div>
+        <button class="primary" id="validateBtn" disabled>Validate</button>
+      </div>
+      <button type="button" class="runtimepeek" id="runtimeSummary" hidden
+        aria-controls="runtimeView" aria-label="Open runtime validation details"></button>
+    </div>
+    <div class="rightview runtimeview" id="runtimeView" hidden>
+      <div class="runtimeviewnav">
+        <button class="ghost compact" id="runtimeBack">&#8592; LLM output</button>
+        <span class="metaline">ground-truth-free &middot; 0 tokens</span>
+      </div>
+      <div class="scroll runtimedetail" id="runtimeDetail" aria-live="polite"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ---------------- guided present mode ---------------- -->
+<section class="presentbar" id="presentBar" hidden aria-label="Guided walkthrough">
+  <ol class="presentsteps" id="presentSteps"></ol>
+  <div class="presenttext"><b id="presentTitle"></b><span id="presentSay"></span></div>
+  <div class="presentnav">
+    <button class="ghost compact" id="presentPrev">← Previous</button>
+    <button class="primary compact" id="presentNext">Next →</button>
+    <button class="ghost compact" id="presentExit" aria-label="Exit presentation mode">Exit</button>
+  </div>
+</section>
+
+<!-- ---------------- research mode overlay ---------------- -->
+<section class="sheet" id="researchSheet" hidden>
+  <div class="sheetinner">
+    <div class="sheethead">
+      <div><span class="researchtag">Research mode</span>
+        <h2 id="researchTitle">Offline A4 evaluation</h2>
+        <p class="mut small">Uses the frozen ground truth. This path is for benchmark evaluation and
+          explanation only — it is <b>not</b> part of the deployable runtime.</p></div>
+      <div class="sheetactions"><button class="ghost" data-sheet-tab="dashboard">Dashboard</button>
+        <button class="ghost big" id="researchClose" aria-label="Close research mode">✕</button></div>
+    </div>
+    <div id="researchBody"><div class="empty">Select a case and model, then reopen Research mode.</div></div>
+  </div>
+</section>
+
+<!-- ---------------- dashboard overlay ---------------- -->
+<section class="sheet" id="dashSheet" hidden>
+  <div class="sheetinner">
+    <div class="sheethead">
+      <div><h2>Results dashboard</h2>
+        <p class="mut small">Canonical 41-case benchmark plus the independent 16-case replication,
+          with model comparison, calibration, routing, stability and cost.</p></div>
+      <div class="sheetactions"><button class="ghost" data-sheet-tab="research">Research</button>
+        <button class="ghost big" id="dashClose" aria-label="Close dashboard">✕</button></div>
+    </div>
+    <div id="dashBody"></div>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "case_id": "WMI-002",
+  "case_name": "wmi_subscription_installed_payload_unobserved",
+  "security_proposition": "A complete offensively configured WMI event-subscription persistence mechanism was installed.",
+  "case_directory": "WMI-002_wmi_subscription_unfired",
+  "split": "dev",
+  "status": "audited_dev_2026-07-16",
+  "attack_category": {
+    "category": "WMI event-subscription persistence (installed; consumer execution not observed)",
+    "candidate_attack_mapping": "T1546.003",
+    "model_visible": false,
+    "note": "RESEARCHER-INTENT: evidence_condition = STRONG. Sysmon EID 19/20/21 with Operation=Created confirms registration of a WMI filter, encoded PowerShell consumer, and binding. This completed malicious persistence installation is the security-relevant outcome; consumer firing is not required for that claim. The later filter modification does not delete or unbind the subscription, but payload execution and broader compromise remain unobserved. Role = preserve. The answer-revealing subscription name is redacted only in model input."
+  },
+  "source_provenance": {
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "original_repository_path": "datasets/attack_techniques/T1546.003/wmi_event_subscription/windows-sysmon.log",
+    "original_filename": "windows-sysmon.log",
+    "stored_filename": "wmi002_wmisub_sysmon.log",
+    "renamed_for_splunk_disambiguation": true,
+    "source_file_sha256": "1ce6602b7639621a9c5f6ccc2d2ba679fb5d196c84129c13f533b40a7acfe4df",
+    "sources": null,
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "the WMI subscription events are all on this host's windows-sysmon.log; single-sensor Tier-1."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "wmi002_wmisub_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    }
+  },
+  "case_files": {
+    "source_log": "source/provenance.json",
+    "main_alert": "extracted/wmi002_events.json",
+    "related_events": "extracted/wmi002_events.json",
+    "alert_package": "model_input/alert_package.json",
+    "ground_truth": "annotations/ground_truth.json",
+    "main_alert_query": "queries/retrieval_spec.md",
+    "related_events_query": "queries/retrieval_spec.md",
+    "selection_metadata": "annotations/selection_metadata.json"
+  },
+  "case_scope": {
+    "scope_type": "single_wmi_subscription",
+    "primary_host": "win-host-14.attackrange.local",
+    "primary_user": "",
+    "boundary_definition": [
+      "A0 = the CommandLineEventConsumer with the encoded PowerShell payload.",
+      "EV = the EventFilter (notepad trigger), the FilterToConsumerBinding, the later filter modification to ProcessName='not-notepad.exe', and the immediately following binding modification.",
+      "The EID 19/20/21 Created events confirm installation of the complete WMI subscription mechanism.",
+      "No matching process start or consumer execution is observed; this limits downstream claims but does not negate the installed mechanism."
+    ],
+    "time_window_utc": {
+      "start": "2021-06-16T15:21:12.683402000Z",
+      "end": "2021-06-16T21:46:50.225290200Z"
+    }
+  },
+  "main_alert_selection": {
+    "selection_method": "a WMI CommandLineEventConsumer with a hidden -encodedcommand payload is the T1546.003 detection.",
+    "selection_reason": "The Created consumer, filter, and binding jointly confirm installation of an offensively configured WMI persistence mechanism. The later filter and binding modifications show that the subscription remains assembled while constraining the trigger; absent execution limits the claim to installation rather than payload firing or broader compromise.",
+    "event_record_id": "53920",
+    "process_guid": "",
+    "query_file": "queries/retrieval_spec.md"
+  },
+  "related_event_selection": {
+    "query_file": "queries/retrieval_spec.md",
+    "main_alert_excluded_from_related_events": true,
+    "correlation_keys": [
+      "host",
+      "subscription_name==Evil Persistence"
+    ],
+    "included_event_record_ids": [
+      "53920",
+      "53919",
+      "53921",
+      "151610",
+      "151644"
+    ],
+    "event_groups": []
+  },
+  "evidence_id_map": {
+    "A0": {
+      "event_record_id": "53920",
+      "event_type": "wmi_event_consumer",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "triggering alert: WMI CommandLineEventConsumer 'Evil Persistence' with a hidden -encodedcommand PowerShell payload (T1546.003)"
+    },
+    "EV-001": {
+      "event_record_id": "53919",
+      "event_type": "wmi_event_filter",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the WMI __EventFilter 'Evil Persistence' — trigger = Win32_ProcessStartTrace where ProcessName='notepad.exe'"
+    },
+    "EV-002": {
+      "event_record_id": "53921",
+      "event_type": "wmi_filter_to_consumer_binding",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the FilterToConsumerBinding linking the filter to the consumer"
+    },
+    "EV-003": {
+      "event_record_id": "151610",
+      "event_type": "wmi_event_filter",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the __EventFilter is later modified to ProcessName='not-notepad.exe'; this changes the trigger but does not delete the subscription"
+    },
+    "EV-004": {
+      "event_record_id": "151644",
+      "event_type": "wmi_filter_to_consumer_binding",
+      "source": "Microsoft-Windows-Sysmon/Operational",
+      "role_note": "the FilterToConsumerBinding is modified immediately after the filter update, confirming that the same consumer and filter remain bound"
+    }
+  },
+  "curation_notes": [
+    {
+      "topic": "confirmed_installation",
+      "event_record_id": "",
+      "note": "RESEARCHER-PRIVATE: STRONG / preserve. Operation=Created on the consumer, filter, and binding directly confirms installation of the WMI persistence mechanism. Consumer execution is a downstream outcome and is not required to establish that installation."
+    },
+    {
+      "topic": "downstream_scope_limit",
+      "event_record_id": "151610,151644",
+      "note": "The filter is modified to ProcessName='not-notepad.exe' and the binding is then modified to the same named consumer/filter pair. Neither object is deleted. No matching process start or consumer execution is observed, so the package must not be used to claim payload firing or broader compromise."
+    }
+  ],
+  "model_input_controls": {
+    "neutral_case_id_allowed": true,
+    "researcher_fields_to_exclude": [
+      "alert_name",
+      "alert_reason",
+      "mitre_technique",
+      "evidence_role",
+      "split",
+      "severity",
+      "verdict",
+      "ground_truth",
+      "evidence_condition"
+    ],
+    "preprocessing_required": [
+      "strip XML entities",
+      "repair documented source-encoding artifacts",
+      "project raw fields to neutral attributes",
+      "assign A0/EV ids"
+    ],
+    "case_attribute_exclusions": {},
+    "case_literal_redactions": {
+      "Evil Persistence": "[redacted-name]"
+    }
+  },
+  "experimental_role": {
+    "used_for": [
+      "confirmed_wmi_persistence_installation",
+      "strong_preserve_test",
+      "wmi_registration_vs_execution_boundary"
+    ],
+    "eligible_for_final_heldout_metrics": false
+  },
+  "versioning": {
+    "metadata_version": "1.0",
+    "created_date": "2026-07-06",
+    "review_status": "reviewed_for_benchmark_v1.1"
+  },
+  "review_required": {
+    "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+  }
+}

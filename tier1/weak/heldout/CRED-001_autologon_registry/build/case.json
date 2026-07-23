@@ -1,0 +1,76 @@
+{
+  "case_id": "CRED-001",
+  "split": "heldout",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1552.002/autoadminlogon/windows-sysmon.log",
+  "computer": "win-dc-456.attackrange.local",
+  "staged_export": "extracted/cred001_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "48598",
+    "EV": [
+      "48607",
+      "48606",
+      "48615",
+      "48813"
+    ]
+  },
+  "roles": {
+    "48598": "triggering alert: reg add Winlogon /v DefaultUserName /d administrator — writing plaintext AutoLogon credentials to the registry (T1552.002)",
+    "48607": "reg add Winlogon /v DefaultPassword /d 12345 — the plaintext password value",
+    "48606": "EID13: DefaultUserName set = administrator",
+    "48615": "EID13: DefaultPassword set = 12345",
+    "48813": "EID12: DefaultPassword value DELETED (regedit cleanup) — the credential is removed shortly after"
+  },
+  "derivations": [],
+  "model_visible_literal_redactions": {
+    "12345": "[redacted-password]"
+  },
+  "metadata": {
+    "case_name": "autologon_registry_creds_reverted",
+    "security_proposition": "The observed AutoLogon registry writes are adversary-driven credential exposure or theft.",
+    "case_directory": "CRED-001_autologon_registry",
+    "status": "audited_heldout_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "cred001_autologon_sysmon.log",
+    "created_date": "2026-07-06",
+    "attack_category": {
+      "category": "Credentials in registry: AutoLogon set then reverted",
+      "candidate_attack_mapping": "T1552.002",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = WEAK. AutoLogon username and password values are written to Winlogon. A later event shows DefaultPassword deletion, but deletion of DefaultUserName is not evidenced. No read, use, exfiltration, or authentication follow-on is observed. Intent remains ambiguous. Do not leak to model."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "host filter = win-dc-456 (multi-host log)."
+    },
+    "case_scope": {
+      "primary_host": "win-dc-456.attackrange.local",
+      "boundary_definition": [
+        "A0 = the DefaultUserName write; EV = the DefaultPassword write, the two EID13 sets, and the EID12 delete (revert).",
+        "No credential read/exfil/use — outcome absent; the value is reverted."
+      ]
+    },
+    "curation_notes": [
+      {
+        "topic": "weak_creds",
+        "note": "WEAK / over-triage-prone: AutoLogon values are written and DefaultPassword is later deleted; no read, use, exfiltration, or authentication follow-on is evidenced."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "weak_cred_access_exemplar",
+        "over_triage_down_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": true
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

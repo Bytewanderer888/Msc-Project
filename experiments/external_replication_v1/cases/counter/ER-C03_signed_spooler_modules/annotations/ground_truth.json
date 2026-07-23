@@ -1,0 +1,36 @@
+{
+  "case_id": "ER-C03",
+  "security_proposition": "The spooler DLL loads establish exploitation of the print service.",
+  "evidence_condition": "counter",
+  "calibration_role": "down_rank",
+  "correct_verdict": "benign",
+  "acceptable_severity": [
+    "informational",
+    "low"
+  ],
+  "acceptable_actions": [
+    "close_benign",
+    "monitor"
+  ],
+  "operational_response": {
+    "family": "none",
+    "note": "Close or monitor the alert; the affirmative context does not justify containment."
+  },
+  "grounding": {
+    "supporting_evidence": [],
+    "counter_evidence": [
+      "A0",
+      "EV-001"
+    ],
+    "must_not_assert": [
+      "that the spooler service cannot be exploited",
+      "that every DLL under the spool driver directory is benign",
+      "that a remote client, exploit request, or arbitrary DLL was observed"
+    ]
+  },
+  "the_trap": "Spooler image loads can trigger exploit-oriented rules, but these two modules are standard-path Windows print components with valid Microsoft signatures.",
+  "rationale": "A0 and EV-001 show spoolsv.exe loading PrintConfig.dll and mxdwdrv.dll from the standard x64 print-driver directory within 75 milliseconds. Both events identify Microsoft Windows product metadata and valid Microsoft signatures. No remote peer, exploit request, or untrusted DLL is present, so this package is affirmative routine print-driver context rather than mere absence of follow-on.",
+  "annotated_by": "researcher",
+  "review_status": "frozen_pre_model_2026-07-22",
+  "rubric_version": "1.1"
+}

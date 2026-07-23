@@ -1,0 +1,124 @@
+{
+  "case_id": "PS-002",
+  "split": "dev",
+  "source_log": "attack_data-master/datasets/attack_techniques/T1059.001/hidden_powershell/windows-sysmon.log",
+  "staged_export": "extracted/ps002_events.json",
+  "sourcetypes_present": [
+    "Microsoft-Windows-Sysmon/Operational"
+  ],
+  "selection": {
+    "A0": "14032",
+    "EV": [
+      "13586",
+      "14041",
+      "14046"
+    ]
+  },
+  "roles": {
+    "14032": "triggering alert: hidden-window powershell used Net.WebClient.DownloadFile to fetch a file from http://bit.ly/L3g1tCrad1e to a .ps1",
+    "13586": "parent cmd.exe, launched interactively by explorer.exe",
+    "14041": "benign PSScriptPolicyTest runtime artifact",
+    "14046": "the downloaded file Default_File_Path.ps1 written to disk (download succeeded; content unverified, not executed)"
+  },
+  "derivations": [],
+  "metadata": {
+    "case_name": "hidden_powershell_cradle",
+    "security_proposition": "The hidden PowerShell download is malicious staging rather than an unverified administrative or test download.",
+    "case_directory": "PS-002_hidden_powershell_cradle",
+    "status": "audited_dev_2026-07-16",
+    "dataset": "Splunk Attack Data (attack_techniques)",
+    "stored_filename": "ps002_hidden_ps_sysmon.log",
+    "created_date": "2026-07-05",
+    "attack_category": {
+      "category": "PowerShell execution / ingress download cradle",
+      "candidate_attack_mapping": "T1059.001",
+      "model_visible": false,
+      "note": "RESEARCHER-INTENT: evidence_condition = WEAK (visible download action + file on disk, content/maliciousness unconfirmed and not executed). Calibration role = over-triage-prone (down-rank)."
+    },
+    "tier": {
+      "tier": 1,
+      "sensors": [
+        "Sysmon"
+      ],
+      "why_single_source": "attack_techniques folder; other-sensor logs are different hosts. Tier-1 single-sensor."
+    },
+    "splunk": {
+      "index": "attack_data",
+      "source": "ps002_hidden_ps_sysmon",
+      "sourcetype": "XmlWinEventLog"
+    },
+    "case_scope": {
+      "scope_type": "single_alert_download_cradle",
+      "primary_host": "win-dc-555.attackrange.local",
+      "primary_user": "ATTACKRANGE\\Administrator",
+      "boundary_definition": [
+        "A0 = the hidden-window DownloadFile cradle (record 14032).",
+        "EV = parent cmd (interactive via explorer), the benign PSScriptPolicyTest, and the downloaded C:\\Users\\Administrator\\Default_File_Path.ps1.",
+        "The scoped lifecycle is A0's ProcessGuid and the file path it writes; no child process or execution of that path is present in the raw source.",
+        "Record 16877 is a later, separate cradle variant with a different ProcessGuid, parent, and output path and is excluded rather than treated as execution of A0's file.",
+        "No EID3/EID22 captured for the cradle -> destination known only from the command-line URL."
+      ]
+    },
+    "main_alert_selection": {
+      "selection_method": "A hidden-window PowerShell Net.WebClient download from a URL shortener is the T1059.001 / ingress-tool-transfer detection.",
+      "selection_reason": "The cradle is the alert; the downloaded file confirms the action while its content stays unconfirmed (weak)."
+    },
+    "event_groups": [
+      {
+        "group": "execution",
+        "event_record_ids": [
+          "13586",
+          "14032"
+        ],
+        "description": "explorer -> cmd -> hidden powershell cradle."
+      },
+      {
+        "group": "download_artifact",
+        "event_record_ids": [
+          "14046"
+        ],
+        "description": "the fetched file Default_File_Path.ps1 written to disk."
+      },
+      {
+        "group": "benign_runtime",
+        "event_record_ids": [
+          "14041"
+        ],
+        "description": "PSScriptPolicyTest runtime artifact."
+      }
+    ],
+    "curation_notes": [
+      {
+        "topic": "weak_intent",
+        "event_record_id": "",
+        "note": "over-triage-prone WEAK case; a model may over-rate ('malware downloaded -> High') but content/execution is unconfirmed."
+      },
+      {
+        "topic": "no_der",
+        "event_record_id": "",
+        "note": "Command is plaintext -> no DER."
+      },
+      {
+        "topic": "no_network_event",
+        "event_record_id": "",
+        "note": "No EID3/EID22 -> destination unconfirmed by an independent sensor -> reinforces weak."
+      },
+      {
+        "topic": "raw_source_scope_audit",
+        "event_record_id": "16877",
+        "note": "A later record downloads and invokes a same-named script in a different directory, but it has a different ProcessGuid and parent lineage. It is a separate variant, not execution of A0's downloaded path."
+      }
+    ],
+    "experimental_role": {
+      "used_for": [
+        "powershell_weak_exemplar",
+        "over_triage_down_rank_test"
+      ],
+      "eligible_for_final_heldout_metrics": false
+    },
+    "review_status": "reviewed_for_benchmark_v1.1",
+    "review_required": {
+      "ground_truth": "Ground truth reviewed and frozen under benchmark rubric v1.1."
+    }
+  }
+}

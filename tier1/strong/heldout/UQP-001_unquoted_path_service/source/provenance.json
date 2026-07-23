@@ -1,0 +1,18 @@
+{
+  "dataset": "Splunk Attack Data (suspicious_behaviour)",
+  "sources": [
+    {
+      "sensor": "single",
+      "source_log": "attack_data-master/datasets/suspicious_behaviour/first_time_windows_service/windows-sysmon.log",
+      "sha256": "169810177257faf0dad0c5ff3a11bd439d412fc8026956588f25f9baddd1d306"
+    }
+  ],
+  "primary_host": "win-dc-533.attackrange.local",
+  "tier": {
+    "tier": 1,
+    "sensors": [
+      "Sysmon"
+    ],
+    "why_single_source": "the whole service create/hijack/delete chain is in this host's windows-sysmon.log (EID1); single-sensor Tier-1."
+  }
+}

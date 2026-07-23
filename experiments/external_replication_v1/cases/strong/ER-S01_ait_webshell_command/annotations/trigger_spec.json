@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "case_id": "ER-S01",
+  "rule_id": "SAFESOC-TRG-ER-S01",
+  "analytic_family_id": "AF-WEB",
+  "analytic_pattern_id": "WEB-02",
+  "title": "Uploaded PHP endpoint receives an encoded command parameter",
+  "formalisation_timing": "prospective_pre_model",
+  "rule_origin": {
+    "type": "project_analytic",
+    "reference": "external_replication_v1 pre-model alert-anchor review under policy v1.0"
+  },
+  "scope": {
+    "basis": "source_defined_step",
+    "complete_legal_scope": true,
+    "description": "Every record in the corpus-provided log member or scenario step containing the alert stream.",
+    "source_units": [
+      "russellmitchell_aminer.json"
+    ]
+  },
+  "event_predicate": {
+    "all": [
+      {
+        "field": "attributes.raw_text",
+        "op": "regex",
+        "value": "(?i)/wp-content/uploads/[^?\\s]+\\.php\\?wp_meta="
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "icontains",
+        "value": "HTTP/1.1"
+      },
+      {
+        "field": "attributes.raw_text",
+        "op": "regex",
+        "value": "\\\"\\s+200\\s+\\d+"
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "earliest_match"
+  },
+  "expected_a0": {
+    "record_key": "russellmitchell_aminer.json:line:3876"
+  },
+  "rationale": "A successful request to an uploaded PHP file carrying an encoded command parameter is a web-shell command-execution analytic."
+}

@@ -1,0 +1,14 @@
+{
+  "verdict": "malicious",
+  "severity": "high",
+  "confidence": 0.9,
+  "key_evidence": [
+    "A0",
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004"
+  ],
+  "rationale": "The alert package shows evidence of UAC bypass using sdclt.exe. A PowerShell command (EV-001, EV-002) modifies the registry to hijack the 'open\\command' for folders, then sdclt.exe (A0) is executed, which launches control.exe (EV-003), which in turn executes the malicious PowerShell command (EV-004) with elevated privileges. The PowerShell command itself attempts to extract and execute code from an image file, indicating further malicious intent.",
+  "recommended_action": "isolate"
+}
