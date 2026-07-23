@@ -10,7 +10,9 @@
   "thinking": "off",
   "primary_run": {
     "runner": "provenance/run_safesoc_outcome_pairs_v1.original.py",
-    "runner_sha256": "aa2b398010ff6f165cbbc8c4b9fe0584ccef05db147c4f5ad748b669bf31865e",
+    "api_time_runner_sha256": "aa2b398010ff6f165cbbc8c4b9fe0584ccef05db147c4f5ad748b669bf31865e",
+    "published_portable_copy_sha256": "1de262921080cf13656b18a4f9a437fa9745841720f39b2110c6ef1bb4632722",
+    "path_portability_note": "The published copy replaces only machine-specific repository and temporary-directory paths; the API-time hash is retained above.",
     "selected_pair_ids": [
       "OC1",
       "OC2",

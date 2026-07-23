@@ -1,12 +1,14 @@
-# Evidence-Sufficiency Rubric — v1.1 candidate
+# Evidence-Sufficiency Rubric — v1.1 frozen final specification
 
-**Status:** candidate specification, 2026-07-14. Developed from the v1.0 implementation audit and
-development-set error analysis. The rules below are condition-level rules, not case-specific patches.
-Freeze this file before using v1.1 held-out results as final results.
+**Status:** frozen for final scoring on 2026-07-16, after the final evidence-condition and raw-source
+audits and before the final v1.1 replacement/repeated held-out scoring phase. Earlier exploratory or
+superseded outputs are not presented as final v1.1 results. Developed from the v1.0 implementation audit
+and development-set error analysis; the rules below are condition-level rules, not case-specific patches.
 
 v1.0 remains preserved in `evidence_sufficiency_rubric_v1.0.md`. v1.1 initially re-scored the same saved
 model outputs. A pre-freeze evidence audit subsequently corrected two held-out service cases and removed
-redundant test-harness parent commands from their packages; those changed packages require model re-runs.
+redundant test-harness parent commands from their packages; those changed packages were re-run before
+final scoring.
 
 A second pre-freeze boundary audit on 2026-07-15 corrected ST-002 from strong to missing because its
 package records only `schtasks /Create` process invocation, not successful task registration or firing.
@@ -14,7 +16,7 @@ WMI-002 was corrected from missing to strong because Sysmon EID 19/20/21 `Operat
 records the installed consumer, filter, and binding. This paired correction preserves the development-set
 condition counts and applies the same command-versus-observed-outcome rule across the benchmark. ST-002's
 model input is unchanged and needs only offline re-scoring; WMI-002's answer-revealing subscription name
-was redacted, so that case requires a model re-run.
+was redacted, so that case was re-run before final scoring.
 
 ## 1. Scope
 
@@ -103,7 +105,8 @@ C2_pass       = verdict_pass AND severity_pass
 
 Report verdict accuracy, severity in-band rate, and joint decision accuracy separately. Severity remains
 directional: below the band is under-triage, above the band is over-triage. Verdict direction follows
-`benign < suspicious < malicious`.
+`benign < suspicious < malicious`. `C2_pass` is the primary model endpoint; the stricter C1-C4
+all-check pass is reported separately as the overall A4 evaluator outcome.
 
 ### C3 — Counter-evidence acknowledgement
 

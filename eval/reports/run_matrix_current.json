@@ -1,7 +1,7 @@
 {
   "config": "eval/expected_run_matrix.json",
   "deferred_rule": "Add Claude A2 held-out round 1 after corrected dev stability is known; add rounds 2-3 only if exact A2 dev agreement is below 20/21.",
-  "generated_utc": "2026-07-22T12:45:37Z",
+  "generated_utc": "2026-07-23T10:13:35Z",
   "record_schema": "safesoc.run_matrix_report.v1",
   "runs": [
     {

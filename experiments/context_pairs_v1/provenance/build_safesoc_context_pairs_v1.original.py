@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Build four blinded Weak-to-Counter context-reveal pairs in /private/tmp.
+"""Build four blinded Weak-to-Counter context-reveal pairs in a temporary directory.
 
 The frozen 41-case benchmark is never modified.  Each pair retains an alarming
 surface and reveals source-backed benign context only in the Counter version.
+
+Publication note: machine-specific root and temporary paths in the API-time script
+were replaced with portable equivalents. RUN_CONFIG.json preserves its API-time SHA.
 """
 
 from __future__ import annotations
@@ -11,13 +14,14 @@ import copy
 import hashlib
 import json
 import shutil
+import tempfile
 from pathlib import Path
 
 import jsonschema
 
 
-ROOT = Path("/Users/lalala/Desktop/SafeSOC")
-OUT = Path("/private/tmp/safesoc_context_pairs_v1")
+ROOT = Path(__file__).resolve().parents[3]
+OUT = Path(tempfile.gettempdir()) / "safesoc_context_pairs_v1"
 PACKAGE_DIR = OUT / "packages"
 
 POLICY = {

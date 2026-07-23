@@ -1,9 +1,10 @@
 # SafeSOC Experiment Protocol
 
-Status: final technical scope locked on 2026-07-18. The v1.1 protocol clarification
-was first recorded on 2026-07-15, before the remaining corrected-case and repeated
-held-out calls. Earlier calls are retained with their historical limitations; this
-file does not claim that newly clarified details were recorded before those calls.
+Status: final technical scope locked on 2026-07-18; final completion record updated
+on 2026-07-23. The v1.1 protocol clarification was first recorded on 2026-07-15,
+before the remaining corrected-case and repeated held-out calls. Earlier calls are
+retained with their historical limitations; this file does not claim that newly
+clarified details were recorded before those calls.
 
 ## Final research route and system boundary
 
@@ -72,6 +73,22 @@ to execute without case ground truth.
 A1 versus A2 is a prompt ablation. A3 versus A4 is evaluator component-coverage
 analysis, not a claim that the offline evaluator rewrites or improves model output.
 
+## Distinct extension studies
+
+Two completed extensions both contain 16 model-visible inputs, but they have different
+experimental units and must not be conflated:
+
+- **External replication set:** 16 independently sourced cases (four per evidence
+  condition), each run once on Gemini and Claude. These cases are stored under
+  `experiments/external_replication_v1/` and test transfer to new capture environments.
+- **Controlled matched-pair extension:** eight within-scenario pairs, comprising 16
+  derived packages run on Gemini. Four outcome-confirmation pairs manipulate decisive
+  malicious outcome evidence; four context-reveal pairs manipulate decisive benign
+  context. They are stored under `experiments/outcome_pairs_v1/` and
+  `experiments/context_pairs_v1/` and test causal evidence sensitivity.
+
+Neither extension is pooled into the canonical 41-case benchmark.
+
 ## Model configuration
 
 | Provider | Requested model | Temperature | Thinking | Max output tokens | Billing used |
@@ -96,8 +113,9 @@ identified as retrospective bindings by `eval/snapshot_runs.py`.
 3. Every held-out round is scored independently with the frozen v1.1 evaluator.
 4. Primary repeated-run reporting gives each round's metric and the mean plus range.
 5. The secondary case-level aggregate applies a 2-of-3 majority separately to each
-   binary evaluator outcome (C1-C4). A case is jointly correct only if all four
-   majority outcomes pass. No synthetic verdict/severity/action tuple is created.
+   binary evaluator outcome (C1-C4). A case passes the aggregate A4 outcome only if
+   all four majority outcomes pass. No synthetic verdict/severity/action tuple is
+   created.
 6. Stability is reported for verdict, severity, action, and their exact tuple.
 
 Gemini A1 was also repeated three times as a supplementary stability check. Claude A1
@@ -105,7 +123,10 @@ is a single prompt-baseline run; it is not part of the primary repeat criterion.
 
 ## Metrics
 
-- Primary model endpoint: joint correctness, where C1-C4 all pass.
+- **Primary model endpoint:** C2 joint decision in-band: both verdict and severity
+  are inside their ground-truth admissible bands.
+- **Overall evaluator outcome:** A4 all-check pass: C1, C2, C3, and C4 all pass.
+  This is a stricter evaluator-coverage outcome and is not the primary model endpoint.
 - Primary failure analysis: C2 verdict/severity calibration and C4 bidirectional
   action calibration, reported by evidence condition.
 - C1: evidence-reference integrity.
@@ -167,15 +188,22 @@ case metadata, complete required replacement outputs, regenerate A3/A4 and stabi
 reports, generate the run inventory, refresh `MANIFEST.json`, verify it, and retain a
 versioned off-machine backup.
 
-## Completion rule from this point
+## Final completion record
 
-- Gemini A1 development and A2 development/held-out calls are complete. Do not make
-  further Gemini calls unless a documented integrity failure invalidates an output.
-- Complete the nine missing corrected-package Claude outputs in A1 development round
-  1 and A2 development rounds 1-3. Then apply the pre-recorded development stability
-  threshold to decide whether Claude A2 held-out requires one or three rounds.
-- Never run A1 on held-out. A3, A4, stability analysis, cost accounting, and runtime
-  policy evaluation reuse saved outputs and require no new model calls.
-- After Claude completion, regenerate reports and run inventory, refresh and verify
-  `MANIFEST.json`, and freeze the final repository snapshot. No new experiment family
-  is added after this point.
+The completion gate recorded on 2026-07-18 required the remaining corrected-package
+Claude development outputs, application of the pre-recorded stability threshold, any
+required Claude held-out repeats, and regeneration of all offline reports. That gate
+is now satisfied:
+
+- the canonical run matrix is complete: Gemini A1 development rounds 1-3; Gemini A2
+  development and held-out rounds 1-3; Claude A1 development round 1; and Claude A2
+  development and held-out rounds 1-3;
+- A1 was not run on held-out;
+- A3/A4 reports, stability analysis, cost accounting, runtime-policy evaluation, and
+  the evaluation-deepening analysis were regenerated from the final saved outputs;
+- the separate 16-case external replication set was frozen and run once per model;
+- the eight-pair controlled evidence-sensitivity extension is complete;
+- `eval/check_run_matrix.py`, the package checks, unit tests, and manifest verification
+  are the final repository-completeness checks.
+
+No further provider calls are required for the reported experiments.

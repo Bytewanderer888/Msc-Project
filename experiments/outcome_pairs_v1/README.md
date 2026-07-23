@@ -37,7 +37,9 @@ running on pattern-alarm gives the same answer twice.
 - `run_pairs.py` — runs missing cases with the frozen A2 evidence prompt at benchmark
   settings (temp 0, thinking off). Skip-existing.
 - `RUN_CONFIG.json` — verified prompt/config hashes for the completed run.
-- `provenance/run_safesoc_outcome_pairs_v1.original.py` — retained original primary runner.
+- `provenance/run_safesoc_outcome_pairs_v1.original.py` — portable publication copy of
+  the primary runner. `RUN_CONFIG.json` preserves both the API-time hash and the hash of
+  this path-cleaned copy.
 
 ## Status (2026-07-19)
 

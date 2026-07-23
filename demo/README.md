@@ -58,10 +58,9 @@ python3 demo/test_separation.py
 ## Using the workbench
 
 - **Left — case queue.** Filter by tier/split or search by id/dataset/sensor. Case titles are not
-  exposed at startup because names such as `routine` or `false positive` can reveal the answer.
-  Cases are ordered by id rather than by condition-bearing repository path. The evidence-condition filter
-  appears only after Research mode, Dashboard, or **Scenarios** is explicitly opened. It is
-  tagged `research` and is never sent to the runtime validator.
+  exposed because names such as `routine` or `false positive` can reveal the answer. Cases are ordered
+  by id rather than by condition-bearing repository path. Evidence condition remains a research label
+  shown in Research mode and Dashboard, not a Workbench filter.
 - **Centre — alert package.** The triggering alert `A0`, then contextual evidence `EV-xxx` on a
   chronological timeline, then any deterministic derivations `DER-xxx` (shown with a dashed
   marker). Items cited by the current model output are highlighted.
@@ -71,16 +70,21 @@ python3 demo/test_separation.py
 - **Validate.** Choose a routing profile, then run the real validator. Keyboard: `v`.
 - **Runtime validation view.** Validation opens in the right panel with status, triggered policy
   findings, routing signals, outcomes under every profile, and neutral runtime-input identities.
-- **Research mode** (tab, or `Esc` to leave). Ground truth, C1–C4, calibration direction, and
-  the expected decision — clearly marked as offline-only.
+- **Research mode** (tab, or `Esc` to leave). A full-page case evaluation retains the selected
+  case/model/output context beside the GT-backed C1–C4 result, calibration direction, and expected
+  decision. The page clearly separates this A4 research path from Runtime validation.
 - **Dashboard** (tab). Model performance, held-out Wilson intervals and paired comparison,
-  the separate 16-case external replication comparison, signed ordinal error magnitude,
+  the separate 16-independently-sourced-case external replication comparison, signed ordinal error magnitude,
   runtime recall/review uncertainty, behaviour by evidence condition, field-level stability
   across rounds, and token usage/cost. The replication panel reads the frozen Gemini/Claude
   A4 reports and usage logs directly; it is not pooled into the canonical 41-case benchmark.
   The additional depth statistics are loaded from
   `experiments/evaluation_deepening_v1/RESULTS.json`. Everything on this dashboard remains
   research-only.
+
+The external replication is distinct from the controlled matched-pair extension: the latter
+contains eight within-scenario pairs (16 derived packages) under `outcome_pairs_v1/` and
+`context_pairs_v1/`.
 
 ### Demonstration presets
 

@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
-"""Score target bands and downward decision sensitivity for context pairs."""
+"""Score target bands and downward decision sensitivity for context pairs.
+
+Publication note: the machine-specific temporary path in the API-time script was
+replaced with a portable equivalent.
+"""
 
 from __future__ import annotations
 
 import argparse
 import json
 import re
+import tempfile
 from collections import Counter
 from pathlib import Path
 
 
-SCRATCH = Path("/private/tmp/safesoc_context_pairs_v1")
+SCRATCH = Path(tempfile.gettempdir()) / "safesoc_context_pairs_v1"
 VERDICT_RANK = {"benign": 0, "suspicious": 1, "malicious": 2}
 SEVERITY_RANK = {"informational": 0, "low": 1, "medium": 2, "high": 3, "critical": 4}
 ACTION_RANK = {"close_benign": 0, "monitor": 1, "investigate": 2, "escalate": 3, "isolate": 4}

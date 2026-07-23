@@ -46,6 +46,8 @@ def audit(man: dict) -> list[str]:
     for pair in man["pairs"]:
         pid = pair["pair_id"]
         src_path = Path(pair["source_package"])
+        if not src_path.is_absolute():
+            src_path = ROOT / src_path
         if not src_path.exists():
             problems.append(f"{pid}: source package missing: {src_path}")
             continue

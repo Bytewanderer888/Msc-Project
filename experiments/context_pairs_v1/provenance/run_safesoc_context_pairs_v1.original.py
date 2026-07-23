@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Run the scratch context pairs; existing outputs are skipped by default."""
+"""Run the scratch context pairs; existing outputs are skipped by default.
+
+Publication note: machine-specific root and temporary paths in the API-time script
+were replaced with portable equivalents. RUN_CONFIG.json preserves its API-time SHA.
+"""
 
 from __future__ import annotations
 
@@ -8,6 +12,7 @@ import importlib.util
 import json
 import os
 import random
+import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -15,8 +20,8 @@ from pathlib import Path
 import jsonschema
 
 
-ROOT = Path("/Users/lalala/Desktop/SafeSOC")
-SCRATCH = Path("/private/tmp/safesoc_context_pairs_v1")
+ROOT = Path(__file__).resolve().parents[3]
+SCRATCH = Path(tempfile.gettempdir()) / "safesoc_context_pairs_v1"
 
 
 def load_run_model():

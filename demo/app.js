@@ -92,8 +92,8 @@ function wireChrome() {
       if (!r.found) toast(`${ids.join(', ')} is not present in this alert package.`);
     };
     if (S.tab === 'workbench') { run(); return; }
-    // Coming from a sheet: switchTab is synchronous on the workbench path, but the pane still
-    // holds the layout it had while the overlay was up, and scrolling then lands on a stale
+    // Coming from another page: switchTab is synchronous on the workbench path, but the pane still
+    // holds the layout it had while that page was active, and scrolling then lands on a stale
     // offset (verified: 365px instead of 1503px). Force a reflow so the scroll is computed
     // against the real geometry. Deliberately not requestAnimationFrame — its callbacks are not
     // guaranteed to run (verified: the handler never executed at all via that path).
@@ -134,14 +134,11 @@ function wireChrome() {
 /* ---------------- left panel ---------------- */
 function buildFilters() {
   const groups = [
-    {key:'tier', label:'Tier', values:S.snap.filters.tier, research:false},
-    {key:'split', label:'Split', values:S.snap.filters.split, research:false},
+    {key:'tier', label:'Tier', values:S.snap.filters.tier},
+    {key:'split', label:'Split', values:S.snap.filters.split},
   ];
-  if (S.researchSnap) groups.push({key:'condition', label:'Evidence condition',
-    values:S.researchSnap.filters.condition, research:true});
   $('filters').innerHTML = groups.map(g => `
-    <div class="fgroup"><div class="flabel">${g.label}
-      ${g.research ? '<span class="rtag" title="Ground-truth metadata: used for navigation only, never sent to the runtime validator">research</span>' : ''}</div>
+    <div class="fgroup"><div class="flabel">${g.label}</div>
       <div class="fchips" data-key="${g.key}">
         ${g.values.map(v => `<button class="fchip" data-v="${esc(v)}" aria-pressed="false">${esc(v)}</button>`).join('')}
       </div></div>`).join('');
@@ -571,6 +568,7 @@ async function switchTab(tab) {
   }
   S.tab = tab;
   document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-current', b.dataset.tab === tab));
+  $('workbenchShell').hidden = tab !== 'workbench';
   $('researchSheet').hidden = tab !== 'research';
   $('dashSheet').hidden = tab !== 'dashboard';
   if (tab === 'research') await openResearch();
@@ -609,9 +607,45 @@ function bandScale(title, kind, band, model, direction) {
     <div class="scaletrack">${cells}</div>${unknown}</div>`;
 }
 
+function renderResearchContext() {
+  const c = S.cases.find(x => x.case_id === S.caseId);
+  const o = S.output;
+  if (!c || !o) {
+    $('researchContext').innerHTML = '<div class="empty small">Select a case and model in Workbench.</div>';
+    return;
+  }
+  const keys = o.key_evidence || [];
+  const packageCount = Number(c.event_count || 0);
+  const derivationCount = Number(c.derivation_count || 0);
+  $('researchContext').innerHTML = `
+    <section class="contextsection first">
+      <span class="contextlabel">Selected case</span>
+      <b class="contextcase">${esc(c.case_id)}</b>
+      <span class="contextname">${esc(c.dataset)} · ${esc(c.sourcetypes.join(', ') || 'unknown sensor')}</span>
+      <div class="contextbadges"><span class="tiny">${esc(c.tier)}</span><span class="tiny">${esc(c.split)}</span>
+        <span class="tiny num">${packageCount} events</span>
+        ${derivationCount ? `<span class="tiny num">${derivationCount} derivation${derivationCount === 1 ? '' : 's'}</span>` : ''}</div>
+    </section>
+    <section class="contextsection">
+      <span class="contextlabel">Replayed model output</span>
+      <div class="contextmodel">${esc(MODEL_LABEL[S.model] || S.model)}</div>
+      <div class="contextconfig">${esc(ARM_LABEL[S.arm] || S.arm)} · round ${S.round}</div>
+      <div class="contextdecision">${chip(o.verdict)}${chip(o.severity)}${chip(o.recommended_action)}</div>
+      <div class="contextconfidence"><span>Confidence</span><b class="mono num">${esc(o.confidence)}</b></div>
+    </section>
+    <section class="contextsection">
+      <span class="contextlabel">Model-cited evidence</span>
+      <div class="keyev contextkeys">${keys.map(k =>
+        `<button type="button" class="kev" data-goto="${esc(String(k).toUpperCase())}"
+          title="Open ${esc(k)} in Workbench">${esc(k)}</button>`).join('') || '<span class="mut small">None cited</span>'}</div>
+      <button type="button" class="contextopen" data-goto="A0">Open full alert package →</button>
+    </section>`;
+}
+
 async function openResearch() {
   if (!S.caseId || !S.output) return;
-  $('researchTitle').textContent = `Offline A4 evaluation — ${S.caseId}`;
+  $('researchTitle').textContent = `A4 evaluation — ${S.caseId}`;
+  renderResearchContext();
   $('researchBody').innerHTML = '<div class="empty small">Evaluating…</div>';
   let d;
   try {
@@ -765,7 +799,7 @@ function renderDashboard() {
   const perf = `<div class="tablewrap"><table class="data perf">
     <thead>
       <tr class="domrow"><th colspan="3"></th>
-        <th colspan="4" class="dom dom-start dom-a4">Offline A4 evaluation<span class="domsub">frozen ground truth \u00b7 research only</span></th>
+        <th colspan="4" class="dom dom-start dom-a4">A4 evaluation<span class="domsub">frozen ground truth \u00b7 research only</span></th>
         <th colspan="2" class="dom dom-start dom-rt">Runtime policy \u00b7 ${esc(S.snap.runtime.default_profile)}<span class="domsub">deployable \u00b7 no ground truth</span></th></tr>
       <tr><th>Arm</th><th>Split</th><th class="numcell">Rounds</th>
         <th class="dom-start">A4 all-check pass<span class="thsub">C1\u2013C4 all passed</span></th>
@@ -1166,8 +1200,8 @@ const PRESENT_STEPS = [
    say: 'The deployable, ground-truth-free policy runs. It passes: nothing machine-checkable is wrong.',
    go: async () => { switchTab('workbench'); if (!S.runtime) await runValidation();
      showRuntimeDetail(); }},
-  {n: 'Offline A4', focus: 'researchSheet',
-   say: 'With ground truth, A4 shows the same output over-triaged on verdict, severity and action. That gap is the finding.',
+  {n: 'A4 evaluation', focus: 'researchSheet',
+   say: 'With frozen ground truth, A4 shows the same output over-triaged on verdict, severity and action. That gap is the finding.',
    go: async () => { await switchTab('research'); }},
 ];
 let presentIx = -1;

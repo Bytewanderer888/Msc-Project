@@ -16,7 +16,7 @@ SafeSOC/
 ├── data_sources/
 │   ├── attack_data_staged_manifest.json # 33 excluded raw logs: source paths + hashes
 │   └── otrf_selected_raw/       # six retained OTRF ZIPs used by ten cases
-├── rubric/                     # v1.0 preserved baseline + v1.1 candidate specification
+├── rubric/                     # v1.0 preserved baseline + frozen v1.1 final specification
 ├── eval/
 │   ├── run_model.py            # multi-model triage runner (Gemini + Claude, REST; --batch = Anthropic Batch API)
 │   ├── validator.py            # preserved v1.0 evaluator
@@ -30,6 +30,7 @@ SafeSOC/
 │   └── outputs/<model_tag>/<split>/    # one JSON verdict per case per model
 ├── experiments/
 │   ├── evaluation_deepening_v1/ # ordinal error, uncertainty, stability, conformance
+│   ├── external_replication_v1/ # 16 independently sourced replication cases
 │   ├── outcome_pairs_v1/        # controlled missing -> strong interventions
 │   ├── context_pairs_v1/        # controlled weak -> counter interventions
 │   └── runtime_policy_validator/# deployable policy-layer study
@@ -71,7 +72,7 @@ every rubric rule is developed before freeze; **held-out** is a representative s
   extracted/   <case>_events.json      # the Splunk export (authoritative)        (attack_data cases only)
   model_input/ alert_package.json      # the NEUTRAL package — the only LLM input
   annotations/ selection_metadata.json # researcher archive (id map, curation, researcher intent)
-               ground_truth.json        # answer key — rubric v1.1 candidate (verdict/severity/action bands)
+               ground_truth.json        # answer key — frozen rubric v1.1 (verdict/severity/action bands)
   source/      provenance.json          # source log path(s) + sha256 + host + tier
 ```
 OTRF cases are built **directly** from the OTRF JSON, so they have no `queries/` or `extracted/` —
@@ -90,8 +91,10 @@ python3 tools/normalize.py --case tier1/strong/dev/LS-001_lsass_creddump        
 python3 tools/normalize.py --case tier1/strong/dev/LS-001_lsass_creddump --verify-log # re-derive from raw, diff
 ```
 - **Self-contained** for from-export builds + schema validation (schemas live in `tools/schema/`).
-- `--from-log` / `--verify-log` need the public raw `attack_data` sources. The engine resolves them via
-  `SAFESOC_DATA` or a hash-matched `_splunk_ingest/` fallback; the OTRF corpus is resolved via `OTRF_DATA`.
+- `--from-log` / `--verify-log` need the public raw `attack_data` sources. By default the engine checks
+  repository-relative `data_sources/attack_data/` and `data_sources/otrf_selected_raw/`; external source
+  trees can be supplied with `SAFESOC_DATA` and `OTRF_DATA`. A hash-matched `_splunk_ingest/` fallback is
+  also supported.
   Every attack_data case is proven **byte-identical** between the export and raw paths.
 - `_splunk_ingest/` is an optional 652 MiB local staging cache copied from public `attack_data`; it is not
   an original benchmark asset. Normal model runs, A3/A4, runtime validation, and package rebuilding from
@@ -148,7 +151,7 @@ CVE-2023-46604 RCE → C2, dev) and **OD-001** (Olympic Destroyer destruction fu
   gaps: GT verdict and confidence were not scored, C3 duplicated decision checks, and C4 could not detect
   under-action. Broad C1 semantic keyword rules were also too brittle for claims such as “command launched”
   versus “operation succeeded.”
-- **Rubric v1.1 candidate** (`rubric/evidence_sufficiency_rubric_v1.1.md`) introduces: **C1**
+- **Rubric v1.1 frozen final specification** (`rubric/evidence_sufficiency_rubric_v1.1.md`) introduces: **C1**
   evidence-reference integrity · **C2** verdict + severity calibration · **C3** counter-evidence
   acknowledgement only · **C4** bidirectional action bands. Free-text semantic over-reach is documented
   through `must_not_assert` audit prompts rather than presented as deterministic NLP. Unchanged packages
@@ -176,6 +179,11 @@ CVE-2023-46604 RCE → C2, dev) and **OD-001** (Olympic Destroyer destruction fu
   `C1=0, C2=9, C3=0, C4=7`. Held-out verdicts agree on **20/20** cases, severities on **19/20**, and
   exact verdict/severity/action tuples on **12/20**. Thus the action field is less repeatable, while the
   headline calibration finding and the nine A4-flagged cases are unchanged across rounds.
+- **Extension studies are separate by design.** `external_replication_v1` contains **16 independently
+  sourced cases** and one frozen A2 run per model. The controlled evidence-sensitivity study contains
+  **8 matched pairs / 16 derived packages** from canonical scenarios and was run on Gemini. The former
+  tests transfer to new sources; the latter manipulates one evidential factor within a scenario. Neither
+  is pooled into the canonical 41-case result.
 - **Repeat-run protocol:** the primary A2 config is run **3× per model** under the same
   frozen config (rounds 2–3 via `run_model.py --round N`; agreement measured on the decision fields with
   `eval/stability.py` — rationale wording may vary). If exact agreement is **≥ 20/21 cases** per model,

@@ -79,7 +79,9 @@ leakage, and re-verifies selected upstream archive or CSV records.
 Freeze result: source manifests pass, the register satisfies the 16-case
 matrix, and 16/16 cases pass package/provenance and semantic QA. The immutable
 model-input copies and complete file hashes are recorded in
-`FREEZE_MANIFEST.json`.
+`FREEZE_MANIFEST.json`. Post-run amendments in that manifest are limited to
+schema compatibility or documentation metadata and explicitly record that no
+model-visible input, ground truth, or scoring field changed.
 
 ## Frozen A2 runs
 

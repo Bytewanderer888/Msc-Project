@@ -13,20 +13,45 @@ neutral alert_package + selection_metadata, validated against the schemas.
   python3 normalize.py --case <dir> --from-log       # from the raw source log (reference / Splunk-free)
   python3 normalize.py --case <dir> --verify-log     # re-derive from raw log, diff vs delivered (no write)
 """
-import json, re, base64, hashlib, argparse, sys, html, os
+import argparse
+import base64
+import binascii
+import hashlib
+import html
+import json
+import os
+import re
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent                 # SafeSOC/tools
 SCH  = HERE / "schema"                                  # schemas travel with the tools
 PROJECT = HERE.parent
-# attack_data-master (the raw Splunk source) stays in the original project; only
-# --from-log / --verify-log reach it. Override with the SAFESOC_DATA env var if it moves.
-ROOT = Path(os.environ.get("SAFESOC_DATA", "/Users/lalala/Desktop/SafeSOC_Copilot"))
-# OTRF Security-Datasets (mordor JSON) live in their own tree; only mordor cases reach it.
-LOCAL_OTRF = PROJECT / "data_sources" / "otrf_selected_raw"
-OTRF = Path(os.environ.get("OTRF_DATA", str(LOCAL_OTRF if LOCAL_OTRF.exists() else "/Users/lalala/Downloads/Security-Datasets-master")))
+# Raw-source operations first use repository-relative locations. External public
+# corpus checkouts can be supplied without editing this file.
+ATTACK_DATA_ROOT = Path(
+    os.environ.get("SAFESOC_DATA", PROJECT / "data_sources" / "attack_data")
+).expanduser()
+OTRF_ROOT = Path(
+    os.environ.get("OTRF_DATA", PROJECT / "data_sources" / "otrf_selected_raw")
+).expanduser()
 STAGED_LOGS = PROJECT / "_splunk_ingest"
-def _root_of(cfg): return OTRF if "mordor_log" in cfg else ROOT
+
+
+def _root_of(cfg):
+    return OTRF_ROOT if "mordor_log" in cfg else ATTACK_DATA_ROOT
+
+
+def _source_resolution_hint(cfg):
+    if "mordor_log" in cfg:
+        return (
+            f"Set OTRF_DATA to the public corpus root, or restore the selected raw "
+            f"files under {OTRF_ROOT}."
+        )
+    return (
+        f"Set SAFESOC_DATA to the public corpus root, or restore a hash-identical "
+        f"copy under {STAGED_LOGS}."
+    )
 
 
 def _resolve_source(cfg, case_dir, source_log):
@@ -36,11 +61,17 @@ def _resolve_source(cfg, case_dir, source_log):
         return direct
     provenance = case_dir / "source" / "provenance.json"
     if not provenance.exists():
-        raise FileNotFoundError(f"raw source not found and no provenance fallback exists: {direct}")
+        raise FileNotFoundError(
+            f"Raw source not found and no provenance fallback exists: {direct}. "
+            f"{_source_resolution_hint(cfg)}"
+        )
     rows = json.loads(provenance.read_text(encoding="utf-8")).get("sources", [])
     expected = next((row.get("sha256") for row in rows if row.get("source_log") == source_log), None)
     if not expected:
-        raise FileNotFoundError(f"raw source not found and provenance has no hash for {source_log}")
+        raise FileNotFoundError(
+            f"Raw source not found and provenance has no SHA-256 for {source_log}. "
+            f"{_source_resolution_hint(cfg)}"
+        )
     stored = cfg.get("metadata", {}).get("stored_filename", "")
     stored_parts = [part.strip() for part in stored.split(" + ") if part.strip()]
     source_rows = cfg.get("sources") or [{"source_log": cfg.get("source_log")}]
@@ -52,14 +83,20 @@ def _resolve_source(cfg, case_dir, source_log):
     matches = [path for path in STAGED_LOGS.glob("*") if path.is_file() and sha256(path) == expected]
     if len(matches) != 1:
         raise FileNotFoundError(
-            f"raw source fallback expected one staged SHA-256 match for {source_log}, found {len(matches)}"
+            f"Raw-source fallback expected one staged SHA-256 match for {source_log}, "
+            f"found {len(matches)}. {_source_resolution_hint(cfg)}"
         )
     return matches[0]
 
 # --------------------------------------------------------------------------- #
 #  Generic Windows-event XML parsing
 # --------------------------------------------------------------------------- #
-def sha256(p): h=hashlib.sha256(); h.update(Path(p).read_bytes()); return h.hexdigest()
+def sha256(path):
+    digest = hashlib.sha256()
+    digest.update(Path(path).read_bytes())
+    return digest.hexdigest()
+
+
 def _unxml(s):
     return (s.replace("&amp;","&").replace("&lt;","<").replace("&gt;",">")
              .replace("&quot;",'"').replace("&apos;","'"))
@@ -71,10 +108,22 @@ def sx(e,*names):
 def _tag(e,t):
     m=re.search(rf"<{t}[^>]*>([^<]*)</{t}>", e) or re.search(rf"<{t}[^>]*>([^<]*)", e)
     return m.group(1) if m else ""
-def eid(e):  return _tag(e,"EventID")
-def rid(e):  return _tag(e,"EventRecordID")
-def comp(e): return _tag(e,"Computer")
-def chan(e): return _tag(e,"Channel")
+def eid(e):
+    return _tag(e, "EventID")
+
+
+def rid(e):
+    return _tag(e, "EventRecordID")
+
+
+def comp(e):
+    return _tag(e, "Computer")
+
+
+def chan(e):
+    return _tag(e, "Channel")
+
+
 def prov(e):
     m=re.search(r"<Provider Name='([^']+)'", e); return m.group(1) if m else ""
 def stime(e):
@@ -173,13 +222,17 @@ def item(by_rid, evid, r, is_alert=False):
     if is_alert:
         b={"evidence_id":"A0","is_triggering_alert":True,**{k:v for k,v in b.items() if k!="evidence_id"}}
     return b
-def code_of(e): return eid(e)
+def code_of(e):
+    return eid(e)
 
 def decode_base64_utf16le(cmd):
     m=re.search(r"-e(?:nc|ncodedcommand)?\s+([A-Za-z0-9+/=]{20,})", cmd, re.I)
-    if not m: return ""
-    try: return base64.b64decode(m.group(1)+"==").decode("utf-16le","ignore")
-    except: return ""
+    if not m:
+        return ""
+    try:
+        return base64.b64decode(m.group(1) + "==").decode("utf-16le", "ignore")
+    except (binascii.Error, ValueError, UnicodeError):
+        return ""
 def ps_deobfuscate_concat(cmd):
     # concatenate single-quoted string fragments inside (...), then apply .Replace('X',[char]N)
     m=re.search(r"\(\s*((?:'[^']*'\s*\+\s*)+'[^']*')\s*\)", cmd)
@@ -206,7 +259,8 @@ def _leak_sub(m):
     if m.group(1): return "[id]"
     if m.group(2): return "[redacted-password]"
     return "[x]"
-def neutralize(s): return LEAK_RX.sub(_leak_sub, s) if isinstance(s, str) else s
+def neutralize(value):
+    return LEAK_RX.sub(_leak_sub, value) if isinstance(value, str) else value
 
 # Leakage can also hide inside a base64 PowerShell -EncodedCommand: the plaintext blob passes LEAK_RX
 # untouched, but decoding it (UTF-16LE) can reveal framework names / technique IDs — e.g. the Atomic Red
@@ -215,8 +269,10 @@ def neutralize(s): return LEAK_RX.sub(_leak_sub, s) if isinstance(s, str) else s
 # LEAK_RX, and re-encode. Deterministic, so export- and raw-built packages stay byte-identical.
 _ENC_RX = re.compile(r"(-e(?:nc|ncodedcommand)?\s+)([A-Za-z0-9+/=]{20,})", re.I)
 def _reencode_neutralized(b64):
-    try: text = base64.b64decode(b64 + "==").decode("utf-16le", "ignore")
-    except Exception: return b64
+    try:
+        text = base64.b64decode(b64 + "==").decode("utf-16le", "ignore")
+    except (binascii.Error, ValueError, UnicodeError):
+        return b64
     clean = neutralize(text)
     if clean == text: return b64                     # nothing to redact -> leave the original bytes
     return base64.b64encode(clean.encode("utf-16le")).decode("ascii")
@@ -319,10 +375,20 @@ def _anon_hosts(pkg):
 # --------------------------------------------------------------------------- #
 def _sensor_of(e):        # from a raw event's provider/channel (export path)
     p=((prov(e) or "")+" "+(chan(e) or "")).lower()
-    return "sysmon" if "sysmon" in p else "powershell" if "powershell" in p else "security"
+    if "sysmon" in p:
+        return "sysmon"
+    if "powershell" in p:
+        return "powershell"
+    return "security"
+
+
 def _sensor_from_channel(ch):    # from an already-projected item's channel (metadata path)
     c=(ch or "").lower()
-    return "sysmon" if "sysmon" in c else "powershell" if "powershell" in c else "security"
+    if "sysmon" in c:
+        return "sysmon"
+    if "powershell" in c:
+        return "powershell"
+    return "security"
 
 
 def _role_lookup_key(event_record_id, channel, multi):
@@ -430,14 +496,18 @@ def read_mordor(path):
             for ln in z.open(nm):
                 ln=ln.strip()
                 if ln:
-                    try: yield json.loads(ln)
-                    except: pass
+                    try:
+                        yield json.loads(ln)
+                    except (json.JSONDecodeError, UnicodeDecodeError):
+                        continue
     else:
         for ln in p.open(encoding="utf-8",errors="ignore"):
             ln=ln.strip()
             if ln:
-                try: yield json.loads(ln)
-                except: pass
+                try:
+                    yield json.loads(ln)
+                except (json.JSONDecodeError, UnicodeDecodeError):
+                    continue
 def _load_mordor(cfg, case_dir):
     multi="sources" in cfg; path=_resolve_source(cfg,case_dir,cfg["mordor_log"]); keyed={}; hf=cfg.get("computer")
     for i,ev in enumerate(read_mordor(path),1):

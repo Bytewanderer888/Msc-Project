@@ -188,6 +188,7 @@ select:focus,.search:focus{border-color:var(--accent);box-shadow:var(--ring);out
    ~355px including padding. The alert package (centre) absorbs the difference. */
 .shell{flex:1;display:grid;grid-template-columns:286px minmax(0,1fr) 452px;gap:1px;
   background:var(--line);min-height:0}
+.shell[hidden]{display:none}
 .panel{background:var(--panel);display:flex;flex-direction:column;min-height:0;min-width:0}
 /* Fixed height, not padding-derived: the three panel headers must rule off at the same y, and
    their contents differ (a plain count on the left, a bordered badge on the right). Vertical
@@ -212,8 +213,6 @@ select:focus,.search:focus{border-color:var(--accent);box-shadow:var(--ring);out
 .fchip:hover{border-color:var(--accent-line);color:var(--ink)}
 .fchip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;
   box-shadow:0 1px 3px color-mix(in srgb,var(--accent) 35%,transparent)}
-.rtag{font-size:9.5px;letter-spacing:.06em;padding:1px 5px;border-radius:4px;background:var(--research-soft);
-  color:var(--research);border:1px solid currentColor;text-transform:uppercase;font-weight:650}
 .search{margin:11px 15px;width:calc(100% - 30px)}
 .caselist{overflow-y:auto;padding:0 10px 14px;min-height:0}
 .caserow{display:block;width:100%;text-align:left;background:none;border:0;cursor:pointer;
@@ -468,14 +467,13 @@ button.kev:hover{background:color-mix(in srgb,var(--accent) 14%,var(--accent-sof
   padding-top:12px;line-height:1.6}
 .noclaim li{margin:4px 0}
 
-/* ---------- sheets (research / dashboard) ---------- */
-.sheet{position:fixed;inset:0;background:color-mix(in srgb,var(--ground) 76%,transparent);
-  backdrop-filter:blur(6px) saturate(1.2);z-index:40;display:flex;align-items:flex-start;
-  justify-content:center;padding:38px 26px;overflow-y:auto;overflow-x:hidden}
-/* display:flex above would otherwise defeat the [hidden] attribute */
+/* ---------- research / dashboard pages ---------- */
+.sheet{flex:1;min-height:0;background:var(--ground);display:flex;align-items:flex-start;
+  justify-content:center;overflow-y:auto;overflow-x:hidden}
+/* display:flex above would otherwise defeat the [hidden] attribute. */
 .sheet[hidden]{display:none}
-.sheetinner{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-xl);
-  box-shadow:var(--shadow-lg);width:min(1120px,100%);min-width:0;padding:26px 30px 32px}
+.sheetinner{background:var(--panel);width:min(1340px,100%);min-width:0;min-height:100%;
+  padding:26px 30px 40px;border-inline:1px solid var(--line)}
 .sheethead{display:flex;justify-content:space-between;align-items:flex-start;gap:22px;margin-bottom:22px;
   border-bottom:1px solid var(--line-2);padding-bottom:16px}
 .sheethead p{margin:7px 0 0;max-width:74ch}
@@ -483,6 +481,28 @@ button.kev:hover{background:color-mix(in srgb,var(--accent) 14%,var(--accent-sof
 .researchtag{font-family:var(--mono);font-size:var(--fs-micro);text-transform:uppercase;
   letter-spacing:.09em;font-weight:650;color:var(--research);background:var(--research-soft);
   border:1px solid currentColor;border-radius:6px;padding:3px 9px;display:inline-block;margin-bottom:9px}
+.sheetinner.researchpage{width:100%;max-width:none;height:100%;min-height:0;padding:0;border:0;
+  display:grid;grid-template-columns:minmax(270px,320px) minmax(0,1fr)}
+.researchcontext{min-width:0;overflow-y:auto;padding:26px 22px 34px;background:var(--panel-2);
+  border-right:1px solid var(--line)}
+.researchanalysis{min-width:0;overflow-y:auto;padding:26px 30px 40px;background:var(--panel)}
+.contextsection{padding:19px 0;border-top:1px solid var(--line)}
+.contextsection.first{padding-top:8px;border-top:0}
+.contextlabel{display:block;font-size:var(--fs-micro);font-weight:700;letter-spacing:var(--track-caps);
+  text-transform:uppercase;color:var(--faint);margin-bottom:8px}
+.contextcase{display:block;font-family:var(--mono);font-size:var(--fs-xl);line-height:1.3;color:var(--ink)}
+.contextname{display:block;color:var(--muted);font-size:var(--fs-sm);line-height:1.5;margin-top:5px}
+.contextbadges{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.contextmodel{font-weight:660;color:var(--ink)}
+.contextconfig{font-size:var(--fs-xs);color:var(--muted);margin-top:2px}
+.contextdecision{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
+.contextconfidence{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  color:var(--muted);font-size:var(--fs-xs);margin-top:12px}
+.contextconfidence b{color:var(--ink)}
+.contextkeys{margin-top:3px}
+.contextopen{font:inherit;font-size:var(--fs-xs);font-weight:640;color:var(--accent-ink);
+  border:0;background:transparent;padding:13px 0 0;cursor:pointer}
+.contextopen:hover{color:var(--accent);text-decoration:underline}
 .checkgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(226px,1fr));gap:14px;margin:18px 0}
 .checkcard{border:1px solid var(--line);border-radius:var(--r-lg);padding:13px 15px;background:var(--panel-2);
   box-shadow:var(--shadow-sm)}
@@ -611,9 +631,13 @@ table.data td.num,table.data td .num{font-variant-numeric:tabular-nums}
   .centre .scroll{overflow-y:auto;min-height:0}
   .right{height:auto;min-height:440px;flex:none}
   .right .scroll{overflow:visible}
-  .sheet{padding:96px 9px 20px}
-  .sheetinner{padding:18px 15px 22px;border-radius:var(--r-md)}
-  .sheethead{gap:11px}
+  .sheet{display:block;min-height:calc(100vh - 112px);overflow:visible}
+  .sheetinner{min-height:inherit;padding:18px 15px 28px;border-inline:0}
+  .sheetinner.researchpage{display:block;height:auto;min-height:inherit}
+  .researchcontext{overflow:visible;padding:18px 15px;border-right:0;border-bottom:1px solid var(--line)}
+  .researchanalysis{overflow:visible;padding:20px 15px 30px}
+  .sheethead{gap:11px;flex-wrap:wrap}
+  .sheetactions{width:100%;justify-content:flex-end}
   .sheethead p{margin-bottom:0}
   .cmp{grid-template-columns:1fr}
   .cmparrow{text-align:center}

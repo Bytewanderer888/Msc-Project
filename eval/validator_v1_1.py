@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SafeSOC ground-truth-backed offline evaluator, rubric v1.1 candidate.
+"""SafeSOC ground-truth-backed offline evaluator, rubric v1.1 frozen final specification.
 
 This module intentionally does not modify model outputs. It evaluates the same
 saved A2 outputs with four deterministic checks:

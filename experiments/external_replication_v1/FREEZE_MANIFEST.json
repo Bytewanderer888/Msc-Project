@@ -16,6 +16,45 @@
       "previous_sha256": "5f33845f9985f2402f996c2c12f6b651b345853b371288bc7dd71ffea1b3b9a4",
       "new_size_bytes": 3459,
       "new_sha256": "847f1610e396dd949c1ef8d22c3a0a9b46c1e2928052cd51a5ed079eb399ac18"
+    },
+    {
+      "amended_at_utc": "2026-07-23T10:14:36Z",
+      "type": "documentation_metadata_only",
+      "path": "rubric/evidence_sufficiency_rubric_v1.1.md",
+      "reason": "Replace stale candidate/future-tense wording with the final freeze and completion record; no C1-C4 rule, decision band, or scoring field changed.",
+      "model_visible_files_changed": false,
+      "ground_truth_files_changed": false,
+      "scoring_fields_changed": false,
+      "previous_size_bytes": 8654,
+      "previous_sha256": "c0049407739ff6fd176c105e96e1935aaab5990e57b39aa85aba917d8307882d",
+      "new_size_bytes": 8969,
+      "new_sha256": "e326dc6e14ffde327d4f03cf65b8051710b456aedaf214bbcd99f9788a4526f7"
+    },
+    {
+      "amended_at_utc": "2026-07-23T10:14:36Z",
+      "type": "documentation_metadata_only",
+      "path": "eval/validator_v1_1.py",
+      "reason": "Update the module docstring from candidate to frozen-final status; executable evaluator logic is unchanged.",
+      "model_visible_files_changed": false,
+      "ground_truth_files_changed": false,
+      "scoring_fields_changed": false,
+      "previous_size_bytes": 26195,
+      "previous_sha256": "0903a10929f3644e754f8378c8a07dad9b379e42eba4a68c473fdcc575b50cde",
+      "new_size_bytes": 26212,
+      "new_sha256": "e389ebb20fa5f2e03c9175767c4f75f00e66e8c7af3e88fd3a268730ed5d886f"
+    },
+    {
+      "amended_at_utc": "2026-07-23T10:14:36Z",
+      "type": "documentation_metadata_only",
+      "path": "experiments/external_replication_v1/README.md",
+      "reason": "Document the scope of the already-recorded post-run amendments; no experimental artifact or result changed.",
+      "model_visible_files_changed": false,
+      "ground_truth_files_changed": false,
+      "scoring_fields_changed": false,
+      "previous_size_bytes": 5533,
+      "previous_sha256": "5d5bf23aee1c550eef8a5d57c4e93933d7f67f5b2db46e619b35b30b783fa322",
+      "new_size_bytes": 5723,
+      "new_sha256": "422b1396caf3a75ec936484574bfcb6a56a4252c5b6cd764cbaabfd68f9b3a02"
     }
   ],
   "case_count": 16,
@@ -236,8 +275,8 @@
     },
     {
       "path": "eval/validator_v1_1.py",
-      "size_bytes": 26195,
-      "sha256": "0903a10929f3644e754f8378c8a07dad9b379e42eba4a68c473fdcc575b50cde"
+      "size_bytes": 26212,
+      "sha256": "e389ebb20fa5f2e03c9175767c4f75f00e66e8c7af3e88fd3a268730ed5d886f"
     },
     {
       "path": "experiments/external_replication_v1/CASE_REGISTER.csv",
@@ -256,8 +295,8 @@
     },
     {
       "path": "experiments/external_replication_v1/README.md",
-      "size_bytes": 5533,
-      "sha256": "5d5bf23aee1c550eef8a5d57c4e93933d7f67f5b2db46e619b35b30b783fa322"
+      "size_bytes": 5723,
+      "sha256": "422b1396caf3a75ec936484574bfcb6a56a4252c5b6cd764cbaabfd68f9b3a02"
     },
     {
       "path": "experiments/external_replication_v1/SELECTION_PROTOCOL.md",
@@ -1126,8 +1165,8 @@
     },
     {
       "path": "rubric/evidence_sufficiency_rubric_v1.1.md",
-      "size_bytes": 8654,
-      "sha256": "c0049407739ff6fd176c105e96e1935aaab5990e57b39aa85aba917d8307882d"
+      "size_bytes": 8969,
+      "sha256": "e326dc6e14ffde327d4f03cf65b8051710b456aedaf214bbcd99f9788a4526f7"
     },
     {
       "path": "rubric/trigger_analytic_case_map_v1.0.csv",

@@ -248,7 +248,7 @@
     }
   ],
   "external_attack_data_disabled": true,
-  "generated_utc": "2026-07-22T12:48:02Z",
+  "generated_utc": "2026-07-23T10:13:29Z",
   "otrf_root": "data_sources/otrf_selected_raw",
   "record_schema": "safesoc.package_rebuild_verification.v1",
   "summary": {

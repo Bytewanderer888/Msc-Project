@@ -10,7 +10,9 @@
   "thinking": "off",
   "run": {
     "runner": "provenance/run_safesoc_context_pairs_v1.original.py",
-    "runner_sha256": "b30c75bf1a5ca022f069a89ee799555b4fbd6278f86e9ae684851b19905a3952",
+    "api_time_runner_sha256": "b30c75bf1a5ca022f069a89ee799555b4fbd6278f86e9ae684851b19905a3952",
+    "published_portable_copy_sha256": "523f00c6fc0038aa53877e7b7dd471f0eea1d863220e2f66cbdfdc458b28ddb9",
+    "path_portability_note": "The published copy replaces only machine-specific repository and temporary-directory paths; the API-time hash is retained above.",
     "seed": 190720,
     "selected_pair_ids": [
       "CC1",
@@ -25,6 +27,8 @@
   },
   "construction": {
     "builder": "provenance/build_safesoc_context_pairs_v1.original.py",
-    "builder_sha256": "27c17bb3f785f2da63e016e56328273695219543274addce189e5774c8a0a51a"
+    "api_time_builder_sha256": "27c17bb3f785f2da63e016e56328273695219543274addce189e5774c8a0a51a",
+    "published_portable_copy_sha256": "6e019ea100611ee326062046f5bf8ecc6b454cb0631a2b7dab1a666f8395c8e2",
+    "path_portability_note": "The published copy replaces only machine-specific repository and temporary-directory paths; the API-time hash is retained above."
   }
 }

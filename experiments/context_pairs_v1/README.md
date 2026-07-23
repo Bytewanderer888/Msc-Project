@@ -34,8 +34,10 @@ only and are never included in model input.
 - Maximum output tokens: 2,048
 - Independent request per package
 
-Exact prompt and runner hashes are recorded in `RUN_CONFIG.json`. The original temporary
-build, run, and scoring scripts are retained unchanged under `provenance/`.
+Exact prompt and API-time script hashes are recorded in `RUN_CONFIG.json`. The scripts
+under `provenance/` are portable publication copies: only machine-specific repository
+and temporary-directory paths were replaced, and the corresponding published-copy
+hashes are recorded separately.
 
 ## Results
 

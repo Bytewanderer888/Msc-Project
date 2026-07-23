@@ -44,6 +44,8 @@ def audit(manifest: dict, outdir: Path) -> list[str]:
 
     for pair in manifest["pairs"]:
         source_path = Path(pair["source_package"])
+        if not source_path.is_absolute():
+            source_path = ROOT / source_path
         if not source_path.exists():
             problems.append(f"{pair['pair_id']}: source package missing: {source_path}")
         elif sha256(source_path) != pair["source_sha256"]:

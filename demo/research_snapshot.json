@@ -1,6 +1,6 @@
 {
  "record_schema": "safesoc.demo_research_snapshot.v1",
- "generated_utc": "2026-07-22T21:34:12Z",
+ "generated_utc": "2026-07-23T10:20:22Z",
  "research": {
   "evaluator": "validator_v1_1",
   "rubric_version": "1.1",
